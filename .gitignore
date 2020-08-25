@@ -14,7 +14,7 @@ projet/local.properties
 projet/.settings/
 projet/.loadpath
 projet/.recommenders
-projet/.classpath
+# projet/.classpath
 projet/.project
 
 # External tool builders
