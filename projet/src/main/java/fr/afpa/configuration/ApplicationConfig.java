@@ -68,7 +68,7 @@ public class ApplicationConfig implements WebMvcConfigurer {
 	@Bean
 	public InternalResourceViewResolver setup() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-		viewResolver.setPrefix("/WEB-INF/vues/");
+		viewResolver.setPrefix("/WEB-INF/jsp/");
 		viewResolver.setSuffix(".jsp");
 		return viewResolver;
 	}
