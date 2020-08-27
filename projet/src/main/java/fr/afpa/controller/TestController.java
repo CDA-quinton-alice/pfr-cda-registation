@@ -27,7 +27,7 @@ public class TestController {
 			model.addObject("str1V", f3.exists());
 			model.addObject("str3",f2.getCanonicalPath());
 			model.addObject("str3V", f2.exists());
-			model.setViewName("test");
+			model.setViewName("coucou");
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
