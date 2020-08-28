@@ -11,4 +11,6 @@ public interface IMaterielService {
 
 	List<MaterielDto> getAll();
 
+	MaterielDto create(MaterielDto materiel);
+
 }

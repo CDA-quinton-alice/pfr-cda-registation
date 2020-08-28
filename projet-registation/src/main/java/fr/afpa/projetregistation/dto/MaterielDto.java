@@ -56,7 +56,7 @@ public class MaterielDto {
 	 * renseigne sur l'état actuel à savoir 1 = OK, 2 = alerte si le fonctionnement
 	 * est possible mais altéré et 3= Hors service.
 	 */
-	private String etat;
+	private int etat;
 
 	/**
 	 * Date à laquelle le matériel a été acheté.
@@ -67,6 +67,18 @@ public class MaterielDto {
 	 * Nom du type de matériel auquel le matériel en cours correspond. Exemple :
 	 * pompe, cuve, machine à café...
 	 */
-	private String labelMateriel;
+	private String typeMateriel;
+
+	public MaterielDto(String pMarque, String pModele, int pPrix, String pLocalisation, int pEtat, Date pDateAchat,
+			String pTypeMateriel) {
+		this.marque = pMarque;
+		this.modele = pModele;
+		this.prix = pPrix;
+		this.localisation = pLocalisation;
+		this.etat = pEtat;
+		this.dateAchat = pDateAchat;
+		this.typeMateriel = pTypeMateriel;
+
+	}
 
 }
