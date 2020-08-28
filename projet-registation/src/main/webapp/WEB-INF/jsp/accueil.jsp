@@ -7,11 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div>
-		<c:forEach items="${personnes}" var="personne">
-			<p>${personne}</p>
-		</c:forEach>
-	</div>
+
 	<div>
 		<c:forEach items="${materiel}" var="materiel">
 			<p>${materiel}</p>
