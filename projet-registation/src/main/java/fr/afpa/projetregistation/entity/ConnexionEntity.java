@@ -19,6 +19,7 @@ public class ConnexionEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	private String matricule;
 	private String password;
 

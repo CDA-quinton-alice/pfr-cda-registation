@@ -2,7 +2,6 @@ package fr.afpa.projetregistation.init;
 
 import javax.annotation.PostConstruct;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import fr.afpa.projetregistation.dao.IMaterielDao;
