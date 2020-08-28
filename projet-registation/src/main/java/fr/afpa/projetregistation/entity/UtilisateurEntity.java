@@ -2,9 +2,13 @@ package fr.afpa.projetregistation.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -14,6 +18,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * Cette classe permet de définir les attributs de l'utilisateur
+ * Et de faire les jointures avec Adresse et Connexion
  * 
  * @author Mathieu
  *
@@ -36,9 +41,15 @@ public class UtilisateurEntity {
 	private double salaire;
 	private String mail;
 	private String tel;
+	private boolean responsable; 
 	
-//	private AdresseEntity adresse;
-//	private ConnexionEntity connexion;
+	@OneToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+	@JoinColumn(name="matricule", referencedColumnName="matricule", nullable=false)
+	private ConnexionEntity connexion;
+
+	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+	@JoinColumn(name="idAdresse", referencedColumnName="idAdresse", nullable=false)
+	private AdresseEntity adresse;
 	
 	
 }
