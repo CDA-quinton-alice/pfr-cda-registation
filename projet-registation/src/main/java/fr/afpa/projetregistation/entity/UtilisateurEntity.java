@@ -34,7 +34,7 @@ public class UtilisateurEntity {
 	private double salaire;
 	private String mail;
 	private String tel;
-	private ConnexionEntity connexion;
-	private AdresseEntity adresse;
+//	private ConnexionEntity connexion;
+//	private AdresseEntity adresse;
 
 }

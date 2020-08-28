@@ -16,12 +16,12 @@ public class MaterielController {
 	@Autowired
 	IMaterielService materielService;
 
-	@GetMapping("/materiel")
+	@GetMapping("/accueil")
 	public String accueil(Model model) {
 		log.debug("appel materiel registation");
 
 		model.addAttribute("materiel", materielService.getAll());
 
-		return "materiel";
+		return "accueil";
 	}
 }
