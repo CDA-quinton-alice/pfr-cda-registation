@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,6 +24,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "utilisateur")
 public class UtilisateurEntity {
 
 	@Id
@@ -34,7 +36,9 @@ public class UtilisateurEntity {
 	private double salaire;
 	private String mail;
 	private String tel;
-	private ConnexionEntity connexion;
-	private AdresseEntity adresse;
-
+	
+//	private AdresseEntity adresse;
+//	private ConnexionEntity connexion;
+	
+	
 }
