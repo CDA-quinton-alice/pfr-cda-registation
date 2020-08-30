@@ -34,7 +34,7 @@ public class DocumentController {
 
 	@RequestMapping(value = {"/document","/documents","listeDocuments","listeDesDocuments"}, method = {RequestMethod.POST, RequestMethod.GET})
 	protected ModelAndView listerDocuments(@RequestParam(value = "page", defaultValue = "1") int pageEnCours) {
-		log.debug("liste des documents - Registation");
+		log.debug("liste des documents - Registation DocumentController");
 
 		List<DocumentDto> vListeDocuments = this.documentService.getAllDocuments(pageEnCours);
 
@@ -58,6 +58,7 @@ protected ModelAndView ajouterDocument(@RequestParam(value ="idDocument") int id
 		@RequestParam(value="dateDerniereModificationDocument") Date dateDerniereModificationDocument,
 		@RequestParam(value="descriptionDocument") String descriptionDocument,
 		@RequestParam(value="commentairesDocument") String commentairesDocument){
+		log.debug("ajouter un document - Registation DocumentController");
 
 	modelDocument.setViewName("forward:/accueil");
 
@@ -67,6 +68,8 @@ protected ModelAndView ajouterDocument(@RequestParam(value ="idDocument") int id
 
 @RequestMapping(value = { "/majCategorieDocument"}, method = RequestMethod.POST)
 protected ModelAndView majCategorieDocument(@RequestParam(value="categorieDocument") String pCategorieDocument,@RequestParam(value="idDocument")int pIdDocument) {
+
+	log.debug("mettre à jour la catégorie d'un document via une recherche de son iD - Registation DocumentController");
 
 	documentService.majCategorieDocument(pCategorieDocument,pIdDocument);
 	modelDocument.setViewName("forward:/accueil");
@@ -78,6 +81,8 @@ protected ModelAndView majCategorieDocument(@RequestParam(value="categorieDocume
 @RequestMapping(value = { "/majDateAjoutDocument"}, method = RequestMethod.POST)
 protected ModelAndView majDateAjoutDocument (@RequestParam(value="dateAjoutDocument") Date pDateAjoutDocument, @RequestParam(value="idDocument")int pIdDocument) {
 
+	log.debug("mettre à jour la date d'ajout d'un document via une recherche de son iD - Registation DocumentController");
+
 	documentService.majDateAjoutDocument(pDateAjoutDocument, pIdDocument);
 	modelDocument.setViewName("forward:/accueil");
 
@@ -87,6 +92,8 @@ protected ModelAndView majDateAjoutDocument (@RequestParam(value="dateAjoutDocum
 @RequestMapping(value = { "/majDateDerniereModificationDocument"}, method = RequestMethod.POST)
 protected ModelAndView majDateDerniereModificationDocument (@RequestParam(value="dateDerniereModificationDocument") Date pDateDerniereModificationDocument,
 		@RequestParam(value = "idDocument") int pIdDocument) {
+
+	log.debug("mettre à jour la date de la dernière modification d'un document via une recherche de son iD - Registation DocumentController");
 
 	documentService.majDateDerniereModificationDocument(pDateDerniereModificationDocument, pIdDocument);
 	modelDocument.setViewName("forward:/accueil");
@@ -99,6 +106,8 @@ protected ModelAndView majDateDerniereModificationDocument (@RequestParam(value=
 protected ModelAndView majDescriptionDocument (@RequestParam(value = "descriptionDocument") String pDescriptionDocument,
 		@RequestParam(value = "idDocument") int pIdDocument) {
 
+	log.debug("mettre à jour la description d'un document via une recherche de son iD - Registation DocumentController");
+
 	documentService.majDescriptionDocument(pDescriptionDocument, pIdDocument);
 	modelDocument.setViewName("forward:/accueil");
 
@@ -109,6 +118,8 @@ protected ModelAndView majDescriptionDocument (@RequestParam(value = "descriptio
 @RequestMapping(value = {"/majCommentairesDocument"}, method = RequestMethod.POST)
 protected ModelAndView majCommentairesDocument (@RequestParam(value = "CommentairesDocument") String pCommentairesDocument,
 		@RequestParam(value ="idDocument")int pIdDocument) {
+
+	log.debug("mettre à jour les commentaires d'un document via une recherche de son iD - Registation DocumentController");
 
 	documentService.majCommentairesDocument(pCommentairesDocument, pIdDocument);
 	modelDocument.setViewName("forward:/accueil");
@@ -122,6 +133,8 @@ protected ModelAndView majCommentairesDocument (@RequestParam(value = "Commentai
 	@RequestMapping(value = { "/supprimerDocument"}, method = RequestMethod.POST)
 	protected ModelAndView supprimerDocument(@RequestParam(value="idDocument")int pIdDocument) {
 
+		log.debug("supprimer un document via une recherche de son iD - Registation DocumentController");
+
 		documentService.supprimerDocument(pIdDocument);
 		modelDocument.setViewName("forward:/accueil");
 
@@ -130,11 +143,5 @@ protected ModelAndView majCommentairesDocument (@RequestParam(value = "Commentai
 
 
 	}
-
-
-
-
-
-
 
 }
