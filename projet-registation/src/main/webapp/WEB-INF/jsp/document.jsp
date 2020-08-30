@@ -4,23 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Documents</title>
 </head>
 <body>
-
 	<div>
 		<c:forEach items="${document}" var="document">
 			<p>${document}</p>
 			</c:forEach>
 	</div>
-
-	<div>
-		<c:forEach items="${materiel}" var="materiel">
-			<p>${materiel}</p>
-			</c:forEach>
-	</div>
-	
-	
-	
 </body>
 </html>

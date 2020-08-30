@@ -111,7 +111,6 @@ protected ModelAndView majDescriptionDocument (@RequestParam(value = "descriptio
 	documentService.majDescriptionDocument(pDescriptionDocument, pIdDocument);
 	modelDocument.setViewName("forward:/accueil");
 
-
 	return modelDocument;
 }
 
@@ -123,7 +122,6 @@ protected ModelAndView majCommentairesDocument (@RequestParam(value = "Commentai
 
 	documentService.majCommentairesDocument(pCommentairesDocument, pIdDocument);
 	modelDocument.setViewName("forward:/accueil");
-
 
 	return modelDocument;
 }
@@ -139,9 +137,6 @@ protected ModelAndView majCommentairesDocument (@RequestParam(value = "Commentai
 		modelDocument.setViewName("forward:/accueil");
 
 		return modelDocument;
-
-
-
 	}
 
 }
