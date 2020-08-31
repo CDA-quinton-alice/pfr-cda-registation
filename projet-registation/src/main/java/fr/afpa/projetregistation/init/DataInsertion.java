@@ -27,8 +27,10 @@ public class DataInsertion {
 //				.save(MaterielEntity.builder().marque("Neptune").modele("p500").localisation("emplacement 1").build());
 
 		Date achat = new Date();
-		MaterielDto materiel = new MaterielDto("Orion", "pisto3000", 1000, "pompe numéro 4", 1, achat, "pompe");
+		MaterielDto materiel = new MaterielDto("Neptune", "Cuve3000", 2000, "emplacement1", 1, achat, "cuve");
 		materielService.create(materiel);
+//		MaterielDto materiel2 = new MaterielDto("Orion", "PistoXC", 500, "pompe2", 1, achat, "pompe");
+//		materielService.create(materiel2);
 //		materielDao.save(MaterielEntity.builder().marque("Orion").modele("starXL").localisation("pompe numéro 3")
 //				.etat(1).dateAchat(achat).prix(2200.00).build());
 
