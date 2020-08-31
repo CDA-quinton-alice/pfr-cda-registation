@@ -2,7 +2,6 @@ package fr.afpa.projetregistation.entity;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -71,7 +70,7 @@ public class MaterielEntity {
 	 */
 	private Date dateAchat;
 
-	@ManyToOne(cascade = CascadeType.REFRESH)
+	@ManyToOne
 	private TypeMaterielEntity typeMaterielEntity;
 
 }
