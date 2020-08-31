@@ -1,13 +1,18 @@
 package fr.afpa.projetregistation.dao;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import fr.afpa.projetregistation.entity.TypeMaterielEntity;
 
+@Repository
 public interface ITypeMaterielDao extends CrudRepository<TypeMaterielEntity, Integer> {
 
-	Optional<TypeMaterielEntity> findByLibelleMateriel(String upperCase);
+	Optional<TypeMaterielEntity> findByLibelleMateriel(String pLibelle);
+
+	List<TypeMaterielEntity> findByLibelleMaterielContaining(String pLibelle);
 
 }
