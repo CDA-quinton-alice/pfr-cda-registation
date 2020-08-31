@@ -18,9 +18,10 @@ public class MaterielController {
 
 	@GetMapping("/accueil")
 	public String accueil(Model model) {
+
 		log.debug("appel materiel registation");
 
-		model.addAttribute("materiel", materielService.getAll());
+		model.addAttribute("materiel", materielService.getAll(2));
 
 		return "accueil";
 	}

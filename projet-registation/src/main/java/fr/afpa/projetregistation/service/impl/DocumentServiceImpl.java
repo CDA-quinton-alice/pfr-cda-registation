@@ -9,13 +9,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;
-import fr.afpa.projetregistation.entity.DocumentEntity;
-import fr.afpa.projetregistation.entity.UtilisateurEntity;
+
 import fr.afpa.projetregistation.dao.IDocumentDao;
 import fr.afpa.projetregistation.dao.IUtilisateurDao;
 import fr.afpa.projetregistation.dto.DocumentDto;
+import fr.afpa.projetregistation.entity.DocumentEntity;
 import fr.afpa.projetregistation.service.IDocumentService;
 import fr.afpa.projetregistation.utils.Constantes;
 import lombok.extern.slf4j.Slf4j;
@@ -62,6 +61,8 @@ public class DocumentServiceImpl implements IDocumentService {
 		 *
 		 */
 
+		// !!!! Vérifier présence en BDD.
+
 		DocumentEntity document2 = new DocumentEntity();
 		document2.setIdDocument(document.getIdDocument());
 		document2.setNomDocument(document.getNomDocument());
@@ -70,6 +71,9 @@ public class DocumentServiceImpl implements IDocumentService {
 		document2.setDateDerniereModificationDocument(document.getDateDerniereModificationDocument());
 		document2.setDescriptionDocument(document.getDescriptionDocument());
 		document2.setCommentairesDocument(document.getCommentairesDocument());
+
+//		document = this.modelDocumentServiceImpl.map(document2, DocumentDto.class);
+		// toutes les lignes au dessus.
 
 //		Optional<UtilisateurEntity> optionelUtilisateurEntity = utilisateurDao.findById(document.getIdDocument());
 //		if (optionelUtilisateurEntity.isPresent()) {

@@ -9,8 +9,14 @@ import fr.afpa.projetregistation.dto.MaterielDto;
 @Service
 public interface IMaterielService {
 
-	List<MaterielDto> getAll();
-
 	MaterielDto create(MaterielDto materiel);
+
+	/**
+	 * Cette méthode permet de récupérer une liste de MatérielDto en appelant le
+	 * MaterielDao
+	 * 
+	 * @return liste de MaterielDto
+	 */
+	List<MaterielDto> getAll(int pPageEnCours);
 
 }
