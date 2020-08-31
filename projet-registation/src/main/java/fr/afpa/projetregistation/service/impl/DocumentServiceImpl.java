@@ -22,7 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  *
- *Cette classe implémente toutes les méthodes de service en lien avec les DocumentEntity en appelant les méthodes du IDocumentDao nécessaires.
+ * Cette classe implémente toutes les méthodes de service en lien avec les
+ * DocumentEntity en appelant les méthodes du IDocumentDao nécessaires.
  *
  * @author Alice Quinton
  * @version 1.0
@@ -42,21 +43,22 @@ public class DocumentServiceImpl implements IDocumentService {
 	@Autowired
 	private ModelMapper modelDocumentServiceImpl;
 
-
 	@Override
 	public DocumentDto ajouterDocument(DocumentDto document) {
 		log.debug("ajouter un document - Registation DocumentServiceImpl");
 		/**
-		 * @param Document Dto document : le document créé puis ajouté une fois la méthode exécutée
+		 * @param Document Dto document : le document créé puis ajouté une fois la
+		 *                 méthode exécutée
 		 * @see DocumentEntity
 		 * @see IDocumentDao
-		 * @return document : Document Dto document : le document créé puis ajouté une fois la méthode exécutée
-		 * Cette méthode va créer un nouveau DocumentEntity nommé document2 pour ensuite modifier
-		 * tous ses attributs puis les récupérer dans document.
-		 * document2 va se servir de l'interface IDocumentDao implémentée de
-		 * PagingAndSortingRepository<DocumentEntity, Integer> pour sauver les informations
-		 * en son sein.
-		 * On va donc récupérer la fameux document via une recherche d'iD dans document2.
+		 * @return document : Document Dto document : le document créé puis ajouté une
+		 *         fois la méthode exécutée Cette méthode va créer un nouveau
+		 *         DocumentEntity nommé document2 pour ensuite modifier tous ses
+		 *         attributs puis les récupérer dans document. document2 va se servir de
+		 *         l'interface IDocumentDao implémentée de
+		 *         PagingAndSortingRepository<DocumentEntity, Integer> pour sauver les
+		 *         informations en son sein. On va donc récupérer la fameux document via
+		 *         une recherche d'iD dans document2.
 		 *
 		 */
 
@@ -85,10 +87,11 @@ public class DocumentServiceImpl implements IDocumentService {
 		log.debug("supprimer un document - Registation DocumentServiceImpl");
 		/**
 		 * @param int vIdDocument : c'est l'identifiant du document qui va être supprimé
-		 * @see IDocumentDao documentDao
-		 * Cette méthode fait appel à l'interface IDocumentDao nommée ici documentDao implémentée de
-		 * PagingAndSortingRepository<DocumentEntity, Integer> en faisant appel à la méthode deleteById
-		 * qui fait une recherche par identifiant/valeur, puis supprime sa clé, donc le document qui s'y ratache.
+		 * @see IDocumentDao documentDao Cette méthode fait appel à l'interface
+		 *      IDocumentDao nommée ici documentDao implémentée de
+		 *      PagingAndSortingRepository<DocumentEntity, Integer> en faisant appel à
+		 *      la méthode deleteById qui fait une recherche par identifiant/valeur,
+		 *      puis supprime sa clé, donc le document qui s'y ratache.
 		 */
 
 		documentDao.deleteById(vIdDocument);
@@ -99,10 +102,11 @@ public class DocumentServiceImpl implements IDocumentService {
 	public void majCategorieDocument(String vCategorieDocument, int vIdDocument) {
 		log.debug("Mettre à jour la catégorie d'un document - Registation DocumentServiceImpl");
 		/**
-		 * @param int vIdDocument : c'est l'identifiant du document qui va être mis à jour
+		 * @param int vIdDocument : c'est l'identifiant du document qui va être mis à
+		 *            jour
 		 * @see DocumentEntity
-		 * @see IDocumentDao documentDao
-		 * Cette méthode met en place la classe Optional pour stocker une clé DocumentEntity
+		 * @see IDocumentDao documentDao Cette méthode met en place la classe Optional
+		 *      pour stocker une clé DocumentEntity
 		 *
 		 */
 
@@ -119,7 +123,8 @@ public class DocumentServiceImpl implements IDocumentService {
 	public void majDateAjoutDocument(Date vDateAjoutDocument, int vIdDocument) {
 		log.debug("Mettre à jour la date d'ajout d'un document - Registation DocumentServiceImpl");
 		/**
-		 * @param int vIdDocument : c'est l'identifiant du document dont la date d'ajout va être mise à jour
+		 * @param int vIdDocument : c'est l'identifiant du document dont la date d'ajout
+		 *            va être mise à jour
 		 */
 
 		Optional<DocumentEntity> optionelDocumentEntity = documentDao.findById(vIdDocument);
@@ -130,14 +135,14 @@ public class DocumentServiceImpl implements IDocumentService {
 		document3.setDateAjoutDocument(vDateAjoutDocument);
 		documentDao.save(document3);
 
-
 	}
 
 	@Override
 	public void majDateDerniereModificationDocument(Date vDateDerniereModificationDocument, int vIdDocument) {
 		log.debug("Mettre à jour la date de la dernière modification d'un document - Registation DocumentServiceImpl");
 		/**
-		 * @param int vIdDocument : c'est l'identifiant du document dont la dernière date de modification va être mise à jour
+		 * @param int vIdDocument : c'est l'identifiant du document dont la dernière
+		 *            date de modification va être mise à jour
 		 */
 
 		Optional<DocumentEntity> optionelDocumentEntity = documentDao.findById(vIdDocument);
@@ -154,9 +159,9 @@ public class DocumentServiceImpl implements IDocumentService {
 	public void majDescriptionDocument(String vDescriptionDocument, int vIdDocument) {
 		log.debug("Mettre à jour la description d'un document - Registation DocumentServiceImpl");
 		/**
-		 * @param int vIdDocument : c'est l'identifiant du document dont la description va être mise à jour
+		 * @param int vIdDocument : c'est l'identifiant du document dont la description
+		 *            va être mise à jour
 		 */
-
 
 		Optional<DocumentEntity> optionelDocumentEntity = documentDao.findById(vIdDocument);
 		DocumentEntity document3 = null;
@@ -172,7 +177,8 @@ public class DocumentServiceImpl implements IDocumentService {
 	public void majCommentairesDocument(String vCommentairesDocument, int vIdDocument) {
 		log.debug("Mettre à jour les commentaires d'un document - Registation DocumentServiceImpl");
 		/**
-		 * @param int vIdDocument : c'est l'identifiant du document dont les commentaires vont être mis à jour
+		 * @param int vIdDocument : c'est l'identifiant du document dont les
+		 *            commentaires vont être mis à jour
 		 */
 
 		Optional<DocumentEntity> optionelDocumentEntity = documentDao.findById(vIdDocument);
@@ -193,17 +199,13 @@ public class DocumentServiceImpl implements IDocumentService {
 		 */
 		Optional<DocumentEntity> optionelDocumentEntity = documentDao.findById(vIdDocument);
 		DocumentDto document = null;
-		if(optionelDocumentEntity.isPresent()) {
+		if (optionelDocumentEntity.isPresent()) {
 			DocumentEntity document3 = optionelDocumentEntity.get();
-			document = new DocumentDto(document.getIdDocument(),
-					document.getCategorieDocument(),
-					document.getNomDocument(),
-					document.getDateAjoutDocument(),
-					document.getDateDerniereModificationDocument(),
-					document.getDescriptionDocument(),
+			document = new DocumentDto(document.getIdDocument(), document.getCategorieDocument(),
+					document.getNomDocument(), document.getDateAjoutDocument(),
+					document.getDateDerniereModificationDocument(), document.getDescriptionDocument(),
 					document.getCommentairesDocument());
 		}
-
 
 		return document;
 	}
@@ -212,18 +214,16 @@ public class DocumentServiceImpl implements IDocumentService {
 	public List<DocumentDto> getAllDocuments(int vPageEnCours) {
 		log.debug(" récupérer la liste de tous les documents - pagination - Registation DocumentServiceImpl");
 		/**
-		 * @param int vPageEnCours : c'est la page sur laquelle les documents en question vont être récupérés
+		 * @param int vPageEnCours : c'est la page sur laquelle les documents en
+		 *            question vont être récupérés
 		 */
 		List<DocumentDto> listeDocumentsDto = new ArrayList();
-		PageRequest page = PageRequest.of(vPageEnCours -1, Constantes.ELEMENTS_PAR_PAGE);
+		PageRequest page = PageRequest.of(vPageEnCours - 1, Constantes.ELEMENTS_PAR_PAGE);
 		Page<DocumentEntity> documentsEntity = this.documentDao.findAll(page);
 		for (DocumentEntity document : documentsEntity) {
-			DocumentDto document2 = new DocumentDto(document.getIdDocument(),
-					document.getCategorieDocument(),
-					document.getNomDocument(),
-					document.getDateAjoutDocument(),
-					document.getDateDerniereModificationDocument(),
-					document.getDescriptionDocument(),
+			DocumentDto document2 = new DocumentDto(document.getIdDocument(), document.getCategorieDocument(),
+					document.getNomDocument(), document.getDateAjoutDocument(),
+					document.getDateDerniereModificationDocument(), document.getDescriptionDocument(),
 					document.getCommentairesDocument());
 
 			listeDocumentsDto.add(document2);
@@ -232,27 +232,18 @@ public class DocumentServiceImpl implements IDocumentService {
 		return listeDocumentsDto;
 	}
 
-<<<<<<< Updated upstream
-//	@Override
-//	public int getMaxid() {
-//
-//
-//		return documentDao.getMaxId().intValue();
-//	}
-=======
 	@Override
 	public int getMaxid() {
 
-
 		return documentDao.getMaxId();
 	}
->>>>>>> Stashed changes
 
 	@Override
 	public boolean existById(int vIdDocument) {
 		log.debug("savoir si un document existe via une recherche de son iD - Registation DocumentServiceImpl");
 		/**
-		 * @param int vIdDocument : c'est l'identifiant du document qui va être recherché pour savoir s'il existe ou pas
+		 * @param int vIdDocument : c'est l'identifiant du document qui va être
+		 *            recherché pour savoir s'il existe ou pas
 		 */
 		boolean verification = false;
 		DocumentDto document = this.getDocument(vIdDocument);
@@ -265,8 +256,6 @@ public class DocumentServiceImpl implements IDocumentService {
 
 	@Override
 	public long count() {
-
-
 
 		return documentDao.count();
 	}

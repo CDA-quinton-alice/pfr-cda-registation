@@ -13,10 +13,4 @@ public interface IDocumentDao extends PagingAndSortingRepository<DocumentEntity,
 @Query(value="SELECT ch.matricule FROM Utilisateur ch order by matricule desc LIMIT 1", nativeQuery=true)
 public int getMaxId();
 
-
-
-
-
-//public int getMaxId();
-
 }
