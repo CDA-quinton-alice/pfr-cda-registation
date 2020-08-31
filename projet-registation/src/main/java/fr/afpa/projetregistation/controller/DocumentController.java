@@ -27,8 +27,8 @@ public class DocumentController {
 	@Autowired
 	IDocumentService documentService;
 
-	@Autowired
-	ModelAndView modelDocument;
+
+	private ModelAndView modelDocument = new ModelAndView();
 
 
 
