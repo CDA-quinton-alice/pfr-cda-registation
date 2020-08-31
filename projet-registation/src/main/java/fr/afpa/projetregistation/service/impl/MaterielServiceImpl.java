@@ -99,7 +99,8 @@ public class MaterielServiceImpl implements IMaterielService {
 	 * @param pRef
 	 * @return MaterielDto
 	 */
-	private MaterielDto getMaterielById(int pRef) {
+	@Override
+	public MaterielDto getMaterielById(int pRef) {
 		Optional<MaterielEntity> opsRes = materielDao.findByRef(pRef);
 		MaterielDto materiel = null;
 		if (opsRes.isPresent()) {

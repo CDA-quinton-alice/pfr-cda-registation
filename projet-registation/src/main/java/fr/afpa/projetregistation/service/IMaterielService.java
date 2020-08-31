@@ -11,6 +11,8 @@ public interface IMaterielService {
 
 	MaterielDto create(MaterielDto materiel);
 
+	MaterielDto getMaterielById(int pRef);
+
 	/**
 	 * Cette méthode permet de récupérer une liste de MatérielDto en appelant le
 	 * MaterielDao

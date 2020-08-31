@@ -14,4 +14,5 @@ public interface IMaterielDao extends PagingAndSortingRepository<MaterielEntity,
 	List<MaterielEntity> findAll();
 
 	Optional<MaterielEntity> findByRef(int pRef);
+
 }
