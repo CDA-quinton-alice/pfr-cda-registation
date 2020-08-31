@@ -1,6 +1,6 @@
 logging:
   file:
-    name: ${user.home}/app-registation.log
+    name: ${user.home}/Registation/app-registation.log
   level:
     fr:
       cda: trace
