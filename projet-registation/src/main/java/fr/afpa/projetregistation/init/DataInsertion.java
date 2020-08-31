@@ -37,12 +37,15 @@ public class DataInsertion {
 //		materielDao.save(MaterielEntity.builder().marque("Orion").modele("starXL").localisation("pompe numéro 3")
 //				.etat(1).dateAchat(achat).prix(2200.00).build());
 
-		UtilisateurDto utilisateur = new UtilisateurDto("ABC010", "pwd", "AMB", "Aug", achat, 2000.0, "aug@gmail.com",
-				"06.09.08.09.09", true , 10 , "rue du chat" , "complément" , "08400" , "Vouziers" , "France");
+		// INSERTION DE 2 USER AVEC COUPLE CONNEXION ET ADRESSE
+		UtilisateurDto utilisateur = new UtilisateurDto("EMP001", "pwd", "nomEMP", "prenomEMP", achat, 2000.0,
+				"employe@gmail.com", "06.06.06.06.06", false, 1, "rue de l'employé", "complément1", "59000", "LILLE",
+				"France");
 		utilisateurService.create(utilisateur);
-		
-		utilisateur = new UtilisateurDto("ABC011", "pwd", "AMB", "Aug", achat, 2000.0, "aug@gmail.com",
-				"06.09.08.09.09", false,  18 , "rue du chient" , "complément" , "08300" , "ville" , "France");
+
+		utilisateur = new UtilisateurDto("RESP001", "pwd", "nomRESP", "prenomRESP", achat, 2500.0,
+				"responsable@gmail.com", "07.07.07.07.07", true, 10, "rue du responsable", "complément2", "59100",
+				"ROUBAIX", "France");
 		utilisateurService.create(utilisateur);
 
 	}

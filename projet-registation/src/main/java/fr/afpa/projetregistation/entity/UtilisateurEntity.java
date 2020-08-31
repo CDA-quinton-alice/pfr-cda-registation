@@ -47,7 +47,7 @@ public class UtilisateurEntity {
 	@JoinColumn(name="idConnexion")
 	private ConnexionEntity connexion;
 
-	@ManyToOne(cascade={CascadeType.PERSIST, CascadeType.REMOVE})
+	@ManyToOne(cascade={CascadeType.PERSIST})
 	@JoinColumn(name="idAdresse", referencedColumnName="idAdresse", nullable=false)
 	private AdresseEntity adresse;
 	
