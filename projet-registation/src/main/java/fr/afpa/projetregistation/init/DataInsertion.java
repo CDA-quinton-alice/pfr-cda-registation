@@ -37,8 +37,12 @@ public class DataInsertion {
 //		materielDao.save(MaterielEntity.builder().marque("Orion").modele("starXL").localisation("pompe numéro 3")
 //				.etat(1).dateAchat(achat).prix(2200.00).build());
 
-		UtilisateurDto utilisateur = new UtilisateurDto("ABC001", "pwd", "AMB", "Aug", achat, 2000.0, "aug@gmail.com",
-				"06.09.08.09.09", true);
+		UtilisateurDto utilisateur = new UtilisateurDto("ABC010", "pwd", "AMB", "Aug", achat, 2000.0, "aug@gmail.com",
+				"06.09.08.09.09", true , 10 , "rue du chat" , "complément" , "08400" , "Vouziers" , "France");
+		utilisateurService.create(utilisateur);
+		
+		utilisateur = new UtilisateurDto("ABC011", "pwd", "AMB", "Aug", achat, 2000.0, "aug@gmail.com",
+				"06.09.08.09.09", false,  18 , "rue du chient" , "complément" , "08300" , "ville" , "France");
 		utilisateurService.create(utilisateur);
 
 	}
