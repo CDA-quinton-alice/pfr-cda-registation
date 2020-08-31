@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fr.afpa.projetregistation.controller.MaterielController;
 import fr.afpa.projetregistation.dao.IMaterielDao;
 import fr.afpa.projetregistation.dao.ITypeMaterielDao;
 import fr.afpa.projetregistation.dto.MaterielDto;
@@ -30,22 +31,37 @@ import lombok.extern.slf4j.Slf4j;
 public class MaterielServiceImpl implements IMaterielService {
 
 	/**
-	 * Instanciation permettant d'appeler l'interface Dao.
+	 * Instanciation de l'interface matériel Dao.
 	 */
 	@Autowired
 	IMaterielDao materielDao;
 
+	/**
+	 * Instanciation de l'interface typeMatériel Dao.
+	 */
 	@Autowired
 	ITypeMaterielDao typeMaterielDao;
 
+	/**
+	 * Instanciation de l'outil modelMapper permettant de simplifier la conversion
+	 * d'un dto vers une entity et inversement.
+	 */
 	@Autowired
 	private ModelMapper modelMapper;
 
+	/**
+	 * Cette méthode permet d'ajouter un nouveau matérielDto et d'appeler le Dao
+	 * afin d'enregistrer cet élément en base de donnée.
+	 *
+	 * @see MaterielController
+	 * @param MaterielDto
+	 * @return MaterielDto
+	 */
 	@Override
 	public MaterielDto create(MaterielDto pMateriel) {
 
-		MaterielEntity matEntity = new MaterielEntity();
-		String type = pMateriel.getTypeMateriel();
+		MaterielEntity matEntity = this.modelMapper.map(pMateriel, MaterielEntity.class);
+		String type = pMateriel.getTypeMateriel().toUpperCase();
 
 		Optional<TypeMaterielEntity> optionalType = typeMaterielDao.findByLibelleMateriel(type.toUpperCase());
 		if (!optionalType.isPresent()) {
@@ -58,10 +74,21 @@ public class MaterielServiceImpl implements IMaterielService {
 			matEntity.setTypeMaterielEntity(optionalType.get());
 		}
 
-		matEntity = this.modelMapper.map(pMateriel, MaterielEntity.class);
-		materielDao.save(matEntity);
+		matEntity = materielDao.save(matEntity);
+		pMateriel = this.getMaterielById(matEntity.getRef());
 		log.info("ajout avec succes");
 		return pMateriel;
+	}
+
+	private MaterielDto getMaterielById(int pRef) {
+		Optional<MaterielEntity> opsRes = materielDao.findByRef(pRef);
+		MaterielDto materiel = null;
+		if (opsRes.isPresent()) {
+			MaterielEntity matEntity = opsRes.get();
+			materiel = this.modelMapper.map(matEntity, MaterielDto.class);
+		}
+
+		return materiel;
 	}
 
 	/**
@@ -77,6 +104,7 @@ public class MaterielServiceImpl implements IMaterielService {
 		for (MaterielEntity materielEntity : listeMat) {
 
 			listeMateriel.add(this.modelMapper.map(materielEntity, MaterielDto.class));
+
 		}
 		return listeMateriel;
 	}
