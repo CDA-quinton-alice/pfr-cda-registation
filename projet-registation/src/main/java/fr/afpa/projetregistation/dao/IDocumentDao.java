@@ -10,7 +10,12 @@ import fr.afpa.projetregistation.entity.DocumentEntity;
 @Repository
 public interface IDocumentDao extends PagingAndSortingRepository<DocumentEntity, Integer> {
 
-//@Query("SELECT ch.matricule FROM Utilisateur ch order by matricule desc limit 1")
+@Query(value="SELECT ch.matricule FROM Utilisateur ch order by matricule desc LIMIT 1", nativeQuery=true)
+public int getMaxId();
+
+
+
+
 
 //public int getMaxId();
 

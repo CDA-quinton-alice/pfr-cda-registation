@@ -232,12 +232,21 @@ public class DocumentServiceImpl implements IDocumentService {
 		return listeDocumentsDto;
 	}
 
+<<<<<<< Updated upstream
 //	@Override
 //	public int getMaxid() {
 //
 //
 //		return documentDao.getMaxId().intValue();
 //	}
+=======
+	@Override
+	public int getMaxid() {
+
+
+		return documentDao.getMaxId();
+	}
+>>>>>>> Stashed changes
 
 	@Override
 	public boolean existById(int vIdDocument) {
