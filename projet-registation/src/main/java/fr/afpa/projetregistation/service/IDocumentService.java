@@ -25,7 +25,7 @@ public interface IDocumentService {
 
 	public List<DocumentDto> getAllDocuments(int pPageEnCours);
 
-	public int getMaxid();
+//	public int getMaxid();
 
 	public boolean existById(int pIdDocument);
 
