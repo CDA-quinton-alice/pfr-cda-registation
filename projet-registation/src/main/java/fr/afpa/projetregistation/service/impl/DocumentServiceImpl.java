@@ -59,6 +59,8 @@ public class DocumentServiceImpl implements IDocumentService {
 		 *
 		 */
 
+		// !!!! Vérifier présence en BDD.
+
 		DocumentEntity document2 = new DocumentEntity();
 //		document2.setIdDocument(document.getIdDocument());
 
@@ -69,6 +71,9 @@ public class DocumentServiceImpl implements IDocumentService {
 		document2.setDateDerniereModificationDocument(document.getDateDerniereModificationDocument());
 		document2.setDescriptionDocument(document.getDescriptionDocument());
 		document2.setCommentairesDocument(document.getCommentairesDocument());
+
+//		document = this.modelDocumentServiceImpl.map(document2, DocumentDto.class);
+		// toutes les lignes au dessus.
 
 //		Optional<UtilisateurEntity> optionelUtilisateurEntity = utilisateurDao.findById(document.getIdDocument());
 //		if (optionelUtilisateurEntity.isPresent()) {
