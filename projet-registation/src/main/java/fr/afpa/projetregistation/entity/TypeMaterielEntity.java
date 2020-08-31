@@ -1,5 +1,6 @@
 package fr.afpa.projetregistation.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,17 +20,23 @@ import lombok.NoArgsConstructor;
 @Table(name = "type_materiel")
 public class TypeMaterielEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	/**
 	 * Permet de déterminer le type de matériel. Chaque nombre correspondant à un
 	 * type précis.
 	 */
+	@Id
+	@Column(name = "id_type_materiel")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idTypeMateriel;
 
 	/**
 	 * Nom du type de matériel auquel le matériel en cours correspond. Exemple :
 	 * pompe, cuve, machine à café...
 	 */
-	private String libelleTypeMateriel;
+	@Column(name = "libelle_materiel")
+	private String libelleMateriel;
+
+	public TypeMaterielEntity(String pLibelleMateriel) {
+		this.libelleMateriel = pLibelleMateriel;
+	}
 }
