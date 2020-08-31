@@ -10,13 +10,8 @@ import fr.afpa.projetregistation.entity.DocumentEntity;
 @Repository
 public interface IDocumentDao extends PagingAndSortingRepository<DocumentEntity, Integer> {
 
-@Query("SELECT coalesce(max(ch.id), 0) FROM Utilisateur ch")
+//@Query("SELECT ch.matricule FROM Utilisateur ch order by matricule desc limit 1")
 
-public Long getMaxId();
-
-
-
-
-
+//public int getMaxId();
 
 }
