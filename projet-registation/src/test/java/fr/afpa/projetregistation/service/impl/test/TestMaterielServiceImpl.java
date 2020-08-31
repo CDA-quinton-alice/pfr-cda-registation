@@ -1,4 +1,4 @@
-package fr.afpa.test.ervice.impl;
+package fr.afpa.projetregistation.service.impl.test;
 
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import fr.afpa.projetregistation.dao.IMaterielDao;
+import fr.afpa.projetregistation.dao.ITypeMaterielDao;
 import fr.afpa.projetregistation.dto.MaterielDto;
 import fr.afpa.projetregistation.dto.TypeMaterielDto;
 import fr.afpa.projetregistation.service.IMaterielService;
@@ -31,15 +32,17 @@ public class TestMaterielServiceImpl {
 	@Autowired
 	private ITypeMaterielService typeService;
 
+	@Autowired
+	private ITypeMaterielDao typeDao;
+
 	@Test
 	public void testAddMateriel() throws Exception {
-		TypeMaterielDto typeDto = new TypeMaterielDto();
+		TypeMaterielDto typeDto = new TypeMaterielDto(3, "CAISSE ENREGISTREUSE");
 		typeDto.setLibelleMateriel(Constantes.STRING_TEST);
 		Date date = new Date();
+
 		MaterielDto materiel = new MaterielDto(Constantes.STRING_TEST, Constantes.STRING_TEST, Constantes.INTEGER_TEST,
 				Constantes.STRING_TEST, Constantes.INTEGER_TEST, date, Constantes.STRING_TEST);
-
-		materiel = matService.create(materiel);
 
 		assertNotNull(materiel);
 		assertEquals(Constantes.STRING_TEST, materiel.getMarque());
