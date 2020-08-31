@@ -13,6 +13,11 @@ import lombok.NoArgsConstructor;
 
 public class DocumentDto {
 
+public DocumentDto(String pNomDocument, String pCategorieDocument, Date pDateAjoutDocument, Date pDateDerniereModificationDocument,
+			String pDescriptionDocument, String pCommentairesDocument) {
+		// TODO Auto-generated constructor stub
+	}
+
 private int idDocument;
 
 private String nomDocument;
