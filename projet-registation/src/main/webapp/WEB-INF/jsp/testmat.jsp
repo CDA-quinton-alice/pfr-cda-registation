@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Page test Mat</title>
 </head>
 <body>
 
@@ -14,6 +14,8 @@
 			</c:forEach>
 	</div>
 
+<p>utilisateur par name</p>
+<p>${user}</p>
 	
 	
 	
