@@ -61,15 +61,15 @@ public class DataInsertion {
 //		utilisateurService.create(utilisateur);
 
 		// INSERTION DE 2 USER AVEC COUPLE CONNEXION ET ADRESSE
-		UtilisateurDto utilisateur = new UtilisateurDto("EMP001", "pwd", "nomEMP", "prenomEMP", achat, 2000.0,
-				"employe@gmail.com", "06.06.06.06.06", false, 1, "rue de l'employé", "complément1", "59000", "LILLE",
-				"France");
-		utilisateurService.create(utilisateur);
-
-		utilisateur = new UtilisateurDto("RESP001", "pwd", "nomRESP", "prenomRESP", achat, 2500.0,
-				"responsable@gmail.com", "07.07.07.07.07", true, 10, "rue du responsable", "complément2", "59100",
-				"ROUBAIX", "France");
-		utilisateurService.create(utilisateur);
+//		UtilisateurDto utilisateur = new UtilisateurDto("EMP001", "pwd", "nomEMP", "prenomEMP", achat, 2000.0,
+//				"employe@gmail.com", "06.06.06.06.06", false, 1, "rue de l'employé", "complément1", "59000", "LILLE",
+//				"France");
+//		utilisateurService.create(utilisateur);
+//
+//		utilisateur = new UtilisateurDto("RESP001", "pwd", "nomRESP", "prenomRESP", achat, 2500.0,
+//				"responsable@gmail.com", "07.07.07.07.07", true, 10, "rue du responsable", "complément2", "59100",
+//				"ROUBAIX", "France");
+//		utilisateurService.create(utilisateur);
 
 		Date dateAjoutDoc = new Date();
 		Date dateDerniereModificationdoc = new Date();
