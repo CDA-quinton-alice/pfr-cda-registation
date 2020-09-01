@@ -2,12 +2,20 @@ package fr.afpa.projetregistation.service.impl.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -16,10 +24,9 @@ import fr.afpa.projetregistation.dto.UtilisateurDto;
 import fr.afpa.projetregistation.entity.UtilisateurEntity;
 import fr.afpa.projetregistation.service.IUtilisateurService;
 import fr.afpa.projetregistation.utils.Securite;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @SpringBootTest
+@TestMethodOrder(OrderAnnotation.class)
 public class UtilisateurServiceImplTest {
 
 	@Autowired
@@ -27,110 +34,219 @@ public class UtilisateurServiceImplTest {
 	@Autowired
 	IUtilisateurDao utilisateurDao;
 
-	public Date dateTest;
-
 	/**
 	 * Test la création de l'utilisateur, si bien associé à un couple connexion
 	 * (matricule / password) Ainsi que la bonne adresse correspondante
 	 */
 
 	@Test
+	@Order(1)
 	void createUtilisateurTest() {
-		UtilisateurDto utilisateur = new UtilisateurDto("MAT001", "pwd2", "nom", "prenom", dateTest, 2000.0,
-				"mat@gmail.com", "06.06.06.06.06", false, 1, "rue test", "complément test", "59000", "LILLE", "France");
+		String pattern = "dd-MM-yyyy";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		Date dateTest = null;
+		try {
+			dateTest = simpleDateFormat.parse("15-01-1989");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
-		utilisateurService.create(utilisateur);
-		Optional<UtilisateurEntity> optiUtilisateur = utilisateurDao.findById("MAT001");
+		UtilisateurDto employe = new UtilisateurDto("EMPTEST001", "pwd1", "nom1", "prenom1", dateTest, 2000.0,
+				"mat@gmail.com", "06.06.06.06.06", false, 1, "rue test1", "complément test", "38000", "GRENOBLE",
+				"France");
+
+		UtilisateurDto responsable = new UtilisateurDto("RESPTEST001", "pwd2", "nom2", "prenom2", dateTest, 2000.0,
+				"mat@gmail.com", "06.06.06.06.06", true, 2, "rue test2", "complément test", "69000", "LYON", "France");
+
+		utilisateurService.create(employe);
+		utilisateurService.create(responsable);
+
+		Optional<UtilisateurEntity> optiUtilisateur = utilisateurDao.findById("EMPTEST001");
 		UtilisateurEntity userTest = optiUtilisateur.get();
 		assertNotNull(userTest);
-		assertEquals(userTest.getPrenom(), "prenom");
-		assertEquals(userTest.getNom(), "nom");
-		assertEquals(userTest.getDateDeNaissance(), dateTest);
-		assertEquals(userTest.getSalaire(), 2000.0);
-		assertEquals(userTest.getMail(), "mat@gmail.com");
-		assertEquals(userTest.getTel(), "06.06.06.06.06");
+		assertEquals("prenom1", userTest.getPrenom());
+		assertEquals("nom1", userTest.getNom());
+		assertEquals(dateTest, userTest.getDateDeNaissance());
+		assertEquals(2000.0, userTest.getSalaire());
+		assertEquals("mat@gmail.com", userTest.getMail());
+		assertEquals("06.06.06.06.06", userTest.getTel());
 
-		assertEquals(userTest.getConnexion().getPassword(), Securite.hashMD5("pwd2"));
+		assertEquals(Securite.hashMD5("pwd1"), userTest.getConnexion().getPassword());
 
-		assertEquals(userTest.getAdresse().getNumero(), 1);
-		assertEquals(userTest.getAdresse().getRue(), "rue test");
-		assertEquals(userTest.getAdresse().getComplement(), "complément test");
-		assertEquals(userTest.getAdresse().getCodePostal(), "59000");
-		assertEquals(userTest.getAdresse().getVille(), "LILLE");
-		assertEquals(userTest.getAdresse().getPays(), "France");
-
-		utilisateurService.deleteUtilisateurByMatricule("MAT001");
-	}
-
-	/**
-	 * Test de la suppresion d'un Utilisateur préalablement créé via matricule
-	 * Récupéré via optional et test de l'optional
-	 */
-	@Test
-	void deleteUtilisateurByMatriculeTest() {
-
-		UtilisateurDto utilisateur = new UtilisateurDto("MAT001", "pwd2", "nom", "prenom", dateTest, 2000.0,
-				"mat@gmail.com", "06.06.06.06.06", false, 1, "rue test", "complément test", "59000", "LILLE", "France");
-
-		utilisateurService.create(utilisateur);
-		Optional<UtilisateurEntity> optiUtilisateur = utilisateurDao.findById("MAT001");
-		UtilisateurEntity userTest = optiUtilisateur.get();
-		assertNotNull(userTest);
-		assertEquals(userTest.getPrenom(), "prenom");
-		assertEquals(userTest.getNom(), "nom");
-		assertEquals(userTest.getDateDeNaissance(), dateTest);
-		assertEquals(userTest.getSalaire(), 2000.0);
-		assertEquals(userTest.getMail(), "mat@gmail.com");
-		assertEquals(userTest.getTel(), "06.06.06.06.06");
-
-		assertEquals(userTest.getAdresse().getNumero(), 1);
-		assertEquals(userTest.getAdresse().getRue(), "rue test");
-		assertEquals(userTest.getAdresse().getComplement(), "complément test");
-		assertEquals(userTest.getAdresse().getCodePostal(), "59000");
-		assertEquals(userTest.getAdresse().getVille(), "LILLE");
-		assertEquals(userTest.getAdresse().getPays(), "France");
-
-		utilisateurService.deleteUtilisateurByMatricule("MAT001");
-
-		Optional<UtilisateurEntity> optiUtilisateur2 = utilisateurDao.findById("MAT001");
-		assertFalse(optiUtilisateur2.isPresent());
+		assertEquals(1, userTest.getAdresse().getNumero());
+		assertEquals("rue test1", userTest.getAdresse().getRue());
+		assertEquals("complément test", userTest.getAdresse().getComplement());
+		assertEquals("38000", userTest.getAdresse().getCodePostal());
+		assertEquals("GRENOBLE", userTest.getAdresse().getVille());
+		assertEquals("France", userTest.getAdresse().getPays());
 
 	}
 
 	/**
-	 * Test de le méthode getUtilisateurByMatricule pour récupérer un UtilisateurDto par son matricule préalablement créé
-	 * Attention retour de la méthode UtilisateurDto
+	 * Test de le méthode getUtilisateurByMatricule pour récupérer un UtilisateurDto
+	 * par son matricule préalablement créé Attention retour de la méthode
+	 * UtilisateurDto
 	 * 
 	 * @param pMatricule String placé en paramètre pour récupérer l'Utilisateur
 	 */
-	
+
 	@Test
+	@Order(2)
 	void getUtilisateurByMatriculeTest() {
-		UtilisateurDto utilisateur = new UtilisateurDto("MAT001", "pwd2", "nom", "prenom", dateTest, 2000.0,
-				"mat@gmail.com", "06.06.06.06.06", false, 1, "rue test", "complément test", "59000", "LILLE", "France");
+		String pattern = "dd-MM-yyyy";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		Date dateTest = null;
+		try {
+			dateTest = simpleDateFormat.parse("15-01-1989");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
-		utilisateurService.create(utilisateur);
+		UtilisateurDto userTest = utilisateurService.getUtilisateurByMatricule("EMPTEST001");
 
-		UtilisateurDto userDto = utilisateurService.getUtilisateurByMatricule("MAT001");
+		assertNotNull(userTest);
+		assertEquals("prenom1", userTest.getPrenom());
+		assertEquals("nom1", userTest.getNom());
+		assertEquals(dateTest, userTest.getDateDeNaissance());
+		assertEquals(2000.0, userTest.getSalaire());
+		assertEquals("mat@gmail.com", userTest.getMail());
+		assertEquals("06.06.06.06.06", userTest.getTel());
 
-		assertNotNull(userDto);
-		assertEquals(userDto.getPrenom(), "prenom");
-		assertEquals(userDto.getNom(), "nom");
-		assertEquals(userDto.getDateDeNaissance(), dateTest);
-		assertEquals(userDto.getSalaire(), 2000.0);
-		assertEquals(userDto.getMail(), "mat@gmail.com");
-		assertEquals(userDto.getTel(), "06.06.06.06.06");
+		assertEquals(Securite.hashMD5("pwd1"), userTest.getPassword());
 
-		assertEquals(userDto.getPassword(), Securite.hashMD5("pwd2"));
-		assertEquals(userDto.getNumero(), 1);
-		assertEquals(userDto.getRue(), "rue test");
-		assertEquals(userDto.getComplement(), "complément test");
-		assertEquals(userDto.getCodePostal(), "59000");
-		assertEquals(userDto.getVille(), "LILLE");
-		assertEquals(userDto.getPays(), "France");
-
-		utilisateurService.deleteUtilisateurByMatricule("MAT001");
+		assertEquals(1, userTest.getNumero());
+		assertEquals("rue test1", userTest.getRue());
+		assertEquals("complément test", userTest.getComplement());
+		assertEquals("38000", userTest.getCodePostal());
+		assertEquals("GRENOBLE", userTest.getVille());
+		assertEquals("France", userTest.getPays());
 
 	}
 
+	/**
+	 * Test de le méthode getUtilisateurByName pour récupérer un UtilisateurDto par
+	 * son matricule, préalablement créé Attention retour de la méthode
+	 * UtilisateurDto
+	 * 
+	 * @param pNom String placé en paramètre pour récupérer l'Utilisateur
+	 */
+	@Test
+	@Order(3)
+	void getUtilisateurByNameTest() {
+		String pattern = "dd-MM-yyyy";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		Date dateTest = null;
+		try {
+			dateTest = simpleDateFormat.parse("15-01-1989");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		UtilisateurDto userTest = utilisateurService.getUtilisateurByName("nom1");
+
+		assertNotNull(userTest);
+		assertEquals("prenom1", userTest.getPrenom());
+		assertEquals("nom1", userTest.getNom());
+		assertEquals(dateTest, userTest.getDateDeNaissance());
+		assertEquals(2000.0, userTest.getSalaire());
+		assertEquals("mat@gmail.com", userTest.getMail());
+		assertEquals("06.06.06.06.06", userTest.getTel());
+
+		assertEquals(Securite.hashMD5("pwd1"), userTest.getPassword());
+
+		assertEquals(1, userTest.getNumero());
+		assertEquals("rue test1", userTest.getRue());
+		assertEquals("complément test", userTest.getComplement());
+		assertEquals("38000", userTest.getCodePostal());
+		assertEquals("GRENOBLE", userTest.getVille());
+		assertEquals("France", userTest.getPays());
+
+	}
+
+	/**
+	 * Permet de tester si TOUS les utilisateurs sont bien récupérés dans une liste
+	 * de UtilisateurDto
+	 * 
+	 * 
+	 */
+	@Test
+	@Order(4)
+	void getAllUtilisateursTest() {
+
+		List<UtilisateurDto> listeUsers = utilisateurService.getAllUtilisateurs(1);
+		assertNotNull(listeUsers);
+		assertNotEquals(0, listeUsers.size());
+		assertNotNull(listeUsers.get(0));
+
+		// CHECK SI DTO EST BIEN RECUP
+		assertEquals("nom1", listeUsers.get(0).getNom());
+		assertEquals("rue test1", listeUsers.get(0).getRue());
+		assertEquals(Securite.hashMD5("pwd1"), listeUsers.get(0).getPassword());
+
+	}
+
+	/**
+	 * Permet de tester si tous les EMPLOYES sont bien récupérés Seuls les
+	 * Utilisateurs avec responsable = false sont récupérés
+	 */
+	@Test
+	@Order(5)
+	void getAllEmployesTest() {
+
+		List<UtilisateurDto> listeEmployes = utilisateurService.getAllEmployes(1);
+
+		assertNotNull(listeEmployes);
+		assertNotEquals(0, listeEmployes.size());
+		assertNotNull(listeEmployes.get(0));
+
+		// CHECK SI DTO EST BIEN RECUP
+		assertEquals("nom1", listeEmployes.get(0).getNom());
+		assertEquals(false, listeEmployes.get(0).isResponsable());
+		assertEquals("rue test1", listeEmployes.get(0).getRue());
+		assertEquals(Securite.hashMD5("pwd1"), listeEmployes.get(0).getPassword());
+
+	}
+
+	/**
+	 * Permet de tester si tous les RESPONSABLES sont bien récupérés Seuls les
+	 * Utilisateurs avec responsable = true sont récupérés
+	 */
+	@Test
+	@Order(7)
+	void getAllResponsablesTest() {
+
+		List<UtilisateurDto> listeResponsables = utilisateurService.getAllResponsables(1);
+
+		assertNotNull(listeResponsables);
+		assertNotEquals(0, listeResponsables.size());
+		assertNotNull(listeResponsables.get(0));
+
+		// CHECK SI DTO EST BIEN RECUP
+		assertEquals("nom2", listeResponsables.get(0).getNom());
+		assertEquals(true, listeResponsables.get(0).isResponsable());
+		assertEquals("rue test2", listeResponsables.get(0).getRue());
+		assertEquals(Securite.hashMD5("pwd2"), listeResponsables.get(0).getPassword());
+
+	}
+
+	/**
+	 * Test de la suppresion d'un Utilisateur
+	 * 
+	 */
+	@Test
+	@Order(8)
+	void deleteUtilisateurByMatriculeTest() {
+
+		Optional<UtilisateurEntity> optiUtilisateur = utilisateurDao.findById("EMPTEST001");
+		assertTrue(optiUtilisateur.isPresent());
+		utilisateurService.deleteUtilisateurByMatricule("EMPTEST001");
+		Optional<UtilisateurEntity> optiTest = utilisateurDao.findById("EMPTEST001");
+		assertFalse(optiTest.isPresent());
+
+		Optional<UtilisateurEntity> optiUtilisateur2 = utilisateurDao.findById("RESPTEST001");
+		assertTrue(optiUtilisateur2.isPresent());
+		utilisateurService.deleteUtilisateurByMatricule("RESPTEST001");
+		Optional<UtilisateurEntity> optiTest2 = utilisateurDao.findById("RESPTEST001");
+		assertFalse(optiTest2.isPresent());
+
+	}
 }

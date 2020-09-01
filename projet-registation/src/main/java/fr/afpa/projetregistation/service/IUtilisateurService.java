@@ -3,6 +3,7 @@ package fr.afpa.projetregistation.service;
 import java.util.List;
 
 import fr.afpa.projetregistation.dto.UtilisateurDto;
+import fr.afpa.projetregistation.entity.UtilisateurEntity;
 
 public interface IUtilisateurService {
 
@@ -14,7 +15,28 @@ public interface IUtilisateurService {
 
 	UtilisateurDto getUtilisateurByName(String pNom);
 
-	List<UtilisateurDto> getAllUtilisateurs();
+	/**
+	 * Retourne la liste de tous les utilisateurs
+	 * 
+	 * @return List de UtilisateurDto
+	 */
+	List<UtilisateurDto> getAllUtilisateurs(int pPageEnCours);
+	
+	/**
+	 * Permet de retourner une liste de tous les emlpoyés 
+	 * (boolean responsable = false)
+	 * 
+	 * @return List de UtilisateurEntity qui sont des employés
+	 */
+	List<UtilisateurDto> getAllEmployes(int pPageEnCours);
+	
+	/**
+	 * Permet de retourner une liste de tous les responsables 
+	 * (boolean responsable = true)
+	 * 
+	 * @return List de UtilisateurEntity qui sont des responsables
+	 */
+	List<UtilisateurDto> getAllResponsables(int pPageEnCours);
 
 	public void deleteUtilisateurByMatricule(String pMatricule);
 

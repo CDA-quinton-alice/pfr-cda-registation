@@ -1,10 +1,13 @@
 package fr.afpa.projetregistation.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import fr.afpa.projetregistation.dao.IAdresseDao;
@@ -15,6 +18,7 @@ import fr.afpa.projetregistation.entity.AdresseEntity;
 import fr.afpa.projetregistation.entity.ConnexionEntity;
 import fr.afpa.projetregistation.entity.UtilisateurEntity;
 import fr.afpa.projetregistation.service.IUtilisateurService;
+import fr.afpa.projetregistation.utils.Constantes;
 import fr.afpa.projetregistation.utils.Securite;
 import lombok.extern.slf4j.Slf4j;
 
@@ -117,6 +121,12 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 		return null;
 	}
 
+	/**
+	 * Permet de récupérer un Utilisateur par son matricule.
+	 * 
+	 * @param pMatricule String utilisé pour récupérer l'utilisateur
+	 * 
+	 */
 	@Override
 	public UtilisateurDto getUtilisateurByMatricule(String pMatricule) {
 		Optional<UtilisateurEntity> optiUtilisateur = utilisateurDao.findById(pMatricule);
@@ -139,24 +149,121 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 		return userDto;
 	}
 
+	/**
+	 * Permet de récupérer un Utilisateur par son nom. Récupération d'un optional et
+	 * construction du dto
+	 * 
+	 * @param pNom String utilisé pour récupérer l'utilisateur
+	 * @return UtilisateurDto
+	 */
 	@Override
 	public UtilisateurDto getUtilisateurByName(String pNom) {
 		Optional<UtilisateurEntity> optiUtilisateur = utilisateurDao.findByNom(pNom);
+
 		UtilisateurDto userDto = null;
 		if (!optiUtilisateur.isPresent()) {
 			log.info("UTILISATEUR findByMatricule - Cette personne n'existe pas");
 		} else {
 			UtilisateurEntity utilisateur = optiUtilisateur.get();
 			userDto = modelMapper.map(utilisateur, UtilisateurDto.class);
+			userDto.setPassword(utilisateur.getConnexion().getPassword());
+			userDto.setNumero(utilisateur.getAdresse().getNumero());
+			userDto.setRue(utilisateur.getAdresse().getRue());
+			userDto.setComplement(utilisateur.getAdresse().getComplement());
+			userDto.setCodePostal(utilisateur.getAdresse().getCodePostal());
+			userDto.setVille(utilisateur.getAdresse().getVille());
+			userDto.setPays(utilisateur.getAdresse().getPays());
+
 			log.info("UTILISATEUR findByMatricule - Utilisateur récup --> " + userDto);
 		}
 		return userDto;
 	}
 
+	/**
+	 * Retourne la liste de tous les utilisateurs avec pagination
+	 * les champs manquants de l'utilisateurDto sont set
+	 * 
+	 * @param pPageEnCours int correspondant à la page en cours
+	 * @return List de UtilisateurDto
+	 */
 	@Override
-	public List<UtilisateurDto> getAllUtilisateurs() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<UtilisateurDto> getAllUtilisateurs(int pPageEnCours) {
+		List<UtilisateurDto> listeUtilisateurs = new ArrayList<>();
+		PageRequest page = PageRequest.of(pPageEnCours - 1, Constantes.ELEMENTS_PAR_PAGE);
+		Page<UtilisateurEntity> listeUsers = this.utilisateurDao.findAll(page);
+		UtilisateurDto userDto = new UtilisateurDto();
+		for (UtilisateurEntity utilisateurEntity : listeUsers) {
+			userDto = this.modelMapper.map(utilisateurEntity, UtilisateurDto.class);
+			userDto.setPassword(utilisateurEntity.getConnexion().getPassword());
+			userDto.setNumero(utilisateurEntity.getAdresse().getNumero());
+			userDto.setRue(utilisateurEntity.getAdresse().getRue());
+			userDto.setComplement(utilisateurEntity.getAdresse().getComplement());
+			userDto.setCodePostal(utilisateurEntity.getAdresse().getCodePostal());
+			userDto.setVille(utilisateurEntity.getAdresse().getVille());
+			userDto.setPays(utilisateurEntity.getAdresse().getPays());
+			
+			listeUtilisateurs.add(userDto);
+
+		}
+		return listeUtilisateurs;
+	}
+
+	/**
+	 * Permet de retourner une liste de tous les emlpoyés 
+	 * (boolean responsable = false)
+	 * Utilisation du Page, liste avec pagination
+	 * 
+	 * @return List de UtilisateurEntity qui sont des employés
+	 */
+	@Override
+	public List<UtilisateurDto> getAllEmployes(int pPageEnCours) {
+		List<UtilisateurDto> listeEmployes = new ArrayList<>();
+		PageRequest page = PageRequest.of(pPageEnCours - 1, Constantes.ELEMENTS_PAR_PAGE);
+		Page<UtilisateurEntity> listeUsers = this.utilisateurDao.findAllEmployes(page);
+		UtilisateurDto userDto = new UtilisateurDto();
+		for (UtilisateurEntity utilisateurEntity : listeUsers) {
+			userDto = this.modelMapper.map(utilisateurEntity, UtilisateurDto.class);
+			userDto.setPassword(utilisateurEntity.getConnexion().getPassword());
+			userDto.setNumero(utilisateurEntity.getAdresse().getNumero());
+			userDto.setRue(utilisateurEntity.getAdresse().getRue());
+			userDto.setComplement(utilisateurEntity.getAdresse().getComplement());
+			userDto.setCodePostal(utilisateurEntity.getAdresse().getCodePostal());
+			userDto.setVille(utilisateurEntity.getAdresse().getVille());
+			userDto.setPays(utilisateurEntity.getAdresse().getPays());
+			
+			listeEmployes.add(userDto);
+
+		}
+		return listeEmployes;
+	}
+
+	/**
+	 * Permet de retourner une liste de tous les responsables 
+	 * (boolean responsable = true)
+	 * Utilisation du Page, liste avec pagination
+	 * 
+	 * @return List de UtilisateurEntity qui sont des responsables
+	 */
+	@Override
+	public List<UtilisateurDto> getAllResponsables(int pPageEnCours) {
+		List<UtilisateurDto> listeResponsables = new ArrayList<>();
+		PageRequest page = PageRequest.of(pPageEnCours - 1, Constantes.ELEMENTS_PAR_PAGE);
+		Page<UtilisateurEntity> listeUsers = this.utilisateurDao.findAllResponsables(page);
+		UtilisateurDto userDto = new UtilisateurDto();
+		for (UtilisateurEntity utilisateurEntity : listeUsers) {
+			userDto = this.modelMapper.map(utilisateurEntity, UtilisateurDto.class);
+			userDto.setPassword(utilisateurEntity.getConnexion().getPassword());
+			userDto.setNumero(utilisateurEntity.getAdresse().getNumero());
+			userDto.setRue(utilisateurEntity.getAdresse().getRue());
+			userDto.setComplement(utilisateurEntity.getAdresse().getComplement());
+			userDto.setCodePostal(utilisateurEntity.getAdresse().getCodePostal());
+			userDto.setVille(utilisateurEntity.getAdresse().getVille());
+			userDto.setPays(utilisateurEntity.getAdresse().getPays());
+			
+			listeResponsables.add(userDto);
+
+		}
+		return listeResponsables;
 	}
 
 	@Override
