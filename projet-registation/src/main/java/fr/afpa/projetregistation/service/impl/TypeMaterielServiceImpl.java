@@ -6,12 +6,17 @@ import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import fr.afpa.projetregistation.dao.ITypeMaterielDao;
+import fr.afpa.projetregistation.dto.MaterielDto;
 import fr.afpa.projetregistation.dto.TypeMaterielDto;
 import fr.afpa.projetregistation.entity.TypeMaterielEntity;
+import fr.afpa.projetregistation.service.IMaterielService;
 import fr.afpa.projetregistation.service.ITypeMaterielService;
+import fr.afpa.projetregistation.utils.Constantes;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -21,6 +26,9 @@ public class TypeMaterielServiceImpl implements ITypeMaterielService {
 
 	@Autowired
 	ITypeMaterielDao typeMaterielDao;
+
+	@Autowired
+	IMaterielService matService;
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -64,16 +72,26 @@ public class TypeMaterielServiceImpl implements ITypeMaterielService {
 	}
 
 	@Override
-	public List<TypeMaterielDto> getAll(String pLibelle) {
-		List<TypeMaterielEntity> list = typeMaterielDao.findByLibelleMaterielContaining(pLibelle);
-		List<TypeMaterielDto> listType = new ArrayList<>();
+	public TypeMaterielDto getTypeByMateriel(MaterielDto pMat) {
 
-		for (TypeMaterielEntity type : list) {
+		TypeMaterielDto typeDto = null;
+		String pLibelle = pMat.getTypeMateriel();
+		typeDto = this.getTypeByLibelle(pLibelle);
+
+		return typeDto;
+	}
+
+	@Override
+	public List<TypeMaterielDto> getAll(int pPageEnCours) {
+		List<TypeMaterielDto> listeType = new ArrayList<>();
+		PageRequest page = PageRequest.of(pPageEnCours - 1, Constantes.ELEMENTS_PAR_PAGE);
+		Page<TypeMaterielEntity> listeTypeMat = this.typeMaterielDao.findAll(page);
+		for (TypeMaterielEntity type : listeTypeMat) {
 			TypeMaterielDto typeDto = modelMapper.map(type, TypeMaterielDto.class);
-			listType.add(typeDto);
+			listeType.add(typeDto);
 		}
 
-		return listType;
+		return listeType;
 	}
 
 }
