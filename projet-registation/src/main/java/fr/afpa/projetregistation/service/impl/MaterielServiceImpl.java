@@ -130,4 +130,43 @@ public class MaterielServiceImpl implements IMaterielService {
 		return listeMateriel;
 	}
 
+	/**
+	 * Cette méthode permet de modifier les informations d'un MaterielDto en se
+	 * basant sur le MaterielDto ayant la même référence en base de donnée.
+	 * 
+	 * @return MaterielDto. Le MaterielDto mis à jour.
+	 * @param int         pRef la référence du Materiel
+	 * @param MaterielDto pMatDto. Le MaterielDto possédant les nouvelles
+	 *                    informations.
+	 */
+	@Override
+	public void updateById(int pRef, MaterielDto pMatDto) {
+		Optional<MaterielEntity> optionelRes = materielDao.findByRef(pRef);
+		MaterielEntity mat = null;
+		if (optionelRes.isPresent()) {
+			mat = optionelRes.get();
+		}
+		mat.setMarque(pMatDto.getMarque());
+		mat.setModele(pMatDto.getModele());
+		mat.setPrix(pMatDto.getPrix());
+		mat.setLocalisation(pMatDto.getLocalisation());
+		mat.setEtat(pMatDto.getEtat());
+		materielDao.save(mat);
+		log.info("Modification réalisée avec succès.");
+
+	}
+
+	@Override
+	public void updateEtatById(int pRef, int pEtat) {
+
+		Optional<MaterielEntity> optionelRes = materielDao.findByRef(pRef);
+		MaterielEntity mat = null;
+		if (optionelRes.isPresent()) {
+			mat = optionelRes.get();
+		}
+		mat.setEtat(pEtat);
+		materielDao.save(mat);
+
+	}
+
 }
