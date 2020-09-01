@@ -1,5 +1,7 @@
 package fr.afpa.projetregistation.utils;
 
+import java.util.Date;
+
 public class Constantes {
 	public static final String USER_EN_COURS = "currentUser";
 	public static final int ELEMENTS_PAR_PAGE = 5;
@@ -9,5 +11,7 @@ public class Constantes {
 	public static final double DOUBLE_TEST = 1;
 
 	public static final int ELEMENTS_PAGE = 4;
+
+	public static final Date DATE_TEST = new Date();
 
 }
