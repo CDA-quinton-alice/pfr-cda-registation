@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Classe qui implémente l'interface IUtilisateurService et permet de définir le
  * métier, les méthodes de l'utilisateur
- * 
+ *
  * @author Mathieu
  * @version 1.0
  */
@@ -54,7 +54,7 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 	/**
 	 * Crée un UtilisateurDto et sauvegarde un utilisateur en BDD en utilisant
 	 * l'UtilisateurDao.
-	 * 
+	 *
 	 * @see
 	 * @param UtilisateurDao
 	 * @return UtilisateurDao
@@ -93,13 +93,13 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 	/**
 	 * Supprime un Utilisateur récupéré de la BDD en utilisant le matricule (unique)
 	 * de l'utilisateur à supprimer.
-	 * 
+	 *
 	 * Utilisation de l'Optional, test d'abord si l'utilisateur est bien présent en
 	 * BDD.
-	 * 
+	 *
 	 * @see
 	 * @param pMatricule String utilisé pour récupérer l'utilisateur
-	 * 
+	 *
 	 */
 	@Override
 	public void deleteUtilisateurByMatricule(String pMatricule) {
