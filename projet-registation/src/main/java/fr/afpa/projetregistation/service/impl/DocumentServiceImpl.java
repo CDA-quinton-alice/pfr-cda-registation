@@ -268,22 +268,14 @@ public class DocumentServiceImpl implements IDocumentService {
 		 * @param int vIdDocument : c'est l'identifiant du document qui va être recherché pour savoir s'il existe ou pas
 		 */
 		boolean verification = false;
-		log.info("ce document n'existe pas - Registation DocumentServiceImpl");
+
 		DocumentDto document = this.getDocument(vIdDocument);
 		if (document == null) {
 			verification = true;
 			log.info("ce document existe - Registation DocumentServiceImpl");
-		}
+		} log.info("ce document n'existe pas - Registation DocumentServiceImpl");
 
 		return verification;
-	}
-
-	@Override
-	public long count() {
-		log.debug("savoir le nombre de documents - Registation DocumentServiceImpl");
-
-
-		return documentDao.count();
 	}
 
 }
