@@ -19,11 +19,32 @@ import fr.afpa.projetregistation.entity.EvenementEntity;
 @Repository
 public interface IEvenementDao extends PagingAndSortingRepository<EvenementEntity, Integer>{
 
+	/**
+	 * Récupère de la base de donnée une @see List de @see EvenementEntity
+	 * qui correspond à l'intervale entre les 2 dates placés en paramètre
+	 * 
+	 * @param dateDebut
+	 * @param dateFin
+	 * @return une @see List de @see EvenementEntity
+	 */
 	@Query(value="SELECT e FROM evenement e WHERE date_debut >= :date1 and date_fin <= :date2")
 	public  List<EvenementEntity> findByDate(@Param("date1") Date dateDebut, @Param("date2") Date dateFin);
 
+	
+	/**
+	 * Récupère de la base de donnée une @see List de @see EvenementEntity
+	 * qui commence à partir de la date placé en paramètre
+	 * @param dateDebut
+	 * @return une @see List de @see EvenementEntity
+	 */
 	@Query(value="SELECT e FROM evenement e WHERE date_debut >= :date1") 
 	public  List<EvenementEntity> findByDate(@Param("date1") Date dateDebut);
 	
+	/**
+	 * Récupère de la base de donnée une @see List de @see EvenementEntity
+	 * dont le type est égale à celui placé en paramètre 
+	 * @param type
+	 * @return une @see List de @see EvenementEntity
+	 */
 	public List<EvenementEntity> findByType(String type);
 }
