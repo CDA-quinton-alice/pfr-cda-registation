@@ -126,7 +126,15 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 		} else {
 			UtilisateurEntity utilisateur = optiUtilisateur.get();
 			userDto = modelMapper.map(utilisateur, UtilisateurDto.class);
-			log.info("UTILISATEUR findByMatricule - Utilisateur récup --> "+userDto);
+			userDto.setPassword(utilisateur.getConnexion().getPassword());
+			userDto.setNumero(utilisateur.getAdresse().getNumero());
+			userDto.setRue(utilisateur.getAdresse().getRue());
+			userDto.setComplement(utilisateur.getAdresse().getComplement());
+			userDto.setCodePostal(utilisateur.getAdresse().getCodePostal());
+			userDto.setVille(utilisateur.getAdresse().getVille());
+			userDto.setPays(utilisateur.getAdresse().getPays());
+
+			log.debug("UTILISATEUR findByMatricule - Utilisateur récup --> " + userDto);
 		}
 		return userDto;
 	}
@@ -140,7 +148,7 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 		} else {
 			UtilisateurEntity utilisateur = optiUtilisateur.get();
 			userDto = modelMapper.map(utilisateur, UtilisateurDto.class);
-			log.info("UTILISATEUR findByMatricule - Utilisateur récup --> "+userDto);
+			log.info("UTILISATEUR findByMatricule - Utilisateur récup --> " + userDto);
 		}
 		return userDto;
 	}
@@ -149,6 +157,12 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 	public List<UtilisateurDto> getAllUtilisateurs() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean authentification(String login, String motdepasse) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
