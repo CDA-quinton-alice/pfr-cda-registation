@@ -36,7 +36,6 @@ public class EvenementDaoTest{
 	@Test
 	@Order(1)
 	public void testCreate() {
-		log.info("Test unitaire EvenementDao CREATE");
 		String d1 = "30-08-2020";
 		String d2 = "01-09-2020";
 		String pattern = "dd-MM-yyyy";
@@ -78,7 +77,6 @@ public class EvenementDaoTest{
 	@Test
 	@Order(2)
 	public void testReadById() {
-		log.info("Test unitaire EvenementDao READ par ID");
 		String d1 = "30-08-2020";
 		String d2 = "02-09-2020";
 		String pattern = "dd-MM-yyyy";
@@ -122,7 +120,6 @@ public class EvenementDaoTest{
 	public void testReadByType() {
 		List<EvenementEntity> le = null;
 		le = edao.findByType("panne");
-		log.debug("findbytype"+edao.findByType("panne"));
 		
 		assertEquals(1,le.size());
 		if(le.size()>0) {
@@ -140,7 +137,48 @@ public class EvenementDaoTest{
 	@Test
 	@Order(4)
 	public void testByDateIntervale() {
+		String d1 = "30-08-2020";
+		String d2 = "01-09-2020";
+		String pattern = "dd-MM-yyyy";
+		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+		Date date1 = null;
+		Date date2 = null;
 		
+		try {
+			date1 = sdf.parse(d1);
+			date2 = sdf.parse(d2);
+		}catch(ParseException e) {
+			log.warn("Erreur lors du parsing des dates lors du test unitaire !");
+		}
+		
+		List<EvenementEntity> le = null;
+		le = edao.findByDate(date1, date2);
+		assertEquals(1,le.size());
+		if(le.size()==1) {
+			assertEquals(date2,le.get(0).getDate_fin());
+		}
+	}
+	
+	@Test
+	@Order(5)
+	public void testByDate() {
+		String d1 = "30-08-2020";
+		String pattern = "dd-MM-yyyy";
+		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+		Date date1 = null;
+		
+		try {
+			date1 = sdf.parse(d1);
+		}catch(ParseException e) {
+			log.warn("Erreur lors du parsing des dates lors du test unitaire !");
+		}
+		
+		List<EvenementEntity> le = null;
+		le = edao.findByDate(date1);
+		assertEquals(2,le.size());
+		if(le.size()==1) {
+			assertEquals(date1,le.get(0).getDate_fin());
+		}
 	}
 	
 	@Test
@@ -148,8 +186,8 @@ public class EvenementDaoTest{
 	public void close() {
 		for(EvenementEntity ee : list) {
 			assertTrue(edao.findById(ee.getId()).isPresent());
-			log.debug("Evenement id : "+ee.getId());
 			edao.delete(ee);
 		}
+		
 	}
 }
