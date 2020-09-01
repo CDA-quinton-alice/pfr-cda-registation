@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import fr.afpa.projetregistation.controller.MaterielController;
@@ -15,6 +17,7 @@ import fr.afpa.projetregistation.dto.MaterielDto;
 import fr.afpa.projetregistation.entity.MaterielEntity;
 import fr.afpa.projetregistation.entity.TypeMaterielEntity;
 import fr.afpa.projetregistation.service.IMaterielService;
+import fr.afpa.projetregistation.utils.Constantes;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -63,14 +66,24 @@ public class MaterielServiceImpl implements IMaterielService {
 		MaterielEntity matEntity = this.modelMapper.map(pMateriel, MaterielEntity.class);
 		String type = pMateriel.getTypeMateriel().toUpperCase();
 
+		/**
+		 * Vérifie la présence du type de matériel en BDD.
+		 */
 		Optional<TypeMaterielEntity> optionalType = typeMaterielDao.findByLibelleMateriel(type.toUpperCase());
+		/**
+		 * Enregistre le type si non présent en BDD
+		 */
 		if (!optionalType.isPresent()) {
 			TypeMaterielEntity typeMaterielEntity = new TypeMaterielEntity(pMateriel.getTypeMateriel().toUpperCase());
 			typeMaterielDao.save(typeMaterielEntity);
 			Optional<TypeMaterielEntity> optionalType2 = typeMaterielDao.findByLibelleMateriel(type.toUpperCase());
 			matEntity.setTypeMaterielEntity(optionalType2.get());
 
-		} else {
+		}
+		/**
+		 * Ajoute le type déjà existant à la nouvelle entité.
+		 */
+		else {
 			matEntity.setTypeMaterielEntity(optionalType.get());
 		}
 
@@ -80,7 +93,14 @@ public class MaterielServiceImpl implements IMaterielService {
 		return pMateriel;
 	}
 
-	private MaterielDto getMaterielById(int pRef) {
+	/**
+	 * Récupère un matériel par son ID. Mapping des informations.
+	 * 
+	 * @param pRef
+	 * @return MaterielDto
+	 */
+	@Override
+	public MaterielDto getMaterielById(int pRef) {
 		Optional<MaterielEntity> opsRes = materielDao.findByRef(pRef);
 		MaterielDto materiel = null;
 		if (opsRes.isPresent()) {
@@ -98,9 +118,10 @@ public class MaterielServiceImpl implements IMaterielService {
 	 * @return liste de MaterielDto
 	 */
 	@Override
-	public List<MaterielDto> getAll() {
+	public List<MaterielDto> getAll(int pPageEnCours) {
 		List<MaterielDto> listeMateriel = new ArrayList<>();
-		List<MaterielEntity> listeMat = materielDao.findAll();
+		PageRequest page = PageRequest.of(pPageEnCours - 1, Constantes.ELEMENTS_PAR_PAGE);
+		Page<MaterielEntity> listeMat = this.materielDao.findAll(page);
 		for (MaterielEntity materielEntity : listeMat) {
 
 			listeMateriel.add(this.modelMapper.map(materielEntity, MaterielDto.class));
