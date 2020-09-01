@@ -60,11 +60,61 @@ public class DataInsertion {
 				"ROUBAIX", "France");
 		utilisateurService.create(utilisateur);
 
-		Date dateAjoutDoc = new Date();
-		Date dateDerniereModificationdoc = new Date();
-		DocumentDto doc = new DocumentDto("facture entretien cuve n°3", "facture", dateAjoutDoc, dateDerniereModificationdoc, "facture qui correspond au dernier entretien de la cuve n°3.", "rien à signaler, fonctionnement de la cuve n°3 ok.");
-		documentService.ajouterDocument(doc);
-		documentDao.save(DocumentEntity.builder().nomDocument("inventaire annuel magasin").categorieDocument("inventaire").dateAjoutDocument(dateAjoutDoc).dateDerniereModificationDocument(dateDerniereModificationdoc).descriptionDocument("inventaire du magasin avant réorganisation des rayons").commentairesDocument("inventaire effectué à 3 personnes en une journée").build());
+//		Date dateAjoutDoc = new Date();
+//		Date dateDerniereModificationdoc = new Date();
+//		DocumentDto doc = new DocumentDto("facture entretien cuve n°3", "facture", dateAjoutDoc, dateDerniereModificationdoc, "facture qui correspond au dernier entretien de la cuve n°3.", "rien à signaler, fonctionnement de la cuve n°3 ok.");
+//		documentService.ajouterDocument(doc);
+//		documentDao.save(DocumentEntity.builder().nomDocument("inventaire annuel magasin").categorieDocument("inventaire").dateAjoutDocument(dateAjoutDoc).dateDerniereModificationDocument(dateDerniereModificationdoc).descriptionDocument("inventaire du magasin avant réorganisation des rayons").commentairesDocument("inventaire effectué à 3 personnes en une journée").build());
+//
+//		Date dateAjoutDoc2 = new Date();
+//		Date dateDerniereModificationdoc2 = new Date();
+//		DocumentDto doc2 = new DocumentDto("facture entretien cuve n°4", "facture", dateAjoutDoc2, dateDerniereModificationdoc2, "facture qui correspond au dernier entretien de la cuve n°3.", "rien à signaler, fonctionnement de la cuve n°3 ok.");
+//		documentService.ajouterDocument(doc2);
+//		documentDao.save(DocumentEntity.builder().nomDocument("inventaire annuel magasin 2").categorieDocument("inventaire").dateAjoutDocument(dateAjoutDoc2).dateDerniereModificationDocument(dateDerniereModificationdoc2).descriptionDocument("inventaire du magasin avant réorganisation des rayons").commentairesDocument("inventaire effectué à 3 personnes en une journée").build());
+//
+//		Date dateAjoutDoc3 = new Date();
+//		Date dateDerniereModificationdoc3 = new Date();
+//		DocumentDto doc3 = new DocumentDto("facture entretien cuve n°5", "facture", dateAjoutDoc3, dateDerniereModificationdoc3, "facture qui correspond au dernier entretien de la cuve n°3.", "rien à signaler, fonctionnement de la cuve n°3 ok.");
+//		documentService.ajouterDocument(doc3);
+//		documentDao.save(DocumentEntity.builder().nomDocument("inventaire annuel magasin 3").categorieDocument("inventaire").dateAjoutDocument(dateAjoutDoc3).dateDerniereModificationDocument(dateDerniereModificationdoc3).descriptionDocument("inventaire du magasin avant réorganisation des rayons").commentairesDocument("inventaire effectué à 3 personnes en une journée").build());
+//
+//		Date dateAjoutDoc4 = new Date();
+//		Date dateDerniereModificationdoc4 = new Date();
+//		DocumentDto doc4 = new DocumentDto("facture entretien cuve n°6", "facture", dateAjoutDoc4, dateDerniereModificationdoc4, "facture qui correspond au dernier entretien de la cuve n°3.", "rien à signaler, fonctionnement de la cuve n°3 ok.");
+//		documentService.ajouterDocument(doc4);
+//		documentDao.save(DocumentEntity.builder().nomDocument("inventaire annuel magasin 4").categorieDocument("inventaire").dateAjoutDocument(dateAjoutDoc4).dateDerniereModificationDocument(dateDerniereModificationdoc4).descriptionDocument("inventaire du magasin avant réorganisation des rayons").commentairesDocument("inventaire effectué à 3 personnes en une journée").build());
+//
+//		Date dateAjoutDoc5 = new Date();
+//		Date dateDerniereModificationdoc5 = new Date();
+//		DocumentDto doc5 = new DocumentDto("facture entretien cuve n°7", "facture", dateAjoutDoc5, dateDerniereModificationdoc5, "facture qui correspond au dernier entretien de la cuve n°3.", "rien à signaler, fonctionnement de la cuve n°3 ok.");
+//		documentService.ajouterDocument(doc5);
+//		documentDao.save(DocumentEntity.builder().nomDocument("inventaire annuel magasin 5").categorieDocument("inventaire").dateAjoutDocument(dateAjoutDoc5).dateDerniereModificationDocument(dateDerniereModificationdoc5).descriptionDocument("inventaire du magasin avant réorganisation des rayons").commentairesDocument("inventaire effectué à 3 personnes en une journée").build());
+//
+//		Date dateAjoutDoc6 = new Date();
+//		Date dateDerniereModificationdoc6 = new Date();
+//		DocumentDto doc6 = new DocumentDto("facture entretien cuve n°8", "facture", dateAjoutDoc6, dateDerniereModificationdoc6, "facture qui correspond au dernier entretien de la cuve n°3.", "rien à signaler, fonctionnement de la cuve n°3 ok.");
+//		documentService.ajouterDocument(doc6);
+//		documentDao.save(DocumentEntity.builder().nomDocument("inventaire annuel magasin 6").categorieDocument("inventaire").dateAjoutDocument(dateAjoutDoc6).dateDerniereModificationDocument(dateDerniereModificationdoc6).descriptionDocument("inventaire du magasin avant réorganisation des rayons").commentairesDocument("inventaire effectué à 3 personnes en une journée").build());
+//
+////		documentDao.deleteById(27);
+//
+//		documentService.majCategorieDocument("blabla",23);
+//
+//		documentService.majDateAjoutDocument(dateAjoutDoc6, 31);
+//
+//		documentService.majDateDerniereModificationDocument(dateDerniereModificationdoc6, 39);
+//
+//		documentService.majDescriptionDocument("blablablablablablablablabla", 43);
+//
+//		documentService.majCommentairesDocument("commentaires commentaires commentaires", 49);
+//
+//		documentService.getDocument(41);
+
+
+
+
+
+
 	}
 
 }
