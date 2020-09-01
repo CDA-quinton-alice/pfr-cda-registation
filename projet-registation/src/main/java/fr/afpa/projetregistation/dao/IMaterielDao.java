@@ -10,6 +10,7 @@ import fr.afpa.projetregistation.entity.MaterielEntity;
 
 @Repository
 public interface IMaterielDao extends PagingAndSortingRepository<MaterielEntity, String> {
+
 	@Override
 	List<MaterielEntity> findAll();
 

@@ -1,6 +1,7 @@
 package fr.afpa.projetregistation.service.impl;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -128,6 +129,100 @@ public class MaterielServiceImpl implements IMaterielService {
 
 		}
 		return listeMateriel;
+	}
+
+	@Override
+	public List<MaterielDto> getAllByType(int pPageEnCours, String pType) {
+
+		List<MaterielDto> listeMateriel = this.getAll(pPageEnCours);
+
+		Iterator<MaterielDto> iter = listeMateriel.iterator();
+
+		while (iter.hasNext()) {
+			MaterielDto mat = iter.next();
+
+			if (mat.getTypeMateriel() != pType)
+				iter.remove();
+		}
+//		for (MaterielDto materielDto : listeMateriel) {
+//			if (materielDto.getTypeMateriel() != pType) {
+//				listeMateriel.remove(materielDto);
+//			}
+//		}
+		return listeMateriel;
+	}
+
+	/**
+	 * Cette méthode permet de modifier les informations d'un MaterielDto en se
+	 * basant sur le MaterielDto ayant la même référence en base de donnée.
+	 * 
+	 * @return MaterielDto. Le MaterielDto mis à jour.
+	 * @param int         pRef la référence du Materiel
+	 * @param MaterielDto pMatDto. Le MaterielDto possédant les nouvelles
+	 *                    informations.
+	 */
+	@Override
+	public void updateById(int pRef, MaterielDto pMatDto) {
+		Optional<MaterielEntity> optionelRes = materielDao.findByRef(pRef);
+		MaterielEntity mat = null;
+		if (optionelRes.isPresent()) {
+			mat = optionelRes.get();
+		}
+		mat.setMarque(pMatDto.getMarque());
+		mat.setModele(pMatDto.getModele());
+		mat.setPrix(pMatDto.getPrix());
+		mat.setLocalisation(pMatDto.getLocalisation());
+		mat.setEtat(pMatDto.getEtat());
+		materielDao.save(mat);
+		log.info("Modification réalisée avec succès.");
+
+	}
+
+	@Override
+	public void updateEtatById(int pRef, int pEtat) {
+
+		Optional<MaterielEntity> optionelRes = materielDao.findByRef(pRef);
+		MaterielEntity mat = null;
+		if (optionelRes.isPresent()) {
+			mat = optionelRes.get();
+		}
+		mat.setEtat(pEtat);
+		materielDao.save(mat);
+
+	}
+
+	/**
+	 * Permet de supprimer un matériel via son id
+	 * 
+	 * @param pRef id deu materiel à supprimer
+	 */
+	@Override
+	public void deleteById(int pRef) {
+
+		Optional<MaterielEntity> opRes = materielDao.findByRef(pRef);
+		MaterielEntity matEntity = null;
+		if (opRes.isPresent()) {
+			matEntity = opRes.get();
+		}
+		this.materielDao.delete(matEntity);
+
+	}
+
+	/**
+	 * Méthodes permettant de supprimer tous les matériels d'un type choisi.
+	 * 
+	 * @param int      pPage page en cours
+	 * @param pLibelle : String correspondant au libelle du type de materiel dont on
+	 *                 veut supprimer toutes les instances.
+	 */
+	@Override
+	public void deleteAllByType(int pPage, String pLibelle) {
+
+		List<MaterielDto> liste = this.getAllByType(pPage, pLibelle);
+
+		for (MaterielDto materielDto : liste) {
+			this.deleteById(materielDto.getRef());
+		}
 	}
 
 }

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import fr.afpa.projetregistation.dto.MaterielDto;
 import fr.afpa.projetregistation.service.IMaterielService;
 import fr.afpa.projetregistation.service.ITypeMaterielService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,13 +25,12 @@ public class MaterielController {
 
 		log.debug("appel materiel registation");
 
-		model.addAttribute("materiel", materielService.getAll(2));
-
-		MaterielDto materiel = materielService.getMaterielById(2);
-
-		model.addAttribute("materiel", materiel.toString());
-
-		model.addAttribute("materiel", typeService.getTypeByMateriel(materiel).toString());
+//		model.addAttribute("materiel", materielService.getAllByType(2, "POMPE"));
+//
+//		MaterielDto materiel = materielService.getMaterielById(2);
+//
+//
+//		model.addAttribute("materiel", typeService.getTypeByMateriel(materiel).toString());
 
 		return "accueil";
 	}

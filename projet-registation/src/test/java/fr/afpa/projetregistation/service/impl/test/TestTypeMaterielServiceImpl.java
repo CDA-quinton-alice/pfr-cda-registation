@@ -7,20 +7,31 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import fr.afpa.projetregistation.dao.IMaterielDao;
 import fr.afpa.projetregistation.dto.MaterielDto;
 import fr.afpa.projetregistation.dto.TypeMaterielDto;
+import fr.afpa.projetregistation.service.IMaterielService;
 import fr.afpa.projetregistation.service.ITypeMaterielService;
 import fr.afpa.projetregistation.utils.Constantes;
 
 @SpringBootTest
+@TestMethodOrder(OrderAnnotation.class)
 public class TestTypeMaterielServiceImpl {
 	@Autowired
 	private ITypeMaterielService typeService;
+
+	@Autowired
+	IMaterielDao materielDao;
+
+	@Autowired
+	private IMaterielService matService;
 
 	private TypeMaterielDto type = new TypeMaterielDto(1, "POMPE");
 
@@ -105,7 +116,7 @@ public class TestTypeMaterielServiceImpl {
 	@Test
 	@Order(5)
 	/**
-	 * Test la bonne récupération de tous les TypeMaterielDto par le
+	 * TestE la bonne récupération de tous les TypeMaterielDto par le
 	 * TypeMaterielServiceImpl
 	 * 
 	 * @throws Exception
@@ -117,4 +128,22 @@ public class TestTypeMaterielServiceImpl {
 
 	}
 
+	@Test
+	@Order(6)
+	/**
+	 * teste la bonne modification du type de matériel d'un matériel donné.
+	 */
+	public void testUpdateType() throws Exception {
+
+		typeService.updateTypeByLibelleAndRef(4, "CUVE");
+		MaterielDto matDto = matService.getMaterielById(4);
+
+		assertEquals("Orion", matDto.getMarque());
+		assertEquals("PistoXC", matDto.getModele());
+		assertEquals(500, matDto.getPrix());
+		assertEquals("pompe2", matDto.getLocalisation());
+		assertEquals(1, matDto.getEtat());
+		assertEquals("CUVE", matDto.getTypeMateriel());
+
+	}
 }
