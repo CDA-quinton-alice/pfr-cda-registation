@@ -24,6 +24,13 @@ public interface IEvenementService {
 	public List<EvenementDto> getAll();
 	
 	/**
+	 * Récupère un évènement à partir de son identifiant
+	 * @param id de l'évènement en bdd
+	 * @return
+	 */
+	public EvenementDto getById(int id);
+	
+	/**
 	 * Récupère la liste des évènements
 	 * compris entre les 2 dates placés en paramètres
 	 * 
@@ -73,6 +80,10 @@ public interface IEvenementService {
 	 */
 	public void delete(EvenementDto evenement);
 	
-		
+	/**
+	 * Supprimer la totalité des entrées de la table Evenement
+	 */
+	public void deleteAll();
+	
 }
  

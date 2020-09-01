@@ -1,10 +1,10 @@
 package fr.afpa.projetregistation.service.impl;
 
 import java.util.ArrayList;
-
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,6 +56,30 @@ public class EvenementServiceImpl implements IEvenementService{
 		return list;
 	}
 
+	/**
+	 * Récupère un évènement en base de donnée 
+	 * à partir d'un identifiant
+	 * @param id de type @see Integer
+	 * @return @see EvenementDto
+	 */
+	@Override
+	public EvenementDto getById(int id) {
+		log.info("Obtention de l'évènement d'id "+id);
+		Optional<EvenementEntity> optEE = edao.findById(id);
+		if(optEE.isPresent()) {
+			EvenementEntity ee = optEE.get();
+			EvenementDto edto = EvenementDto.builder()
+									.id(ee.getId())
+									.type(ee.getType())
+									.description(ee.getDescription())
+									.date_debut(ee.getDate_debut())
+									.date_fin(ee.getDate_fin())
+									.duree(ee.getDuree()).build();
+			return edto;
+		}else {
+			return null;
+		}
+	}
 	
 	/**
 	 * Récupère la liste des évènements
@@ -186,13 +210,14 @@ public class EvenementServiceImpl implements IEvenementService{
 	public EvenementDto update(EvenementDto evenement) {
 		log.info("Update d'un évènement en base de donnée"+evenement);
 		EvenementEntity ee = EvenementEntity.builder()
+				.id(evenement.getId())
 				.type(evenement.getType())
 				.description(evenement.getDescription())
 				.date_debut(evenement.getDate_debut())
 				.date_fin(evenement.getDate_fin())
 				.duree(evenement.getDuree()).build();
 		
-		ee = edao.save(ee);
+		edao.save(ee);
 		EvenementDto edto = EvenementDto.builder()
 								.id(ee.getId())
 								.type(ee.getType())
@@ -220,5 +245,12 @@ public class EvenementServiceImpl implements IEvenementService{
 		
 		edao.delete(ee);
 	}
+
+
+	@Override
+	public void deleteAll() {
+		edao.deleteAll();
+	}
+
 
 }

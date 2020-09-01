@@ -41,10 +41,10 @@ public interface IEvenementDao extends PagingAndSortingRepository<EvenementEntit
 	public  List<EvenementEntity> findByDate(@Param("date1") Date dateDebut);
 	
 	/**
-	 * Récupère de la base de donnée une @see List de @see EvenementEntity
+	 * Récupère de la base de donnée une @see(List) de @see(EvenementEntity)
 	 * dont le type est égale à celui placé en paramètre 
 	 * @param type
-	 * @return une @see List de @see EvenementEntity
+	 * @return une @see(List) de @see(EvenementEntity)
 	 */
 	public List<EvenementEntity> findByType(@Param("type2") String type);
 }
