@@ -158,7 +158,7 @@ public class EvenementServiceImpl implements IEvenementService{
 	@Override
 	public EvenementDto create(EvenementDto evenement) {
 		log.info("Ajout d'un évènement en base de donnée : "+evenement);
-		EvenementEntity ee = EvenementEntity.builder()
+		EvenementEntity ee = EvenementEntity.builder() 
 				.type(evenement.getType())
 				.description(evenement.getDescription())
 				.date_debut(evenement.getDate_debut())

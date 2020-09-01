@@ -46,5 +46,5 @@ public interface IEvenementDao extends PagingAndSortingRepository<EvenementEntit
 	 * @param type
 	 * @return une @see List de @see EvenementEntity
 	 */
-	public List<EvenementEntity> findByType(String type);
+	public List<EvenementEntity> findByType(@Param("type2") String type);
 }
