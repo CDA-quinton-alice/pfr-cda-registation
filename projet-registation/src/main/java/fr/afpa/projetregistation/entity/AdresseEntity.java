@@ -30,7 +30,7 @@ public class AdresseEntity {
 	private int numero;
 	private String rue;
 	private String complement;
-	private int codePostal;
+	private String codePostal;
 	private String ville;
 	private String pays;
 
