@@ -29,6 +29,7 @@ public class EvenementEntity {
 
 	/**
 	 * Identifiant unique d'un évènement
+	 * de @see Integer
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,26 +41,31 @@ public class EvenementEntity {
 	 *  - Panne
 	 *  - Révision
 	 *  - Inspection
+	 *  de type @see String
 	 */
 	private String type;
 	
 	/**
 	 * Description détaillé de l'évènement
+	 * de type @see String
 	 */
 	private String description;
 	
 	/**
 	 * Date de debut de l'évènement
+	 * de type @see Date
 	 */
 	private Date date_debut;
 	
 	/**
 	 * Date de fin de l'évènement
+	 * de type @see Date
 	 */
 	private Date date_fin;
 	
 	/**
 	 * Durée de l'évènement exprimé en seconde
+	 * de type @see Integer
 	 */
 	private int duree;
 	

@@ -17,18 +17,60 @@ import fr.afpa.projetregistation.dto.EvenementDto;
 @Service
 public interface IEvenementService {
 
+	/**
+	 * Récupère la liste complète des évènements
+	 * @return @see List de @see EvenementDto
+	 */
 	public List<EvenementDto> getAll();
 	
+	/**
+	 * Récupère la liste des évènements
+	 * compris entre les 2 dates placés en paramètres
+	 * 
+	 * @param debut de type @see Date
+	 * @param fin de type @see Date
+	 * @return @see List de @see EvenementDto
+	 */
 	public List<EvenementDto> getByDate(Date debut, Date fin);
 	
+	/**
+	 * Récupère la liste des évènements
+	 * à partir de la date placé en paramètre
+	 * @param debut de type @see Date
+	 * @return @see List de @see EvenementDto
+	 */
 	public List<EvenementDto> getByDate(Date debut);
 	
+	/**
+	 * Récupère la liste des évènements 
+	 * qui partagent le même type que celui placé en paramètre
+	 * @param type de type @see String
+	 * @return @see List de @see EvenementDto
+	 */
 	public List<EvenementDto> getByType(String type);
 	
+	/**
+	 * Ajoute en base de donnée l'évènement placé en paramètre 
+	 * et retourne ce dernier tel qu'il est en base de donnée
+	 * @param evenement de type @see EvenementDto
+	 * @return evenement de type @see EvenementDto
+	 */
 	public EvenementDto create(EvenementDto evenement);
 	
+	
+	/**
+	 * Met à jour la base de donnée à partir de l'évènement placé en paramètre
+	 * et retourne ce dernier tel qu'il est en base de donnée
+	 * @param evenement de type @see EvenementDto
+	 * @return evenement de type @see EvenementDto
+	 */
 	public EvenementDto update(EvenementDto evenement);
 
+	/**
+	 * Supprime l'évènement de la base de donnée à partir de
+	 * l'évènement placé en paramètre 
+	 * @param evenement de type @see EvenementDto
+	 */
 	public void delete(EvenementDto evenement);
 	
 		
