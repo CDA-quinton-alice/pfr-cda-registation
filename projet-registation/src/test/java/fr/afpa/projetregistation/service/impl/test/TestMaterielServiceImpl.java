@@ -1,14 +1,18 @@
 package fr.afpa.projetregistation.service.impl.test;
 
+import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +24,7 @@ import fr.afpa.projetregistation.service.IMaterielService;
 import fr.afpa.projetregistation.utils.Constantes;
 
 @SpringBootTest
+@TestMethodOrder(OrderAnnotation.class)
 public class TestMaterielServiceImpl {
 
 	@Autowired
@@ -35,6 +40,7 @@ public class TestMaterielServiceImpl {
 
 	private MaterielDto mat = new MaterielDto("Orion", "PistoXC", 500, "pompe2", 1, date, "POMPE");
 	private MaterielDto mat2 = new MaterielDto("Venus", "PistoXC", 500, "pompe2", 3, date, "POMPE");
+	private MaterielDto mat3 = new MaterielDto("Mars", "Cafe3000", 200, "allée 1", 1, date, "MACHINE A CAFE");
 
 	@Test
 	@Order(1)
@@ -45,16 +51,16 @@ public class TestMaterielServiceImpl {
 	 */
 	public void testAddMateriel() throws Exception {
 
-		mat = matService.create(mat);
+		mat3 = matService.create(mat3);
 
-		assertNotNull(mat);
-		assertEquals("Orion", mat.getMarque());
-		assertEquals("PistoXC", mat.getModele());
-		assertEquals(500, mat.getPrix());
-		assertEquals("pompe2", mat.getLocalisation());
-		assertEquals(1, mat.getEtat());
+		assertNotNull(mat3);
+		assertEquals("Mars", mat3.getMarque());
+		assertEquals("Cafe3000", mat3.getModele());
+		assertEquals(200, mat3.getPrix());
+		assertEquals("allée 1", mat3.getLocalisation());
+		assertEquals(1, mat3.getEtat());
 		assertEquals(date, date);
-		assertEquals("POMPE", mat.getTypeMateriel());
+		assertEquals("MACHINE A CAFE", mat3.getTypeMateriel());
 
 	}
 
@@ -65,7 +71,7 @@ public class TestMaterielServiceImpl {
 	 * @throws Exception
 	 */
 	@Test
-	@Order(3)
+	@Order(2)
 	public void testGetAll() throws Exception {
 
 		List<MaterielDto> listeMat = matService.getAll(Constantes.ELEMENTS_PAGE);
@@ -82,13 +88,32 @@ public class TestMaterielServiceImpl {
 	}
 
 	/**
+	 * Teste la bonne récupération de tous les MaterielDto par le
+	 * MaterielServiceImpl
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	@Order(3)
+	public void testGetAllByType() throws Exception {
+
+		List<MaterielDto> listeMat = matService.getAllByType(2, "CUVE");
+		assertNotNull(listeMat);
+
+		for (MaterielDto materielDto : listeMat) {
+			assertEquals("CUVE", materielDto.getTypeMateriel());
+		}
+
+	}
+
+	/**
 	 * Teste la bonne récupération d'un MaterielDto par le MaterielServiceImpl via
 	 * la ref.
 	 * 
 	 * @throws Exception
 	 */
 	@Test
-	@Order(3)
+	@Order(4)
 	public void testGetMaterielById() throws Exception {
 
 		MaterielDto materiel = matService.getMaterielById(1);
@@ -110,7 +135,7 @@ public class TestMaterielServiceImpl {
 	 * @throws Exception
 	 */
 	@Test
-	@Order(4)
+	@Order(5)
 	public void testUpdateById() throws Exception {
 
 		matService.updateById(2, mat2);
@@ -132,11 +157,11 @@ public class TestMaterielServiceImpl {
 	 * @throws Exception
 	 */
 	@Test
-	@Order(4)
+	@Order(6)
 	public void testUpdateEtatById() throws Exception {
 
-		matService.updateEtatById(5, 3);
-		MaterielDto matDto = matService.getMaterielById(5);
+		matService.updateEtatById(6, 3);
+		MaterielDto matDto = matService.getMaterielById(6);
 
 		assertNotNull(matDto);
 		assertEquals("Orion", matDto.getMarque());
@@ -148,4 +173,31 @@ public class TestMaterielServiceImpl {
 		assertEquals("POMPE", matDto.getTypeMateriel());
 
 	}
+
+	@Test
+	@Order(7)
+	public void testDeleteById() throws Exception {
+
+		matService.deleteById(18);
+		Optional<MaterielEntity> opRes = materielDao.findByRef(18);
+		MaterielEntity matEntity = null;
+		if (opRes.isPresent()) {
+			matEntity = opRes.get();
+		}
+		assertNull(matEntity);
+	}
+
+//	@Test
+//	@Order(8)
+//	public void testDeleteAllByType() throws Exception {
+//
+//		matService.deleteAllByType(2, "MACHINE A CAFE");
+//		List<MaterielDto> liste = matService.getAllByType(2, "MACHINE A CAFE");
+//		assertNotNull(liste);
+//
+//		for (MaterielDto materielDto : liste) {
+//			assertEquals("MACHINE A CAFE", materielDto.getTypeMateriel());
+//		}
+//
+//	}
 }
