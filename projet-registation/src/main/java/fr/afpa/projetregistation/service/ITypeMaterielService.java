@@ -57,5 +57,5 @@ public interface ITypeMaterielService {
 	 * @param pRef    id du matériel à modifier.
 	 * @param Libelle nouveau libellé du matériel à modifier
 	 */
-	void updateTypeByLibelleAndRef(int pRef, String Libelle);
+	void updateTypeByLibelleAndRef(String pRef, String Libelle);
 }

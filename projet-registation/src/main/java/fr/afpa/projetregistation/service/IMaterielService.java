@@ -19,13 +19,21 @@ public interface IMaterielService {
 	MaterielDto create(MaterielDto materiel);
 
 	/**
+	 * Méthode permettant de sélectionné un matériel par son Id.
+	 * 
+	 * @param pId : Id du matériel à rechercher
+	 * @return MaterielDto : matériel recherché.
+	 */
+	MaterielDto getMaterielById(int pId);
+
+	/**
 	 * Méthode permettant de récupérer un MaterielDto par son Id à savoir la
 	 * référence.
 	 * 
-	 * @param int pRef : La référence du matériel
+	 * @param pRef : La référence du matériel
 	 * @return MaterielDto
 	 */
-	MaterielDto getMaterielById(int pRef);
+	MaterielDto getMaterielByRef(String pRef);
 
 	/**
 	 * Cette méthode permet de récupérer une liste de MatérielDto en appelant le
@@ -55,26 +63,30 @@ public interface IMaterielService {
 	 * @param MaterielDto le MaterielDto possédant les nouvelles données.
 	 * @return MaterielDto
 	 */
-	void updateById(int pRef, MaterielDto pMatDto);
+	void updateByRef(String pRef, MaterielDto pMatDto);
 
 	/**
 	 * Méthode permettant de modifier l'état d'un matériel. (ex: une pompe qui
 	 * fonctionnait qui devient HS)
 	 * 
-	 * @param pRef  Id du matériel à modifier.
+	 * @param pRef  Ref du matériel à modifier.
 	 * @param pEtat int correspondant au nouvel état du matériel. ( 1 : ok; 2 :
 	 *              alerte; 3 : HS)
 	 * @return MaterielDto modifié
 	 */
-	void updateEtatById(int pRef, int pEtat);
+	void updateEtatByRef(String pRef, int pEtat);
 
 	/**
 	 * Permet de supprimer un matériel en sélectionnant son id
 	 * 
 	 * @param pRef
 	 */
-	void deleteById(int pRef);
+	void deleteByRef(String pRef);
 
 	void deleteAllByType(int pPage, String pLibelle);
+
+	public int getMaxidMat();
+
+	boolean existsByRef(String pRef);
 
 }
