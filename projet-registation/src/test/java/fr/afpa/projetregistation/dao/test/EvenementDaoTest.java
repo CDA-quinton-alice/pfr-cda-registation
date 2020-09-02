@@ -74,9 +74,9 @@ public class EvenementDaoTest{
 			
 			ee = edao.save(ee);
 			
-			assertNotNull(ee.getId());
+			assertNotNull(ee);
 			
-			if(ee.getId()!=0) {
+			if(ee!= null) {
 				Optional<EvenementEntity> optEE = edao.findById(ee.getId());
 				assertTrue(optEE.isPresent());
 				list.add(optEE.get());
