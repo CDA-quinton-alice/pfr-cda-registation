@@ -17,10 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import fr.afpa.projetregistation.dao.IAdresseDao;
-import fr.afpa.projetregistation.dao.IConnexionDao;
 import fr.afpa.projetregistation.dao.IUtilisateurDao;
-import fr.afpa.projetregistation.entity.AdresseEntity;
-import fr.afpa.projetregistation.entity.ConnexionEntity;
+import fr.afpa.projetregistation.dto.UtilisateurDto;
 import fr.afpa.projetregistation.entity.UtilisateurEntity;
 import fr.afpa.projetregistation.service.IUtilisateurService;
 
@@ -33,37 +31,13 @@ class UtilisateurDaoTest {
 
 	@Autowired
 	IUtilisateurDao utilisateurDao;
-
+	
 	@Autowired
 	IAdresseDao adresseDao;
 
 	@Autowired
-	IConnexionDao connexionDao;
-
-	@Autowired
 	ModelMapper modelMapper;
-
-	AdresseEntity adresseTest = AdresseEntity.builder().numero(445).rue("rue du chat").complement("complément")
-			.codePostal("38000").ville("GRENOBLE").pays("FRANCE").build();
 	
-	ConnexionEntity connexionTest = ConnexionEntity.builder().matricule("EMPTEST001").password("pwd1").build();
-	
-	UtilisateurEntity employeEntity = UtilisateurEntity.builder().matricule("EMPTEST001").nom("nom1")
-			.prenom("prenom1").dateDeNaissance(dateNaissance()).salaire(2000.0).mail("mat@gmail.com").tel("06.06.06.06.06")
-			.responsable(false).connexion(connexionTest).adresse(adresseTest).build();
-	
-	/**
-	 * Initialisation d'un UtilisateurEntity pour les tests
-	 */
-	@Test
-	@Order(1)
-	void Ini() {
-		adresseDao.save(adresseTest);
-		connexionDao.save(connexionTest);
-		utilisateurDao.save(employeEntity);
-	}
-
-	@Autowired
 	/**
 	 * Permet de tester si l'utilisateur récuépéré par son nom (String) correspond
 	 * bien au bon Utilisateur
@@ -71,23 +45,44 @@ class UtilisateurDaoTest {
 	 * @return Optional UtilisateurEntity récupéré grâce au nom placé en paramètre
 	 */
 	@Test
-	@Order(2)
+	@Order(1)
 	void findByNomTest() {
-		Optional<UtilisateurEntity> employeRecup = utilisateurDao.findByNom("nom1");
-		assertTrue(employeRecup.isPresent());
-		assertEquals("prenom1", employeRecup.get().getPrenom());
+			String pattern = "dd-MM-yyyy";
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+			Date dateTest = null;
+			try {
+				dateTest = simpleDateFormat.parse("15-01-1989");
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			
+			//Création du dto pour faciliter la création
+			UtilisateurDto employe = new UtilisateurDto("EMPTEST001", "pwd1", "nom1", "prenom1", dateTest, 2000.0,
+					"mat@gmail.com", "06.06.06.06.06", false, 1, "rue test1", "complément test", "38000", "GRENOBLE",
+					"France");
+
+			UtilisateurDto responsable = new UtilisateurDto("RESPTEST001", "pwd2", "nom2", "prenom2", dateTest, 2000.0,
+					"mat@gmail.com", "06.06.06.06.06", true, 2, "rue test2", "complément test", "69000", "LYON", "France");
+
+			utilisateurService.create(employe);
+			utilisateurService.create(responsable);
+			
+			Optional<UtilisateurEntity> employeRecup = utilisateurDao.findByNom("nom1");
+			assertTrue(employeRecup.isPresent());
+			assertEquals("prenom1" , employeRecup.get().getPrenom());
+			
+			Optional<UtilisateurEntity> responsableRecup = utilisateurDao.findByNom("nom2");
+			assertTrue(responsableRecup.isPresent());
+			assertEquals("prenom2" , responsableRecup.get().getPrenom());
+			
+			utilisateurDao.delete(employeRecup.get());
+			utilisateurDao.delete(responsableRecup.get());
+			
+			//Pour supprimer toutes les adresses de la BDD
+			adresseDao.deleteAll();
 	}
 
-	/**
-	 * Suppression de l'UtilisateurEntity, Adresse et Connexion de la bdd
-	 */
-	@Test
-	@Order(3)
-	void bye() {
-		utilisateurDao.delete(employeEntity);
-		adresseDao.delete(adresseTest);
-		connexionDao.delete(connexionTest);
-	}
+	
 	/**
 	 * Permet de retourner une liste de tous les emlpoyés (boolean responsable =
 	 * false) Utilisation d'une requête native custom pour récupérer que les
