@@ -237,6 +237,7 @@ public class EvenementServiceImpl implements IEvenementService{
 	public void delete(EvenementDto evenement) {
 		log.info("Supression d'un évènement en base de donnée"+evenement);
 		EvenementEntity ee = EvenementEntity.builder()
+				.id(evenement.getId())
 				.type(evenement.getType())
 				.description(evenement.getDescription())
 				.date_debut(evenement.getDate_debut())

@@ -2,6 +2,7 @@ package fr.afpa.projetregistation.service.impl.test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import fr.afpa.projetregistation.dto.EvenementDto;
+import fr.afpa.projetregistation.entity.EvenementEntity;
 import fr.afpa.projetregistation.service.IEvenementService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -90,35 +92,84 @@ public class EvenementServiceImplTest {
 	@Test
 	@Order(3)
 	public void testReadByDateIntervale() {
-		
+			String d1 = "30-08-2020";
+			String d2 = "01-09-2020";
+			String pattern = "dd-MM-yyyy";
+			SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+			Date date1 = null;
+			Date date2 = null;
+			
+			try {
+				date1 = sdf.parse(d1);
+				date2 = sdf.parse(d2);
+			}catch(ParseException e) {
+				log.warn("Erreur lors du parsing des dates lors du test unitaire !");
+			}
+			
+			List<EvenementDto> le = null;
+			le = eserv.getByDate(date1, date2);
+			assertEquals(1,le.size());
+			if(le.size()==1) {
+				assertEquals(date2,le.get(0).getDate_fin());
+			}
 	}
 	
 	@Test
 	@Order(4)
 	public void testReadByDate() {
+		String d1 = "30-08-2020";
+		String pattern = "dd-MM-yyyy";
+		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+		Date date1 = null;
 		
+		try {
+			date1 = sdf.parse(d1);
+		}catch(ParseException e) {
+			log.warn("Erreur lors du parsing des dates lors du test unitaire !");
+		}
+		
+		List<EvenementDto> le = null;
+		le = eserv.getByDate(date1);
+		assertEquals(1,le.size());
+		if(le.size()==1) {
+			assertEquals(date1,le.get(0).getDate_debut());
+		}
 	}
 	
 	@Test
 	@Order(5)
 	public void testReadByType() {
-		
+		List<EvenementDto> le = null;
+		le = eserv.getByType("autre");
+		assertEquals(1,le.size());
+
+		le = null;
+		le = eserv.getByType("panne");
+		assertNull(le);
 	}
 	
 	@Test
 	@Order(6)
 	public void testReadById() {
-		
+		EvenementDto edto = eserv.getById(list.get(0).getId());
+		assertNotNull(edto);
 	}
 	
 	@Test
 	@Order(7)
 	public void testDelete() {
+		EvenementDto edto = eserv.getById(list.get(0).getId());
+		assertNotNull(edto);
 		
+		eserv.delete(edto);
+		edto = eserv.getById(list.get(0).getId());
+		assertNull(edto);
+		
+		list.remove(0);
 	}
 	
-//	@Test
-//	@Order(8)
+	@Test
+	@Order(8)
 	public void testDeleteAll() {
 		eserv.deleteAll();
 		assertNull(eserv.getAll());
