@@ -119,7 +119,14 @@ public class DataInsertion {
 	public void insertionMateriel() {
 		// Ajout de trois matériels.
 
-		Date achat = new Date();
+		String pattern = "dd-MM-yyyy";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		Date achat = null;
+		try {
+			achat = simpleDateFormat.parse("15-01-1989");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		MaterielDto materiel = new MaterielDto("P001", "Orion", "PistoXC", 500, "pompe2", 1, achat, "pompe");
 		materielService.create(materiel);
 		MaterielDto materiel2 = new MaterielDto("C001", "Neptune", "Cuve3000", 2000, "emplacement1", 1, achat, "cuve");

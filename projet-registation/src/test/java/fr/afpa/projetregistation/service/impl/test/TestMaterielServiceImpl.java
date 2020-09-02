@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -38,9 +40,21 @@ public class TestMaterielServiceImpl {
 
 	private Date date = new Date();
 
-	private MaterielDto mat = new MaterielDto("P004", "Orion", "PistoXC", 500, "pompe2", 1, date, "POMPE");
-	private MaterielDto mat3 = new MaterielDto(5, "MC001", "Pluton", "Cafe3000", 200, "allée 1", 1, date,
+	private MaterielDto mat = new MaterielDto("P004", "Orion", "PistoXC", 500, "pompe2", 1, nouvelleDate(), "POMPE");
+	private MaterielDto mat3 = new MaterielDto(5, "MC001", "Pluton", "Cafe3000", 200, "allée 1", 1, nouvelleDate(),
 			"MACHINE A CAFE");
+
+	public Date nouvelleDate() {
+		String pattern = "dd-MM-yyyy";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		Date date = null;
+		try {
+			date = simpleDateFormat.parse("15-01-1989");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return date;
+	}
 
 	@Test
 	@Order(1)
@@ -173,8 +187,8 @@ public class TestMaterielServiceImpl {
 		assertEquals(500, matDto.getPrix());
 		assertEquals("pompe2", matDto.getLocalisation());
 		assertEquals(3, matDto.getEtat());
-		assertEquals(date, date);
-		assertEquals("CUVE", matDto.getTypeMateriel());
+		assertEquals(this.nouvelleDate(), matDto.getDateAchat());
+		assertEquals("POMPE", matDto.getTypeMateriel());
 
 	}
 
