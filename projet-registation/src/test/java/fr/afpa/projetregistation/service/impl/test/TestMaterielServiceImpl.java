@@ -38,9 +38,9 @@ public class TestMaterielServiceImpl {
 
 	private Date date = new Date();
 
-	private MaterielDto mat = new MaterielDto("Orion", "PistoXC", 500, "pompe2", 1, date, "POMPE");
-	private MaterielDto mat2 = new MaterielDto("Venus", "PistoXC", 500, "pompe2", 3, date, "POMPE");
-	private MaterielDto mat3 = new MaterielDto("Mars", "Cafe3000", 200, "allée 1", 1, date, "MACHINE A CAFE");
+	private MaterielDto mat = new MaterielDto("P004", "Orion", "PistoXC", 500, "pompe2", 1, date, "POMPE");
+	private MaterielDto mat3 = new MaterielDto(5, "MC001", "Pluton", "Cafe3000", 200, "allée 1", 1, date,
+			"MACHINE A CAFE");
 
 	@Test
 	@Order(1)
@@ -51,16 +51,17 @@ public class TestMaterielServiceImpl {
 	 */
 	public void testAddMateriel() throws Exception {
 
-		mat3 = matService.create(mat3);
+		mat = matService.create(mat);
+		mat = matService.getMaterielById(6);
 
-		assertNotNull(mat3);
-		assertEquals("Mars", mat3.getMarque());
-		assertEquals("Cafe3000", mat3.getModele());
-		assertEquals(200, mat3.getPrix());
-		assertEquals("allée 1", mat3.getLocalisation());
-		assertEquals(1, mat3.getEtat());
+		assertNotNull(mat);
+		assertEquals("Orion", mat.getMarque());
+		assertEquals("PistoXC", mat.getModele());
+		assertEquals(500, mat.getPrix());
+		assertEquals("pompe2", mat.getLocalisation());
+		assertEquals(1, mat.getEtat());
 		assertEquals(date, date);
-		assertEquals("MACHINE A CAFE", mat3.getTypeMateriel());
+		assertEquals("POMPE", mat.getTypeMateriel());
 
 	}
 
@@ -114,11 +115,12 @@ public class TestMaterielServiceImpl {
 	 */
 	@Test
 	@Order(4)
-	public void testGetMaterielById() throws Exception {
+	public void testGetMaterielByRef() throws Exception {
 
-		MaterielDto materiel = matService.getMaterielById(1);
+		MaterielDto materiel = matService.getMaterielByRef("P001");
 
 		assertNotNull(materiel);
+		assertEquals("P001", materiel.getRef());
 		assertEquals("Orion", materiel.getMarque());
 		assertEquals("PistoXC", materiel.getModele());
 		assertEquals(500, materiel.getPrix());
@@ -136,17 +138,18 @@ public class TestMaterielServiceImpl {
 	 */
 	@Test
 	@Order(5)
-	public void testUpdateById() throws Exception {
+	public void testUpdateByRef() throws Exception {
 
-		matService.updateById(2, mat2);
-		MaterielDto matDto = matService.getMaterielById(2);
+		matService.updateByRef("MC001", mat3);
+		MaterielDto matDto = matService.getMaterielByRef("MC001");
 
 		assertNotNull(matDto);
-		assertEquals("Venus", matDto.getMarque());
-		assertEquals("PistoXC", matDto.getModele());
-		assertEquals(500, matDto.getPrix());
-		assertEquals("pompe2", matDto.getLocalisation());
-		assertEquals(3, matDto.getEtat());
+		assertEquals("MC001", matDto.getRef());
+		assertEquals("Pluton", matDto.getMarque());
+		assertEquals("Cafe3000", matDto.getModele());
+		assertEquals(200, matDto.getPrix());
+		assertEquals("allée 1", matDto.getLocalisation());
+		assertEquals(1, matDto.getEtat());
 		assertEquals(date, date);
 
 	}
@@ -158,12 +161,13 @@ public class TestMaterielServiceImpl {
 	 */
 	@Test
 	@Order(6)
-	public void testUpdateEtatById() throws Exception {
+	public void testUpdateEtatByRef() throws Exception {
 
-		matService.updateEtatById(6, 3);
-		MaterielDto matDto = matService.getMaterielById(6);
+		matService.updateEtatByRef("P002", 3);
+		MaterielDto matDto = matService.getMaterielByRef("P002");
 
 		assertNotNull(matDto);
+		assertEquals("P002", matDto.getRef());
 		assertEquals("Orion", matDto.getMarque());
 		assertEquals("PistoXC", matDto.getModele());
 		assertEquals(500, matDto.getPrix());
@@ -176,10 +180,10 @@ public class TestMaterielServiceImpl {
 
 	@Test
 	@Order(7)
-	public void testDeleteById() throws Exception {
+	public void testDeleteByRef() throws Exception {
 
-		matService.deleteById(18);
-		Optional<MaterielEntity> opRes = materielDao.findByRef(18);
+		matService.deleteByRef("C001");
+		Optional<MaterielEntity> opRes = materielDao.findByRef("C001");
 		MaterielEntity matEntity = null;
 		if (opRes.isPresent()) {
 			matEntity = opRes.get();

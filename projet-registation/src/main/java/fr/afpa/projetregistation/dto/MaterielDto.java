@@ -21,11 +21,18 @@ import lombok.NoArgsConstructor;
 public class MaterielDto {
 
 	/**
-	 * La ref ou référence sert d'identifiant au MaterielDto. Unique, non
+	 * Id unique du matériel . Unique, auto-implémentée, non modifiable,
+	 * auto-incrémentée.
+	 * 
+	 */
+	private int idMat;
+
+	/**
+	 * La ref ou référence est preopre à chaque matériel MaterielDto. Unique, non
 	 * modifiable, auto-implémenté.
 	 * 
 	 */
-	private int ref;
+	private String ref;
 
 	/**
 	 * La marque correspond au constructeur du matériel en cours.
@@ -67,8 +74,22 @@ public class MaterielDto {
 	 */
 	private String typeMateriel;
 
+	public MaterielDto(String pRef, String pMarque, String pModele, int pPrix, String pLocalisation, int pEtat,
+			Date pDateAchat, String pTypeMateriel) {
+		this.ref = pRef;
+		this.marque = pMarque;
+		this.modele = pModele;
+		this.prix = pPrix;
+		this.localisation = pLocalisation;
+		this.etat = pEtat;
+		this.dateAchat = pDateAchat;
+		this.typeMateriel = pTypeMateriel;
+
+	}
+
 	public MaterielDto(String pMarque, String pModele, int pPrix, String pLocalisation, int pEtat, Date pDateAchat,
 			String pTypeMateriel) {
+
 		this.marque = pMarque;
 		this.modele = pModele;
 		this.prix = pPrix;

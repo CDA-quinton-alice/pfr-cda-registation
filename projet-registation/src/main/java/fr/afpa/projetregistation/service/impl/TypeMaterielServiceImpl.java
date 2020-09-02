@@ -106,7 +106,7 @@ public class TypeMaterielServiceImpl implements ITypeMaterielService {
 	 * @param String pLibelle : le libelle du nouveau de type de matériel.
 	 */
 	@Override
-	public void updateTypeByLibelleAndRef(int pRef, String pLibelle) {
+	public void updateTypeByLibelleAndRef(String pRef, String pLibelle) {
 
 		/**
 		 * Récupération du matériel

@@ -63,35 +63,61 @@ public class MaterielServiceImpl implements IMaterielService {
 	 */
 	@Override
 	public MaterielDto create(MaterielDto pMateriel) {
+		boolean testExists = this.existsByRef(pMateriel.getRef());
+		if (testExists == false) {
+			MaterielEntity matEntity = this.modelMapper.map(pMateriel, MaterielEntity.class);
 
-		MaterielEntity matEntity = this.modelMapper.map(pMateriel, MaterielEntity.class);
-		String type = pMateriel.getTypeMateriel().toUpperCase();
+			String type = pMateriel.getTypeMateriel().toUpperCase();
 
-		/**
-		 * Vérifie la présence du type de matériel en BDD.
-		 */
-		Optional<TypeMaterielEntity> optionalType = typeMaterielDao.findByLibelleMateriel(type.toUpperCase());
-		/**
-		 * Enregistre le type si non présent en BDD
-		 */
-		if (!optionalType.isPresent()) {
-			TypeMaterielEntity typeMaterielEntity = new TypeMaterielEntity(pMateriel.getTypeMateriel().toUpperCase());
-			typeMaterielDao.save(typeMaterielEntity);
-			Optional<TypeMaterielEntity> optionalType2 = typeMaterielDao.findByLibelleMateriel(type.toUpperCase());
-			matEntity.setTypeMaterielEntity(optionalType2.get());
+			/**
+			 * Vérifie la présence du type de matériel en BDD.
+			 */
+			Optional<TypeMaterielEntity> optionalType = typeMaterielDao.findByLibelleMateriel(type.toUpperCase());
+			/**
+			 * Enregistre le type si non présent en BDD
+			 */
+			if (!optionalType.isPresent()) {
+				TypeMaterielEntity typeMaterielEntity = new TypeMaterielEntity(
+						pMateriel.getTypeMateriel().toUpperCase());
+				typeMaterielDao.save(typeMaterielEntity);
+				Optional<TypeMaterielEntity> optionalType2 = typeMaterielDao.findByLibelleMateriel(type.toUpperCase());
+				matEntity.setTypeMaterielEntity(optionalType2.get());
 
+			}
+			/**
+			 * Ajoute le type déjà existant à la nouvelle entité.
+			 */
+			else {
+				matEntity.setTypeMaterielEntity(optionalType.get());
+			}
+
+			matEntity = materielDao.save(matEntity);
+			pMateriel = this.getMaterielByRef(matEntity.getRef());
+			log.info("ajout avec succes");
+		} else {
+			pMateriel = this.getMaterielByRef(pMateriel.getRef());
+			log.info("matériel déjà existant");
 		}
-		/**
-		 * Ajoute le type déjà existant à la nouvelle entité.
-		 */
-		else {
-			matEntity.setTypeMaterielEntity(optionalType.get());
-		}
-
-		matEntity = materielDao.save(matEntity);
-		pMateriel = this.getMaterielById(matEntity.getRef());
-		log.info("ajout avec succes");
 		return pMateriel;
+
+	}
+
+	/**
+	 * Récupère un matériel par son id.
+	 * 
+	 * @param pId id du matériel recherché
+	 * @return MaterielDto Matériel recherché.
+	 */
+	@Override
+	public MaterielDto getMaterielById(int pId) {
+		Optional<MaterielEntity> opsRes = materielDao.findById(pId);
+		MaterielDto materiel = null;
+		if (opsRes.isPresent()) {
+			MaterielEntity matEntity = opsRes.get();
+			materiel = this.modelMapper.map(matEntity, MaterielDto.class);
+		}
+
+		return materiel;
 	}
 
 	/**
@@ -101,7 +127,7 @@ public class MaterielServiceImpl implements IMaterielService {
 	 * @return MaterielDto
 	 */
 	@Override
-	public MaterielDto getMaterielById(int pRef) {
+	public MaterielDto getMaterielByRef(String pRef) {
 		Optional<MaterielEntity> opsRes = materielDao.findByRef(pRef);
 		MaterielDto materiel = null;
 		if (opsRes.isPresent()) {
@@ -162,7 +188,7 @@ public class MaterielServiceImpl implements IMaterielService {
 	 *                    informations.
 	 */
 	@Override
-	public void updateById(int pRef, MaterielDto pMatDto) {
+	public void updateByRef(String pRef, MaterielDto pMatDto) {
 		Optional<MaterielEntity> optionelRes = materielDao.findByRef(pRef);
 		MaterielEntity mat = null;
 		if (optionelRes.isPresent()) {
@@ -179,7 +205,7 @@ public class MaterielServiceImpl implements IMaterielService {
 	}
 
 	@Override
-	public void updateEtatById(int pRef, int pEtat) {
+	public void updateEtatByRef(String pRef, int pEtat) {
 
 		Optional<MaterielEntity> optionelRes = materielDao.findByRef(pRef);
 		MaterielEntity mat = null;
@@ -197,7 +223,7 @@ public class MaterielServiceImpl implements IMaterielService {
 	 * @param pRef id deu materiel à supprimer
 	 */
 	@Override
-	public void deleteById(int pRef) {
+	public void deleteByRef(String pRef) {
 
 		Optional<MaterielEntity> opRes = materielDao.findByRef(pRef);
 		MaterielEntity matEntity = null;
@@ -221,8 +247,28 @@ public class MaterielServiceImpl implements IMaterielService {
 		List<MaterielDto> liste = this.getAllByType(pPage, pLibelle);
 
 		for (MaterielDto materielDto : liste) {
-			this.deleteById(materielDto.getRef());
+			this.deleteByRef(materielDto.getRef());
 		}
+	}
+
+	@Override
+	public int getMaxidMat() {
+
+		return materielDao.getMaxIdMat();
+	}
+
+	@Override
+	public boolean existsByRef(String pRef) {
+		List<MaterielEntity> liste = materielDao.findAll();
+		boolean res = false;
+		for (MaterielEntity materiel : liste) {
+			if (materiel.getRef().equals(pRef)) {
+				res = true;
+				break;
+			}
+		}
+
+		return res;
 	}
 
 }
