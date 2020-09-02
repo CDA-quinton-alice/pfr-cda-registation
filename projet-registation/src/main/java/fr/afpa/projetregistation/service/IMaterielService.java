@@ -36,6 +36,18 @@ public interface IMaterielService {
 	List<MaterielDto> getAll(int pPageEnCours);
 
 	/**
+	 * Permet de récupérer une liste de matériel étant d'un type de matériel
+	 * particulier.
+	 * 
+	 * @param pPageEncours : page actuelle.
+	 * @param pType        : String correspondant libelle du type de matériel
+	 *                     recherché.
+	 * @return List<MaterielDto> une liste de matériel sélectionnés par libelle de
+	 *         type matériel.
+	 */
+	List<MaterielDto> getAllByType(int pPageEnCours, String pType);
+
+	/**
 	 * Méthode permettant de réaliser la mise à jour des informations d'un
 	 * MaterielDto.
 	 * 
@@ -55,5 +67,14 @@ public interface IMaterielService {
 	 * @return MaterielDto modifié
 	 */
 	void updateEtatById(int pRef, int pEtat);
+
+	/**
+	 * Permet de supprimer un matériel en sélectionnant son id
+	 * 
+	 * @param pRef
+	 */
+	void deleteById(int pRef);
+
+	void deleteAllByType(int pPage, String pLibelle);
 
 }
