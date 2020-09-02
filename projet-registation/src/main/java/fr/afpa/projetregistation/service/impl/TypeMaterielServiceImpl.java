@@ -66,7 +66,7 @@ public class TypeMaterielServiceImpl implements ITypeMaterielService {
 	@Override
 	public TypeMaterielDto getTypeByLibelle(String pLibelle) {
 		TypeMaterielDto typeDto = null;
-		Optional<TypeMaterielEntity> resOp = typeMaterielDao.findByLibelleMateriel(pLibelle);
+		Optional<TypeMaterielEntity> resOp = typeMaterielDao.findByLibelleMateriel(pLibelle.toUpperCase());
 		if (resOp.isPresent()) {
 			typeDto = new TypeMaterielDto();
 			TypeMaterielEntity type = resOp.get();
@@ -120,7 +120,7 @@ public class TypeMaterielServiceImpl implements ITypeMaterielService {
 		/**
 		 * Récupération du type de matériel.
 		 */
-		Optional<TypeMaterielEntity> optionelRes = typeMaterielDao.findByLibelleMateriel(pLibelle);
+		Optional<TypeMaterielEntity> optionelRes = typeMaterielDao.findByLibelleMateriel(pLibelle.toUpperCase());
 		TypeMaterielEntity mat = null;
 		if (optionelRes.isPresent()) {
 			mat = optionelRes.get();

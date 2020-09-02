@@ -3,8 +3,11 @@ package fr.afpa.projetregistation.service;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import fr.afpa.projetregistation.dto.DocumentDto;
 
+@Service
 public interface IDocumentService {
 
 	public DocumentDto ajouterDocument(DocumentDto document);

@@ -7,13 +7,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import fr.afpa.projetregistation.dao.IMaterielDao;
-import fr.afpa.projetregistation.dao.ITypeMaterielDao;
 import fr.afpa.projetregistation.dto.MaterielDto;
 import fr.afpa.projetregistation.dto.TypeMaterielDto;
 import fr.afpa.projetregistation.service.IMaterielService;
@@ -21,12 +22,11 @@ import fr.afpa.projetregistation.service.ITypeMaterielService;
 import fr.afpa.projetregistation.utils.Constantes;
 
 @SpringBootTest
+@TestMethodOrder(OrderAnnotation.class)
 public class TestTypeMaterielServiceImpl {
 	@Autowired
 	private ITypeMaterielService typeService;
 
-	@Autowired
-	private ITypeMaterielDao typeDao;
 	@Autowired
 	IMaterielDao materielDao;
 
