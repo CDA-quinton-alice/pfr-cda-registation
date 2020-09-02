@@ -43,7 +43,7 @@ public class DataInsertion {
 	public void cdaInit() {
 
 		//A DECOMMENTER POUR INSERER 2 UTILISATEURS
-//		insertionUtilisateurs();
+		insertionUtilisateurs();
 		
 //		Date achat = new Date();
 //
@@ -138,12 +138,12 @@ public class DataInsertion {
 			e.printStackTrace();
 		}
 		// INSERTION DE 2 USER AVEC COUPLE CONNEXION ET ADRESSE
-		UtilisateurDto utilisateur = new UtilisateurDto("EMP001", "pwd", "nomEMP", "prenomEMP", dateNaissanceTest, 2000.0,
+		UtilisateurDto utilisateur = new UtilisateurDto("EMP001", "pwd1", "nomEMP", "prenomEMP", dateNaissanceTest, 2000.0,
 				"employe@gmail.com", "06.06.06.06.06", false, 1, "rue de l'employé", "complément1", "59000", "LILLE",
 				"France");
 		utilisateurService.create(utilisateur);
 
-		utilisateur = new UtilisateurDto("RESP001", "pwd", "nomRESP", "prenomRESP", dateNaissanceTest, 2500.0,
+		utilisateur = new UtilisateurDto("RESP001", "pwd2", "nomRESP", "prenomRESP", dateNaissanceTest, 2500.0,
 				"responsable@gmail.com", "07.07.07.07.07", true, 10, "rue du responsable", "complément2", "59100",
 				"ROUBAIX", "France");
 		utilisateurService.create(utilisateur);
