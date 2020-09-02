@@ -4,21 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Page test Mat</title>
+<title>Page test Spring Securite</title>
 </head>
 <body>
 
-	<div>
-		<c:forEach items="${utilisateur}" var="utilisateur">
-			<p>${utilisateur}</p>
-			</c:forEach>
-	</div>
 
-<p>utilisateur par name</p>
-<p>${user}</p>
-	
-	
-	
 	
 </body>
 </html>
