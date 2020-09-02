@@ -252,12 +252,6 @@ public class MaterielServiceImpl implements IMaterielService {
 	}
 
 	@Override
-	public int getMaxidMat() {
-
-		return materielDao.getMaxIdMat();
-	}
-
-	@Override
 	public boolean existsByRef(String pRef) {
 		List<MaterielEntity> liste = materielDao.findAll();
 		boolean res = false;
