@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 import fr.afpa.projetregistation.dao.IDocumentDao;
 import fr.afpa.projetregistation.dao.IMaterielDao;
 import fr.afpa.projetregistation.dto.DocumentDto;
-import fr.afpa.projetregistation.dto.MaterielDto;
 import fr.afpa.projetregistation.dto.UtilisateurDto;
 import fr.afpa.projetregistation.service.IDocumentService;
 import fr.afpa.projetregistation.service.IMaterielService;
@@ -44,7 +43,7 @@ public class DataInsertion {
 
 		//A DECOMMENTER POUR INSERER 2 UTILISATEURS
 //		insertionUtilisateurs();
-		
+
 //		Date achat = new Date();
 //
 //		DocumentDto doc1 = new DocumentDto("nom", "cat", achat, achat, "desc", "com");
@@ -67,11 +66,11 @@ public class DataInsertion {
 //				"ROUBAIX", "France");
 //		utilisateurService.create(utilisateur);
 
-//		Date dateAjoutDoc = new Date();
-//		Date dateDerniereModificationdoc = new Date();
-//		DocumentDto doc = new DocumentDto("facture entretien cuve n°3", "facture", dateAjoutDoc, dateDerniereModificationdoc, "facture qui correspond au dernier entretien de la cuve n°3.", "rien à signaler, fonctionnement de la cuve n°3 ok.");
-//		documentService.ajouterDocument(doc);
-//		documentDao.save(DocumentEntity.builder().nomDocument("inventaire annuel magasin").categorieDocument("inventaire").dateAjoutDocument(dateAjoutDoc).dateDerniereModificationDocument(dateDerniereModificationdoc).descriptionDocument("inventaire du magasin avant réorganisation des rayons").commentairesDocument("inventaire effectué à 3 personnes en une journée").build());
+		Date dateAjoutDoc = new Date();
+		Date dateDerniereModificationdoc = new Date();
+		DocumentDto doc = new DocumentDto("facture entretien cuve n°3", "facture", dateAjoutDoc, dateDerniereModificationdoc, "facture qui correspond au dernier entretien de la cuve n°3.", "rien à signaler, fonctionnement de la cuve n°3 ok.");
+		documentService.ajouterDocument(doc);
+
 //
 //		Date dateAjoutDoc2 = new Date();
 //		Date dateDerniereModificationdoc2 = new Date();
