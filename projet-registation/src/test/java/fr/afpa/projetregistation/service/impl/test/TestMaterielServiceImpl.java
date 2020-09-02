@@ -1,8 +1,8 @@
 package fr.afpa.projetregistation.service.impl.test;
 
-import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -46,7 +46,7 @@ public class TestMaterielServiceImpl {
 	@Order(1)
 	/**
 	 * Teste le bon ajout d'un MaterielDto par le MaterielServiceImpl
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	public void testAddMateriel() throws Exception {
@@ -68,7 +68,7 @@ public class TestMaterielServiceImpl {
 	/**
 	 * Teste la bonne récupération de tous les MaterielDto par le
 	 * MaterielServiceImpl
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@Test
@@ -91,7 +91,7 @@ public class TestMaterielServiceImpl {
 	/**
 	 * Teste la bonne récupération de tous les MaterielDto par le
 	 * MaterielServiceImpl
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@Test
@@ -110,7 +110,7 @@ public class TestMaterielServiceImpl {
 	/**
 	 * Teste la bonne récupération d'un MaterielDto par le MaterielServiceImpl via
 	 * la ref.
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@Test
@@ -133,7 +133,7 @@ public class TestMaterielServiceImpl {
 
 	/**
 	 * Teste la bonne mise à jour d'information d'un matériel.
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@Test
@@ -156,7 +156,7 @@ public class TestMaterielServiceImpl {
 
 	/**
 	 * Teste la bonne mise à jour de l'état d'un matériel.
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	@Test
