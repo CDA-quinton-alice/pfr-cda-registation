@@ -2,6 +2,7 @@ package fr.afpa.projetregistation.service.impl.test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import java.text.ParseException;
@@ -9,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
@@ -18,8 +20,10 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import fr.afpa.projetregistation.dao.IUtilisateurDao;
 import fr.afpa.projetregistation.dto.EvenementDto;
 import fr.afpa.projetregistation.entity.EvenementEntity;
+import fr.afpa.projetregistation.entity.UtilisateurEntity;
 import fr.afpa.projetregistation.service.IEvenementService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,6 +34,9 @@ public class EvenementServiceImplTest {
 	
 	@Autowired
 	IEvenementService eserv;
+	
+	@Autowired
+	private IUtilisateurDao udao;
 	
 	private static List<EvenementDto> list = new ArrayList<>();
 	
@@ -54,23 +61,29 @@ public class EvenementServiceImplTest {
 		}
 
 		
+		Optional<UtilisateurEntity> optUser = udao.findById("EMP001");
+		assertTrue(optUser.isPresent());
 
-		EvenementDto ee = EvenementDto.builder().type("Panne")
-				.description("test1")
-				.date_debut(date1)
-				.date_fin(date2)
-				.duree(diff).build();
-		
-		assertNotNull(ee);
-		
-		ee = eserv.create(ee);
-		
-		assertNotNull(ee.getId());
-		
-		if(ee.getId()!=0) {
-			EvenementDto optEE = eserv.getById(ee.getId());
-			assertNotNull(optEE);
-			list.add(optEE);
+		if(optUser.isPresent()) {
+			UtilisateurEntity user = optUser.get();
+			EvenementDto ee = EvenementDto.builder().type("Panne")
+					.description("test1")
+					.date_debut(date1)
+					.date_fin(date2)
+					.duree(diff)
+					.user(user).build();
+			
+			assertNotNull(ee);
+			
+			ee = eserv.create(ee);
+			
+			assertNotNull(ee.getId());
+			
+			if(ee.getId()!=0) {
+				EvenementDto optEE = eserv.getById(ee.getId());
+				assertNotNull(optEE);
+				list.add(optEE);
+			}
 		}
 	}
 	

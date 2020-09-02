@@ -47,7 +47,8 @@ public class EvenementServiceImpl implements IEvenementService{
 						ee.getDescription(),
 						ee.getDate_debut(),
 						ee.getDate_fin(),
-						ee.getDuree()
+						ee.getDuree(),
+						ee.getUser()
 					));
 		}
 		
@@ -74,7 +75,8 @@ public class EvenementServiceImpl implements IEvenementService{
 									.description(ee.getDescription())
 									.date_debut(ee.getDate_debut())
 									.date_fin(ee.getDate_fin())
-									.duree(ee.getDuree()).build();
+									.duree(ee.getDuree())
+									.user(ee.getUser()).build();
 			return edto;
 		}else {
 			return null;
@@ -104,7 +106,8 @@ public class EvenementServiceImpl implements IEvenementService{
 						ee.getDescription(),
 						ee.getDate_debut(),
 						ee.getDate_fin(),
-						ee.getDuree()
+						ee.getDuree(),
+						ee.getUser()
 					));
 		}
 		
@@ -134,7 +137,8 @@ public class EvenementServiceImpl implements IEvenementService{
 						ee.getDescription(),
 						ee.getDate_debut(),
 						ee.getDate_fin(),
-						ee.getDuree()
+						ee.getDuree(),
+						ee.getUser()
 					));
 		}
 		
@@ -164,7 +168,8 @@ public class EvenementServiceImpl implements IEvenementService{
 						ee.getDescription(),
 						ee.getDate_debut(),
 						ee.getDate_fin(),
-						ee.getDuree()
+						ee.getDuree(),
+						ee.getUser()
 					));
 		}
 		

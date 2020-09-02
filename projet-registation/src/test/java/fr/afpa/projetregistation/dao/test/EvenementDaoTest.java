@@ -105,24 +105,30 @@ public class EvenementDaoTest{
 			log.warn("Erreur lors du parsing des dates lors du test unitaire !");
 		}
 		
+		Optional<UtilisateurEntity> optUser = udao.findById("EMP001");
+		assertTrue(optUser.isPresent());
 
-		EvenementEntity ee = EvenementEntity.builder().type("Autre")
-				.description("test2")
-				.date_debut(date1)
-				.date_fin(date2)
-				.duree(diff).build();
-		
-		assertNotNull(ee);
-		
-		ee = edao.save(ee);
-		
-		assertNotNull(ee.getId());
-		
-		if(ee.getId()!=0) {
-			Optional<EvenementEntity> optEE = edao.findById(ee.getId());
-			assertTrue(optEE.isPresent());
+		if(optUser.isPresent()) {
+			UtilisateurEntity user = optUser.get();
+			EvenementEntity ee = EvenementEntity.builder().type("Autre")
+					.description("test2")
+					.date_debut(date1)
+					.date_fin(date2)
+					.duree(diff)
+					.user(user).build();
+			
+			assertNotNull(ee);
+			
+			ee = edao.save(ee);
+			
+			assertNotNull(ee.getId());
+			
+			if(ee.getId()!=0) {
+				Optional<EvenementEntity> optEE = edao.findById(ee.getId());
+				assertTrue(optEE.isPresent());
 
-			list.add(optEE.get());
+				list.add(optEE.get());
+			}
 		}
 	}
 	
