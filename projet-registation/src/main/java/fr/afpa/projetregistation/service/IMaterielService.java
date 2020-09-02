@@ -83,10 +83,20 @@ public interface IMaterielService {
 	 */
 	void deleteByRef(String pRef);
 
+	/**
+	 * LOiste de matériel à supprimer par type
+	 * 
+	 * @param pPage    page en cours
+	 * @param pLibelle type de matériel à supprimer
+	 */
 	void deleteAllByType(int pPage, String pLibelle);
 
-	public int getMaxidMat();
-
+	/**
+	 * Vérifie la présence d'un matériel par sa référence
+	 * 
+	 * @param pRef référence du matériel dont on vérifie la présence.
+	 * @return booléen vrai ou faux
+	 */
 	boolean existsByRef(String pRef);
 
 }
