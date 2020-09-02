@@ -16,8 +16,10 @@ public interface IUtilisateurDao extends PagingAndSortingRepository<UtilisateurE
 	/**
 	 * Permet de récupérer un Utilisateur grâce à son nom
 	 * 
-	 * @param pNom String déclaré en paramètre
-	 * @return Optional UtilisateurEntity récupéré grâce au nom placé en paramètre
+	 * @param String le nom de l'utilisateur recherché déclaré en paramètre de la
+	 *        méthode
+	 * @return Optional UtilisateurEntity récupéré ayant pour nom le string placé en
+	 *         pamaètre.
 	 */
 	Optional<UtilisateurEntity> findByNom(String pNom);
 
