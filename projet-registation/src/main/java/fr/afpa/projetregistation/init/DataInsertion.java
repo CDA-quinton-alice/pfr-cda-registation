@@ -1,8 +1,6 @@
 package fr.afpa.projetregistation.init;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -13,12 +11,9 @@ import fr.afpa.projetregistation.dao.IDocumentDao;
 import fr.afpa.projetregistation.dao.IMaterielDao;
 import fr.afpa.projetregistation.dto.DocumentDto;
 import fr.afpa.projetregistation.dto.MaterielDto;
-import fr.afpa.projetregistation.dto.UtilisateurDto;
-import fr.afpa.projetregistation.entity.DocumentEntity;
 import fr.afpa.projetregistation.service.IDocumentService;
 import fr.afpa.projetregistation.service.IMaterielService;
 import fr.afpa.projetregistation.service.IUtilisateurService;
-import fr.afpa.projetregistation.utils.Constantes;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -44,25 +39,38 @@ public class DataInsertion {
 	@PostConstruct
 	public void cdaInit() {
 
-//		materielDao
-//				.save(MaterielEntity.builder().marque("Neptune").modele("p500").localisation("emplacement 1").build());
+		Date achat = new Date();
 
-//		Date achat = new Date();
+		DocumentDto doc1 = new DocumentDto("nom", "cat", achat, achat, "desc", "com");
+		documentService.ajouterDocument(doc1);
+		MaterielDto materiel2 = new MaterielDto("Orion", "PistoXC", 500, "pompe2", 1, achat, "pompe");
+		materielService.create(materiel2);
 //		MaterielDto materiel = new MaterielDto("Neptune", "Cuve3000", 2000, "emplacement1", 1, achat, "cuve");
 //		materielService.create(materiel);
-//		MaterielDto materiel2 = new MaterielDto("Orion", "PistoXC", 500, "pompe2", 1, achat, "pompe");
+//		MaterielDto materiel3 = new MaterielDto("Orion", "PistoXC", 500, "pompe2", 1, achat, "pompe");
 //		materielService.create(materiel2);
+//
+//		// INSERTION DE 2 USER AVEC COUPLE CONNEXION ET ADRESSE
+//		UtilisateurDto utilisateur = new UtilisateurDto("EMP001", "pwd", "nomEMP", "prenomEMP", achat, 2000.0,
+//				"employe@gmail.com", "06.06.06.06.06", false, 1, "rue de l'employé", "complément1", "59000", "LILLE",
+//				"France");
+//		utilisateurService.create(utilisateur);
+//
+//		utilisateur = new UtilisateurDto("RESP001", "pwd", "nomRESP", "prenomRESP", achat, 2500.0,
+//				"responsable@gmail.com", "07.07.07.07.07", true, 10, "rue du responsable", "complément2", "59100",
+//				"ROUBAIX", "France");
+//		utilisateurService.create(utilisateur);
 
 		// INSERTION DE 2 USER AVEC COUPLE CONNEXION ET ADRESSE
-		UtilisateurDto utilisateur = new UtilisateurDto("EMP001", "pwd", "nomEMP", "prenomEMP", achat, 2000.0,
-				"employe@gmail.com", "06.06.06.06.06", false, 1, "rue de l'employé", "complément1", "59000", "LILLE",
-				"France");
-		utilisateurService.create(utilisateur);
-
-		utilisateur = new UtilisateurDto("RESP001", "pwd", "nomRESP", "prenomRESP", achat, 2500.0,
-				"responsable@gmail.com", "07.07.07.07.07", true, 10, "rue du responsable", "complément2", "59100",
-				"ROUBAIX", "France");
-		utilisateurService.create(utilisateur);
+//		UtilisateurDto utilisateur = new UtilisateurDto("EMP001", "pwd", "nomEMP", "prenomEMP", achat, 2000.0,
+//				"employe@gmail.com", "06.06.06.06.06", false, 1, "rue de l'employé", "complément1", "59000", "LILLE",
+//				"France");
+//		utilisateurService.create(utilisateur);
+//
+//		utilisateur = new UtilisateurDto("RESP001", "pwd", "nomRESP", "prenomRESP", achat, 2500.0,
+//				"responsable@gmail.com", "07.07.07.07.07", true, 10, "rue du responsable", "complément2", "59100",
+//				"ROUBAIX", "France");
+//		utilisateurService.create(utilisateur);
 
 		Date dateAjoutDoc = new Date();
 		Date dateDerniereModificationdoc = new Date();
@@ -113,24 +121,15 @@ public class DataInsertion {
 //		documentService.majCommentairesDocument("commentaires commentaires commentaires", 49);
 //
 //		documentService.getDocument(41);
-
-		List<DocumentDto> listeDocs = new ArrayList<>();
-		listeDocs = documentService.getAllDocuments(2);
-
-		log.info(listeDocs.toString());
-
-		documentService.existById(42);
-
-		documentService.existById(29);
-
-		
-
-
-
-
-
-
-
+//
+//		List<DocumentDto> listeDocs = new ArrayList<>();
+//		listeDocs = documentService.getAllDocuments(2);
+//
+//		log.info(listeDocs.toString());
+//
+//		documentService.existById(42);
+//
+//		documentService.existById(29);
 
 	}
 }
