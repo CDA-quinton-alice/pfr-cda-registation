@@ -17,9 +17,6 @@ import fr.afpa.projetregistation.dto.UtilisateurDto;
 import fr.afpa.projetregistation.service.IDocumentService;
 import fr.afpa.projetregistation.service.IMaterielService;
 import fr.afpa.projetregistation.service.IUtilisateurService;
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 
 @Component
 public class DataInsertion {
@@ -42,20 +39,9 @@ public class DataInsertion {
 	@PostConstruct
 	public void cdaInit() {
 
-		//A DECOMMENTER POUR INSERER 2 UTILISATEURS
-		insertionUtilisateurs();
-		
-//		Date achat = new Date();
-//
-//		DocumentDto doc1 = new DocumentDto("nom", "cat", achat, achat, "desc", "com");
-//		documentService.ajouterDocument(doc1);
-//		MaterielDto materiel2 = new MaterielDto("Orion", "PistoXC", 500, "pompe2", 1, achat, "pompe");
-//		materielService.create(materiel2);
-//		MaterielDto materiel = new MaterielDto("Neptune", "Cuve3000", 2000, "emplacement1", 1, achat, "cuve");
-//		materielService.create(materiel);
-//		MaterielDto materiel3 = new MaterielDto("Orion", "PistoXC", 500, "pompe2", 1, achat, "pompe");
-//		materielService.create(materiel2);
-//
+		this.insertionMateriel();
+		this.insertionUtilisateurs();
+
 //		// INSERTION DE 2 USER AVEC COUPLE CONNEXION ET ADRESSE
 //		UtilisateurDto utilisateur = new UtilisateurDto("EMP001", "pwd", "nomEMP", "prenomEMP", achat, 2000.0,
 //				"employe@gmail.com", "06.06.06.06.06", false, 1, "rue de l'employé", "complément1", "59000", "LILLE",
@@ -67,11 +53,13 @@ public class DataInsertion {
 //				"ROUBAIX", "France");
 //		utilisateurService.create(utilisateur);
 
-//		Date dateAjoutDoc = new Date();
-//		Date dateDerniereModificationdoc = new Date();
-//		DocumentDto doc = new DocumentDto("facture entretien cuve n°3", "facture", dateAjoutDoc, dateDerniereModificationdoc, "facture qui correspond au dernier entretien de la cuve n°3.", "rien à signaler, fonctionnement de la cuve n°3 ok.");
-//		documentService.ajouterDocument(doc);
-//		documentDao.save(DocumentEntity.builder().nomDocument("inventaire annuel magasin").categorieDocument("inventaire").dateAjoutDocument(dateAjoutDoc).dateDerniereModificationDocument(dateDerniereModificationdoc).descriptionDocument("inventaire du magasin avant réorganisation des rayons").commentairesDocument("inventaire effectué à 3 personnes en une journée").build());
+		Date dateAjoutDoc = new Date();
+		Date dateDerniereModificationdoc = new Date();
+		DocumentDto doc = new DocumentDto("facture entretien cuve n°3", "facture", dateAjoutDoc,
+				dateDerniereModificationdoc, "facture qui correspond au dernier entretien de la cuve n°3.",
+				"rien à signaler, fonctionnement de la cuve n°3 ok.");
+		documentService.ajouterDocument(doc);
+
 //
 //		Date dateAjoutDoc2 = new Date();
 //		Date dateDerniereModificationdoc2 = new Date();
@@ -126,6 +114,29 @@ public class DataInsertion {
 //
 //		documentService.existById(29);
 
+	}
+
+	public void insertionMateriel() {
+		// Ajout de trois matériels.
+
+		String pattern = "dd-MM-yyyy";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		Date achat = null;
+		try {
+			achat = simpleDateFormat.parse("15-01-1989");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		MaterielDto materiel = new MaterielDto("P001", "Orion", "PistoXC", 500, "pompe2", 1, achat, "pompe");
+		materielService.create(materiel);
+		MaterielDto materiel2 = new MaterielDto("C001", "Neptune", "Cuve3000", 2000, "emplacement1", 1, achat, "cuve");
+		materielService.create(materiel2);
+		MaterielDto materiel3 = new MaterielDto("P002", "Orion", "PistoXC", 500, "pompe2", 1, achat, "pompe");
+		materielService.create(materiel3);
+		MaterielDto materiel4 = new MaterielDto("P003", "Orion", "PistoXC", 500, "pompe2", 1, achat, "pompe");
+		materielService.create(materiel4);
+		MaterielDto mat3 = new MaterielDto("MC001", "Mars", "Cafe3000", 200, "allée 1", 1, achat, "MACHINE A CAFE");
+		materielService.create(mat3);
 	}
 
 	public void insertionUtilisateurs() {

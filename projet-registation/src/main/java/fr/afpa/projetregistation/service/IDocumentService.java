@@ -14,6 +14,8 @@ public interface IDocumentService {
 
 	public void supprimerDocument(int pIdDocument);
 
+	public void majnomDocument(String pNomDocument, int pIdDocument);
+
 	public void majCategorieDocument(String pCategorieDocument, int pIdDocument);
 
 	public void majDateAjoutDocument(Date pDateAjoutDocument, int pIdDocument);
@@ -28,10 +30,8 @@ public interface IDocumentService {
 
 	public List<DocumentDto> getAllDocuments(int pPageEnCours);
 
-//	public int getMaxid();
+	public int getMaxid();
 
 	public boolean existById(int pIdDocument);
-
-	public long count();
 
 }

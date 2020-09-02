@@ -89,42 +89,64 @@ public class DocumentServiceImpl implements IDocumentService {
 
 	}
 
+	/**
+	 * @param int vIdDocument : c'est l'identifiant du document qui va être supprimé
+	 * @see IDocumentDao documentDao Cette méthode fait appel à l'interface
+	 *      IDocumentDao nommée ici documentDao implémentée de
+	 *      PagingAndSortingRepository<DocumentEntity, Integer> en faisant appel à
+	 *      la méthode deleteById qui fait une recherche par identifiant/valeur,
+	 *      puis supprime sa clé, donc le document qui s'y ratache.
+	 */
 	@Override
 	public void supprimerDocument(int vIdDocument) {
 		log.info("supprimer un document - Registation DocumentServiceImpl");
-		/**
-		 * @param int vIdDocument : c'est l'identifiant du document qui va être supprimé
-		 * @see IDocumentDao documentDao Cette méthode fait appel à l'interface
-		 *      IDocumentDao nommée ici documentDao implémentée de
-		 *      PagingAndSortingRepository<DocumentEntity, Integer> en faisant appel à
-		 *      la méthode deleteById qui fait une recherche par identifiant/valeur,
-		 *      puis supprime sa clé, donc le document qui s'y ratache.
-		 */
 
 		documentDao.deleteById(vIdDocument);
 		log.info("document supprimé avec succès - Registation DocumentServiceImpl");
 	}
 
+
+
+	/**
+	 * @param int vIdDocument : c'est l'identifiant du document dont la date d'ajout
+	 *            va être mise à jour
+	 */
+	@Override
+	public void majnomDocument(String pNomDocument, int pIdDocument) {
+	// TODO Auto-generated method stub
+	log.info("Mettre le nom d'un document - Registation DocumentServiceImpl");
+
+	Optional<DocumentEntity> optionelDocumentEntity = documentDao.findById(pIdDocument);
+	DocumentEntity document3 = null;
+	if (optionelDocumentEntity.isPresent()) {
+		document3 = optionelDocumentEntity.get();
+	}
+	document3.setNomDocument(pNomDocument);
+	documentDao.save(document3);
+
+	log.info("Nom du document mis à jour avec succès - Registation DocumentServiceImpl");
+
+	}
+	/**
+	 * @param int    vIdDocument : c'est l'identifiant du document qui va être mis à
+	 *               jour
+	 * @param String vCategorieDocument : c'est la catégorie du document qui va être
+	 *               mise à jour
+	 * @see DocumentEntity
+	 * @see IDocumentDao documentDao Cette méthode met en place la classe Optional
+	 *      pour stocker une clé DocumentEntity puis fait appel à l'interface
+	 *      IDocumentDao (nommée ici documentDao) implémentée de
+	 *      PagingAndSortingRepository<DocumentEntity, Integer> qui fait appel à la
+	 *      méthode findById en ayant pour paramètre vIdDocument. On créée une
+	 *      nouvelle instance DocumentEntity document3 que l'on initialise à null.
+	 *      Si les étapes avant la création de la nouvelle instance document3 se
+	 *      sont bien déroulées, on peut retrouver optionelDocumentEntity via la
+	 *      méthode isPresent(). Si c'est le cas
+	 *
+	 */
 	@Override
 	public void majCategorieDocument(String vCategorieDocument, int vIdDocument) {
 		log.info("Mettre à jour la catégorie d'un document - Registation DocumentServiceImpl");
-		/**
-		 * @param int    vIdDocument : c'est l'identifiant du document qui va être mis à
-		 *               jour
-		 * @param String vCategorieDocument : c'est la catégorie du document qui va être
-		 *               mise à jour
-		 * @see DocumentEntity
-		 * @see IDocumentDao documentDao Cette méthode met en place la classe Optional
-		 *      pour stocker une clé DocumentEntity puis fait appel à l'interface
-		 *      IDocumentDao (nommée ici documentDao) implémentée de
-		 *      PagingAndSortingRepository<DocumentEntity, Integer> qui fait appel à la
-		 *      méthode findById en ayant pour paramètre vIdDocument. On créée une
-		 *      nouvelle instance DocumentEntity document3 que l'on initialise à null.
-		 *      Si les étapes avant la création de la nouvelle instance document3 se
-		 *      sont bien déroulées, on peut retrouver optionelDocumentEntity via la
-		 *      méthode isPresent(). Si c'est le cas
-		 *
-		 */
 
 		Optional<DocumentEntity> optionelDocumentEntity = documentDao.findById(vIdDocument);
 		DocumentEntity document3 = null;
@@ -136,13 +158,14 @@ public class DocumentServiceImpl implements IDocumentService {
 		log.info("catégorie du document mise à jour avec succès - Registation DocumentServiceImpl");
 	}
 
+
+	/**
+	 * @param int vIdDocument : c'est l'identifiant du document dont la date d'ajout
+	 *            va être mise à jour
+	 */
 	@Override
 	public void majDateAjoutDocument(Date vDateAjoutDocument, int vIdDocument) {
 		log.info("Mettre à jour la date d'ajout d'un document - Registation DocumentServiceImpl");
-		/**
-		 * @param int vIdDocument : c'est l'identifiant du document dont la date d'ajout
-		 *            va être mise à jour
-		 */
 
 		Optional<DocumentEntity> optionelDocumentEntity = documentDao.findById(vIdDocument);
 		DocumentEntity document3 = null;
@@ -155,13 +178,13 @@ public class DocumentServiceImpl implements IDocumentService {
 		log.info("Date d'ajout du document mise à jour avec succès - Registation DocumentServiceImpl");
 	}
 
+	/**
+	 * @param int vIdDocument : c'est l'identifiant du document dont la dernière
+	 *            date de modification va être mise à jour
+	 */
 	@Override
 	public void majDateDerniereModificationDocument(Date vDateDerniereModificationDocument, int vIdDocument) {
 		log.info("Mettre à jour la date de la dernière modification d'un document - Registation DocumentServiceImpl");
-		/**
-		 * @param int vIdDocument : c'est l'identifiant du document dont la dernière
-		 *            date de modification va être mise à jour
-		 */
 
 		Optional<DocumentEntity> optionelDocumentEntity = documentDao.findById(vIdDocument);
 		DocumentEntity document3 = null;
@@ -175,13 +198,13 @@ public class DocumentServiceImpl implements IDocumentService {
 				"Date de la dernière modification du document mise à jour avec succès - Registation DocumentServiceImpl");
 	}
 
+	/**
+	 * @param int vIdDocument : c'est l'identifiant du document dont la description
+	 *            va être mise à jour
+	 */
 	@Override
 	public void majDescriptionDocument(String vDescriptionDocument, int vIdDocument) {
 		log.info("Mettre à jour la description d'un document - Registation DocumentServiceImpl");
-		/**
-		 * @param int vIdDocument : c'est l'identifiant du document dont la description
-		 *            va être mise à jour
-		 */
 
 		Optional<DocumentEntity> optionelDocumentEntity = documentDao.findById(vIdDocument);
 		DocumentEntity document3 = null;
@@ -194,13 +217,13 @@ public class DocumentServiceImpl implements IDocumentService {
 		log.info("Description du document mise à jour avec succès - Registation DocumentServiceImpl");
 	}
 
+	/**
+	 * @param int vIdDocument : c'est l'identifiant du document dont les
+	 *            commentaires vont être mis à jour
+	 */
 	@Override
 	public void majCommentairesDocument(String vCommentairesDocument, int vIdDocument) {
 		log.info("Mettre à jour les commentaires d'un document - Registation DocumentServiceImpl");
-		/**
-		 * @param int vIdDocument : c'est l'identifiant du document dont les
-		 *            commentaires vont être mis à jour
-		 */
 
 		Optional<DocumentEntity> optionelDocumentEntity = documentDao.findById(vIdDocument);
 		DocumentEntity document3 = null;
@@ -213,12 +236,12 @@ public class DocumentServiceImpl implements IDocumentService {
 		log.info("Commentaires du document mis à jour avec succès - Registation DocumentServiceImpl");
 	}
 
+	/**
+	 * @param int vIdDocument : c'est l'identifiant du document qui va être récupéré
+	 */
 	@Override
 	public DocumentDto getDocument(int vIdDocument) {
 		log.info("récupérer un document via une recherche de son iD - Registation DocumentServiceImpl");
-		/**
-		 * @param int vIdDocument : c'est l'identifiant du document qui va être récupéré
-		 */
 		Optional<DocumentEntity> optionelDocumentEntity = documentDao.findById(vIdDocument);
 		DocumentDto document = null;
 		if (optionelDocumentEntity.isPresent()) {
@@ -233,13 +256,13 @@ public class DocumentServiceImpl implements IDocumentService {
 		return document;
 	}
 
+	/**
+	 * @param int vPageEnCours : c'est la page sur laquelle les documents en
+	 *            question vont être récupérés
+	 */
 	@Override
 	public List<DocumentDto> getAllDocuments(int vPageEnCours) {
 		log.info(" récupérer la liste de tous les documents - pagination - Registation DocumentServiceImpl");
-		/**
-		 * @param int vPageEnCours : c'est la page sur laquelle les documents en
-		 *            question vont être récupérés
-		 */
 		List<DocumentDto> listeDocumentsDto = new ArrayList<>();
 		PageRequest page = PageRequest.of(vPageEnCours - 1, Constantes.ELEMENTS_PAR_PAGE);
 		Page<DocumentEntity> documentsEntity = this.documentDao.findAll(page);
@@ -255,20 +278,19 @@ public class DocumentServiceImpl implements IDocumentService {
 		return listeDocumentsDto;
 	}
 
-//	@Override
-//	public int getMaxid() {
-//
-//
-//		return documentDao.getMaxId().intValue();
-//	}
+	@Override
+	public int getMaxid() {
 
+		return documentDao.getMaxId();
+	}
+
+	/**
+	 * @param int vIdDocument : c'est l'identifiant du document qui va être
+	 *            recherché pour savoir s'il existe ou pas
+	 */
 	@Override
 	public boolean existById(int vIdDocument) {
 		log.info("savoir si un document existe via une recherche de son iD - Registation DocumentServiceImpl");
-		/**
-		 * @param int vIdDocument : c'est l'identifiant du document qui va être
-		 *            recherché pour savoir s'il existe ou pas
-		 */
 		boolean verification = false;
 
 		DocumentDto document = this.getDocument(vIdDocument);
@@ -279,12 +301,7 @@ public class DocumentServiceImpl implements IDocumentService {
 		log.info("ce document n'existe pas - Registation DocumentServiceImpl");
 
 		return verification;
-	}
 
-	@Override
-	public long count() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 }

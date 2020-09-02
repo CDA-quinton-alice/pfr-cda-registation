@@ -28,7 +28,6 @@ public class DocumentController {
 //
 //		modelDocument.addObject("listeDocuments",vListeDocuments);
 //		modelDocument.addObject("nombresElementsParPage", Constantes.ELEMENTS_PAR_PAGE);
-//		modelDocument.addObject("count", this.documentService.count());
 //		modelDocument.addObject("pageEnCours", pageEnCours);
 //
 //		modelDocument.setViewName("document");
