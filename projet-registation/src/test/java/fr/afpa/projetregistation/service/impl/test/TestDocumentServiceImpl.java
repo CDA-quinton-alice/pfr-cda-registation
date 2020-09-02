@@ -33,7 +33,7 @@ public class TestDocumentServiceImpl {
 		document = documentService.ajouterDocument(document);
 
 		assertNotNull(document);
-		assertEquals("nom ", document.getNomDocument());
+		assertEquals("nom", document.getNomDocument());
 		assertEquals("categorie", document.getCategorieDocument());
 		assertEquals(date, document.getDateAjoutDocument());
 		assertEquals(date, document.getDateDerniereModificationDocument());
