@@ -174,7 +174,7 @@ public class TestMaterielServiceImpl {
 		assertEquals("pompe2", matDto.getLocalisation());
 		assertEquals(3, matDto.getEtat());
 		assertEquals(date, date);
-		assertEquals("POMPE", matDto.getTypeMateriel());
+		assertEquals("CUVE", matDto.getTypeMateriel());
 
 	}
 
