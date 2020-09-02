@@ -2,6 +2,7 @@ package fr.afpa.projetregistation.dto;
 
 import java.util.Date;
 
+import fr.afpa.projetregistation.entity.MaterielEntity;
 import fr.afpa.projetregistation.entity.UtilisateurEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -66,4 +67,9 @@ public class EvenementDto {
 	 * en base de donnée
 	 */
 	private UtilisateurEntity user;
+	
+	/**
+	 * Le possible matériel en panne
+	 */
+//	private MaterielEntity materiel;
 }
