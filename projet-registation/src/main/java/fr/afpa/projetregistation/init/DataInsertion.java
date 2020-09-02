@@ -1,8 +1,6 @@
 package fr.afpa.projetregistation.init;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -11,10 +9,11 @@ import org.springframework.stereotype.Component;
 
 import fr.afpa.projetregistation.dao.IDocumentDao;
 import fr.afpa.projetregistation.dao.IMaterielDao;
+import fr.afpa.projetregistation.dto.DocumentDto;
+import fr.afpa.projetregistation.dto.MaterielDto;
 import fr.afpa.projetregistation.service.IDocumentService;
 import fr.afpa.projetregistation.service.IMaterielService;
 import fr.afpa.projetregistation.service.IUtilisateurService;
-import fr.afpa.projetregistation.utils.Constantes;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -42,8 +41,10 @@ public class DataInsertion {
 
 		Date achat = new Date();
 
-//		MaterielDto materiel2 = new MaterielDto("Orion", "PistoXC", 500, "pompe2", 1, achat, "pompe");
-//		materielService.create(materiel2);
+		DocumentDto doc1 = new DocumentDto("nom", "cat", achat, achat, "desc", "com");
+		documentService.ajouterDocument(doc1);
+		MaterielDto materiel2 = new MaterielDto("Orion", "PistoXC", 500, "pompe2", 1, achat, "pompe");
+		materielService.create(materiel2);
 //		MaterielDto materiel = new MaterielDto("Neptune", "Cuve3000", 2000, "emplacement1", 1, achat, "cuve");
 //		materielService.create(materiel);
 //		MaterielDto materiel3 = new MaterielDto("Orion", "PistoXC", 500, "pompe2", 1, achat, "pompe");
@@ -120,24 +121,15 @@ public class DataInsertion {
 //		documentService.majCommentairesDocument("commentaires commentaires commentaires", 49);
 //
 //		documentService.getDocument(41);
-
-		List<DocumentDto> listeDocs = new ArrayList<>();
-		listeDocs = documentService.getAllDocuments(2);
-
-		log.info(listeDocs.toString());
-
-		documentService.existById(42);
-
-		documentService.existById(29);
-
-		
-
-
-
-
-
-
-
+//
+//		List<DocumentDto> listeDocs = new ArrayList<>();
+//		listeDocs = documentService.getAllDocuments(2);
+//
+//		log.info(listeDocs.toString());
+//
+//		documentService.existById(42);
+//
+//		documentService.existById(29);
 
 	}
 }
