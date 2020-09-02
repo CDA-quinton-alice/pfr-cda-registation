@@ -54,27 +54,42 @@ class UtilisateurDaoTest {
 			e.printStackTrace();
 		}
 
+		//Construction UtilisateurEntity simples pour les tests
+		UtilisateurEntity employeEntity = UtilisateurEntity.builder()
+				.matricule("EMPTEST001")
+				.nom("nom1")
+				.prenom("prenom1")
+				.dateDeNaissance(dateTest)
+				.salaire(2000.0)
+				.mail("mat@gmail.com")
+				.tel("06.06.06.06.06")
+				.responsable(false)
+				.build();
 		
-		//Création du dto pour faciliter la création
-		UtilisateurDto employe = new UtilisateurDto("EMPTEST001", "pwd1", "nom1", "prenom1", dateTest, 2000.0,
-				"mat@gmail.com", "06.06.06.06.06", false, 1, "rue test1", "complément test", "38000", "GRENOBLE",
-				"France");
-
-		UtilisateurDto responsable = new UtilisateurDto("RESPTEST001", "pwd2", "nom2", "prenom2", dateTest, 2000.0,
-				"mat@gmail.com", "06.06.06.06.06", true, 2, "rue test2", "complément test", "69000", "LYON", "France");
-
-		utilisateurService.create(employe);
-		utilisateurService.create(responsable);
+		UtilisateurEntity responsableEntity = UtilisateurEntity.builder()
+				.matricule("RESPTEST001")
+				.nom("nom2")
+				.prenom("prenom2")
+				.dateDeNaissance(dateTest)
+				.salaire(2000.0)
+				.mail("mat@gmail.com")
+				.tel("06.06.06.06.06")
+				.responsable(false)
+				.build();
 		
-		Optional<UtilisateurEntity> employeEntity = utilisateurDao.findByNom("nom1");
-		assertTrue(employeEntity.isPresent());
-		assertEquals("prenom1" , employeEntity.get().getPrenom());
+		utilisateurDao.save(employeEntity);
+		utilisateurDao.save(responsableEntity);
 		
-		Optional<UtilisateurEntity> responsableEntity = utilisateurDao.findByNom("nom2");
-		assertTrue(responsableEntity.isPresent());
-		assertEquals("prenom2" , responsableEntity.get().getPrenom());
+		Optional<UtilisateurEntity> employeRecup = utilisateurDao.findByNom("nom1");
+		assertTrue(employeRecup.isPresent());
+		assertEquals("prenom1" , employeRecup.get().getPrenom());
 		
+		Optional<UtilisateurEntity> responsableRecup = utilisateurDao.findByNom("nom2");
+		assertTrue(responsableRecup.isPresent());
+		assertEquals("prenom2" , responsableRecup.get().getPrenom());
 		
+		utilisateurDao.delete(employeEntity);
+		utilisateurDao.delete(responsableEntity);
 	}
 
 	/**
