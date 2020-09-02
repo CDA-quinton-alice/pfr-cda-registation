@@ -20,7 +20,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import fr.afpa.projetregistation.dao.IEvenementDao;
+import fr.afpa.projetregistation.dao.IUtilisateurDao;
 import fr.afpa.projetregistation.entity.EvenementEntity;
+import fr.afpa.projetregistation.entity.UtilisateurEntity;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -30,6 +32,9 @@ public class EvenementDaoTest{
 
 	@Autowired
 	private IEvenementDao edao;
+	
+	@Autowired
+	private IUtilisateurDao udao;
 	
 	private static List<EvenementEntity> list = new ArrayList<>();
 	
@@ -53,23 +58,29 @@ public class EvenementDaoTest{
 			log.warn("Erreur lors du parsing des dates lors du test unitaire !");
 		}
 		
-
-		EvenementEntity ee = EvenementEntity.builder().type("Panne")
-				.description("test1")
-				.date_debut(date1)
-				.date_fin(date2)
-				.duree(diff).build();
+		Optional<UtilisateurEntity> optUser = udao.findById("EMP001");
+		assertTrue(optUser.isPresent());
 		
-		assertNotNull(ee);
-		
-		ee = edao.save(ee);
-		
-		assertNotNull(ee.getId());
-		
-		if(ee.getId()!=0) {
-			Optional<EvenementEntity> optEE = edao.findById(ee.getId());
-			assertTrue(optEE.isPresent());
-			list.add(optEE.get());
+		if(optUser.isPresent()) {
+			UtilisateurEntity user = optUser.get();
+			EvenementEntity ee = EvenementEntity.builder().type("Panne")
+					.description("test1")
+					.date_debut(date1)
+					.date_fin(date2)
+					.duree(diff)
+					.user(user).build();
+			
+			assertNotNull(ee);
+			
+			ee = edao.save(ee);
+			
+			assertNotNull(ee.getId());
+			
+			if(ee.getId()!=0) {
+				Optional<EvenementEntity> optEE = edao.findById(ee.getId());
+				assertTrue(optEE.isPresent());
+				list.add(optEE.get());
+			}
 		}
 		
 	}
