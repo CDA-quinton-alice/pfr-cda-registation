@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "document")
+@Table(name = "document_entity")
 public class DocumentEntity {
 
 	@Id

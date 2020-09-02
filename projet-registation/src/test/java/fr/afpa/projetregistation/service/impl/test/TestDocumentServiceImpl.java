@@ -1,7 +1,8 @@
 package fr.afpa.projetregistation.service.impl.test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.Date;
 
@@ -32,7 +33,7 @@ public class TestDocumentServiceImpl {
 		document = documentService.ajouterDocument(document);
 
 		assertNotNull(document);
-		assertEquals("nom ", document.getNomDocument());
+		assertEquals("nom", document.getNomDocument());
 		assertEquals("categorie", document.getCategorieDocument());
 		assertEquals(date, document.getDateAjoutDocument());
 		assertEquals(date, document.getDateDerniereModificationDocument());
