@@ -14,6 +14,8 @@ public interface IDocumentService {
 
 	public void supprimerDocument(int pIdDocument);
 
+	public void majnomDocument(String pNomDocument, int pIdDocument);
+
 	public void majCategorieDocument(String pCategorieDocument, int pIdDocument);
 
 	public void majDateAjoutDocument(Date pDateAjoutDocument, int pIdDocument);
@@ -31,7 +33,5 @@ public interface IDocumentService {
 //	public int getMaxid();
 
 	public boolean existById(int pIdDocument);
-
-	public long count();
 
 }
