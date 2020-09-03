@@ -52,6 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 																								// sont accessibles
 				.and().csrf().disable() // authoriser l'envoi de donnée depuis des formulaire non genenrés depuis le
 				.formLogin();
+
 		// back-end
 //				.formLogin().loginProcessingUrl("/login") // personnaliser l'url d'authentification
 //				.successHandler(successHandler()) // succes authentification

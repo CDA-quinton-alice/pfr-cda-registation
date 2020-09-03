@@ -42,7 +42,6 @@ public class UtilisateurDetailService implements UserDetailsService {
 
 	private List<GrantedAuthority> getGrantedAuthorities(UtilisateurEntity uEnt) {
 		List<GrantedAuthority> authorities = new ArrayList<>();
-//		RoleEntity role = uEnt.getRole();
 		boolean role = uEnt.isResponsable();
 		if (role == true) {
 			authorities.add(new SimpleGrantedAuthority("ROLE_RESPONSABLE"));
