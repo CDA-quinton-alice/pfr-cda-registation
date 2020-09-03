@@ -71,6 +71,30 @@ public class DataInsertion {
 		DocumentDto doc = new DocumentDto("facture entretien cuve n°3", "facture", dateAjoutDoc, dateDerniereModificationdoc, "facture qui correspond au dernier entretien de la cuve n°3.", "rien à signaler, fonctionnement de la cuve n°3 ok.");
 		documentService.ajouterDocument(doc);
 
+//		Date date = new Date();
+//		DocumentDto documentt = new DocumentDto("nom", "categorie", date, date, "description", "commentaire");
+//		documentService.ajouterDocument(documentt);
+//		DocumentDto documentt2 = new DocumentDto("nom2", "categorie2", date, date, "description2", "commentaire2");
+//		documentService.ajouterDocument(documentt2);
+//		DocumentDto documentt3 = new DocumentDto("nom3", "categorie3", date, date, "description3", "commentaire3");
+//		documentService.ajouterDocument(documentt3);
+//		DocumentDto documentt4 = new DocumentDto("nom4", "categorie4", date, date, "description4", "commentaire4");
+//		documentService.ajouterDocument(documentt4);
+//		DocumentDto documentt5 = new DocumentDto("nom5", "categorie5", date, date, "description5", "commentaire5");
+//		documentService.ajouterDocument(documentt5);
+//		DocumentDto documentt6 = new DocumentDto("nom6", "categorie6", date, date, "description6", "commentaire6");
+//		documentService.ajouterDocument(documentt6);
+//		DocumentDto documentt7 = new DocumentDto("nom7", "categorie7", date, date, "description7", "commentaire7");
+//		documentService.ajouterDocument(documentt7);
+//		DocumentDto documentt8 = new DocumentDto("nom8", "categorie8", date, date, "description8", "commentaire8");
+//		documentService.ajouterDocument(documentt8);
+//		DocumentDto documentt9 = new DocumentDto("nom9", "categorie9", date, date, "description9", "commentaire9");
+//		documentService.ajouterDocument(documentt9);
+//		DocumentDto documentt10 = new DocumentDto("nom10", "categorie10", date, date, "description10", "commentaire10");
+//		documentService.ajouterDocument(documentt10);
+//		DocumentDto documentt11 = new DocumentDto("nom11", "categorie11", date, date, "description11", "commentaire11");
+//		documentService.ajouterDocument(documentt11);
+
 //
 //		Date dateAjoutDoc2 = new Date();
 //		Date dateDerniereModificationdoc2 = new Date();
