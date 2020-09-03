@@ -19,21 +19,24 @@
 		</div>
 
 		<div class="container-fluid">
-			<div id="div-connection">
+
+			<div id="div-connection" style="display: none">
 				<form class="form-signin">
-				<h2>
-					Connectez vous
-				</h2>
-				<label for="loginInput" class="sr-only">Login</label> <input
-				type="text" id="loginInput" class="form-control" placeholder="Login"
-				required="required"> <label for="passwordInput"
-				class="sr-only">Password</label> <input type="password"
-				id="passwordInput" class="form-control" placeholder="Password"
-				required="required">
-				<button id="loginBtn"  type="submit">Connection</button>
-			</form>
+					<h2>
+						Connectez vous
+					</h2>
+					<label for="loginInput" class="sr-only">Login</label>
+					<input type="text" id="loginInput" class="form-control" placeholder="Login" required="required">
+					<label for="passwordInput" class="sr-only">Password</label> 
+					<input type="password" id="passwordInput" class="form-control" placeholder="Password" required="required">
+					<button id="loginBtn" type="submit">Connection</button>
+				</form>
 			</div>
 		</div>
+		
+
+
+
 	</div>
 	<%@ include file="js.jsp"%>
 </body>
