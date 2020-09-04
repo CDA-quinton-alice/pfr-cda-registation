@@ -46,6 +46,8 @@
 		</div>
 		
 	</div>
+	<%@ include file="js.jsp"%>
+</body>
 
 	
 	<%@ include file="js.jsp"%>
