@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -39,7 +41,8 @@ public class DocumentEntity {
 	@Column(name = "commentaires_document")
 	private String commentairesDocument;
 
-//	@ManyToOne
-//	UtilisateurEntity utilisateur;
+	@ManyToOne
+	@JoinColumn(name="matricule")
+	UtilisateurEntity utilisateur;
 
 }
