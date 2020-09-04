@@ -8,14 +8,13 @@
 </head>
 <body>
 
-	<div>
-		<c:forEach items="${utilisateur}" var="utilisateur">
-			<p>${utilisateur}</p>
-			</c:forEach>
-	</div>
+<p>utilisateur session</p>
+	
 
 <p>utilisateur par name</p>
-<p>${user}</p>
+
+<p>${utilisateur}</p>
+
 	
 	
 	
