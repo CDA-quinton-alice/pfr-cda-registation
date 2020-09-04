@@ -18,16 +18,16 @@ public class UtilisateurController {
 	@Autowired
 	IUtilisateurService utilisateurService;
 	
-	@GetMapping(value="/testmat")
+	@GetMapping(value="/responsable")
 	protected ModelAndView connexion() {
 		ModelAndView mv = new ModelAndView();
 		
-		log.info("Acces page test Mat");
+		log.info("Acces page test Responsable");
 		
 		mv.addObject("utilisateur" , utilisateurDao.findAll());
 		mv.addObject("user" , utilisateurService.getUtilisateurByName("nomEMP"));
 		
-		mv.setViewName("testmat");
+		mv.setViewName("responsable");
 		return mv;
 	}
 	
