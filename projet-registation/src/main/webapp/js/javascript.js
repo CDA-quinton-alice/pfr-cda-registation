@@ -24,6 +24,8 @@ $('#loginBtn').click(function() {
 		success : function() {
 			$('#loginInput').val('');
 			$('#passwordInput').val('');
+			alert("ok authentification");
+			top.location.href ='responsable'
 			infoUserEnCours();
 		},
 		error : function(responseHttp) {
