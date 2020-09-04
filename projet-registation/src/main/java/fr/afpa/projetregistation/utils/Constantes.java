@@ -15,4 +15,6 @@ public class Constantes {
 
 	public static final Date DATE_TEST = new Date();
 
+	public static final String UTILISATEUR_EN_COURS = "UTILISATEUR_EN_COURS";
+
 }

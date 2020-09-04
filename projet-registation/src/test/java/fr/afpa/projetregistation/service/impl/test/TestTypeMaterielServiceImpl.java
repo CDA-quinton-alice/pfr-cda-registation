@@ -102,7 +102,7 @@ public class TestTypeMaterielServiceImpl {
 	 */
 	public void testGetTypeByMateriel() throws Exception {
 		Date achat = new Date();
-		MaterielDto mat = new MaterielDto("Orion", "PistoXC", 500, "pompe2", 1, achat, "pompe");
+		MaterielDto mat = new MaterielDto("P001", "Orion", "PistoXC", 500, "pompe2", 1, achat, "pompe");
 		TypeMaterielDto testType = typeService.getTypeByMateriel(mat);
 		assertNotNull(testType);
 
@@ -135,14 +135,14 @@ public class TestTypeMaterielServiceImpl {
 	 */
 	public void testUpdateType() throws Exception {
 
-		typeService.updateTypeByLibelleAndRef(4, "CUVE");
-		MaterielDto matDto = matService.getMaterielById(4);
+		typeService.updateTypeByLibelleAndRef("P002", "CUVE");
+		MaterielDto matDto = matService.getMaterielByRef("P002");
 
 		assertEquals("Orion", matDto.getMarque());
 		assertEquals("PistoXC", matDto.getModele());
 		assertEquals(500, matDto.getPrix());
 		assertEquals("pompe2", matDto.getLocalisation());
-		assertEquals(1, matDto.getEtat());
+		assertEquals(3, matDto.getEtat());
 		assertEquals("CUVE", matDto.getTypeMateriel());
 
 	}

@@ -27,12 +27,20 @@ public class MaterielEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_materiel")
 	/**
 	 * La ref ou référence sert d'identifiant au MaterielDto. Unique, non
 	 * modifiable, auto-implémenté.
 	 * 
 	 */
-	private int ref;
+	private int idMat;
+
+	/**
+	 * 
+	 * Référence du matériel. Unique, requise, non incrémentée, non modifiable
+	 */
+	@Column(name = "ref")
+	private String ref;
 
 	/**
 	 * La marque correspond au constructeur du matériel en cours.
