@@ -47,7 +47,7 @@ public class DocumentController {
 //		@RequestParam(value="commentairesDocument") String commentairesDocument){
 //		log.info("ajouter un document - Registation DocumentController");
 //
-//	modelDocument.setViewName("forward:/accueil");
+//	modelDocument.setViewName("forward:/index");
 //
 //	return modelDocument;
 //
@@ -59,7 +59,7 @@ public class DocumentController {
 //	log.info("mettre à jour la catégorie d'un document via une recherche de son iD - Registation DocumentController");
 //
 //	documentService.majCategorieDocument(pCategorieDocument,pIdDocument);
-//	modelDocument.setViewName("forward:/accueil");
+//	modelDocument.setViewName("forward:/index");
 //
 //	return modelDocument;
 //
@@ -71,7 +71,7 @@ public class DocumentController {
 //	log.info("mettre à jour la date d'ajout d'un document via une recherche de son iD - Registation DocumentController");
 //
 //	documentService.majDateAjoutDocument(pDateAjoutDocument, pIdDocument);
-//	modelDocument.setViewName("forward:/accueil");
+//	modelDocument.setViewName("forward:/index");
 //
 //	return modelDocument;
 //}
@@ -83,7 +83,7 @@ public class DocumentController {
 //	log.info("mettre à jour la date de la dernière modification d'un document via une recherche de son iD - Registation DocumentController");
 //
 //	documentService.majDateDerniereModificationDocument(pDateDerniereModificationDocument, pIdDocument);
-//	modelDocument.setViewName("forward:/accueil");
+//	modelDocument.setViewName("forward:/index");
 //
 //	return modelDocument;
 //
@@ -96,7 +96,7 @@ public class DocumentController {
 //	log.info("mettre à jour la description d'un document via une recherche de son iD - Registation DocumentController");
 //
 //	documentService.majDescriptionDocument(pDescriptionDocument, pIdDocument);
-//	modelDocument.setViewName("forward:/accueil");
+//	modelDocument.setViewName("forward:/index");
 //
 //	return modelDocument;
 //}
@@ -108,7 +108,7 @@ public class DocumentController {
 //	log.info("mettre à jour les commentaires d'un document via une recherche de son iD - Registation DocumentController");
 //
 //	documentService.majCommentairesDocument(pCommentairesDocument, pIdDocument);
-//	modelDocument.setViewName("forward:/accueil");
+//	modelDocument.setViewName("forward:/index");
 //
 //	return modelDocument;
 //}
@@ -121,7 +121,7 @@ public class DocumentController {
 //		log.info("supprimer un document via une recherche de son iD - Registation DocumentController");
 //
 //		documentService.supprimerDocument(pIdDocument);
-//		modelDocument.setViewName("forward:/accueil");
+//		modelDocument.setViewName("forward:/index");
 //
 //		return modelDocument;
 //	}
