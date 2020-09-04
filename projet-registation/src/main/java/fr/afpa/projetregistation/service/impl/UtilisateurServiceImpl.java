@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fr.afpa.projetregistation.dao.IAdresseDao;
@@ -54,6 +55,9 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 
 	@Autowired
 	private ModelMapper modelMapper;
+	
+	@Autowired
+	BCryptPasswordEncoder monEncodeur; 
 
 	/**
 	 * Crée un UtilisateurDto et sauvegarde un utilisateur en BDD en utilisant
@@ -75,7 +79,7 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 			log.warn("Ajout UTILISATEUR impossible - le matricule existe déjà");
 			return null;
 		} else {
-			ConnexionEntity coupleConnexion = new ConnexionEntity(matricule, Securite.hashMD5(password));
+			ConnexionEntity coupleConnexion = new ConnexionEntity(matricule, monEncodeur.encode(password));
 			connexionDao.save(coupleConnexion);
 
 			AdresseEntity adresse = AdresseEntity.builder().numero(pUtilisateur.getNumero()).rue(pUtilisateur.getRue())
