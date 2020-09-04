@@ -7,6 +7,8 @@ import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.util.StringUtils;
+
 import net.bytebuddy.dynamic.scaffold.MethodGraph.Linked;
 
 /**
@@ -88,26 +90,28 @@ public class Calendrier {
 	 * @return {@link Integer} Nombre de jour pour compléter le début du calendrier
 	 */ 
 	public static int getNbPrevJour(String firstDay) {
-		String j = firstDay.split("\\-")[0].toLowerCase();
+		
+		String j = StringUtils.capitalize(firstDay.split("\\-")[0]);
+
 
 		int nbJourPrev = 0;
 		switch (j) {
-		case "mardi":
+		case "Mardi":
 			nbJourPrev = 1;
 			break;
-		case "mercredi":
+		case "Mercredi":
 			nbJourPrev = 2;
 			break;
-		case "jeudi":
+		case "Jeudi":
 			nbJourPrev = 3;
 			break;
-		case "vendredi":
+		case "Vendredi":
 			nbJourPrev = 4;
 			break;
-		case "samedi":
+		case "Samedi":
 			nbJourPrev = 5;
 			break;
-		case "dimanche":
+		case "Dimanche":
 			nbJourPrev = 6;
 			break;
 		}
@@ -122,26 +126,26 @@ public class Calendrier {
 	 * @return {@link Integer} Nombre de jour pour compléter la fin du calendrier
 	 */ 
 	public static int getNbNextJour(String lastDay) {
-		String j = lastDay.split("\\-")[0].toLowerCase();
+		String j = StringUtils.capitalize(lastDay.split("\\-")[0]);
 
 		int nbJourNext = 0;
 		switch (j) {
-		case "lundi":
+		case "Lundi":
 			nbJourNext = 6;
 			break;
-		case "mardi":
+		case "Mardi":
 			nbJourNext = 5;
 			break;
-		case "mercredi":
+		case "Mercredi":
 			nbJourNext = 4;
 			break;
-		case "jeudi":
+		case "Jeudi":
 			nbJourNext = 3;
 			break;
-		case "vendredi":
+		case "Vendredi":
 			nbJourNext = 2;
 			break;
-		case "samedi":
+		case "Samedi":
 			nbJourNext = 1;
 			break;
 		}
@@ -217,6 +221,9 @@ public class Calendrier {
 		moisPrev.stream().forEach(x -> moisStr.add(x.format(dtf)));
 		mois.stream().forEach(x -> moisStr.add(x.format(dtf)));
 		moisNext.stream().forEach(x -> moisStr.add(x.format(dtf)));
-		return moisStr;
+		List<String> mStr = new ArrayList<>();
+		moisStr.stream().forEach(x -> mStr.add(StringUtils.capitalize(x)));
+		
+		return mStr;
 	}
 }
