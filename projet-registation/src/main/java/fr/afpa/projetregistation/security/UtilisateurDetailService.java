@@ -23,15 +23,15 @@ public class UtilisateurDetailService implements UserDetailsService {
 	private IUtilisateurDao utilisateurDao;
 
 	@Override
-	public UserDetails loadUserByUsername(String matricule) throws UsernameNotFoundException {
-		if (matricule.trim().isEmpty()) {
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		if (username.trim().isEmpty()) {
 			throw new UsernameNotFoundException("matricule is empty");
 		}
 
-		Optional<UtilisateurEntity> userOpt = this.utilisateurDao.findById(matricule);
+		Optional<UtilisateurEntity> userOpt = this.utilisateurDao.findById(username);
 
 		if (!userOpt.isPresent()) {
-			throw new UsernameNotFoundException("User " + matricule + " not found");
+			throw new UsernameNotFoundException("User " + username + " not found");
 		}
 
 		UtilisateurEntity uEnt = userOpt.get();

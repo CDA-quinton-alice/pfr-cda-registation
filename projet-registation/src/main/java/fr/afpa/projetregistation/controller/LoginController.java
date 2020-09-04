@@ -1,7 +1,5 @@
 package fr.afpa.projetregistation.controller;
 
-import java.security.Principal;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.ResponseEntity;
@@ -16,12 +14,12 @@ import fr.afpa.projetregistation.utils.Constantes;
 public class LoginController {
 
 	@GetMapping("/user")
-	public ResponseEntity<UtilisateurDto> currentUser(HttpSession session, Principal user) {
+	public ResponseEntity<UtilisateurDto> currentUser(HttpSession session) {
 		UtilisateurDto userDto = (UtilisateurDto) session.getAttribute(Constantes.UTILISATEUR_EN_COURS);
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (userDto == null) {
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			userDto = new UtilisateurDto();
-			userDto.setMatricule(user.getName());
+			userDto.setMatricule(authentication.getName());
 			for (GrantedAuthority role : authentication.getAuthorities()) {
 				String roleEnt = role.getAuthority();
 
@@ -34,6 +32,7 @@ public class LoginController {
 				break;
 			}
 		}
+		session.setAttribute(Constantes.UTILISATEUR_EN_COURS, userDto);
 		return ResponseEntity.ok(userDto);
 	}
 }
