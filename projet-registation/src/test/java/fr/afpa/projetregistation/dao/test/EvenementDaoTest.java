@@ -170,7 +170,7 @@ public class EvenementDaoTest{
 		
 		List<EvenementEntity> le = null;
 		le = edao.findByDate(date1, date2);
-		assertEquals(1,le.size());
+		assertEquals(2,le.size());
 		if(le.size()==1) {
 			assertEquals(date2,le.get(0).getDate_fin());
 		}
@@ -192,7 +192,7 @@ public class EvenementDaoTest{
 		
 		List<EvenementEntity> le = null;
 		le = edao.findByDate(date1);
-		assertEquals(2,le.size());
+		assertEquals(4,le.size());
 		if(le.size()==1) {
 			assertEquals(date1,le.get(0).getDate_fin());
 		}

@@ -121,7 +121,7 @@ public class EvenementServiceImplTest {
 			
 			List<EvenementDto> le = null;
 			le = eserv.getByDate(date1, date2);
-			assertEquals(1,le.size());
+			assertEquals(2,le.size());
 			if(le.size()==1) {
 				assertEquals(date2,le.get(0).getDate_fin());
 			}
@@ -143,7 +143,7 @@ public class EvenementServiceImplTest {
 		
 		List<EvenementDto> le = null;
 		le = eserv.getByDate(date1);
-		assertEquals(1,le.size());
+		assertEquals(3,le.size());
 		if(le.size()==1) {
 			assertEquals(date1,le.get(0).getDate_debut());
 		}
