@@ -1,3 +1,8 @@
+var utilisateurEnCours;
+
+$(document).ready(function() {
+
+	utilisateurEnCours = JSON.parse(sessionStorage.getItem("utilisateur_en_cours"));
 /*Menu-toggle*/
 $("#menu-toggle").click(function(e) {
 	e.preventDefault();
@@ -25,8 +30,8 @@ $('#loginBtn').click(function() {
 			$('#loginInput').val('');
 			$('#passwordInput').val('');
 			alert("ok authentification");
-			top.location.href ='responsable'
 			infoUserEnCours();
+			top.location.href ='responsable/accueil';
 		},
 		error : function(responseHttp) {
 			if (responseHttp.status == 401) {
@@ -46,7 +51,7 @@ $('#co_ins').click(function() {
 	$('#div-connection').css('display', 'block');
 });
 
-// affichageBouttonSelonRole(utilisateurEnCours);
+
 
 function infoUserEnCours() {
 	$.ajax({
@@ -69,3 +74,46 @@ function infoUserEnCours() {
 		},
 	});
 }
+
+//affichageBouttonSelonRole(utilisateurEnCours);
+function affichageBouttonSelonRole(utilisateurEnCours) {
+
+	if (!utilisateurEnCours) {
+		$('#loginLien').css('display', 'block').parent().css('margin-left', 'auto');
+		$('#logoutLien').css('display', 'none').parent().css('margin-left', '');
+		$('#lienDashboard').css('display', 'none');
+		$('.actionTd').css('display', 'none');
+	} else {
+		$('#logoutLien').css('display', 'block').parent().css('margin-left', 'auto');
+		$('#loginLien').css('display', 'none').parent().css('margin-left', '');
+		rendreLignCliquablePourDetail();
+
+		if ('ROLE_RESPONSABLE' == utilisateurEnCours.role) {
+			$('.actionTd').css('display', 'block');
+			$('#lienDashboard').css('display', 'block');
+
+		} else if ('ROLE_EMPLOYE' == utilisateurEnCours.role) {
+			$('#ajoutLien').css('display', 'none');
+			$('#lienDashboard').css('display', 'none');
+
+		} else {
+			logout();
+		}
+	}
+}
+
+function logout() {
+	utilisateurEnCours = null;
+	sessionStorage.removeItem("utilisateur_en_cours");
+	$('#listLien').click();
+	$('.etudiantTr td:not(:last-child)').off();
+	$('#ajoutLien').css('display', 'none');
+	$('.actionTd').css('display', 'none');
+	$('#etudiantDetailDiv').css('display', 'none');
+	$('#loginLien').css('display', 'block').parent().css('margin-left', 'auto');
+	$('#logoutLien').css('display', 'none').parent().css('margin-left', '');
+	$('#ajoutMsgDiv').css('display', 'none');
+	$('#loginMsgDiv').css('display', 'none');
+	$('#deleteMsgDiv').css('display', 'none');
+}
+})

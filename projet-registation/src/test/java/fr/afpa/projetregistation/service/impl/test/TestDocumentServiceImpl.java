@@ -16,7 +16,6 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import fr.afpa.projetregistation.dao.IDocumentDao;
 import fr.afpa.projetregistation.dto.DocumentDto;
 import fr.afpa.projetregistation.service.IDocumentService;
 import fr.afpa.projetregistation.utils.Constantes;
@@ -29,11 +28,6 @@ public class TestDocumentServiceImpl {
 
 	@Autowired
 	private IDocumentService documentService;
-
-	@Autowired
-	private IDocumentDao documentDao;
-
-	private Date date = new Date();
 
 	private DocumentDto document = DocumentDto.builder().nomDocument(Constantes.STRING_TEST)
 			.categorieDocument(Constantes.STRING_TEST).dateAjoutDocument(Constantes.DATE_TEST)
@@ -53,6 +47,7 @@ public class TestDocumentServiceImpl {
 		assertEquals(Constantes.DATE_TEST, document.getDateDerniereModificationDocument());
 		assertEquals(Constantes.STRING_TEST, document.getDescriptionDocument());
 		assertEquals(Constantes.STRING_TEST, document.getCommentairesDocument());
+
 	}
 
 	@Test
