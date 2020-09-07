@@ -55,6 +55,7 @@ public class TestDocumentServiceImpl {
 		assertEquals(Constantes.DATE_TEST, document.getDateDerniereModificationDocument());
 		assertEquals(Constantes.STRING_TEST, document.getDescriptionDocument());
 		assertEquals(Constantes.STRING_TEST, document.getCommentairesDocument());
+
 	}
 
 	@Test
