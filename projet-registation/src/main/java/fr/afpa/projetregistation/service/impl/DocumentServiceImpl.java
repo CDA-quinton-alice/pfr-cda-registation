@@ -15,6 +15,7 @@ import fr.afpa.projetregistation.dao.IDocumentDao;
 import fr.afpa.projetregistation.dao.IUtilisateurDao;
 import fr.afpa.projetregistation.dto.DocumentDto;
 import fr.afpa.projetregistation.entity.DocumentEntity;
+import fr.afpa.projetregistation.entity.UtilisateurEntity;
 import fr.afpa.projetregistation.service.IDocumentService;
 import fr.afpa.projetregistation.utils.Constantes;
 import lombok.extern.slf4j.Slf4j;
@@ -59,10 +60,10 @@ public class DocumentServiceImpl implements IDocumentService {
 	 */
 	@Override
 	public DocumentDto ajouterDocument(DocumentDto document) {
-//		log.info("ajouter un document - Registation DocumentServiceImpl");
+		log.info("ajouter un document - Registation DocumentServiceImpl");
 
 		// !!!! Vérifier présence en BDD.
-
+		UtilisateurEntity utilisateur2 = new UtilisateurEntity();
 		DocumentEntity document2 = this.modelDocumentServiceImpl.map(document, DocumentEntity.class);
 //		document2.setIdDocument(document.getIdDocument());
 
@@ -75,13 +76,15 @@ public class DocumentServiceImpl implements IDocumentService {
 
 		// toutes les lignes au dessus.
 
-//		Optional<UtilisateurEntity> optionelUtilisateurEntity = utilisateurDao.findById(document.getIdDocument());
-//		if (optionelUtilisateurEntity.isPresent()) {
-//			document2.setUtilisateur(optionelUtilisateurEntity);
-//		}
+		Optional<UtilisateurEntity> optionelUtilisateurEntity = utilisateurDao.findByNom(document2.getNomDocument());
+		if (optionelUtilisateurEntity.isPresent()) {
+			document2.setUtilisateur(utilisateur2);
+		}
+
 		document2 = documentDao.save(document2);
 
-		document = this.getDocument(document2.getIdDocument());
+//		document = this.getDocument(document2.getIdDocument());
+//		utilisateur2.getMatricule();
 
 		log.info("document ajouté avec succès - Registation DocumentServiceImpl");
 
