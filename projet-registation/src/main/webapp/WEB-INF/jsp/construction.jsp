@@ -13,9 +13,11 @@
 </head>
 
 <body>
-	<div id="wrapper">
-		<%@ include file="topnavbar.jsp"%>
+	
+	<%@ include file="topnavbar.jsp"%>
 		<%@ include file="sidemenu.jsp"%>
+	<div id="wrapper" class="corps">
+
 		<div class="container p-3 my-3 bg-dark text-white">
 			<h1>Appli en construction, revenez dans quelques jours !</h1>
 			<h2>La team</h2>
