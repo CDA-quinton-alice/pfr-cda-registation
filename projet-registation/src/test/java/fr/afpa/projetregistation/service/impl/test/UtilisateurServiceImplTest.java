@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import fr.afpa.projetregistation.dao.IUtilisateurDao;
 import fr.afpa.projetregistation.dto.UtilisateurDto;
@@ -33,7 +34,9 @@ public class UtilisateurServiceImplTest {
 	IUtilisateurService utilisateurService;
 	@Autowired
 	IUtilisateurDao utilisateurDao;
-
+	@Autowired
+	BCryptPasswordEncoder monEncodeur; 
+	
 	/**
 	 * Test la création de l'utilisateur, si bien associé à un couple connexion
 	 * (matricule / password) Ainsi que la bonne adresse correspondante
@@ -71,7 +74,7 @@ public class UtilisateurServiceImplTest {
 		assertEquals("mat@gmail.com", userTest.getMail());
 		assertEquals("06.06.06.06.06", userTest.getTel());
 
-		assertEquals(Securite.hashMD5("pwd1"), userTest.getConnexion().getPassword());
+		assertEquals(monEncodeur.encode("pwd1"), userTest.getConnexion().getPassword());
 
 		assertEquals(1, userTest.getAdresse().getNumero());
 		assertEquals("rue test1", userTest.getAdresse().getRue());
@@ -112,7 +115,7 @@ public class UtilisateurServiceImplTest {
 		assertEquals("mat@gmail.com", userTest.getMail());
 		assertEquals("06.06.06.06.06", userTest.getTel());
 
-		assertEquals(Securite.hashMD5("pwd1"), userTest.getPassword());
+		assertEquals(monEncodeur.encode("pwd1"), userTest.getPassword());
 
 		assertEquals(1, userTest.getNumero());
 		assertEquals("rue test1", userTest.getRue());
@@ -151,7 +154,7 @@ public class UtilisateurServiceImplTest {
 		assertEquals("mat@gmail.com", userTest.getMail());
 		assertEquals("06.06.06.06.06", userTest.getTel());
 
-		assertEquals(Securite.hashMD5("pwd1"), userTest.getPassword());
+		assertEquals(monEncodeur.encode("pwd1"), userTest.getPassword());
 
 		assertEquals(1, userTest.getNumero());
 		assertEquals("rue test1", userTest.getRue());
@@ -178,8 +181,8 @@ public class UtilisateurServiceImplTest {
 		assertNotNull(listeUsers.get(0));
 
 		// CHECK SI DTO EST BIEN RECUP
-		assertEquals("nom1", listeUsers.get(0).getNom());
-		assertEquals("rue test1", listeUsers.get(0).getRue());
+		assertEquals("nomEMP", listeUsers.get(0).getNom());
+		assertEquals("rue de l'employé", listeUsers.get(0).getRue());
 		assertEquals(Securite.hashMD5("pwd1"), listeUsers.get(0).getPassword());
 
 	}
@@ -199,9 +202,9 @@ public class UtilisateurServiceImplTest {
 		assertNotNull(listeEmployes.get(0));
 
 		// CHECK SI DTO EST BIEN RECUP
-		assertEquals("nom1", listeEmployes.get(0).getNom());
+		assertEquals("nomEMP", listeEmployes.get(0).getNom());
 		assertEquals(false, listeEmployes.get(0).isResponsable());
-		assertEquals("rue test1", listeEmployes.get(0).getRue());
+		assertEquals("rue de l'employé", listeEmployes.get(0).getRue());
 		assertEquals(Securite.hashMD5("pwd1"), listeEmployes.get(0).getPassword());
 
 	}
@@ -221,10 +224,10 @@ public class UtilisateurServiceImplTest {
 		assertNotNull(listeResponsables.get(0));
 
 		// CHECK SI DTO EST BIEN RECUP
-		assertEquals("nom2", listeResponsables.get(0).getNom());
+		assertEquals("nomRESP", listeResponsables.get(0).getNom());
 		assertEquals(true, listeResponsables.get(0).isResponsable());
-		assertEquals("rue test2", listeResponsables.get(0).getRue());
-		assertEquals(Securite.hashMD5("pwd2"), listeResponsables.get(0).getPassword());
+		assertEquals("rue du responsable", listeResponsables.get(0).getRue());
+		assertEquals(monEncodeur.encode("pwd2"), listeResponsables.get(0).getPassword());
 
 	}
 

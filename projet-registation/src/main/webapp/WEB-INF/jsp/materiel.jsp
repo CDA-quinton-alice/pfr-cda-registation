@@ -13,16 +13,16 @@
 </head>
 
 <body>
-	
-	<%@ include file="topnavbar.jsp"%>
+	<div id="wrapper">
+
+		<%@ include file="topnavbar.jsp"%>
 		<%@ include file="sidemenu.jsp"%>
-	<div id="wrapper" class="corps">
 
-		<div class="container p-3 my-3 bg-dark text-white">
-			<h1>Appli en construction, revenez dans quelques jours !</h1>
-			<h2>La team</h2>
-		</div>
-
+		<div>
+		<c:forEach items="${materiel}" var="materiel">
+			<p>${materiel}</p>
+			</c:forEach>
+	</div>
 		<div class="container">
 			<div id="div-connection" style="display: none;">
 				<div class="connexion-form">
@@ -46,13 +46,13 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</div>
 	<%@ include file="js.jsp"%>
 </body>
 
-	
-	<%@ include file="js.jsp"%>
+
+<%@ include file="js.jsp"%>
 </body>
 <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
 <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script> -->

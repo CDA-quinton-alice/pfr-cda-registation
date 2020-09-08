@@ -4,18 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<%@ include file="css.jsp"%>
+<title>TestLogin Jsp</title>
 </head>
 <body>
 
-	<div>
-		<c:forEach items="${document}" var="document">
-			<p>${document}</p>
-			</c:forEach>
-	</div>
-
-
-	
-	
+<%@ include file="js.jsp"%>
 </body>
 </html>

@@ -15,6 +15,7 @@ import fr.afpa.projetregistation.dao.IDocumentDao;
 import fr.afpa.projetregistation.dao.IUtilisateurDao;
 import fr.afpa.projetregistation.dto.DocumentDto;
 import fr.afpa.projetregistation.entity.DocumentEntity;
+import fr.afpa.projetregistation.entity.UtilisateurEntity;
 import fr.afpa.projetregistation.service.IDocumentService;
 import fr.afpa.projetregistation.utils.Constantes;
 import lombok.extern.slf4j.Slf4j;
@@ -59,10 +60,10 @@ public class DocumentServiceImpl implements IDocumentService {
 	 */
 	@Override
 	public DocumentDto ajouterDocument(DocumentDto document) {
-//		log.info("ajouter un document - Registation DocumentServiceImpl");
+		log.info("ajouter un document - Registation DocumentServiceImpl");
 
 		// !!!! Vérifier présence en BDD.
-
+		UtilisateurEntity utilisateur2 = new UtilisateurEntity();
 		DocumentEntity document2 = this.modelDocumentServiceImpl.map(document, DocumentEntity.class);
 //		document2.setIdDocument(document.getIdDocument());
 
@@ -75,13 +76,15 @@ public class DocumentServiceImpl implements IDocumentService {
 
 		// toutes les lignes au dessus.
 
-//		Optional<UtilisateurEntity> optionelUtilisateurEntity = utilisateurDao.findById(document.getIdDocument());
-//		if (optionelUtilisateurEntity.isPresent()) {
-//			document2.setUtilisateur(optionelUtilisateurEntity);
-//		}
+		Optional<UtilisateurEntity> optionelUtilisateurEntity = utilisateurDao.findByNom(document2.getNomDocument());
+		if (optionelUtilisateurEntity.isPresent()) {
+			document2.setUtilisateur(utilisateur2);
+		}
+
 		document2 = documentDao.save(document2);
 
-		document = this.getDocument(document2.getIdDocument());
+//		document = this.getDocument(document2.getIdDocument());
+//		utilisateur2.getMatricule();
 
 		log.info("document ajouté avec succès - Registation DocumentServiceImpl");
 
@@ -105,28 +108,27 @@ public class DocumentServiceImpl implements IDocumentService {
 		log.info("document supprimé avec succès - Registation DocumentServiceImpl");
 	}
 
-
-
 	/**
 	 * @param int vIdDocument : c'est l'identifiant du document dont la date d'ajout
 	 *            va être mise à jour
 	 */
 	@Override
 	public void majnomDocument(String pNomDocument, int pIdDocument) {
-	// TODO Auto-generated method stub
-	log.info("Mettre le nom d'un document - Registation DocumentServiceImpl");
+		// TODO Auto-generated method stub
+		log.info("Mettre le nom d'un document - Registation DocumentServiceImpl");
 
-	Optional<DocumentEntity> optionelDocumentEntity = documentDao.findById(pIdDocument);
-	DocumentEntity document3 = null;
-	if (optionelDocumentEntity.isPresent()) {
-		document3 = optionelDocumentEntity.get();
+		Optional<DocumentEntity> optionelDocumentEntity = documentDao.findById(pIdDocument);
+		DocumentEntity document3 = null;
+		if (optionelDocumentEntity.isPresent()) {
+			document3 = optionelDocumentEntity.get();
+		}
+		document3.setNomDocument(pNomDocument);
+		documentDao.save(document3);
+
+		log.info("Nom du document mis à jour avec succès - Registation DocumentServiceImpl");
+
 	}
-	document3.setNomDocument(pNomDocument);
-	documentDao.save(document3);
 
-	log.info("Nom du document mis à jour avec succès - Registation DocumentServiceImpl");
-
-	}
 	/**
 	 * @param int    vIdDocument : c'est l'identifiant du document qui va être mis à
 	 *               jour
@@ -157,7 +159,6 @@ public class DocumentServiceImpl implements IDocumentService {
 		documentDao.save(document3);
 		log.info("catégorie du document mise à jour avec succès - Registation DocumentServiceImpl");
 	}
-
 
 	/**
 	 * @param int vIdDocument : c'est l'identifiant du document dont la date d'ajout
@@ -246,8 +247,8 @@ public class DocumentServiceImpl implements IDocumentService {
 		DocumentDto document = null;
 		if (optionelDocumentEntity.isPresent()) {
 			DocumentEntity document3 = optionelDocumentEntity.get();
-			document = new DocumentDto(document3.getIdDocument(), document3.getCategorieDocument(),
-					document3.getNomDocument(), document3.getDateAjoutDocument(),
+			document = new DocumentDto(document3.getIdDocument(), document3.getNomDocument(),
+					document3.getCategorieDocument(), document3.getDateAjoutDocument(),
 					document3.getDateDerniereModificationDocument(), document3.getDescriptionDocument(),
 					document3.getCommentairesDocument());
 		}
@@ -278,12 +279,12 @@ public class DocumentServiceImpl implements IDocumentService {
 		return listeDocumentsDto;
 	}
 
-//	@Override
-//	public int getMaxid() {
-//
-//
-//		return documentDao.getMaxId().intValue();
-//	}
+	@Override
+	public int getMaxid() {
+
+
+		return documentDao.getMaxId();
+	}
 
 	/**
 	 * @param int vIdDocument : c'est l'identifiant du document qui va être
@@ -295,13 +296,32 @@ public class DocumentServiceImpl implements IDocumentService {
 		boolean verification = false;
 
 		DocumentDto document = this.getDocument(vIdDocument);
-		if (document == null) {
+		if (document != null) {
 			verification = true;
 			log.info("ce document existe - Registation DocumentServiceImpl");
 		}
 		log.info("ce document n'existe pas - Registation DocumentServiceImpl");
 
 		return verification;
+
+	}
+
+	@Override
+	public DocumentDto getDocumentByNom(String pNomDocument) {
+		log.info("récupérer un document par son nom - Registation DocumentServiceImpl");
+		Optional<DocumentEntity> optionelDocumentEntity = documentDao.getDocumentByNom(pNomDocument);
+
+		DocumentDto document = null;
+		if (optionelDocumentEntity.isPresent()) {
+			DocumentEntity document3 = optionelDocumentEntity.get();
+			document = new DocumentDto(document3.getIdDocument(), document3.getNomDocument(),
+					document3.getCategorieDocument(), document3.getDateAjoutDocument(),
+					document3.getDateDerniereModificationDocument(), document3.getDescriptionDocument(),
+					document3.getCommentairesDocument());
+		}
+
+		log.info("document récupéré avec succès - Registation DocumentServiceImpl");
+		return document;
 
 	}
 

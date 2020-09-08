@@ -1,6 +1,5 @@
 package fr.afpa.projetregistation.dao;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -15,30 +14,31 @@ import fr.afpa.projetregistation.entity.UtilisateurEntity;
 public interface IUtilisateurDao extends PagingAndSortingRepository<UtilisateurEntity, String> {
 
 	/**
-	 * Permet de récupérer un Utilisateur grâce à son nom 
+	 * Permet de récupérer un Utilisateur grâce à son nom
 	 * 
-	 * @param pNom String déclaré en paramètre
-	 * @return Optional UtilisateurEntity récupéré grâce au nom placé en paramètre
+	 * @param String le nom de l'utilisateur recherché déclaré en paramètre de la
+	 *        méthode
+	 * @return Optional UtilisateurEntity récupéré ayant pour nom le string placé en
+	 *         pamaètre.
 	 */
 	Optional<UtilisateurEntity> findByNom(String pNom);
 
 	/**
-	 * Permet de retourner une liste de tous les emlpoyés 
-	 * (boolean responsable = false)
-	 * Utilisation d'une requête native custom pour récupérer que les employés
-	 * Utilisation de la pagination
-	 * @param page 
+	 * Permet de retourner une liste de tous les emlpoyés (boolean responsable =
+	 * false) Utilisation d'une requête native custom pour récupérer que les
+	 * employés Utilisation de la pagination
+	 * 
+	 * @param page
 	 * 
 	 * @return List de UtilisateurEntity qui sont des employés
 	 */
 	@Query(nativeQuery = true, value = "SELECT * FROM utilisateur WHERE responsable = 0")
 	Page<UtilisateurEntity> findAllEmployes(PageRequest page);
-	
+
 	/**
-	 * Permet de retourner une liste de tous les responsables 
-	 * (boolean responsable = true)
-	 * Utilisation d'une requête native custom pour récupérer que les responsables
-	 * Utilisation de la pagination
+	 * Permet de retourner une liste de tous les responsables (boolean responsable =
+	 * true) Utilisation d'une requête native custom pour récupérer que les
+	 * responsables Utilisation de la pagination
 	 * 
 	 * @return List de UtilisateurEntity qui sont des responsables
 	 */

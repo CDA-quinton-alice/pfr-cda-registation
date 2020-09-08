@@ -37,8 +37,10 @@ public class ProjetRegistationApplication {
 				jspPropertyGroup.addIncludePrelude("/WEB-INF/jsp/jstlLib.jsp");
 				jspPropertyGroup.setTrimWhitespace("true");
 				jspPropertyGroup.setDefaultContentType("text/html");
-				JspPropertyGroupDescriptorImpl jspPropertyGroupDescriptor = new JspPropertyGroupDescriptorImpl(jspPropertyGroup);
-				context.setJspConfigDescriptor(new JspConfigDescriptorImpl(Collections.singletonList(jspPropertyGroupDescriptor), Collections.emptyList()));
+				JspPropertyGroupDescriptorImpl jspPropertyGroupDescriptor = new JspPropertyGroupDescriptorImpl(
+						jspPropertyGroup);
+				context.setJspConfigDescriptor(new JspConfigDescriptorImpl(
+						Collections.singletonList(jspPropertyGroupDescriptor), Collections.emptyList()));
 			}
 		};
 	}
