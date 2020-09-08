@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="UTF-8">
 <%@ include file="css.jsp"%>
@@ -15,12 +14,17 @@
 	<%@ include file="topnavbar.jsp"%>
 		<%@ include file="sidemenu.jsp"%>
 	<div id="wrapper" class="corps">
-
-		<div class="container p-3 my-3 bg-dark text-white">
+	
+		
+	
+	<div id="coucou" class="container p-3 my-3 bg-dark text-white">
 			<h1>Bienvenue ${infoUtilisateur.nom}  ${infoUtilisateur.prenom}  ${infoUtilisateur.responsable}</h1>
-
+	<button id="crashTest">
+		test ici
+		</button>
 		</div>
-
+		
+		
 		<div class="container">
 			<div id="div-connection" style="display: none;">
 				<div class="connexion-form">
@@ -50,5 +54,4 @@
 </body>
 <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
 <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script> -->
-
 </html>

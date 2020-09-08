@@ -56,90 +56,17 @@ public class DataInsertion {
 		this.insertionMateriel();
 		this.insertionUtilisateurs();
 
+		//METHODE POUR AJOUTER 3 DOCUMENTS MAX ALICE TO DO
+		
 		Date dateAjoutDoc = new Date();
 		Date dateDerniereModificationdoc = new Date();
+		
 		DocumentDto doc = new DocumentDto("facture entretien cuve n°3", "facture", dateAjoutDoc,
 				dateDerniereModificationdoc, "facture qui correspond au dernier entretien de la cuve n°3.",
 				"rien à signaler, fonctionnement de la cuve n°3 ok.");
 		documentService.ajouterDocument(doc);
 
-//		Date date = new Date();
-//		DocumentDto documentt = new DocumentDto("nom", "categorie", date, date, "description", "commentaire");
-//		documentService.ajouterDocument(documentt);
-//		DocumentDto documentt2 = new DocumentDto("nom2", "categorie2", date, date, "description2", "commentaire2");
-//		documentService.ajouterDocument(documentt2);
-//		DocumentDto documentt3 = new DocumentDto("nom3", "categorie3", date, date, "description3", "commentaire3");
-//		documentService.ajouterDocument(documentt3);
-//		DocumentDto documentt4 = new DocumentDto("nom4", "categorie4", date, date, "description4", "commentaire4");
-//		documentService.ajouterDocument(documentt4);
-//		DocumentDto documentt5 = new DocumentDto("nom5", "categorie5", date, date, "description5", "commentaire5");
-//		documentService.ajouterDocument(documentt5);
-//		DocumentDto documentt6 = new DocumentDto("nom6", "categorie6", date, date, "description6", "commentaire6");
-//		documentService.ajouterDocument(documentt6);
-//		DocumentDto documentt7 = new DocumentDto("nom7", "categorie7", date, date, "description7", "commentaire7");
-//		documentService.ajouterDocument(documentt7);
-//		DocumentDto documentt8 = new DocumentDto("nom8", "categorie8", date, date, "description8", "commentaire8");
-//		documentService.ajouterDocument(documentt8);
-//		DocumentDto documentt9 = new DocumentDto("nom9", "categorie9", date, date, "description9", "commentaire9");
-//		documentService.ajouterDocument(documentt9);
-//		DocumentDto documentt10 = new DocumentDto("nom10", "categorie10", date, date, "description10", "commentaire10");
-//		documentService.ajouterDocument(documentt10);
-//		DocumentDto documentt11 = new DocumentDto("nom11", "categorie11", date, date, "description11", "commentaire11");
-//		documentService.ajouterDocument(documentt11);
 
-//
-//		Date dateAjoutDoc2 = new Date();
-//		Date dateDerniereModificationdoc2 = new Date();
-//		DocumentDto doc2 = new DocumentDto("facture entretien cuve n°4", "facture", dateAjoutDoc2, dateDerniereModificationdoc2, "facture qui correspond au dernier entretien de la cuve n°3.", "rien à signaler, fonctionnement de la cuve n°3 ok.");
-//		documentService.ajouterDocument(doc2);
-//		documentDao.save(DocumentEntity.builder().nomDocument("inventaire annuel magasin 2").categorieDocument("inventaire").dateAjoutDocument(dateAjoutDoc2).dateDerniereModificationDocument(dateDerniereModificationdoc2).descriptionDocument("inventaire du magasin avant réorganisation des rayons").commentairesDocument("inventaire effectué à 3 personnes en une journée").build());
-//
-//		Date dateAjoutDoc3 = new Date();
-//		Date dateDerniereModificationdoc3 = new Date();
-//		DocumentDto doc3 = new DocumentDto("facture entretien cuve n°5", "facture", dateAjoutDoc3, dateDerniereModificationdoc3, "facture qui correspond au dernier entretien de la cuve n°3.", "rien à signaler, fonctionnement de la cuve n°3 ok.");
-//		documentService.ajouterDocument(doc3);
-//		documentDao.save(DocumentEntity.builder().nomDocument("inventaire annuel magasin 3").categorieDocument("inventaire").dateAjoutDocument(dateAjoutDoc3).dateDerniereModificationDocument(dateDerniereModificationdoc3).descriptionDocument("inventaire du magasin avant réorganisation des rayons").commentairesDocument("inventaire effectué à 3 personnes en une journée").build());
-//
-//		Date dateAjoutDoc4 = new Date();
-//		Date dateDerniereModificationdoc4 = new Date();
-//		DocumentDto doc4 = new DocumentDto("facture entretien cuve n°6", "facture", dateAjoutDoc4, dateDerniereModificationdoc4, "facture qui correspond au dernier entretien de la cuve n°3.", "rien à signaler, fonctionnement de la cuve n°3 ok.");
-//		documentService.ajouterDocument(doc4);
-//		documentDao.save(DocumentEntity.builder().nomDocument("inventaire annuel magasin 4").categorieDocument("inventaire").dateAjoutDocument(dateAjoutDoc4).dateDerniereModificationDocument(dateDerniereModificationdoc4).descriptionDocument("inventaire du magasin avant réorganisation des rayons").commentairesDocument("inventaire effectué à 3 personnes en une journée").build());
-//
-//		Date dateAjoutDoc5 = new Date();
-//		Date dateDerniereModificationdoc5 = new Date();
-//		DocumentDto doc5 = new DocumentDto("facture entretien cuve n°7", "facture", dateAjoutDoc5, dateDerniereModificationdoc5, "facture qui correspond au dernier entretien de la cuve n°3.", "rien à signaler, fonctionnement de la cuve n°3 ok.");
-//		documentService.ajouterDocument(doc5);
-//		documentDao.save(DocumentEntity.builder().nomDocument("inventaire annuel magasin 5").categorieDocument("inventaire").dateAjoutDocument(dateAjoutDoc5).dateDerniereModificationDocument(dateDerniereModificationdoc5).descriptionDocument("inventaire du magasin avant réorganisation des rayons").commentairesDocument("inventaire effectué à 3 personnes en une journée").build());
-//
-//		Date dateAjoutDoc6 = new Date();
-//		Date dateDerniereModificationdoc6 = new Date();
-//		DocumentDto doc6 = new DocumentDto("facture entretien cuve n°8", "facture", dateAjoutDoc6, dateDerniereModificationdoc6, "facture qui correspond au dernier entretien de la cuve n°3.", "rien à signaler, fonctionnement de la cuve n°3 ok.");
-//		documentService.ajouterDocument(doc6);
-//		documentDao.save(DocumentEntity.builder().nomDocument("inventaire annuel magasin 6").categorieDocument("inventaire").dateAjoutDocument(dateAjoutDoc6).dateDerniereModificationDocument(dateDerniereModificationdoc6).descriptionDocument("inventaire du magasin avant réorganisation des rayons").commentairesDocument("inventaire effectué à 3 personnes en une journée").build());
-
-////		documentDao.deleteById(27);
-//
-//		documentService.majCategorieDocument("blabla",23);
-//
-//		documentService.majDateAjoutDocument(dateAjoutDoc6, 31);
-//
-//		documentService.majDateDerniereModificationDocument(dateDerniereModificationdoc6, 39);
-//
-//		documentService.majDescriptionDocument("blablablablablablablablabla", 43);
-//
-//		documentService.majCommentairesDocument("commentaires commentaires commentaires", 49);
-//
-//		documentService.getDocument(41);
-//
-//		List<DocumentDto> listeDocs = new ArrayList<>();
-//		listeDocs = documentService.getAllDocuments(2);
-//
-//		log.info(listeDocs.toString());
-//
-//		documentService.existById(42);
-//
-//		documentService.existById(29);
 		
 		
 		//Ajout de 2 évènements
