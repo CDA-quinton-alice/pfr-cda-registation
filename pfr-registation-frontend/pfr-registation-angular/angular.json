@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "pfr-registation-angular"
+    }
+  },
+  "defaultProject": "pfr-registation-angular",
+  "cli": {
+    "analytics": "bed8891d-d466-4f30-929a-133c1f82891e"
+  }
 }
