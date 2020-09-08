@@ -21,7 +21,7 @@ public class MaterielController {
 	@Autowired
 	ITypeMaterielService typeService;
 
-	@GetMapping("/accueil")
+	@GetMapping("/responsable/materiel")
 	public String accueil(Model model) {
 
 		log.debug("appel materiel registation");
@@ -33,6 +33,6 @@ public class MaterielController {
 //
 		model.addAttribute("materiel", typeService.getTypeByMateriel(materiel).toString());
 
-		return "accueil";
+		return "materiel";
 	}
 }
