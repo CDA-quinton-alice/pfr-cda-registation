@@ -2,6 +2,10 @@
 	padding: 50px 0;
 }
 
+#lien-responsable{
+    display: none;
+    margin-top: 100px;
+}
 .connexion-form form{
     background-color: #fff;
     max-width: 600px;
