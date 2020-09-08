@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Page test Spring Securite</title>
+<%@ include file="css.jsp"%>
+<title>TestLogin Jsp</title>
 </head>
 <body>
 
-
-	
+<%@ include file="js.jsp"%>
 </body>
 </html>

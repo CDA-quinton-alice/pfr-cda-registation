@@ -13,37 +13,39 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import fr.afpa.projetregistation.dao.IUtilisateurDao;
+import fr.afpa.projetregistation.entity.ConnexionEntity;
 import fr.afpa.projetregistation.entity.UtilisateurEntity;
-
 
 @Service
 public class UtilisateurDetailService implements UserDetailsService {
-	
+
 	@Autowired
 	private IUtilisateurDao utilisateurDao;
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		if (username.trim().isEmpty()) {
-			throw new UsernameNotFoundException("Le username est vide");
+			throw new UsernameNotFoundException("matricule is empty");
 		}
- 
+
 		Optional<UtilisateurEntity> userOpt = this.utilisateurDao.findById(username);
- 
-		if (! userOpt.isPresent()) {
-			throw new UsernameNotFoundException("Utilisateur " + username + " non trouvé");
+
+		if (!userOpt.isPresent()) {
+			throw new UsernameNotFoundException("User " + username + " not found");
 		}
-		
-		UtilisateurEntity user = userOpt.get();
-		return new org.springframework.security.core.userdetails.User(user.getMatricule(), user.getConnexion().getPassword(), getGrantedAuthorities(user));
+
+		UtilisateurEntity uEnt = userOpt.get();
+		ConnexionEntity user = uEnt.getConnexion();
+		return new org.springframework.security.core.userdetails.User(user.getMatricule(), user.getPassword(),
+				getGrantedAuthorities(uEnt));
 	}
- 
-	private List<GrantedAuthority> getGrantedAuthorities(UtilisateurEntity user) {
+
+	private List<GrantedAuthority> getGrantedAuthorities(UtilisateurEntity uEnt) {
 		List<GrantedAuthority> authorities = new ArrayList<>();
-//		RoleEntity role = user.getRole();
-		if (user.isResponsable()) {
+		boolean role = uEnt.isResponsable();
+		if (role == true) {
 			authorities.add(new SimpleGrantedAuthority("ROLE_RESPONSABLE"));
-		}else if (!user.isResponsable()) {
+		} else {
 			authorities.add(new SimpleGrantedAuthority("ROLE_EMPLOYE"));
 		}
 		return authorities;
