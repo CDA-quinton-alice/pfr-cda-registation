@@ -16,8 +16,12 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import fr.afpa.projetregistation.dao.IDocumentDao;
+import fr.afpa.projetregistation.dao.IUtilisateurDao;
 import fr.afpa.projetregistation.dto.DocumentDto;
+import fr.afpa.projetregistation.entity.UtilisateurEntity;
 import fr.afpa.projetregistation.service.IDocumentService;
+import fr.afpa.projetregistation.service.IUtilisateurService;
 import fr.afpa.projetregistation.utils.Constantes;
 import lombok.extern.slf4j.Slf4j;
 
@@ -28,6 +32,9 @@ public class TestDocumentServiceImpl {
 
 	@Autowired
 	private IDocumentService documentService;
+	
+	@Autowired
+	private UtilisateurEntity utilisateurEntity;
 
 	private DocumentDto document = DocumentDto.builder().nomDocument(Constantes.STRING_TEST)
 			.categorieDocument(Constantes.STRING_TEST).dateAjoutDocument(Constantes.DATE_TEST)
@@ -39,7 +46,8 @@ public class TestDocumentServiceImpl {
 	public void testAjouterDocument() throws Exception {
 
 		document = documentService.ajouterDocument(document);
-
+		
+		
 		assertNotNull(document);
 		assertEquals(Constantes.STRING_TEST, document.getNomDocument());
 		assertEquals(Constantes.STRING_TEST, document.getCategorieDocument());
@@ -62,6 +70,18 @@ public class TestDocumentServiceImpl {
 
 	@Test
 	@Order(3)
+	public void testGetDocumentByNom() throws Exception {
+
+		int index = documentService.getMaxid();
+		documentService.getDocumentByNom(Constantes.STRING_TEST);
+		document = documentService.getDocument(index);
+
+		assertEquals(Constantes.STRING_TEST, document.getNomDocument());
+
+	}
+
+	@Test
+	@Order(4)
 
 	public void testMajNomDocument() throws Exception {
 
@@ -74,7 +94,7 @@ public class TestDocumentServiceImpl {
 	}
 
 	@Test
-	@Order(4)
+	@Order(5)
 	public void testMajDateAjoutDocument() throws Exception {
 
 		Date date2 = new Date();
@@ -88,7 +108,7 @@ public class TestDocumentServiceImpl {
 	}
 
 	@Test
-	@Order(5)
+	@Order(6)
 	public void testMajDateDerniereModificationDocument() throws Exception {
 
 		Date date3 = new Date();
@@ -102,7 +122,7 @@ public class TestDocumentServiceImpl {
 	}
 
 	@Test
-	@Order(6)
+	@Order(7)
 	public void testMajDescriptionDocument() throws Exception {
 
 		int index = documentService.getMaxid();
@@ -114,7 +134,7 @@ public class TestDocumentServiceImpl {
 	}
 
 	@Test
-	@Order(7)
+	@Order(8)
 	public void testMajCommentairesDocument() throws Exception {
 
 		int index = documentService.getMaxid();
@@ -126,7 +146,7 @@ public class TestDocumentServiceImpl {
 	}
 
 	@Test
-	@Order(8)
+	@Order(9)
 
 	public void testMajCategorieDocument() throws Exception {
 
@@ -139,7 +159,7 @@ public class TestDocumentServiceImpl {
 	}
 
 	@Test
-	@Order(9)
+	@Order(10)
 	public void testGetAllDocuments() throws Exception {
 
 		List<DocumentDto> listeDocs = documentService.getAllDocuments(2);
@@ -152,14 +172,14 @@ public class TestDocumentServiceImpl {
 	}
 
 	@Test
-	@Order(10)
+	@Order(11)
 	public void testExistById() throws Exception {
 
 		assertTrue(documentService.existById(documentService.getMaxid()));
 	}
 
 	@Test
-	@Order(11)
+	@Order(12)
 	public void testSupprimerDocument() throws Exception {
 
 		int index = documentService.getMaxid();
