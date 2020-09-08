@@ -192,7 +192,9 @@ public class EvenementServiceImpl implements IEvenementService{
 				.description(evenement.getDescription())
 				.date_debut(evenement.getDate_debut())
 				.date_fin(evenement.getDate_fin())
-				.duree(evenement.getDuree()).build();
+				.duree(evenement.getDuree())
+				.user(evenement.getUser())
+				.build();
 		
 		ee = edao.save(ee);
 		EvenementDto edto = EvenementDto.builder()
@@ -201,7 +203,9 @@ public class EvenementServiceImpl implements IEvenementService{
 								.description(ee.getDescription())
 								.date_debut(ee.getDate_debut())
 								.date_fin(ee.getDate_fin())
-								.duree(ee.getDuree()).build();
+								.duree(ee.getDuree())
+								.user(ee.getUser())
+								.build();
 		return edto;
 	}
 
@@ -220,7 +224,9 @@ public class EvenementServiceImpl implements IEvenementService{
 				.description(evenement.getDescription())
 				.date_debut(evenement.getDate_debut())
 				.date_fin(evenement.getDate_fin())
-				.duree(evenement.getDuree()).build();
+				.duree(evenement.getDuree())
+				.user(evenement.getUser())
+				.build();
 		
 		edao.save(ee);
 		EvenementDto edto = EvenementDto.builder()
@@ -229,7 +235,9 @@ public class EvenementServiceImpl implements IEvenementService{
 								.description(ee.getDescription())
 								.date_debut(ee.getDate_debut())
 								.date_fin(ee.getDate_fin())
-								.duree(ee.getDuree()).build();
+								.duree(ee.getDuree())
+								.user(ee.getUser())
+								.build();
 		return edto;
 	}
 
@@ -247,7 +255,9 @@ public class EvenementServiceImpl implements IEvenementService{
 				.description(evenement.getDescription())
 				.date_debut(evenement.getDate_debut())
 				.date_fin(evenement.getDate_fin())
-				.duree(evenement.getDuree()).build();
+				.duree(evenement.getDuree())
+				.user(evenement.getUser())
+				.build();
 		
 		edao.delete(ee);
 	}

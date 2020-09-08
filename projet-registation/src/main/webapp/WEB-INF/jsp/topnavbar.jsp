@@ -18,6 +18,7 @@
             <ul class="nav navbar-nav">
                 <li id="co_ins"><a href="#">Connexion/Inscription</a></li>
             </ul>
+            <div class="evenement-titre"><h3><c:out value="${titre}"></c:out></h2></div>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
