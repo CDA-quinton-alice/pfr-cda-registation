@@ -1,15 +1,13 @@
 package fr.afpa.projetregistation.utils;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.util.StringUtils;
-
-import net.bytebuddy.dynamic.scaffold.MethodGraph.Linked;
 
 /**
  * Il s'agit d'un outil nécessaire afin d'afficher les dates d'un système de Calendrier.
@@ -225,5 +223,56 @@ public class Calendrier {
 		moisStr.stream().forEach(x -> mStr.add(StringUtils.capitalize(x)));
 		
 		return mStr;
+	}
+	
+	/**
+	 * Construction de {@link String} à localiser pour la France en fonction d'un 
+	 * {@link Month} placé en paramètre
+	 * @param m {@link Month} : mois à localiser en Français.
+	 * @return {@link String} : mois en construit depuis l'objet en paramètre
+	 */
+	public static String localizeMonth(Month m) {
+		int month = m.getValue();
+		String str = "";
+		switch(month){
+		case 1:
+			str = "Janvier";
+			break;
+		case 2:
+			str = "Février";
+			break;
+		case 3:
+			str = "Mars";
+			break;
+		case 4:
+			str = "Avril";
+			break;
+		case 5:
+			str = "Mai";
+			break;
+		case 6:
+			str = "Juin";
+			break;
+		case 7:
+			str = "Juillet";
+			break;
+		case 8:
+			str = "Août";
+			break;
+		case 9:
+			str = "Septembre";
+			break;
+		case 10:
+			str = "Octobre";
+			break;
+		case 11:
+			str = "Novembre";
+			break;
+		case 12:
+			str = "Décembre";
+			break;
+		}
+		
+		return str;
 	}
 }
