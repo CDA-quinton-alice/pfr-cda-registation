@@ -23,7 +23,9 @@ import fr.afpa.projetregistation.service.IDocumentService;
 import fr.afpa.projetregistation.service.IEvenementService;
 import fr.afpa.projetregistation.service.IMaterielService;
 import fr.afpa.projetregistation.service.IUtilisateurService;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Component
 public class DataInsertion {
 
