@@ -55,7 +55,7 @@ public class AccueilController {
 		mv.addObject("titre",Calendrier.localizeMonth(now.getMonth()));
 		mv.addObject("event",listEvent);
 		
-		mv.setViewName("accueil");
+		mv.setViewName("calendrier");
 		return mv;
 	}
 	
