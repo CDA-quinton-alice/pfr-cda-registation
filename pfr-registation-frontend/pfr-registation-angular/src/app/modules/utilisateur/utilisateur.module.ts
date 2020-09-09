@@ -3,14 +3,27 @@ import { CommonModule } from '@angular/common';
 
 import { UtilisateurRoutingModule } from './utilisateur-routing.module';
 import { AccueilComponent } from './accueil/accueil.component';
-import { TopNavbarComponent } from 'src/app/shared/top-navbar/top-navbar.component';
-import { FondComponent } from 'src/app/shared/fond/fond.component';
+
+
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import { MaterielModule } from '../materiel/materiel.module';
 
 @NgModule({
-  declarations: [AccueilComponent , TopNavbarComponent, FondComponent],
+  declarations: [AccueilComponent],
+
   imports: [
     CommonModule,
-    UtilisateurRoutingModule
+    UtilisateurRoutingModule,
+    MaterielModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatIconModule
   ]
 })
 export class UtilisateurModule { }
