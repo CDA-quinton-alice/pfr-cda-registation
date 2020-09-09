@@ -63,9 +63,8 @@ public class AccueilController {
 	
 	@PostMapping(value="/evenement/accueil")
 	@ResponseBody
-	protected ModelAndView eventPost(@RequestParam("year") int annee, @RequestParam("month") int mois, @RequestParam("action") char action) {
+	protected ResponseEntity<String> eventPost(@RequestParam("year") int annee, @RequestParam("month") int mois, @RequestParam("action") char action) {
 		log.info("Accès à la page d'accueil");
-		ModelAndView mv = new ModelAndView();
 		YearMonth ym = null;
 		if(action=='p') {
 			ym = Calendrier.getPrevYearMonth(YearMonth.of(annee,mois));
@@ -96,12 +95,6 @@ public class AccueilController {
 				+ "\"current\":\""+ym+"\","
 				+ "\"success\":1"
 				+ "}";
-		
-		mv.addObject("calendrier",cal);
-		mv.addObject("titre",Calendrier.localizeMonth(ym.getMonthValue()));
-		mv.addObject("event",listEvent);
-		mv.addObject("current",ym);
-		mv.setViewName("calendrier");
-		return mv;
+		return ResponseEntity.ok(res);
 	}
 }

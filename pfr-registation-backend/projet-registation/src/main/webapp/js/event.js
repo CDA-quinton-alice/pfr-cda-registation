@@ -4,29 +4,29 @@ $(document).ready(function(){
         return false;
     });
     
-//    $("#actionGauche").on('click', function(e){
-//    	e.preventDefault();
-//    	var annee = $("#anneeActuel").val();
-//    	var mois = $("#moisActuel").val();
-//    	var myData = {
-//    		year:annee,
-//    		month:mois,
-//    		action:'p',
-//    	};
-//    	updateCalendar(myData);
-//    });
-//    
-//    $("#actionDroite").on('click', function(e){
-//    	e.preventDefault();
-//    	var annee = $("#anneeActuel").val();
-//    	var mois = $("#moisActuel").val();
-//    	var myData = {
-//    		year:annee,
-//    		month:mois,
-//    		action:'s',
-//    	};
-//    	updateCalendar(myData);
-//    });
+    $("#actionGauche").on('click', function(e){
+    	e.preventDefault();
+    	var annee = $("#anneeActuel").val();
+    	var mois = $("#moisActuel").val();
+    	var myData = {
+    		year:annee,
+    		month:mois,
+    		action:'p',
+    	};
+    	updateCalendar(myData);
+    });
+    
+    $("#actionDroite").on('click', function(e){
+    	e.preventDefault();
+    	var annee = $("#anneeActuel").val();
+    	var mois = $("#moisActuel").val();
+    	var myData = {
+    		year:annee,
+    		month:mois,
+    		action:'s',
+    	};
+    	updateCalendar(myData);
+    });
 })
 
 function updateCalendar(myData){
