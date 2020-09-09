@@ -27,3 +27,12 @@
 	width:100%;
 	text-align:center;
 }
+#calTitre{
+	display:inline-block;
+	width:12rem;
+}
+#btnAujoudhui{
+	padding:0.6rem;
+	width:8rem;
+	height:3.1rem;
+}

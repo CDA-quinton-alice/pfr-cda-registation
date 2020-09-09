@@ -54,9 +54,9 @@ public class AccueilController {
 		} 
 		List<EvenementDto> listEvent = eserv.getByDate(deb, fin);
 		mv.addObject("calendrier",cal);
-		mv.addObject("titre",Calendrier.localizeMonth(now.getMonthValue()));
-		mv.addObject("event",listEvent);
-		mv.addObject("current", YearMonth.now());
+//		mv.addObject("titre",Calendrier.localizeMonth(now.getMonthValue()));
+//		mv.addObject("event",listEvent);
+//		mv.addObject("current", YearMonth.now());
 		mv.setViewName("calendrier");
 		return mv;
 	}
@@ -70,6 +70,8 @@ public class AccueilController {
 			ym = Calendrier.getPrevYearMonth(YearMonth.of(annee,mois));
 		}else if(action=='s') {
 			ym = Calendrier.getNextYearMonth(YearMonth.of(annee,mois));
+		}else if(action=='n'){
+			ym = YearMonth.of(annee,mois);
 		}
 		log.debug(ym.toString());
 		
@@ -95,6 +97,11 @@ public class AccueilController {
 				+ "\"current\":\""+ym+"\","
 				+ "\"success\":1"
 				+ "}";
+		if(listEvent!=null) {
+			log.debug(listEvent.toString());
+		}else {
+			log.debug("Liste NULL");
+		}
 		return ResponseEntity.ok(res);
 	}
 }
