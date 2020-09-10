@@ -6,22 +6,22 @@ import { AppComponent } from './app.component';
 import { ContentComponent } from './component/content/content.component';
 import { PresentationTeamComponent } from './presentation-team/presentation-team.component';
 import { UtilisateurModule } from './modules/utilisateur/utilisateur.module';
-import { FooterComponent } from './shared/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContentComponent,
     PresentationTeamComponent,
-    FooterComponent
   ],
  
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    UtilisateurModule   
+    UtilisateurModule,
+    SharedModule   
   ],
 
   providers: [],
