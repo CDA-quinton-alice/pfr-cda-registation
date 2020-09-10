@@ -8,6 +8,9 @@ import { PresentationTeamComponent } from './presentation-team/presentation-team
 import { UtilisateurModule } from './modules/utilisateur/utilisateur.module';
 import { FooterComponent } from './shared/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './modules/shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -16,12 +19,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PresentationTeamComponent,
     FooterComponent
   ],
- 
+
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AppRoutingModule,
-    UtilisateurModule   
+    UtilisateurModule,
+    SharedModule
   ],
 
   providers: [],
