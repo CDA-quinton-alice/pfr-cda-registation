@@ -7,7 +7,9 @@ import { ContentComponent } from './component/content/content.component';
 import { PresentationTeamComponent } from './presentation-team/presentation-team.component';
 import { UtilisateurModule } from './modules/utilisateur/utilisateur.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './modules/shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -15,10 +17,11 @@ import { SharedModule } from './modules/shared/shared.module';
     ContentComponent,
     PresentationTeamComponent,
   ],
- 
+
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AppRoutingModule,
     UtilisateurModule,
     SharedModule   

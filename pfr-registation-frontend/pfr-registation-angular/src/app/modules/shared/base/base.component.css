@@ -9,3 +9,10 @@
 h1{
     margin-left: 10px;
 }
+#logo-background{
+    width: 500px;
+    height: 500px;
+    opacity: 0.2;
+    
+    
+}
