@@ -4,16 +4,26 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ContentComponent } from './component/content/content.component';
+import { PresentationTeamComponent } from './presentation-team/presentation-team.component';
+import { UtilisateurModule } from './modules/utilisateur/utilisateur.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ContentComponent
+    ContentComponent,
+    PresentationTeamComponent,
   ],
+ 
   imports: [
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    UtilisateurModule,
+    SharedModule   
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
