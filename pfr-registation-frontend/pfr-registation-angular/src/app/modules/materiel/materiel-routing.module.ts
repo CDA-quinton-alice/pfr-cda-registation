@@ -4,7 +4,7 @@ import { MaterielEtatComponent } from './materiel-etat/materiel-etat.component';
 
 const routes: Routes = [
   {path: 'etat', component: MaterielEtatComponent},
-  {path:'', component: MaterielEtatComponent}
+ 
 
 ];
 
