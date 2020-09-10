@@ -8,6 +8,7 @@ import { PresentationTeamComponent } from './presentation-team/presentation-team
 import { UtilisateurModule } from './modules/utilisateur/utilisateur.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './modules/shared/shared.module';
+import { MaterielModule } from './modules/materiel/materiel.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SharedModule } from './modules/shared/shared.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     UtilisateurModule,
+    MaterielModule,
     SharedModule   
   ],
 
