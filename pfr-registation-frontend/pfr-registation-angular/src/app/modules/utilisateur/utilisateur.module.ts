@@ -3,15 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { UtilisateurRoutingModule } from './utilisateur-routing.module';
 import { AccueilComponent } from './accueil/accueil.component';
-
-
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import { MaterielModule } from '../materiel/materiel.module';
-
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [AccueilComponent],
@@ -19,14 +11,7 @@ import { MaterielModule } from '../materiel/materiel.module';
   imports: [
     CommonModule,
     UtilisateurRoutingModule,
-    
-    
-    MaterielModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatListModule,
-    MatButtonModule,
-    MatIconModule
+    SharedModule
   ]
 })
 export class UtilisateurModule { }
