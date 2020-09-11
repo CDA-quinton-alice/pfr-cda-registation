@@ -9,6 +9,7 @@ import { UtilisateurModule } from './modules/utilisateur/utilisateur.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './modules/shared/shared.module';
+import { MaterielModule } from './modules/materiel/materiel.module';
 
 @NgModule({
   declarations: [
@@ -25,9 +26,8 @@ import { SharedModule } from './modules/shared/shared.module';
     HttpClientModule,
     AppRoutingModule,
     UtilisateurModule,
+    MaterielModule,
     SharedModule,
-
-    
   ],
 
   providers: [],
