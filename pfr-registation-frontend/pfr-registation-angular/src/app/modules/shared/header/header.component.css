@@ -1,0 +1,13 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+.mat-toolbar{
+  background-color:lightslategray;
+}
+#logo-navbar{
+  width: 50px;
+  margin-right: 10px;
+}
+.mat-sidenav{
+  background-color: lightgray;
+}
