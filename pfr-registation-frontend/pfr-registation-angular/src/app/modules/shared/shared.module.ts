@@ -14,7 +14,7 @@ import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [FondComponent, HeaderComponent],
-  exports: [HeaderComponent],
+  exports: [HeaderComponent,FondComponent],
 
   imports: [
     CommonModule,

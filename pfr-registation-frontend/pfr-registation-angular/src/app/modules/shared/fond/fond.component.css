@@ -1,11 +1,4 @@
-#logo-back{
-    margin-left: 100px;
-   
+#logo-big{
     opacity: 0.2;
-    width: 750px;
-    height: 750px;
-}
-#monContainer{
-    background-color: lightgray;
-    height: 100vh;
-}
+    height: 88%;
+  }
