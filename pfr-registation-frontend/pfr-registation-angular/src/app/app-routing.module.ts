@@ -6,8 +6,7 @@ const routes: Routes = [
   {path: 'materiel',
  loadChildren: ()  => import('./modules/materiel/materiel.module').
   then(m  =>  m.MaterielModule)},
-  { path: '', component: ContentComponent},
-  { path: '', component: ContentComponent}
+ 
 ];
 
 @NgModule({
