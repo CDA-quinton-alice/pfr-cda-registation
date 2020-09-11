@@ -12,6 +12,7 @@ import { SharedModule } from './modules/shared/shared.module';
 import { MaterielModule } from './modules/materiel/materiel.module';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,7 @@ import { MaterielModule } from './modules/materiel/materiel.module';
     AppRoutingModule,
     UtilisateurModule,
     MaterielModule,
-    SharedModule   
+    SharedModule,
   ],
 
   providers: [],

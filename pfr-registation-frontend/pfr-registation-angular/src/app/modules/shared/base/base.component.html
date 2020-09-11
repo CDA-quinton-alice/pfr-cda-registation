@@ -1,4 +1,4 @@
-<mat-toolbar>
+<mat-toolbar >
   <mat-toolbar-row>
     <button mat-icon-button>
       <mat-icon (click)="sidenav.toggle()"><i class="fa fa-bars" style='font-size:25px;'></i></mat-icon>
@@ -29,22 +29,18 @@
         <button mat-menu-item>Item 2</button>
       </mat-menu> -->
 
-      <a mat-list-item [routerLink]="'/materiel'"> Agenda </a>
-      <a mat-list-item [routerLink]=""> Dashboard </a>
-      <a mat-list-item [routerLink]=""> Documents </a>
-      <a mat-list-item [routerLink]=""> Materiel </a>
-      <a mat-list-item [routerLink]=""> "Problèmes" </a>
-      <a mat-list-item [routerLink]=""> Boutique </a>
-      <a mat-list-item [routerLink]=""> Garage </a>
+      <a mat-list-item [routerLink]="''"> Agenda </a>
+      <a mat-list-item [routerLink]="'/dashboard'"> Tableau de bord</a>
+      <a mat-list-item [routerLink]="''"> Document </a>
+      <a mat-list-item [routerLink]="'/materiel'"> Matériel </a>
+      <a mat-list-item [routerLink]="'etat'"> Problèmes </a>
       <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Fermer</a>
 
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content >
     <div style="height: 100vh;">
       <img src="assets/images/logo.png" alt="logo-background" id="logo-background">
-
-      <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
