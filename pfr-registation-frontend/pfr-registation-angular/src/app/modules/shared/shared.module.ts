@@ -1,30 +1,31 @@
 import { NgModule, ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { SharedRoutingModule } from './shared-routing.module';
-import { BaseComponent } from './base/base.component';
+import { FondComponent } from './fond/fond.component';
+import { HeaderComponent } from './header/header.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import {MatBadgeModule} from '@angular/material/badge';
+
 import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import { FondComponent } from './fond/fond.component';
-import { FooterComponent } from './footer/footer.component';
-import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
-  declarations: [BaseComponent,FondComponent,FooterComponent],
-  exports: [BaseComponent,FondComponent,FooterComponent],
+  declarations: [FondComponent, HeaderComponent],
+  exports: [HeaderComponent],
 
   imports: [
     CommonModule,
     SharedRoutingModule,
     MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
     MatSidenavModule,
     MatListModule,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule
+    MatBadgeModule,
+   
   ]
 })
 export class SharedModule { }

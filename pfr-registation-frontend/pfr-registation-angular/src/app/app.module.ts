@@ -10,12 +10,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './modules/shared/shared.module';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     ContentComponent,
     PresentationTeamComponent,
+   
+   
   ],
 
   imports: [
@@ -24,7 +25,9 @@ import { SharedModule } from './modules/shared/shared.module';
     HttpClientModule,
     AppRoutingModule,
     UtilisateurModule,
-    SharedModule   
+    SharedModule,
+
+    
   ],
 
   providers: [],
