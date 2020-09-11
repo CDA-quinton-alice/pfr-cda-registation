@@ -1,6 +1,6 @@
-.evenement-table th,.evenement-table td{
+.evenement-table td{
 	height:11rem;
-	width:22rem;
+	width:18rem;
 	font-size:1.1rem;
 }
 .cellule-tete, .cellule-tete td{

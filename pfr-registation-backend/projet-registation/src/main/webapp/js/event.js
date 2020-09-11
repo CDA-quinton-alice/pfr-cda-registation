@@ -4,7 +4,7 @@ $(document).ready(function(){
         return false;
     });
     
-    $("#btnAujoudhui").on('click',function(e){
+    $("#btnAujoudhui").on('click',function(){
     	var annee = getNow().split("-")[2];
     	var mois = getNow().split("-")[1];
     	var myData = {
@@ -77,6 +77,7 @@ function updateCalendarTitle(myData){
 function updateCalendarDays(myData){
 	var calendrier = $("#calendarHere");
 	calendrier.empty();
+	
 	//Récupération et formatage des jours
 	var calValeurs = myData.calendrier;
 	calValeurs = calValeurs.substring(1,calValeurs.length-1);
@@ -84,6 +85,9 @@ function updateCalendarDays(myData){
 	var nbJours = calValeurs.length;
 	var nbSemaines = nbJours/7;
 	var tmpSemaine = -1;
+	
+	//Récupération des évènements
+	var events = myData.event;
 	
 	var table = $('<table>');
 	table.attr('id','calendrier').addClass("table").addClass("evenement-table").addClass("table-bordered");
@@ -93,19 +97,94 @@ function updateCalendarDays(myData){
 		for(var j=0;j<7;j++){
 			var cel = $("<td>");
 			var jour = i*7+j;
-			var celJour = calValeurs[jour].split("-");;
+			var celJour = calValeurs[jour].split("-");
+			var dateJour = new Date(celJour[3],celJour[2]-1, celJour[1]);
+			
+			
 			if(i==0){
 				var span1 = $("<span>").addClass("cellule-jour").text(celJour[0]);
 				var span2 = $("<span>").addClass("cellule-jour").text(celJour[1]);
-				
-				
 				cel.append(span1);
 				cel.append(span2);
+				
+				//EVENEMENT ICI
+				if(events != null){
+					var eventL = events.length;
+					for(var k=0;k<eventL;k++){
+						//evenement en cours
+						var curEvent = events[k];
+
+						//Récupération des dates et formatage
+						var dateD = new Date(curEvent.date_debut);
+						var dateF = new Date(curEvent.date_fin);
+						var span3 = null;
+						
+						if(dateJour>=dateD&&dateJour<=dateF){
+							
+								span3 = $("<span>").attr("id","evenement").addClass("btn").addClass("align-middle").text(curEvent.id+":"+curEvent.description);
+					
+						}
+						
+						if(span3!=null){
+							switch(curEvent.type){
+							case "Inspection": 
+								span3.addClass("btn-primary");
+								break;
+							case "Révision": 
+								span3.addClass("btn-warning");
+								break;
+							case "Panne": 
+								span3.addClass("btn-danger");
+								break;
+							case "Autre": 
+								span3.addClass("btn-default");
+								break;
+							}
+							cel.append(span3);
+						}
+					}
+				}
 			}else{
 				var span2 = $("<span>").addClass("cellule-jour").text(celJour[1]);
-				
-				
 				cel.append(span2);
+				
+				//EVENEMENT ICI
+				if(events != null){
+					var eventL = events.length;
+					for(var k=0;k<eventL;k++){
+						//evenement en cours
+						var curEvent = events[k];
+
+						//Récupération des dates et formatage
+						var dateD = new Date(curEvent.date_debut);
+						var dateF = new Date(curEvent.date_fin);
+						var span3 = null;
+						
+						if(dateJour>=dateD&&dateJour<=dateF){
+							
+								span3 = $("<span>").attr("id","evenement").addClass("btn").addClass("align-middle").text(curEvent.id+":"+curEvent.description);
+					
+						}
+						
+						if(span3!=null){
+							switch(curEvent.type){
+							case "Inspection": 
+								span3.addClass("btn-primary");
+								break;
+							case "Révision": 
+								span3.addClass("btn-warning");
+								break;
+							case "Panne": 
+								span3.addClass("btn-danger");
+								break;
+							case "Autre": 
+								span3.addClass("btn-default");
+								break;
+							}
+							cel.append(span3);
+						}
+					}
+				}
 			}
 			row.append(cel);
 		}

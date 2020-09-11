@@ -16,12 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+
 import fr.afpa.projetregistation.dto.EvenementDto;
 import fr.afpa.projetregistation.service.IEvenementService;
 import fr.afpa.projetregistation.service.IUtilisateurService;
 import fr.afpa.projetregistation.utils.Calendrier;
 import lombok.extern.slf4j.Slf4j;
-
 @Slf4j
 @Controller
 public class AccueilController {
@@ -54,9 +55,6 @@ public class AccueilController {
 		} 
 		List<EvenementDto> listEvent = eserv.getByDate(deb, fin);
 		mv.addObject("calendrier",cal);
-//		mv.addObject("titre",Calendrier.localizeMonth(now.getMonthValue()));
-//		mv.addObject("event",listEvent);
-//		mv.addObject("current", YearMonth.now());
 		mv.setViewName("calendrier");
 		return mv;
 	}
@@ -90,10 +88,12 @@ public class AccueilController {
 			e.printStackTrace();
 		} 
 		List<EvenementDto> listEvent = eserv.getByDate(deb, fin);
+		Gson gson = new Gson();
+		String json = gson.toJson(listEvent);
 		String res = "{"
 				+ "\"calendrier\":\""+cal+"\","
 				+ "\"titre\":\""+Calendrier.localizeMonth(ym.getMonthValue())+"\","
-				+ "\"event\":\""+listEvent+"\","
+				+ "\"event\":"+json+","
 				+ "\"current\":\""+ym+"\","
 				+ "\"success\":1"
 				+ "}";
