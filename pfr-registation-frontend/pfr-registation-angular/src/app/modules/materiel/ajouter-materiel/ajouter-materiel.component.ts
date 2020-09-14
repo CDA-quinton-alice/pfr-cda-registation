@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Imateriel } from 'src/app/interfaces/imateriel';
 
 @Component({
   selector: 'app-ajouter-materiel',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AjouterMaterielComponent implements OnInit {
 
+     materiels: Array<Imateriel> = []; 
+     materiel: Imateriel ={};
+ 
+
   constructor() { }
+  ngOnInit(): void { }
 
-  ngOnInit(): void {
+  ajouterMateriel(){
+    this.materiels.push({ ...this.materiel});
+    this.materiel.ref ='';
+    this.materiel.marque_materiel='';
+    this.materiel.date_achat= '';
+   
+
+
   }
-
 }

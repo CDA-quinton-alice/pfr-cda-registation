@@ -1,1 +1,69 @@
-<p>ajouter-materiel works!</p>
+<div id="form-materiel"  (ngSubmit)=ajouterMateriel()>
+
+    <form #ajoutMaterielForm=ngForm>
+
+        <div>
+            Référence: <input type="text" name=ref [(ngModel)]=materiel.ref required #ref="ngModel">
+        </div>
+
+        <div [hidden]="ref.valid || ref.pristine">
+            La référence est obligatoire.
+        </div>
+
+        <div>
+            Marque: <input type="text" name=marque_materiel [(ngModel)]=materiel.marque_materiel required
+                #marque_materiel="ngModel">
+        </div>
+        <div [hidden]="marque_materiel.valid || marque_materiel.pristine">
+            La marque est obligatoire.
+        </div>
+
+        <div>
+            Modele: <input type="text" name=modele_materiel [(ngModel)]=materiel.modele_materiel required
+                #modele_materiel="ngModel">
+        </div>
+        <div [hidden]="modele_materiel.valid || modele_materiel.pristine">
+            Le modele est obligatoire.
+        </div>
+
+        <div>
+            Prix: <input type="number" name=prix_achat [(ngModel)]=materiel.prix_achat required #prix_achat="ngModel">
+        </div>
+        <div [hidden]="prix_achat.valid || prix_achat.pristine">
+            La prix d'achat est obligatoire.
+        </div>
+
+        <div>
+            Etat: <input type="number" min="1" max="3" name=etat [(ngModel)]=materiel.etat required #etat="ngModel">
+        </div>
+        <div [hidden]="etat.valid || etat.pristine">
+            L'état du matériel est obligatoire.
+        </div>
+
+        <div>
+            Date d'achat: <input type="text" name=date_achat [(ngModel)]=materiel.date_achat required #date_achat="ngModel">
+        </div>
+        <div [hidden]="date_achat.valid || date_achat.pristine">
+            La date d'achat est obligatoire.
+        </div>
+
+        <div>
+            Type de matériel: <input type="text" name=type_materiel [(ngModel)]=materiel.type_materiel required
+                #type_materiel="ngModel">
+        </div>
+        <div [hidden]="type_materiel.valid || type_materiel.pristine">
+            Le type de matériel est obligatoire.
+        </div>
+
+        <div>
+            Localisation: <input type="text" name=localisation [(ngModel)]=materiel.localisation required #localisation="ngModel">
+        </div>
+        <div [hidden]="localisation.valid || localisation.pristine">
+            La localisation est obligatoire.
+        </div>
+
+        <div>
+            <button [disabled]=!ajoutMaterielForm.valid>Ajouter le matériel</button>
+        </div>
+    </form>
+</div>

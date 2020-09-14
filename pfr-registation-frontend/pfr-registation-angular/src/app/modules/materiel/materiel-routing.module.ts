@@ -8,12 +8,11 @@ import { AjouterMaterielComponent } from './ajouter-materiel/ajouter-materiel.co
 
 
 const routes: Routes = [
-  {path:'accueil', component:AccueilMaterielComponent},
-  {path:'liste', component:ListeMaterielComponent},
-  {path:'informations', component:InfosMaterielComponent},
-  {path:'ajouter', component:AjouterMaterielComponent},
+  {path:'materiel/accueil', component:AccueilMaterielComponent},
+  {path:'materiel/liste', component:ListeMaterielComponent},
+  {path:'materiel/informations', component:InfosMaterielComponent},
+  {path:'materiel/ajouter', component:AjouterMaterielComponent},
   {path:'', component:AccueilMaterielComponent},
-
 ];
 
 @NgModule({

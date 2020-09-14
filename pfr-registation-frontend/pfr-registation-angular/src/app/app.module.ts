@@ -3,21 +3,18 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ContentComponent } from './component/content/content.component';
-import { PresentationTeamComponent } from './presentation-team/presentation-team.component';
 import { UtilisateurModule } from './modules/utilisateur/utilisateur.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './modules/shared/shared.module';
 import { MaterielModule } from './modules/materiel/materiel.module';
 
+
+
+
 @NgModule({
   declarations: [
-    AppComponent,
-    ContentComponent,
-    PresentationTeamComponent,
-   
-   
+    AppComponent, 
   ],
 
   imports: [
@@ -28,6 +25,7 @@ import { MaterielModule } from './modules/materiel/materiel.module';
     UtilisateurModule,
     MaterielModule,
     SharedModule,
+
   ],
 
   providers: [],
