@@ -18,6 +18,7 @@ import { UtilisateurFormComponent } from './utilisateur-form/utilisateur-form.co
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { UtilisateurService } from './services/utilisateur.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -38,6 +39,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatFormFieldModule,
     
     HttpClientModule,
+    ReactiveFormsModule,
   ],
 
   providers:[UtilisateurService]

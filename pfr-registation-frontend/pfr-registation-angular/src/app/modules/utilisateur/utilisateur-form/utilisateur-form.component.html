@@ -1,24 +1,26 @@
 <p>utilisateur-form works!</p>
+<form [formGroup]="utilisateurForm" (ngSubmit)='afficherData()'>
+  <div>
+    identifiant : 
+    <input type="number" formControlName="id">
+  </div>
+<div *ngIf="id.valid && (id.dirty || id.touched)">
+  <div *ngIf="id.errors?.required">ID obligatoire !</div>
+</div>
 
-<mat-card>
+  <div>
+    nom : 
+    <input type="text" formControlName="nom">
+<div *ngIf="nom.invalid && (nom.dirty || nom.touched)"></div>
+<div *ngIf="nom.errors?.required">Le nom est obligatoire</div>
+<div *ngIf="nom.errors?.pattern">Première lettre en Maj et min 3 lettres max 11</div>
+  </div>
+  <div>
+    prenom : 
+    <input type="text" formControlName="prenom">
+    <div *ngIf="prenom.errors?.required">Le nom est obligatoire</div>
+<div *ngIf="prenom.errors?.erreur">Première lettre en Maj</div>
+  </div>
 
-    <!-- <form #formAddUser=ngForm>
-   
-      <mat-form-field appearance="legacy">
-        <mat-label>Prénom</mat-label>
-        <input matInput placeholder="John" >
-        <mat-icon matSuffix>perm_identity</mat-icon>
-        <mat-hint>Ton prénom</mat-hint>
-      </mat-form-field>
-      <mat-form-field appearance="legacy">
-        <mat-label>Nom</mat-label>
-        <input matInput placeholder="DOE">
-        <mat-icon matSuffix>perm_identity</mat-icon>
-        <mat-hint>Ton Nom</mat-hint>
-      </mat-form-field>
-
-      <button (click)='onAjoutUtilisateur()' mat-raised-buttin type="submit">Ajouter</button>
-
-    </form> -->
-
-</mat-card>
+  <button type="submit" [disabled]='!utilisateurForm.valid'>Ajouter</button>
+</form>
