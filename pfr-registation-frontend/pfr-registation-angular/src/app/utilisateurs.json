@@ -1,0 +1,24 @@
+{
+    "utilisateurs":[
+        {
+            "nom": "HAM",
+            "prenom": "Lewis",
+            "id": 1
+        },
+        {
+            "nom": "BOT",
+            "prenom": "Val",
+            "id": 2
+        },
+        {
+            "nom": "VER",
+            "prenom": "Max",
+            "id": 3
+        },
+        {
+            "nom": "LEC",
+            "prenom": "Charles",
+            "id": 4
+        }
+    ]
+}

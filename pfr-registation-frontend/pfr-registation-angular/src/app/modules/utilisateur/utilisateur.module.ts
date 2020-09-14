@@ -12,9 +12,16 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { UtilisateurFormComponent } from './utilisateur-form/utilisateur-form.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { UtilisateurService } from './services/utilisateur.service';
+
+
 
 @NgModule({
-  declarations: [AccueilComponent, UtilisateurListComponent],
+  declarations: [AccueilComponent, UtilisateurListComponent, UtilisateurFormComponent],
   imports: [
     CommonModule,
     UtilisateurRoutingModule,
@@ -25,7 +32,12 @@ import {MatButtonModule} from '@angular/material/button';
     MatSidenavModule,
     MatListModule,
     MatBadgeModule,
+    MatCardModule,
+    FlexLayoutModule,
+    MatFormFieldModule,
 
-  ]
+  ],
+
+  providers:[UtilisateurService]
 })
 export class UtilisateurModule { }

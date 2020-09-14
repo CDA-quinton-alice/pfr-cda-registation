@@ -4,9 +4,10 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { UtilisateurListComponent } from './utilisateur-list/utilisateur-list.component';
 
 const routes: Routes = [
-  {path: 'accueil', component: AccueilComponent},
-  {path: 'liste', component: UtilisateurListComponent},
-];
+  {
+    path: 'utilisateur', component: AccueilComponent, children: [
+      { path: 'liste', component: UtilisateurListComponent }]
+  }]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
