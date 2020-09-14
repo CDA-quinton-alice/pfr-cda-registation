@@ -7,8 +7,10 @@ import { AccueilMaterielComponent } from './accueil-materiel/accueil-materiel.co
 import { ListeMaterielComponent } from './liste-materiel/liste-materiel.component';
 import { InfosMaterielComponent } from './infos-materiel/infos-materiel.component';
 import { AjouterMaterielComponent } from './ajouter-materiel/ajouter-materiel.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
     MaterielRoutingModule,
     SharedModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
+
   ]
 })
 export class MaterielModule { }

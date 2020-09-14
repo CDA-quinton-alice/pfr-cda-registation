@@ -8,13 +8,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './modules/shared/shared.module';
 import { MaterielModule } from './modules/materiel/materiel.module';
+import { MaterielService } from './services/materiel.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent, 
+    AppComponent,
   ],
 
   imports: [
@@ -25,10 +27,10 @@ import { MaterielModule } from './modules/materiel/materiel.module';
     UtilisateurModule,
     MaterielModule,
     SharedModule,
-
+    ReactiveFormsModule
   ],
 
-  providers: [],
+  providers: [MaterielService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

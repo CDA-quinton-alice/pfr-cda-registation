@@ -1,11 +1,11 @@
 export interface Imateriel {
-    id_materiel?: number;
+    id?: number;
     ref?: string;
-    marque_materiel?:string;
-    modele_materiel?: string;
-    prix_achat?: number;
+    marque?:string;
+    modele?: string;
+    prix?: number;
     etat?: number;
-    type_materiel?: number;
+    type_materiel?: string;
     date_achat?: string;
     localisation?: string;
 
