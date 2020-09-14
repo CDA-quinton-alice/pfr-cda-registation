@@ -17,6 +17,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { UtilisateurFormComponent } from './utilisateur-form/utilisateur-form.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { UtilisateurService } from './services/utilisateur.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -35,7 +36,8 @@ import { UtilisateurService } from './services/utilisateur.service';
     MatCardModule,
     FlexLayoutModule,
     MatFormFieldModule,
-
+    
+    HttpClientModule,
   ],
 
   providers:[UtilisateurService]

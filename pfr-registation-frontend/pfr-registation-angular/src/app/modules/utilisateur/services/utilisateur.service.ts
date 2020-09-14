@@ -1,25 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Utilisateur } from '../interfaces/utilisateur';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilisateurService {
-utilisateurs: Array<Utilisateur> = new Array<Utilisateur>();
+url: string = "http://localhost:5555/utilisateurs";
 
-  constructor() {
-    this.utilisateurs.push({ nom:'AMB', prenom:'mat'});
-    this.utilisateurs.push({ nom:'AMB', prenom:'aug'});
-    this.utilisateurs.push({ nom:'AMB', prenom:'cam'});
+  constructor(private http: HttpClient) {
+    
    }
   
   
   
   getAll(){
-    return this.utilisateurs;
+    return this.http.get<Array<Utilisateur>>(this.url);
   }
     ajoutUtilisateur(utilisateur: Utilisateur){
-      this.utilisateurs.push(utilisateur);
+    
     }
   }
 

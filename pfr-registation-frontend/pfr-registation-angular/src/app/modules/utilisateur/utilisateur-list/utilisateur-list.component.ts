@@ -8,13 +8,15 @@ import { UtilisateurService } from '../services/utilisateur.service';
   styleUrls: ['./utilisateur-list.component.css']
 })
 export class UtilisateurListComponent implements OnInit {
-
-  utilisateurs: Array<Utilisateur> = new Array<Utilisateur>();
+  utilisateur: Utilisateur = {};
+  utilisateurs: Array<Utilisateur> = [];
 
   constructor(private utilisateurService: UtilisateurService) { }
 
-  ngOnInit(): void {
-    this.utilisateurs = this.utilisateurService.getAll();
+  ngOnInit() {
+    this.utilisateurService.getAll().subscribe(res => {
+      this.utilisateurs = res;
+    });
   }
 
 }
