@@ -7,13 +7,22 @@ import { AccueilMaterielComponent } from './accueil-materiel/accueil-materiel.co
 import { ListeMaterielComponent } from './liste-materiel/liste-materiel.component';
 import { InfosMaterielComponent } from './infos-materiel/infos-materiel.component';
 import { AjouterMaterielComponent } from './ajouter-materiel/ajouter-materiel.component';
+import { FormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [AccueilMaterielComponent, ListeMaterielComponent, InfosMaterielComponent, AjouterMaterielComponent],
   imports: [
     CommonModule,
     MaterielRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule
+
   ]
 })
 export class MaterielModule { }

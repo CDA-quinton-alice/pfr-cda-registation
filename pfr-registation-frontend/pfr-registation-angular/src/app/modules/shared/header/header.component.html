@@ -20,20 +20,16 @@
   <mat-sidenav-container>
     <mat-sidenav #sidenav>
       <mat-nav-list>
-  
-        <a mat-list-item [routerLink]="'/dashboard'"><mat-icon>dashboard</mat-icon>Tableau de bord </a>
-        <a mat-list-item [routerLink]="'/agenda'"><mat-icon>today</mat-icon>Agenda</a>
-        <a mat-list-item [routerLink]="'/document'"><mat-icon>description</mat-icon>Documents</a>
-        <a mat-list-item [routerLink]="'/materiel'"><mat-icon>local_gas_station</mat-icon>Matériel</a>
-        <a mat-list-item [routerLink]="'/moniteur'"><mat-icon>video_label</mat-icon>Moniteur</a>
-        <a mat-list-item [routerLink]="'/garage'"><mat-icon>directions_car</mat-icon>Garage</a>
-       
+        <a mat-list-item [routerLink]="'/agenda'"><mat-icon class="icone-side">today</mat-icon>Agenda</a>
+        <a mat-list-item [routerLink]="'/document'"><mat-icon class="icone-side">description</mat-icon>  Documents</a>
+        <a mat-list-item [routerLink]="'/materiel'"><mat-icon class="icone-side">local_gas_station</mat-icon>Matériel</a>
+        <a mat-list-item [routerLink]="'/moniteur'"><mat-icon class="icone-side">video_label</mat-icon>Moniteur</a>
+        <a mat-list-item [routerLink]="'/garage'"><mat-icon class="icone-side">directions_car</mat-icon>  Garage</a>     
       </mat-nav-list>
     </mat-sidenav>
    <mat-sidenav-content>
-      <div style="height: 89vh;">
-  
-        <router-outlet></router-outlet>
-      </div>
+    <div style="height: 92vh;">
+      <router-outlet></router-outlet>
+    </div>
     </mat-sidenav-content>
   </mat-sidenav-container>

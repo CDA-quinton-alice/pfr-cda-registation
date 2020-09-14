@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./fond.component.css']
 })
 export class FondComponent implements OnInit {
+  panelOpenState = false;
 
+  
   constructor() { }
 
   ngOnInit(): void {

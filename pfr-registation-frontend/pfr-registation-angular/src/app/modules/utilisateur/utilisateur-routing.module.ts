@@ -4,7 +4,7 @@ import { AccueilComponent } from './accueil/accueil.component';
 
 const routes: Routes = [
   {path: 'accueil', component: AccueilComponent},
-  {path: '', component: AccueilComponent},
+  {path: 'utilisateur/liste', component: AccueilComponent},
 ];
 
 @NgModule({
