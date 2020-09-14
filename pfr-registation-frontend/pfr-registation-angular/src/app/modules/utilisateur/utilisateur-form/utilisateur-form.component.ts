@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Utilisateur } from '../interfaces/utilisateur';
 
 @Component({
@@ -9,10 +9,11 @@ import { Utilisateur } from '../interfaces/utilisateur';
 })
 export class UtilisateurFormComponent implements OnInit {
 
-  utilisateurForm = new FormGroup({
-    id: new FormControl('', Validators.required),
-    nom: new FormControl('', [Validators.pattern(/^[A-Z] [a-z] {2,10}/), Validators.required]),
-    prenom: new FormControl('', [Validators.required, this.checkPrenomValidator])
+  utilisateurForm = this.fb.group({
+    id: [null],
+    nom: ['HAM'],
+    prenom: ['']
+
   });
 
   checkPrenomValidator(control: FormControl) {
@@ -24,7 +25,7 @@ export class UtilisateurFormComponent implements OnInit {
     }
   }
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
 
