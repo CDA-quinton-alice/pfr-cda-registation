@@ -6,19 +6,20 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UtilisateurService {
-url: string = "http://localhost:5555/utilisateurs";
+  url: string = "http://localhost:5555/utilisateurs";
 
   constructor(private http: HttpClient) {
-    
-   }
-  
-  
-  
-  getAll(){
+
+  }
+
+
+
+  getAll() {
     return this.http.get<Array<Utilisateur>>(this.url);
   }
-    ajoutUtilisateur(utilisateur: Utilisateur){
+  ajoutUtilisateur(utilisateur: Utilisateur) {
+    return this.http.post(this.url, utilisateur);
     
-    }
   }
+}
 

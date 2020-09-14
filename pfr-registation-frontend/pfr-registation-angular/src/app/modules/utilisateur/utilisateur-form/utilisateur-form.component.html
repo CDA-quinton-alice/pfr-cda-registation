@@ -1,26 +1,26 @@
 <p>utilisateur-form works!</p>
-<form [formGroup]="utilisateurForm" (ngSubmit)='afficherData()'>
-  <div>
-    identifiant : 
-    <input type="number" formControlName="id">
+<form #monForm=ngForm (ngSubmit)=ajouterUtilisateur()>
+  <div class="form-group">
+    <label for="nom">nom</label>
+    <input type="text" class="form-control" name="nom" id="nom" aria-describedby="helpId" placeholder="nom"
+      [(ngModel)]="utilisateur.nom" required #nom=ngModel>
+    <small [hidden]='nom.valid || nom.pristine' id="helpId" class="form-text text-muted">le nom est obligatoire</small>
   </div>
-<div *ngIf="id.valid && (id.dirty || id.touched)">
-  <div *ngIf="id.errors?.required">ID obligatoire !</div>
-</div>
-
-  <div>
-    nom : 
-    <input type="text" formControlName="nom">
-<div *ngIf="nom.invalid && (nom.dirty || nom.touched)"></div>
-<div *ngIf="nom.errors?.required">Le nom est obligatoire</div>
-<div *ngIf="nom.errors?.pattern">Première lettre en Maj et min 3 lettres max 11</div>
+  <div class="form-group">
+    <label for="prenom">prenom</label>
+    <input type="text" class="form-control" name="prenom" id="prenom" aria-describedby="helpId" placeholder="prenom"
+      [(ngModel)]="utilisateur.prenom" required #prenom=ngModel>
+    <small [hidden]='prenom.valid || prenom.pristine' id="helpId" class="form-text text-muted">le prenom est
+      obligatoire</small>
   </div>
-  <div>
-    prenom : 
-    <input type="text" formControlName="prenom">
-    <div *ngIf="prenom.errors?.required">Le nom est obligatoire</div>
-<div *ngIf="prenom.errors?.erreur">Première lettre en Maj</div>
-  </div>
-
-  <button type="submit" [disabled]='!utilisateurForm.valid'>Ajouter</button>
+  <button type="submit" name="" id="" class="btn btn-primary btn-lg btn-block"
+    [disabled]='monForm.invalid'>
+    valider
+  </button>
 </form>
+
+<ul>
+  <li *ngFor="let utilisateur of utilisateurs">
+      {{utilisateur.prenom}} , {{utilisateur.nom}}
+  </li>
+</ul>
