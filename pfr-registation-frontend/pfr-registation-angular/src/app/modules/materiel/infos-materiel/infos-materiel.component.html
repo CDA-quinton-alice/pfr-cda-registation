@@ -1,1 +1,42 @@
 <p>infos-materiel works!</p>
+<div id="form-get-materiel" >
+
+    <form #getMaterielByIdForm=ngForm  (ngSubmit)=getMaterielById(idMat.value)>
+        <div>
+            Id: <input type="number" name=idMat [(ngModel)]=materiel.idMat required #idMat="ngModel">
+        </div>
+        <div>
+            <button >Chercher ce matériel ayant cette Id</button>
+        </div>
+    </form >
+
+
+        <table class="table">
+            <thead>
+                <th> Id</th>
+                <th> Référence </th>
+                <th> Marque</th>
+                <th> Modele</th>
+                <th> Type de matériel</th>
+                <th> Prix d'achat</th>
+                <th> Localisation</th>
+                <th> Etat</th>                
+                <th> Date d'achat</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{materiel.idMat}}</td>
+                    <td>{{materiel.ref}}</td>
+                    <td>{{materiel.marque}}</td>
+                    <td>{{materiel.modele}}</td>
+                    <td>{{materiel.prix}}</td>
+                    <td>{{materiel.etat}}</td>
+                    <td>{{materiel.dateAchat}}</td>
+                    <td>{{materiel.typeMateriel}}</td>
+                    <td>{{materiel.localisation}}</td>
+                </tr>
+            </tbody>
+
+    </table>
+
+</div>

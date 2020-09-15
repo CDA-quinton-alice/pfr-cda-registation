@@ -102,7 +102,7 @@ public class TestTypeMaterielServiceImpl {
 	 */
 	public void testGetTypeByMateriel() throws Exception {
 		Date achat = new Date();
-		MaterielDto mat = new MaterielDto("P001", "Orion", "PistoXC", 500, "pompe2", 1, achat, "pompe");
+		MaterielDto mat = new MaterielDto("P001", "Orion", "PistoXC", 500,  1, achat, "pompe", "pompe2");
 		TypeMaterielDto testType = typeService.getTypeByMateriel(mat);
 		assertNotNull(testType);
 

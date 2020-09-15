@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Imateriel } from 'src/app/interfaces/imateriel';
+import { MaterielService } from 'src/app/services/materiel.service';
 
 @Component({
   selector: 'app-infos-materiel',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./infos-materiel.component.css']
 })
 export class InfosMaterielComponent implements OnInit {
-
-  constructor() { }
+  materiel: Imateriel = {};
+  idMat : number;
+  constructor(private materielService: MaterielService) { }
 
   ngOnInit(): void {
   }
 
+
+  getMaterielById(idMat: number) {
+
+    this.materielService.findById(idMat).subscribe(res => { 
+
+      this.materiel= res;
+    });
+
+  }
 }

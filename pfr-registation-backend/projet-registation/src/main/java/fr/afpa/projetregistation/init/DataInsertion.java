@@ -85,15 +85,15 @@ public class DataInsertion {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		MaterielDto materiel = new MaterielDto("P001", "Orion", "PistoXC", 500, "pompe2", 1, achat, "pompe");
+		MaterielDto materiel = new MaterielDto("P001", "Orion", "PistoXC", 500,  1, achat, "pompe","pompe2");
 		materielService.create(materiel);
-		MaterielDto materiel2 = new MaterielDto("C001", "Neptune", "Cuve3000", 2000, "emplacement1", 1, achat, "cuve");
+		MaterielDto materiel2 = new MaterielDto("C001", "Neptune", "Cuve3000", 2000,  1, achat, "cuve","emplacement1");
 		materielService.create(materiel2);
-		MaterielDto materiel3 = new MaterielDto("P002", "Orion", "PistoXC", 500, "pompe2", 1, achat, "pompe");
+		MaterielDto materiel3 = new MaterielDto("P002", "Orion", "PistoXC", 500,  1, achat, "pompe", "pompe2");
 		materielService.create(materiel3);
-		MaterielDto materiel4 = new MaterielDto("P003", "Orion", "PistoXC", 500, "pompe2", 1, achat, "pompe");
+		MaterielDto materiel4 = new MaterielDto("P003", "Orion", "PistoXC", 500,  1, achat, "pompe", "pompe2");
 		materielService.create(materiel4);
-		MaterielDto mat3 = new MaterielDto("MC001", "Mars", "Cafe3000", 200, "allée 1", 1, achat, "MACHINE A CAFE");
+		MaterielDto mat3 = new MaterielDto("MC001", "Mars", "Cafe3000", 200,  1, achat, "MACHINE A CAFE","allée 1");
 		materielService.create(mat3);
 	}
 

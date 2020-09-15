@@ -11,9 +11,8 @@ import { AjouterMaterielComponent } from './ajouter-materiel/ajouter-materiel.co
 const routes: Routes = [
   {path:'materiel/accueil', component:AccueilMaterielComponent},
   {path:'materiel/liste', component:ListeMaterielComponent},
-  {path:'materiel/informations', component:InfosMaterielComponent},
+  {path:'materiel/infos', component:InfosMaterielComponent},
   {path:'materiel/ajouter', component:AjouterMaterielComponent},
-
   {path:'', component:AccueilMaterielComponent},
 ];
 

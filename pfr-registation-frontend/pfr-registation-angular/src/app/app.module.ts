@@ -20,8 +20,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    ContentComponent,
-    PresentationTeamComponent,
     UserListComponent,
     UserFormComponent,
    
@@ -37,9 +35,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     MaterielModule,
     SharedModule,
     FormsModule,
+    
   ],
 
-  providers: [UserService],
+  providers: [UserService, MaterielService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
