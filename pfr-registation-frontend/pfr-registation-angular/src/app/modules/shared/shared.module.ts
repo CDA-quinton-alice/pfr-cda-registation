@@ -9,13 +9,14 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatBadgeModule} from '@angular/material/badge';
-
 import {MatButtonModule} from '@angular/material/button';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
   declarations: [FondComponent, HeaderComponent],
-  exports: [HeaderComponent,FondComponent],
+  exports: [HeaderComponent, FondComponent],
 
   imports: [
     CommonModule,
@@ -26,6 +27,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatSidenavModule,
     MatListModule,
     MatBadgeModule,
+    MatExpansionModule,
+    NgbModule
    
   ]
 })

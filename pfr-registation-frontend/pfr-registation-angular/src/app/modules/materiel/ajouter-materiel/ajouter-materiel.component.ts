@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Imateriel } from 'src/app/interfaces/imateriel';
+import { MaterielService } from 'src/app/services/materiel.service';
 
 @Component({
   selector: 'app-ajouter-materiel',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AjouterMaterielComponent implements OnInit {
 
-  constructor() { }
+  materiel: Imateriel = {};
 
-  ngOnInit(): void {
+  list_materiel: Array<Imateriel> = [];
+
+
+  constructor(private materielService: MaterielService) { }
+
+  ngOnInit() {
+    this.materielService.getAll().subscribe(res => {
+      this.list_materiel = res;
+    })
   }
 
+  addMateriel() {
+    this.materielService.addMateriel(this.materiel).subscribe(res => { 
+      this.materielService.getAll().subscribe(result =>{
+        this.list_materiel =result;
+      })
+    });
+  }
 }

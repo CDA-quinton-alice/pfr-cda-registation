@@ -1,1 +1,105 @@
-<p>ajouter-materiel works!</p>
+<div id="form-materiel"  (ngSubmit)=addMateriel()>
+
+    <form #ajoutMaterielForm=ngForm  (ngSubmit)=addMateriel()>
+
+
+        <div>
+            Id: <input type="number" name=id [(ngModel)]=materiel.id required #id="ngModel">
+        </div>
+        <div [hidden]="id.valid || id.pristine">
+            La référence est obligatoire.
+        </div>
+        <div>
+            Référence: <input type="text" name=ref [(ngModel)]=materiel.ref required #ref="ngModel">
+        </div>
+
+        <div [hidden]="ref.valid || ref.pristine">
+            La référence est obligatoire.
+        </div>
+
+        <div>
+            Marque: <input type="text" name=marque [(ngModel)]=materiel.marque required
+                #marque="ngModel">
+        </div>
+        <div [hidden]="marque.valid || marque.pristine">
+            La marque est obligatoire.
+        </div>
+
+        <div>
+            Modele: <input type="text" name=modele [(ngModel)]=materiel.modele required
+                #modele="ngModel">
+        </div>
+        <div [hidden]="modele.valid || modele.pristine">
+            Le modele est obligatoire.
+        </div>
+
+        <div>
+            Prix: <input type="number" name=prix [(ngModel)]=materiel.prix required #prix="ngModel">
+        </div>
+        <div [hidden]="prix.valid || prix.pristine">
+            La prix d'achat est obligatoire.
+        </div>
+
+        <div>
+            Etat: <input type="number" min="1" max="3" name=etat [(ngModel)]=materiel.etat required #etat="ngModel">
+        </div>
+        <div [hidden]="etat.valid || etat.pristine">
+            L'état du matériel est obligatoire.
+        </div>
+
+        <div>
+            Date d'achat: <input type="text" name=date_achat [(ngModel)]=materiel.date_achat required #date_achat="ngModel">
+        </div>
+        <div [hidden]="date_achat.valid || date_achat.pristine">
+            La date d'achat est obligatoire.
+        </div>
+
+        <div>
+            Type de matériel: <input type="text" name=type_materiel [(ngModel)]=materiel.type_materiel required
+                #type_materiel="ngModel">
+        </div>
+        <div [hidden]="type_materiel.valid || type_materiel.pristine">
+            Le type de matériel est obligatoire.
+        </div>
+
+        <div>
+            Localisation: <input type="text" name=localisation [(ngModel)]=materiel.localisation required #localisation="ngModel">
+        </div>
+        <div [hidden]="localisation.valid || localisation.pristine">
+            La localisation est obligatoire.
+        </div>
+
+        <div>
+            <button [disabled]=!ajoutMaterielForm.valid>Ajouter le matériel</button>
+        </div>
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id du matériel</th>
+            <th>Référence</th>
+            <th>Marque</th>
+            <th>Modèle</th>
+            <th>Prix d'achat</th>
+            <th>Etat actuel</th>
+            <th>Date d'achat</th>
+            <th>Type de matériel</th>
+            <th>Localisation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let mat of list_materiel">
+            <td>{{mat.id}}</td>
+            <td>{{mat.ref}}</td>
+            <td>{{mat.marque}}</td>
+            <td>{{mat.modele}}</td>
+            <td>{{mat.prix}}</td>
+            <td>{{mat.etat}}</td>
+            <td>{{mat.date_achat}}</td>
+            <td>{{mat.type_materiel}}</td>
+            <td>{{mat.localisation}}</td>
+        </tr>
+    </tbody>
+</table>

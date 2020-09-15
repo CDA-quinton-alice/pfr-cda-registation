@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ContentComponent } from './component/content/content.component';
-import { PresentationTeamComponent } from './presentation-team/presentation-team.component';
 import { UtilisateurModule } from './modules/utilisateur/utilisateur.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,6 +12,8 @@ import { UserListComponent } from './user-list/user-list.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { UserService } from './user-service.service';
 import { FormsModule } from '@angular/forms';
+import { MaterielService } from './services/materiel.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 

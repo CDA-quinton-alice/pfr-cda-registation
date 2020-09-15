@@ -1,6 +1,10 @@
 .example-spacer {
     flex: 1 1 auto;
   }
+
+  .accordeon{
+margin-top: 50px;
+  }
 .mat-toolbar{
   background-color:lightslategray;
   position: sticky;
@@ -14,10 +18,17 @@
 .mat-sidenav{
   background-color:lightyellow;
 }
+
+.icone-side{
+ margin-right: 5px;
+}
+
+CSS
 #logo-big{
   opacity: 0.2;
   height: 100%;
 }
-.icone-side{
-  margin-right: 5px;
+
+.mat-form-field + .mat-form-field {
+  margin-left: 8px;
 }
