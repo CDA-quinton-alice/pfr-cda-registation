@@ -49,8 +49,6 @@ public class MaterielController {
 	
 	@PostMapping("/materiel")
     public void addUser(@RequestBody MaterielDto pMat) {
-		System.out.println("coucou");
-		System.out.println(pMat);
 		materielService.create(pMat);       
     }
 	
