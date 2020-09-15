@@ -1,0 +1,58 @@
+<!-- <p>utilisateur-form works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Ajouter un collaborateur</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+    <form #addForm=ngForm id="add-formulaire">
+      <mat-form-field>
+        <input matInput placeholder="matricule" [(ngModel)]="utilisateur.matricule" type="text" name="matricule" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="prenom" [(ngModel)]="utilisateur.prenom" type="text" name="prenom" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="date de naissance" [(ngModel)]="utilisateur.dateNaissance" type="date" name="dateNaissance" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="salaire" [(ngModel)]="utilisateur.salaire" type="number" name="number" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="email" [(ngModel)]="utilisateur.email" type="email" name="email" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="tel" [(ngModel)]="utilisateur.nom" type="text" name="nom" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select [(ngModel)]="utilisateur.responsable" placeholder="Role">
+          <mat-option value="employe">Employé</mat-option>
+          <mat-option value="responsable">Responsable</mat-option>
+        </mat-select>
+      </mat-form-field>
+     
+
+
+
+
+
+
+
+
+
+
+
+
+    </form>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="ajouterUtilisateur()" color="primary" [disabled]="addForm.invalid">Ajouter</button>
+  </mat-card-actions>
+</mat-card>
+
+<ul>
+  <li *ngFor="let utilisateur of utilisateurs">
+    {{utilisateur.prenom}} , {{utilisateur.nom}}
+  </li>
+</ul> -->
