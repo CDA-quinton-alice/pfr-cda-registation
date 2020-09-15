@@ -9,7 +9,6 @@ import { InfosMaterielComponent } from './infos-materiel/infos-materiel.componen
 import { AjouterMaterielComponent } from './ajouter-materiel/ajouter-materiel.component';
 import { FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
 import { ReactiveFormsModule } from '@angular/forms';
 
 

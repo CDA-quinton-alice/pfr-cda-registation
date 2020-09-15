@@ -1,14 +1,8 @@
-<div id="form-materiel"  (ngSubmit)=addMateriel()>
+<div id="form-materiel">
 
     <form #ajoutMaterielForm=ngForm  (ngSubmit)=addMateriel()>
 
 
-        <div>
-            Id: <input type="number" name=id [(ngModel)]=materiel.id required #id="ngModel">
-        </div>
-        <div [hidden]="id.valid || id.pristine">
-            La référence est obligatoire.
-        </div>
         <div>
             Référence: <input type="text" name=ref [(ngModel)]=materiel.ref required #ref="ngModel">
         </div>
@@ -48,17 +42,17 @@
         </div>
 
         <div>
-            Date d'achat: <input type="text" name=date_achat [(ngModel)]=materiel.date_achat required #date_achat="ngModel">
+            Date d'achat: <input type="date" name=dateAchat [(ngModel)]=materiel.dateAchat required #dateAchat="ngModel">
         </div>
-        <div [hidden]="date_achat.valid || date_achat.pristine">
+        <div [hidden]="dateAchat.valid || dateAchat.pristine">
             La date d'achat est obligatoire.
         </div>
 
         <div>
-            Type de matériel: <input type="text" name=type_materiel [(ngModel)]=materiel.type_materiel required
-                #type_materiel="ngModel">
+            Type de matériel: <input type="text" name=typeMateriel [(ngModel)]=materiel.typeMateriel required
+                #typeMateriel="ngModel">
         </div>
-        <div [hidden]="type_materiel.valid || type_materiel.pristine">
+        <div [hidden]="typeMateriel.valid || typeMateriel.pristine">
             Le type de matériel est obligatoire.
         </div>
 
@@ -91,14 +85,14 @@
     </thead>
     <tbody>
         <tr *ngFor="let mat of list_materiel">
-            <td>{{mat.id}}</td>
+            <td>{{mat.idMat}}</td>
             <td>{{mat.ref}}</td>
             <td>{{mat.marque}}</td>
             <td>{{mat.modele}}</td>
             <td>{{mat.prix}}</td>
             <td>{{mat.etat}}</td>
-            <td>{{mat.date_achat}}</td>
-            <td>{{mat.type_materiel}}</td>
+            <td>{{mat.dateAchat}}</td>
+            <td>{{mat.typeMateriel}}</td>
             <td>{{mat.localisation}}</td>
         </tr>
     </tbody>
