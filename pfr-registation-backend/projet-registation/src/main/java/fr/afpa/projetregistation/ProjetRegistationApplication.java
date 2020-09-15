@@ -30,16 +30,16 @@ public class ProjetRegistationApplication {
 		return new ModelMapper();
 	}
 
-	@Bean
-    CommandLineRunner init(IUserTestDao userRepository) {
-        return args -> {
-            Stream.of("John", "Julie", "Jennifer", "Helen", "Rachel").forEach(name -> {
-                UserTestEntity user = new UserTestEntity(name, name.toLowerCase() + "@domain.com");
-                userRepository.save(user);
-            });
-            userRepository.findAll().forEach(System.out::println);
-        };
-    }
+//	@Bean
+//    CommandLineRunner init(IUserTestDao userRepository) {
+//        return args -> {
+//            Stream.of("John", "Julie", "Jennifer", "Helen", "Rachel").forEach(name -> {
+//                UserTestEntity user = new UserTestEntity(name, name.toLowerCase() + "@domain.com");
+//                userRepository.save(user);
+//            });
+//            userRepository.findAll().forEach(System.out::println);
+//        };
+//    }
 	
 	@Bean
 	public ConfigurableServletWebServerFactory configurableServletWebServerFactory() {
