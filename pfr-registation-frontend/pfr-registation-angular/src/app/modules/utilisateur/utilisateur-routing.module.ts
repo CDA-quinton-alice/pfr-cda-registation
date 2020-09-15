@@ -6,7 +6,7 @@ import { UtilisateurListComponent } from './utilisateur-list/utilisateur-list.co
 
 const routes: Routes = [
   {
-    path: 'utilisateur', component: AccueilComponent, children: [
+    path: '', component: AccueilComponent, children: [
       { path: 'liste', component: UtilisateurListComponent },
       { path: 'add', component: UtilisateurFormComponent }
     ]

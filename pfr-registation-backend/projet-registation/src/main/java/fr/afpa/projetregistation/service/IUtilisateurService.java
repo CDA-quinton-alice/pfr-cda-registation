@@ -3,6 +3,7 @@ package fr.afpa.projetregistation.service;
 import java.util.List;
 
 import fr.afpa.projetregistation.dto.UtilisateurDto;
+import fr.afpa.projetregistation.dto.UtilisateurSimpleDto;
 
 public interface IUtilisateurService {
 
@@ -19,7 +20,10 @@ public interface IUtilisateurService {
 	 * 
 	 * @return List de UtilisateurDto
 	 */
-	List<UtilisateurDto> getAllUtilisateurs(int pPageEnCours);
+//	List<UtilisateurDto> getAllUtilisateurs(int pPageEnCours);
+	
+	//TESTOUILLE
+	List<UtilisateurSimpleDto> getAllUtilisateurs(int pPageEnCours);
 
 	/**
 	 * Permet de retourner une liste de tous les emlpoyés (boolean responsable =

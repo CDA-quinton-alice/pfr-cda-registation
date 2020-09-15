@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule , CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,11 +17,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    ContentComponent,
-    PresentationTeamComponent,
+
     UserListComponent,
     UserFormComponent,
    
@@ -37,6 +37,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MaterielModule,
     SharedModule,
     FormsModule,
+    
   ],
 
   providers: [UserService],
