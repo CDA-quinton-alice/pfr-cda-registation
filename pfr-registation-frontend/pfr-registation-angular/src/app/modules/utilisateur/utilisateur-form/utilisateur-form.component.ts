@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Utilisateur } from '../interfaces/utilisateur';
 import { UtilisateurService } from '../services/utilisateur.service';
 
+
 @Component({
   selector: 'app-utilisateur-form',
   templateUrl: './utilisateur-form.component.html',
@@ -11,8 +12,9 @@ import { UtilisateurService } from '../services/utilisateur.service';
 export class UtilisateurFormComponent implements OnInit {
   utilisateur: Utilisateur = {};
   utilisateurs: Array<Utilisateur> = [];
-  constructor(private utilisateurService: UtilisateurService) { }
 
+  constructor(private utilisateurService: UtilisateurService) { }
+  
   ngOnInit() {
     this.utilisateurService.getAll().subscribe(res => {
       this.utilisateurs = res;

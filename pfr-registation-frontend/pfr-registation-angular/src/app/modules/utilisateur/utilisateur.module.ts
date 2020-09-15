@@ -21,6 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 
+import {MatInputModule} from '@angular/material/input';
+import {MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -42,6 +44,12 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    MatDialogModule,
+    MatDialogModule, 
+    MatInputModule, 
+    MatButtonModule, 
+    MatCardModule, 
+    MatFormFieldModule,
   ],
 
   providers:[UtilisateurService]

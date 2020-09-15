@@ -10,6 +10,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './modules/shared/shared.module';
 import { MaterielModule } from './modules/materiel/materiel.module';
+import { UserListComponent } from './user-list/user-list.component';
+import { UserFormComponent } from './user-form/user-form.component';
+import { UserService } from './user-service.service';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -18,6 +22,8 @@ import { MaterielModule } from './modules/materiel/materiel.module';
     AppComponent,
     ContentComponent,
     PresentationTeamComponent,
+    UserListComponent,
+    UserFormComponent,
    
    
   ],
@@ -30,9 +36,10 @@ import { MaterielModule } from './modules/materiel/materiel.module';
     UtilisateurModule,
     MaterielModule,
     SharedModule,
+    FormsModule,
   ],
 
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

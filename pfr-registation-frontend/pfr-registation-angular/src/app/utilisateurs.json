@@ -1,74 +1,24 @@
 {
   "utilisateurs": [
     {
-      "nom": "HAM",
-      "prenom": "Lewis",
-      "id": 1
+     "matricule" : "EMP001",
+     "nom" : "nomTEST",
+     "prenom" : "prenomTEST",
+     "dateNaissance" : "17-07-1973",
+     "salaire" : 2000.0,
+     "email" : "employe@gmail.com",
+     "tel" : "06.07.08.09.08",
+     "responsable" : false
     },
     {
-      "nom": "BOT",
-      "prenom": "Val",
-      "id": 2
-    },
-    {
-      "nom": "VER",
-      "prenom": "Max",
-      "id": 3
-    },
-    {
-      "nom": "LEC",
-      "prenom": "Charles",
-      "id": 4
-    },
-    {
-      "nom": "AMBR",
-      "prenom": "Augu",
-      "id": 5
-    },
-    {
-      "nom": "blalazz",
-      "prenom": "mathieu",
-      "id": 6
-    },
-    {
-      "nom": "blalazz",
-      "prenom": "mathieu",
-      "id": 7
-    },
-    {
-      "nom": "test",
-      "prenom": "poipoi",
-      "id": 8
-    },
-    {
-      "nom": "test",
-      "prenom": "poipoi",
-      "id": 9
-    },
-    {
-      "nom": "test",
-      "prenom": "poipoi",
-      "id": 10
-    },
-    {
-      "nom": "test",
-      "prenom": "poipoi",
-      "id": 11
-    },
-    {
-      "nom": "prara",
-      "prenom": "qsdqsdd",
-      "id": 12
-    },
-    {
-      "nom": "prara",
-      "prenom": "qsdqsdd",
-      "id": 13
-    },
-    {
-      "nom": "blabla",
-      "prenom": "blablabalba",
-      "id": 14
-    }
+      "matricule" : "RESP001",
+      "nom" : "nomTEST2",
+      "prenom" : "prenomTEST2",
+      "dateNaissance" : "17-07-1976",
+      "salaire" : 2000.0,
+      "email" : "responsable@gmail.com",
+      "tel" : "06.07.08.09.10",
+      "responsable" : true
+     }
   ]
 }

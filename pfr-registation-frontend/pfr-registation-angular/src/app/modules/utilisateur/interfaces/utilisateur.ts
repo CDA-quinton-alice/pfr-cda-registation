@@ -1,5 +1,6 @@
 export interface Utilisateur {
-    id?:number;
-    nom?: string;
-    prenom?: string;
+  
+   id?: string;
+   prenom?: string;
+   nom?: string;
     }

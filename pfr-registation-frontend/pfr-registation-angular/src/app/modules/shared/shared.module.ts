@@ -12,6 +12,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 
 import {MatButtonModule} from '@angular/material/button';
 
+
 @NgModule({
   declarations: [FondComponent, HeaderComponent],
   exports: [HeaderComponent,FondComponent],

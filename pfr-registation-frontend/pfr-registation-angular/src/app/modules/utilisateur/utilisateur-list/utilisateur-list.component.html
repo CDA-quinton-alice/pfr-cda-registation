@@ -1,8 +1,9 @@
 <mat-card class="card-top">
-        <h2 style="margin: 0;">Les Collaborateurs</h2>
-        <button mat-mini-fab color="warn" id="bouton-ajouter">
-            <mat-icon>add</mat-icon>
-        </button>
+    <h2 style="margin: 0;">Les Collaborateurs</h2>
+    <button mat-mini-fab color="warn" id="bouton-ajouter" [routerLink]="'/utilisateur/add'">
+        <mat-icon>add</mat-icon>
+    </button>
+    
 </mat-card>
 
 <div class="content" fxLayout="row wrap" fxLayoutGap="20px grid">
@@ -22,8 +23,8 @@
                 </p>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-button>Action 1</button>
-                <button mat-button>Action 2</button>
+                <button mat-button>Modifier</button>
+                <button mat-button>Supprimer</button>
             </mat-card-actions>
         </mat-card>
     </div>
