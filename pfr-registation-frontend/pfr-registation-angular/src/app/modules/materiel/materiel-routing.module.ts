@@ -13,7 +13,8 @@ const routes: Routes = [
   {path:'materiel/liste', component:ListeMaterielComponent},
   {path:'materiel/infos', component:InfosMaterielComponent},
   {path:'materiel/ajouter', component:AjouterMaterielComponent},
-  {path:'', component:AccueilMaterielComponent},
+
+  // {path:'', component:AccueilMaterielComponent},
 ];
 
 @NgModule({

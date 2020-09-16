@@ -22,6 +22,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import fr.afpa.projetregistation.dao.IUtilisateurDao;
 import fr.afpa.projetregistation.dto.UtilisateurDto;
+import fr.afpa.projetregistation.dto.UtilisateurSimpleDto;
 import fr.afpa.projetregistation.entity.UtilisateurEntity;
 import fr.afpa.projetregistation.service.IUtilisateurService;
 import fr.afpa.projetregistation.utils.Securite;
@@ -175,15 +176,17 @@ public class UtilisateurServiceImplTest {
 	@Order(4)
 	void getAllUtilisateursTest() {
 
-		List<UtilisateurDto> listeUsers = utilisateurService.getAllUtilisateurs(1);
+		List<UtilisateurSimpleDto> listeUsers = utilisateurService.getAllUtilisateurs(1);
 		assertNotNull(listeUsers);
 		assertNotEquals(0, listeUsers.size());
 		assertNotNull(listeUsers.get(0));
 
 		// CHECK SI DTO EST BIEN RECUP
 		assertEquals("nomEMP", listeUsers.get(0).getNom());
-		assertEquals("rue de l'employé", listeUsers.get(0).getRue());
-		assertEquals(Securite.hashMD5("pwd1"), listeUsers.get(0).getPassword());
+		
+		//Modifs pour que ça compile
+//		assertEquals("rue de l'employé", listeUsers.get(0).getRue());
+//		assertEquals(Securite.hashMD5("pwd1"), listeUsers.get(0).getPassword());
 
 	}
 
