@@ -69,31 +69,3 @@
     </form>
 </div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Id du matériel</th>
-            <th>Référence</th>
-            <th>Marque</th>
-            <th>Modèle</th>
-            <th>Prix d'achat</th>
-            <th>Etat actuel</th>
-            <th>Date d'achat</th>
-            <th>Type de matériel</th>
-            <th>Localisation</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let mat of list_materiel">
-            <td>{{mat.idMat}}</td>
-            <td>{{mat.ref}}</td>
-            <td>{{mat.marque}}</td>
-            <td>{{mat.modele}}</td>
-            <td>{{mat.prix}}</td>
-            <td>{{mat.etat}}</td>
-            <td>{{mat.dateAchat}}</td>
-            <td>{{mat.typeMateriel}}</td>
-            <td>{{mat.localisation}}</td>
-        </tr>
-    </tbody>
-</table>
