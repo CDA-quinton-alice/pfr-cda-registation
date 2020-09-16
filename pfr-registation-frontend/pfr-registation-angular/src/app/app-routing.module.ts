@@ -9,6 +9,7 @@ import { UserListComponent } from './user-list/user-list.component';
 const routes: Routes = [
   { path: 'utilisateur', loadChildren: './modules/utilisateur/utilisateur.module#UtilisateurModule' },
   { path: 'materiel', loadChildren: './modules/materiel/materiel.module#MaterielModule' },
+  { path: 'evenement', loadChildren:'./modules/evenement/evenement.module#EvenementModule'},
 ];
 
 @NgModule({

@@ -14,6 +14,7 @@ import { UserService } from './user-service.service';
 import { FormsModule } from '@angular/forms';
 import { MaterielService } from './services/materiel.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EvenementModule } from './modules/evenement/evenement.module';
 
 
 
@@ -37,7 +38,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MaterielModule,
     SharedModule,
     FormsModule,
-    
+    EvenementModule,
   ],
 
   providers: [UserService, MaterielService],
