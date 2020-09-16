@@ -3,7 +3,7 @@
     <button mat-mini-fab color="warn" id="bouton-ajouter" [routerLink]="'/utilisateur/add'">
         <mat-icon>add</mat-icon>
     </button>
-    
+
 </mat-card>
 
 <div class="content" fxLayout="row wrap" fxLayoutGap="20px grid">
@@ -25,11 +25,11 @@
                     </mat-list-item>
                     <mat-list-item>
                         <mat-icon matPrefix class="icone-info-card">cake</mat-icon>
-                       {{utilisateur.dateDeNaissance}}
+                        {{utilisateur.dateDeNaissance}}
                     </mat-list-item>
                     <mat-list-item>
                         <mat-icon matPrefix class="icone-info-card">alternate_email</mat-icon>
-                       {{utilisateur.mail}}
+                        {{utilisateur.mail}}
                     </mat-list-item>
                     <mat-list-item>
                         <mat-icon matPrefix class="icone-info-card">phone</mat-icon>
@@ -37,36 +37,26 @@
                     </mat-list-item>
                     <mat-list-item>
                         <mat-icon matPrefix class="icone-info-card">euro</mat-icon>
-                       {{utilisateur.salaire}}
+                        {{utilisateur.salaire}}
                     </mat-list-item>
                     <mat-list-item>
                         <mat-icon matPrefix class="icone-info-card">military_tech</mat-icon>
-                      
+
                         <div *ngIf="utilisateur.responsable; else elseBlock"> Responsable</div>
                         <ng-template #elseBlock> Employé</ng-template>
-                        
+
                     </mat-list-item>
-                </mat-list>               
+                </mat-list>
             </mat-card-content>
             <mat-card-actions>
                 <button mat-button>Modifier</button>
-                <button mat-raised-button color="warn">Supprimer</button>
+
+                <form #deleteUtilisateur=ngForm>
+                    <input type="hidden" value="{{utilisateur.matricule}}">
+                <button (click)='supprimerUtilisateur(utilisateur.matricule)' mat-raised-button color="warn" type="submit">Supprimer</button>
+                </form>
+
             </mat-card-actions>
         </mat-card>
     </div>
 </div>
-
-
-<p>test affichage de la liste</p>
-
-<mat-list dense>
-    <mat-list-item *ngFor="let utilisateur of utilisateurs">
-        matricule : {{utilisateur.matricule}} , {{utilisateur.prenom}} , {{utilisateur.nom}} , 
-
-        {{utilisateur.dateDeNaissance | date:'d-M-y'}}
-
-         , {{utilisateur.salaire}} , 
-        {{utilisateur.mail}} , {{utilisateur.tel}} , 
-        {{utilisateur.responsable}} 
-    </mat-list-item>
-</mat-list>
