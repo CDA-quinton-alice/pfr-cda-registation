@@ -1,30 +1,33 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Imateriel } from '../interfaces/imateriel';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MaterielService {
 
-list_materiel: Array<Imateriel>= new Array<Imateriel> ();
+  list_materiel: Array<Imateriel> = new Array<Imateriel>();
 
-url:string = "http://localhost:5555/materiel";
+  private url: string = "http://localhost:8080/materiel";
 
-  constructor(private http: HttpClient) { 
+  formatsDateTest: string[] = ['dd/MM/yyyy'];
+  dateNow: Date = new Date();
 
-this.list_materiel.push({id: 1,ref: 'P002' ,marque: 'Orion' , modele:'Pisto3000' ,prix: 2000 ,etat: 1 ,type_materiel: 'POMPE' ,date_achat: '12-12-2019',localisation: 'Allée 1' });
-this.list_materiel.push({id: 2,ref: 'C003' ,marque: 'Neptune' , modele:'C5000' ,prix: 2500 ,etat: 1 ,type_materiel: 'CUVE' ,date_achat: '12-12-2019',localisation: 'Allée 2' });
-
-
-}
-  getAll(){
-    return this.http.get<Array<Imateriel>>(this.url);
+  constructor(private http: HttpClient) {
   }
 
-  addMateriel(mat: Imateriel){
-    return this.http.post(this.url, mat);
+  public findAll(): Observable<Imateriel[]> {
+    return this.http.get<Imateriel[]>(this.url);
   }
 
+  public findById(id: number): Observable<Imateriel> {
+    return this.http.get<Imateriel>(this.url + "/" + id);
+  }
+
+  public addMateriel(mat: Imateriel) {
+    return this.http.post<Imateriel>(this.url, mat);
+  }
 
 }

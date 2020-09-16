@@ -53,6 +53,17 @@
       "date_achat": "14-09-2020",
       "type_materiel": "Pistolet",
       "localisation": "allée1"
+    },
+    {
+      "id": 44,
+      "ref": "P0001111",
+      "marque": "Vénus",
+      "modele": "P332",
+      "prix": 2112,
+      "etat": 1,
+      "date_achat": "2020-09-01",
+      "type_materiel": "Pompe",
+      "localisation": "allée 4"
     }
   ]
 }

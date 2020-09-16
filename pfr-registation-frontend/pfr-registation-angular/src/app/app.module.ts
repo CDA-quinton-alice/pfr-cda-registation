@@ -40,7 +40,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     
   ],
 
-  providers: [UserService],
+  providers: [UserService, MaterielService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

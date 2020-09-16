@@ -74,16 +74,16 @@ public class MaterielDto {
 	 */
 	private String typeMateriel;
 
-	public MaterielDto(String pRef, String pMarque, String pModele, int pPrix, String pLocalisation, int pEtat,
-			Date pDateAchat, String pTypeMateriel) {
+	public MaterielDto(String pRef, String pMarque, String pModele, int pPrix, int pEtat, 
+			Date pDateAchat, String pTypeMateriel, String pLocalisation ) {
 		this.ref = pRef;
 		this.marque = pMarque;
 		this.modele = pModele;
 		this.prix = pPrix;
-		this.localisation = pLocalisation;
 		this.etat = pEtat;
 		this.dateAchat = pDateAchat;
 		this.typeMateriel = pTypeMateriel;
+		this.localisation = pLocalisation;
 
 	}
 

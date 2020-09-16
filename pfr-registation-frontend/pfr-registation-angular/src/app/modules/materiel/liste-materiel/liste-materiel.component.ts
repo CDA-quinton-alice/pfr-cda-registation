@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Imateriel } from 'src/app/interfaces/imateriel';
+import { MaterielService } from 'src/app/services/materiel.service';
 
 @Component({
   selector: 'app-liste-materiel',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./liste-materiel.component.css']
 })
 export class ListeMaterielComponent implements OnInit {
+ 
+  list_materiel: Array<Imateriel> = [];
 
-  constructor() { }
+  constructor(private materielService: MaterielService) { }
 
   ngOnInit(): void {
+
+    this.materielService.findAll().subscribe(data => {
+      this.list_materiel = data;
+    })
   }
 
+  
 }
