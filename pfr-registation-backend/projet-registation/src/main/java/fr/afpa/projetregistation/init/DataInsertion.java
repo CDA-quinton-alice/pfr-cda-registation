@@ -156,16 +156,47 @@ public class DataInsertion {
 			}
 		}
 		
-		String d3 = "01-09-2020";
-		String d4 = "05-09-2020";
-		Date date3 = null;
-		Date date4 = null;
+//		String d3 = "01-09-2020";
+//		String d4 = "05-09-2020";
+//		Date date3 = null;
+//		Date date4 = null;
+//		diff = 0;
+//		
+//		try {
+//			date3 = sdf.parse(d3);
+//			date4 = sdf.parse(d4);
+//			long mse = date4.getTime()-date3.getTime();
+//			diff = (int)TimeUnit.SECONDS.convert(mse, TimeUnit.MILLISECONDS); 
+//		}catch(ParseException e) {
+//			log.warn("Erreur lors du parsing des dates lors du test unitaire !");
+//		}
+//		
+//		if(optUser.isPresent()) {
+//			UtilisateurEntity user = optUser.get();
+//			EvenementDto ee = EvenementDto.builder().type("Inspection")
+//					.description("test2")
+//					.date_debut(date3)
+//					.date_fin(date4)
+//					.duree(diff)
+//					.user(user).build();
+//			
+//			if(eserv.getByType("Inspection") == null) {
+//				ee = eserv.create(ee);
+//			}else {
+//				log.info("Inspection n'a été ajouté !");
+//			}
+//		}  
+		
+		String d5 = "14-09-2020";
+		String d6 = "01-01-2021";
+		Date date5 = null;
+		Date date6 = null;
 		diff = 0;
 		
 		try {
-			date3 = sdf.parse(d3);
-			date4 = sdf.parse(d4);
-			long mse = date4.getTime()-date3.getTime();
+			date5 = sdf.parse(d5);
+			date6 = sdf.parse(d6);
+			long mse = date6.getTime()-date5.getTime();
 			diff = (int)TimeUnit.SECONDS.convert(mse, TimeUnit.MILLISECONDS); 
 		}catch(ParseException e) {
 			log.warn("Erreur lors du parsing des dates lors du test unitaire !");
@@ -174,9 +205,9 @@ public class DataInsertion {
 		if(optUser.isPresent()) {
 			UtilisateurEntity user = optUser.get();
 			EvenementDto ee = EvenementDto.builder().type("Inspection")
-					.description("test2")
-					.date_debut(date3)
-					.date_fin(date4)
+					.description("test3")
+					.date_debut(date5)
+					.date_fin(date6)
 					.duree(diff)
 					.user(user).build();
 			
