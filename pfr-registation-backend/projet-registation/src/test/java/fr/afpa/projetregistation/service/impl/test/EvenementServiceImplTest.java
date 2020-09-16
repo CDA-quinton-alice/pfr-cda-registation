@@ -22,6 +22,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import fr.afpa.projetregistation.dao.IUtilisateurDao;
 import fr.afpa.projetregistation.dto.EvenementDto;
+import fr.afpa.projetregistation.dto.UtilisateurSimpleDto;
 import fr.afpa.projetregistation.entity.EvenementEntity;
 import fr.afpa.projetregistation.entity.UtilisateurEntity;
 import fr.afpa.projetregistation.service.IEvenementService;
@@ -66,12 +67,18 @@ public class EvenementServiceImplTest {
 
 		if(optUser.isPresent()) {
 			UtilisateurEntity user = optUser.get();
+
+			UtilisateurSimpleDto user2 = UtilisateurSimpleDto.builder().matricule(user.getMatricule())
+					.nom(user.getNom()).prenom(user.getPrenom()).dateDeNaissance(user.getDateDeNaissance())
+					.salaire(user.getSalaire()).mail(user.getMail()).tel(user.getTel())
+					.responsable(user.isResponsable()).build();
+			
 			EvenementDto ee = EvenementDto.builder().type("Panne")
 					.description("test1")
 					.date_debut(date1)
 					.date_fin(date2)
 					.duree(diff)
-					.user(user).build();
+					.user(user2).build();
 			
 			assertNotNull(ee);
 			

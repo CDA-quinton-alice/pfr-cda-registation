@@ -10,8 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.afpa.projetregistation.dao.IEvenementDao;
+import fr.afpa.projetregistation.dao.IUtilisateurDao;
 import fr.afpa.projetregistation.dto.EvenementDto;
+import fr.afpa.projetregistation.dto.UtilisateurSimpleDto;
 import fr.afpa.projetregistation.entity.EvenementEntity;
+import fr.afpa.projetregistation.entity.UtilisateurEntity;
 import fr.afpa.projetregistation.service.IEvenementService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,6 +30,9 @@ public class EvenementServiceImpl implements IEvenementService{
 
 	@Autowired
 	IEvenementDao edao;
+
+	@Autowired
+	IUtilisateurDao udao;
 	
 	/**
 	 * Récupère la liste complète des évènements
@@ -40,6 +46,10 @@ public class EvenementServiceImpl implements IEvenementService{
 		List<EvenementDto> list = new ArrayList<>(); 
 		while(it.hasNext()) {
 			EvenementEntity ee = it.next();
+			UtilisateurSimpleDto user = UtilisateurSimpleDto.builder().matricule(ee.getUser().getMatricule())
+					.nom(ee.getUser().getNom()).prenom(ee.getUser().getPrenom()).dateDeNaissance(ee.getUser().getDateDeNaissance())
+					.salaire(ee.getUser().getSalaire()).mail(ee.getUser().getMail()).tel(ee.getUser().getTel())
+					.responsable(ee.getUser().isResponsable()).build();
 			
 			//A MODIFIER POUR INCLURE L'UTILISATEUR
 			list.add(new EvenementDto(ee.getId(),
@@ -48,7 +58,7 @@ public class EvenementServiceImpl implements IEvenementService{
 						ee.getDate_debut(),
 						ee.getDate_fin(),
 						ee.getDuree(),
-						ee.getUser()
+						user
 					));
 		}
 		
@@ -69,6 +79,11 @@ public class EvenementServiceImpl implements IEvenementService{
 		Optional<EvenementEntity> optEE = edao.findById(id);
 		if(optEE.isPresent()) {
 			EvenementEntity ee = optEE.get();
+			UtilisateurSimpleDto user = UtilisateurSimpleDto.builder().matricule(ee.getUser().getMatricule())
+					.nom(ee.getUser().getNom()).prenom(ee.getUser().getPrenom()).dateDeNaissance(ee.getUser().getDateDeNaissance())
+					.salaire(ee.getUser().getSalaire()).mail(ee.getUser().getMail()).tel(ee.getUser().getTel())
+					.responsable(ee.getUser().isResponsable()).build();
+			
 			EvenementDto edto = EvenementDto.builder()
 									.id(ee.getId())
 									.type(ee.getType())
@@ -76,7 +91,7 @@ public class EvenementServiceImpl implements IEvenementService{
 									.date_debut(ee.getDate_debut())
 									.date_fin(ee.getDate_fin())
 									.duree(ee.getDuree())
-									.user(ee.getUser()).build();
+									.user(user).build();
 			return edto;
 		}else {
 			return null;
@@ -99,7 +114,10 @@ public class EvenementServiceImpl implements IEvenementService{
 		List<EvenementDto> list = new ArrayList<>(); 
 		while(it.hasNext()) {
 			EvenementEntity ee = it.next();
-			
+			UtilisateurSimpleDto user = UtilisateurSimpleDto.builder().matricule(ee.getUser().getMatricule())
+					.nom(ee.getUser().getNom()).prenom(ee.getUser().getPrenom()).dateDeNaissance(ee.getUser().getDateDeNaissance())
+					.salaire(ee.getUser().getSalaire()).mail(ee.getUser().getMail()).tel(ee.getUser().getTel())
+					.responsable(ee.getUser().isResponsable()).build();
 			//A MODIFIER POUR INCLURE L'UTILISATEUR
 			list.add(new EvenementDto(ee.getId(),
 						ee.getType(),
@@ -107,7 +125,7 @@ public class EvenementServiceImpl implements IEvenementService{
 						ee.getDate_debut(),
 						ee.getDate_fin(),
 						ee.getDuree(),
-						ee.getUser()
+						user
 					));
 		}
 		
@@ -130,7 +148,10 @@ public class EvenementServiceImpl implements IEvenementService{
 		List<EvenementDto> list = new ArrayList<>(); 
 		while(it.hasNext()) {
 			EvenementEntity ee = it.next();
-			
+			UtilisateurSimpleDto user = UtilisateurSimpleDto.builder().matricule(ee.getUser().getMatricule())
+					.nom(ee.getUser().getNom()).prenom(ee.getUser().getPrenom()).dateDeNaissance(ee.getUser().getDateDeNaissance())
+					.salaire(ee.getUser().getSalaire()).mail(ee.getUser().getMail()).tel(ee.getUser().getTel())
+					.responsable(ee.getUser().isResponsable()).build();
 			//A MODIFIER POUR INCLURE L'UTILISATEUR
 			list.add(new EvenementDto(ee.getId(),
 						ee.getType(),
@@ -138,7 +159,7 @@ public class EvenementServiceImpl implements IEvenementService{
 						ee.getDate_debut(),
 						ee.getDate_fin(),
 						ee.getDuree(),
-						ee.getUser()
+						user
 					));
 		}
 		
@@ -161,6 +182,10 @@ public class EvenementServiceImpl implements IEvenementService{
 		List<EvenementDto> list = new ArrayList<>(); 
 		while(it.hasNext()) {
 			EvenementEntity ee = it.next();
+			UtilisateurSimpleDto user = UtilisateurSimpleDto.builder().matricule(ee.getUser().getMatricule())
+					.nom(ee.getUser().getNom()).prenom(ee.getUser().getPrenom()).dateDeNaissance(ee.getUser().getDateDeNaissance())
+					.salaire(ee.getUser().getSalaire()).mail(ee.getUser().getMail()).tel(ee.getUser().getTel())
+					.responsable(ee.getUser().isResponsable()).build();
 			
 			//A MODIFIER POUR INCLURE L'UTILISATEUR
 			list.add(new EvenementDto(ee.getId(),
@@ -169,7 +194,7 @@ public class EvenementServiceImpl implements IEvenementService{
 						ee.getDate_debut(),
 						ee.getDate_fin(),
 						ee.getDuree(),
-						ee.getUser()
+						user
 					));
 		}
 		
@@ -187,16 +212,23 @@ public class EvenementServiceImpl implements IEvenementService{
 	@Override
 	public EvenementDto create(EvenementDto evenement) {
 		log.info("Ajout d'un évènement en base de donnée : "+evenement);
+
+		UtilisateurEntity ue = udao.findById(evenement.getUser().getMatricule()).get();
+		
 		EvenementEntity ee = EvenementEntity.builder() 
 				.type(evenement.getType())
 				.description(evenement.getDescription())
 				.date_debut(evenement.getDate_debut())
 				.date_fin(evenement.getDate_fin())
 				.duree(evenement.getDuree())
-				.user(evenement.getUser())
+				.user(ue)
 				.build();
 		
 		ee = edao.save(ee);
+		UtilisateurSimpleDto user = UtilisateurSimpleDto.builder().matricule(ee.getUser().getMatricule())
+				.nom(ee.getUser().getNom()).prenom(ee.getUser().getPrenom()).dateDeNaissance(ee.getUser().getDateDeNaissance())
+				.salaire(ee.getUser().getSalaire()).mail(ee.getUser().getMail()).tel(ee.getUser().getTel())
+				.responsable(ee.getUser().isResponsable()).build();
 		EvenementDto edto = EvenementDto.builder()
 								.id(ee.getId())
 								.type(ee.getType())
@@ -204,7 +236,7 @@ public class EvenementServiceImpl implements IEvenementService{
 								.date_debut(ee.getDate_debut())
 								.date_fin(ee.getDate_fin())
 								.duree(ee.getDuree())
-								.user(ee.getUser())
+								.user(user)
 								.build();
 		return edto;
 	}
@@ -218,6 +250,9 @@ public class EvenementServiceImpl implements IEvenementService{
 	@Override
 	public EvenementDto update(EvenementDto evenement) {
 		log.info("Update d'un évènement en base de donnée"+evenement);
+
+		UtilisateurEntity ue = udao.findById(evenement.getUser().getMatricule()).get();
+		
 		EvenementEntity ee = EvenementEntity.builder()
 				.id(evenement.getId())
 				.type(evenement.getType())
@@ -225,10 +260,14 @@ public class EvenementServiceImpl implements IEvenementService{
 				.date_debut(evenement.getDate_debut())
 				.date_fin(evenement.getDate_fin())
 				.duree(evenement.getDuree())
-				.user(evenement.getUser())
+				.user(ue)
 				.build();
 		
 		edao.save(ee);
+		UtilisateurSimpleDto user = UtilisateurSimpleDto.builder().matricule(ee.getUser().getMatricule())
+				.nom(ee.getUser().getNom()).prenom(ee.getUser().getPrenom()).dateDeNaissance(ee.getUser().getDateDeNaissance())
+				.salaire(ee.getUser().getSalaire()).mail(ee.getUser().getMail()).tel(ee.getUser().getTel())
+				.responsable(ee.getUser().isResponsable()).build();
 		EvenementDto edto = EvenementDto.builder()
 								.id(ee.getId())
 								.type(ee.getType())
@@ -236,7 +275,7 @@ public class EvenementServiceImpl implements IEvenementService{
 								.date_debut(ee.getDate_debut())
 								.date_fin(ee.getDate_fin())
 								.duree(ee.getDuree())
-								.user(ee.getUser())
+								.user(user)
 								.build();
 		return edto;
 	}
@@ -249,6 +288,9 @@ public class EvenementServiceImpl implements IEvenementService{
 	@Override
 	public void delete(EvenementDto evenement) {
 		log.info("Supression d'un évènement en base de donnée"+evenement);
+		
+		UtilisateurEntity ue = udao.findById(evenement.getUser().getMatricule()).get();
+		
 		EvenementEntity ee = EvenementEntity.builder()
 				.id(evenement.getId())
 				.type(evenement.getType())
@@ -256,7 +298,7 @@ public class EvenementServiceImpl implements IEvenementService{
 				.date_debut(evenement.getDate_debut())
 				.date_fin(evenement.getDate_fin())
 				.duree(evenement.getDuree())
-				.user(evenement.getUser())
+				.user(ue)
 				.build();
 		
 		edao.delete(ee);
