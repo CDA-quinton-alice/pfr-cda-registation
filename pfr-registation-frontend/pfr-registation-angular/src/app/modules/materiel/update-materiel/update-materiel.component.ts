@@ -4,15 +4,17 @@ import { Imateriel } from 'src/app/interfaces/imateriel';
 import { MaterielService } from 'src/app/services/materiel.service';
 
 @Component({
-  selector: 'app-infos-materiel',
-  templateUrl: './infos-materiel.component.html',
-  styleUrls: ['./infos-materiel.component.css']
+  selector: 'app-update-materiel',
+  templateUrl: './update-materiel.component.html',
+  styleUrls: ['./update-materiel.component.css']
 })
-export class InfosMaterielComponent implements OnInit {
+export class UpdateMaterielComponent implements OnInit {
+
   materiel: Imateriel = {};
   idMat: number;
+
   constructor(private route: ActivatedRoute,
-    private router: Router,private materielService: MaterielService) { }
+    private router: Router, private materielService: MaterielService) { }
 
   ngOnInit(): void {
   }
@@ -22,13 +24,16 @@ export class InfosMaterielComponent implements OnInit {
     this.materielService.findById(idMat).subscribe(res => {
       this.materiel = res;
     });
-  }
 
-  deleteMateriel(idMat: number){
-    this.materielService.deleteMateriel(idMat).subscribe(result => this.gotoMaterielList()); 
   }
+   
+   updateMateriel(){
+     console.log(this.materiel);
+      this.materielService.updateMateriel(this.materiel).subscribe(result => this.gotoMaterielList());
+    }
 
   gotoMaterielList() {
-    this.router.navigate(['/materiel/liste']);
-  }
+      this.router.navigate(['/materiel/liste']);
+    }
+
 }

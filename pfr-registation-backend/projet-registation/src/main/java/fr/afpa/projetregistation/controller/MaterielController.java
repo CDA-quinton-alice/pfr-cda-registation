@@ -48,8 +48,19 @@ public class MaterielController {
 	}
 	
 	@PostMapping("/materiel")
-    public void addUser(@RequestBody MaterielDto pMat) {
+    public void addMateriel(@RequestBody MaterielDto pMat) {
 		materielService.create(pMat);       
+    }
+	
+	@PostMapping("/materiel/{pId}/delete")
+    public void deleteMateriel(@PathVariable (value="pId") int pId) {
+		materielService.deleteById(pId);       
+    }
+	
+	@PostMapping("/materiel/update")
+    public void updateMateriel(@RequestBody MaterielDto pMat) {
+		System.out.println(pMat);
+		materielService.updateByRef(pMat.getRef(), pMat);       
     }
 	
 }

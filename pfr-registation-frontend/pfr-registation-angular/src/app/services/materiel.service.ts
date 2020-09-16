@@ -30,5 +30,12 @@ export class MaterielService {
     return this.http.post<Imateriel>(this.url, mat);
   }
 
-  
+  public deleteMateriel(id: number) {
+   return this.http.post<Imateriel>(this.url + "/" + id + "/delete", id);
+  }
+
+
+  public updateMateriel(mat:Imateriel){
+    return this.http.post<Imateriel>(this.url  + "/update",  mat);
+  }
 }

@@ -22,8 +22,6 @@ import { MaterielService } from './services/materiel.service';
     AppComponent,
     UserListComponent,
     UserFormComponent,
-   
-   
   ],
 
   imports: [
