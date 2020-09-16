@@ -10,22 +10,48 @@ import { UtilisateurService } from '../services/utilisateur.service';
   styleUrls: ['./utilisateur-form.component.css']
 })
 export class UtilisateurFormComponent implements OnInit {
-  utilisateur: Utilisateur = {};
+  utilisateur: Utilisateur;
   utilisateurs: Array<Utilisateur> = [];
 
-  constructor(private utilisateurService: UtilisateurService) { }
-  
+  utilisateurForm = this.fb.group({
+    matricule: ['', Validators.required],
+    nom: ['', Validators.required],
+    prenom: ['', Validators.required],
+    dateDeNaissance: ['', Validators.required],
+    salaire: ['', Validators.required],
+    mail: ['', Validators.required],
+    tel: ['', Validators.required],
+    responsable: ['', Validators.required]
+
+
+
+
+
+
+  });
+
+
+  constructor(private utilisateurService: UtilisateurService,
+    private fb: FormBuilder) {
+  }
+
   ngOnInit() {
-    this.utilisateurService.getAll().subscribe(res => {
+    this.utilisateurService.findAll().subscribe(res => {
       this.utilisateurs = res;
     });
   }
   ajouterUtilisateur() {
-    this.utilisateurService.ajoutUtilisateur(this.utilisateur).subscribe(res => {
+    this.utilisateurService.save(this.utilisateur).subscribe(res => {
       console.log(res);
-      this.utilisateurService.getAll().subscribe(result => {
+      this.utilisateurService.findAll().subscribe(result => {
         this.utilisateurs = result;
       });
     });
   }
+
+  afficherUser() {
+    console.log("COUCOUCOU");
+
+  }
+
 }
