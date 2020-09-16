@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Imateriel } from 'src/app/interfaces/imateriel';
 import { MaterielService } from 'src/app/services/materiel.service';
-import { InfosMaterielComponent } from '../infos-materiel/infos-materiel.component';
+
 
 @Component({
   selector: 'app-ajouter-materiel',
@@ -20,7 +20,7 @@ export class AjouterMaterielComponent {
     private router: Router, private materielService: MaterielService) { }
 
   addMateriel() {
-    console.log(this.materiel);
+
       this.materielService.addMateriel(this.materiel).subscribe(result => this.gotoMaterielList());
     
   }

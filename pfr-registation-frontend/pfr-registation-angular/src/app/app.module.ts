@@ -13,7 +13,7 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { UserService } from './user-service.service';
 import { FormsModule } from '@angular/forms';
 import { MaterielService } from './services/materiel.service';
-import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 
@@ -24,8 +24,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
     UserListComponent,
     UserFormComponent,
-   
-   
   ],
 
   imports: [
