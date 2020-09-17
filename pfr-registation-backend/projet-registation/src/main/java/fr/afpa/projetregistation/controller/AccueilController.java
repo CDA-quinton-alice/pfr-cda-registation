@@ -66,8 +66,8 @@ public class AccueilController {
 			e.printStackTrace();
 		} 
 		List<EvenementDto> listEvent = eserv.getByDate(deb, fin);
+		
 		Gson gson = new Gson();
-		String json = gson.toJson(listEvent);
 		Map<String,Object> res2 = new HashMap<>();
 		res2.put("calendrier",cal);
 		res2.put("titre",Calendrier.localizeMonth(ym.getMonthValue()));
