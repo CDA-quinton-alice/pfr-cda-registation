@@ -12,7 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 @NgModule({
@@ -26,7 +26,7 @@ import {MatIconModule} from '@angular/material/icon';
     ReactiveFormsModule,
     MatButtonModule,
     MatIconModule,
-
+    MatTabsModule
   ]
 })
 export class MaterielModule { }
