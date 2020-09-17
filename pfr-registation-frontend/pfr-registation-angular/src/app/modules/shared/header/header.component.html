@@ -23,7 +23,7 @@
   <mat-sidenav #sidenav>
     <mat-nav-list>
 
-      <!-- attention aux liens a qui rechargent la page a remplacer par button -->
+
       <a mat-list-item [routerLink]="'/utilisateur'" (click)="sidenav.close()"><mat-icon class="icone-side" >dashboard</mat-icon>Tableau de bord</a>
       <a mat-list-item [routerLink]="'/agenda'" (click)="sidenav.close()"><mat-icon class="icone-side" >today</mat-icon>Agenda</a>
       <a mat-list-item [routerLink]="'/document'" (click)="sidenav.close()"><mat-icon class="icone-side" >description</mat-icon>Documents</a>
@@ -35,7 +35,6 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <div  style="height: 95vh;width: 95%;">
-      <!-- <img src="/assets/images/logo-big2.png" alt="logo-big" id="logo-big"> -->
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
