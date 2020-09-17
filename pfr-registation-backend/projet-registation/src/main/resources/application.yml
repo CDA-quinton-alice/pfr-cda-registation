@@ -14,21 +14,22 @@ spring:
     driver-class-name: org.mariadb.jdbc.Driver
     
   jpa:
-    hibernate:      ddl-auto: update    show-sql: true
+    hibernate:      ddl-auto: update    show-sql: false
     
 
   mail:
     default-encoding: UTF-8
     host: smtp.gmail.com
     username: registationcdatest@gmail.com
-    password: bvrqpkjoquzrrysc #app password generated mathieu
-    port: 587
+    password: bvrqpkjoquzrrysc #ressortir le username et password avec -D
+    port: 587 #Attention port peut être fermé AFPA vers outside faire test avec partage de données 
     properties:
       mail:
         smtp:
           auth: true
           starttls:
             enable: true
+          ssl.trust: smtp.gmail.com
     protocol: smtp
     test-connection: false
   

@@ -45,5 +45,9 @@ public interface IUtilisateurService {
 
 	public boolean authentification(String login, String motdepasse);
 
+	public void contactUs(String pEmail);
+
+	
+
 //	public boolean validerEvenement(EvenementEntity pEvent);
 }
