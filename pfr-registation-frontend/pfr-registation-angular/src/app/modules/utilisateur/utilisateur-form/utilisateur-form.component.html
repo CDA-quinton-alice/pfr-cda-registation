@@ -1,4 +1,3 @@
-<p>utilisateur-form works!</p>
 <mat-card class="ajout-utilisateur-form">
 
   <form [formGroup]="utilisateurForm" (ngSubmit)="ajouterUtilisateur()">
@@ -95,12 +94,9 @@
       <mat-icon matPrefix class="icone-info-card">home</mat-icon>
       <mat-label>pays</mat-label>
       <input matInput type="text" formControlName="pays">
-    </mat-form-field>
+    </mat-form-field><br>
 
-    <button mat-raised-button [disabled]="!utilisateurForm.valid" type="submit">Sign In</button>
+    <button mat-raised-button [disabled]="!utilisateurForm.valid" type="submit" class="bouton-ajouter">Ajouter</button>
   </form>
-
-
-
 
 </mat-card>
