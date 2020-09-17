@@ -15,6 +15,22 @@ spring:
     
   jpa:
     hibernate:      ddl-auto: update    show-sql: true
+    
+
+  mail:
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    username: registationcdatest@gmail.com
+    password: bvrqpkjoquzrrysc #app password generated mathieu
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    protocol: smtp
+    test-connection: false
   
   
   
