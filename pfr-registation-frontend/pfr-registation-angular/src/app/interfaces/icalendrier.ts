@@ -5,5 +5,5 @@ export interface Icalendrier {
     current?:Icurrent;
     calendrier?: Array<string>;
     titre?: string;
-    events?:Array<Ievent>;
+    event?:Array<Ievent>; 
 }

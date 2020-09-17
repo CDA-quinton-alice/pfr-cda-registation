@@ -14,7 +14,6 @@ export class EvenementService {
   constructor(private http: HttpClient) { }
 
   public findByYearMonth(year: number, month: number, action:string): Observable<Icalendrier> {
-    console.log(this.url+"/"+year+"/"+month+"/"+action);
     if(action.length<=1){
       return this.http.get<Icalendrier>(this.url+"/"+year+"/"+month+"/"+action);
     }

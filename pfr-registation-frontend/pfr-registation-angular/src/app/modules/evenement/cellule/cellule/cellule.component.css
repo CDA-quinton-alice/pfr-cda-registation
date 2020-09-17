@@ -1,0 +1,32 @@
+.cellule{
+	height:6.5rem;
+    text-align: center;
+    font-size:0.7rem;
+}
+.cellule-tete{
+	height:7rem;
+    text-align: center;
+    font-size:0.7rem;
+}
+.cellule .tete, .cellule .jourC, .cellule-tete .tete, .cellule-tete .jourC{
+    padding:0 0 0 0;
+    height:1rem;
+    font-size: 0.8rem;
+}
+.tete{
+    display:inline-block;
+}   
+.no-tete{
+    display:none;
+}  
+.jourC{
+    padding-top:0.3rem;
+    display:inline-block;
+}
+.ev{
+    height:1.2rem;
+    width:100%;
+    padding:0 0 0 0;
+    font-size:0.7rem;
+    display:inline-block;
+}

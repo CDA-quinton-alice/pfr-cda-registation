@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AgendaComponent } from './agenda/agenda.component';
+import { CelluleComponent } from './cellule/cellule/cellule.component';
 
 const routes: Routes = [
-  {path:'', component:AgendaComponent}
+  {path:'', component:AgendaComponent},
+  {path:'cellule', component:CelluleComponent}
 ];
 
 @NgModule({

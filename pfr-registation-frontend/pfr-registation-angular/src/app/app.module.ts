@@ -22,10 +22,8 @@ import { EvenementModule } from './modules/evenement/evenement.module';
 @NgModule({
   declarations: [
     AppComponent,
-
     UserListComponent,
     UserFormComponent,
-   
    
   ],
 
