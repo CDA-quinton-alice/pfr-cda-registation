@@ -4,10 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.afpa.projetregistation.dao.IUtilisateurDao;
+import fr.afpa.projetregistation.dto.MaterielDto;
 import fr.afpa.projetregistation.dto.UtilisateurDto;
 import fr.afpa.projetregistation.dto.UtilisateurSimpleDto;
 import fr.afpa.projetregistation.entity.UtilisateurEntity;
@@ -55,4 +60,14 @@ public class UtilisateurController {
         return (List<UtilisateurSimpleDto>) utilisateurService.getAllUtilisateurs(1);
     }
 
+	@PostMapping("/utilisateurtest")
+    public void addUser(@RequestBody UtilisateurDto pUtilisateur) {
+		utilisateurService.create(pUtilisateur);       
+    }	
+	
+	@DeleteMapping("/utilisateurtest/{matriculeToDelete}")
+	public void supprimerUtilisateur(@PathVariable (value="matriculeToDelete") String pMatriculeToDelete) {
+		utilisateurService.deleteUtilisateurByMatricule(pMatriculeToDelete);
+	}
+	
 }

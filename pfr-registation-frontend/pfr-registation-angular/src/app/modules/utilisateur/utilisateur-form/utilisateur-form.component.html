@@ -1,87 +1,102 @@
-<p>utilisateur-form works!</p>
 <mat-card class="ajout-utilisateur-form">
-  <mat-card-header>
-    <mat-card-title>Ajouter un collaborateur</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
 
-    <!-- <form #addForm=ngForm id="add-formulaire">
-      <mat-form-field>
-        <input matInput placeholder="matricule" [(ngModel)]="utilisateur.matricule" type="text" name="matricule" required #matricule=ngModel>
-      </mat-form-field><br>
-      <mat-form-field>
-        <input matInput placeholder="prenom" [(ngModel)]="utilisateur.prenom" type="text" name="prenom" required>
-      </mat-form-field><br>
-      <mat-form-field>
-        <input matInput placeholder="tel" [(ngModel)]="utilisateur.nom" type="text" name="nom" required>
-      </mat-form-field><br>
-      <mat-form-field>
-        <input matInput placeholder="date de naissance" [(ngModel)]="utilisateur.dateDeNaissance" type="date" name="dateDeNaissance" required>
-      </mat-form-field><br>
-      <mat-form-field>
-        <input matInput placeholder="salaire" [(ngModel)]="utilisateur.salaire" type="number" name="number" required>
-      </mat-form-field><br>
-      <mat-form-field>
-        <input matInput placeholder="email" [(ngModel)]="utilisateur.mail" type="email" name="email" required>
-      </mat-form-field><br>
-      <mat-form-field appearance="fill">
-        <mat-label>HALOOOOOOOO !</mat-label>
-        <mat-select>
-          <mat-option value="option">Option</mat-option>
-        </mat-select>
-      </mat-form-field><br>
-    </form> -->
+  <form [formGroup]="utilisateurForm" (ngSubmit)="ajouterUtilisateur()">
+    <mat-form-field appearance="legacy">
+      <mat-label>Matricule</mat-label>
+      <mat-icon matPrefix class="icone-info-card">fingerprint</mat-icon>
+      <input matInput type="text" formControlName="matricule">
+    </mat-form-field>
 
-    <form [formGroup]="utilisateurForm" (ngSubmit)='afficherUser()'>
+    <mat-form-field appearance="legacy">
+      <mat-icon matPrefix class="icone-info-card">alternate_email</mat-icon>
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="mail">
+    </mat-form-field>
 
-      <mat-form-field appearance="legacy">
-        <mat-label>Matricule</mat-label>
-        <mat-icon matPrefix class="icone-info-card">fingerprint</mat-icon>
-        <input matInput type="text" formControlName="matricule">
-      </mat-form-field>
-      <mat-form-field appearance="legacy">
-        <mat-icon matPrefix class="icone-info-card">alternate_email</mat-icon>
-        <mat-label>Email</mat-label>
-        <input matInput type="email" formControlName="mail">
-      </mat-form-field>
-      <mat-form-field appearance="legacy">
-        <mat-icon matPrefix class="icone-info-card">face</mat-icon>
-        <mat-label>Nom</mat-label>
-        <input matInput type="text" formControlName="nom">
-      </mat-form-field>
-      <mat-form-field appearance="legacy">
-        <mat-icon matPrefix class="icone-info-card">face</mat-icon>
-        <mat-label>Prénom</mat-label>
-        <input matInput type="text" formControlName="prenom">
-      </mat-form-field>
-      <mat-form-field appearance="legacy">
-        <mat-icon matPrefix class="icone-info-card">cake</mat-icon>
-        <mat-label>Date de Naissance</mat-label>
-        <input matInput type="date" formControlName="dateDeNaissance">
-      </mat-form-field>
-      <mat-form-field appearance="legacy">
-        <mat-icon matPrefix class="icone-info-card">euro</mat-icon>
-        <mat-label>Salaire</mat-label>
-        <input matInput type="number" formControlName="salaire">
-      </mat-form-field>
-      <mat-form-field appearance="legacy">
-        <mat-icon matPrefix class="icone-info-card">phone</mat-icon>
-        <mat-label>Téléphone</mat-label>
-        <input matInput type="text" formControlName="tel">
-      </mat-form-field>
-      <mat-form-field appearance="legacy">
-        <mat-icon matPrefix class="icone-info-card">military_tech</mat-icon>
-        <mat-label>Statut</mat-label>
-        <mat-select formControlName="responsable" >
-          <mat-option value="false">Employé</mat-option>
-          <mat-option value="true">Responsable</mat-option>
-        </mat-select>
-      </mat-form-field><br>
+    <mat-form-field appearance="legacy">
+      <mat-label>Mot de passe</mat-label>
+      <mat-icon matPrefix class="icone-info-card">lock</mat-icon>
+      <input matInput type="password" formControlName="password">
+    </mat-form-field>
 
-    </form>
+    <mat-form-field appearance="legacy">
+      <mat-icon matPrefix class="icone-info-card">face</mat-icon>
+      <mat-label>Nom</mat-label>
+      <input matInput type="text" formControlName="nom">
+    </mat-form-field>
 
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button type="submit" color="primary" [disabled]='utilisateurForm.invalid'>Ajouter</button>
-  </mat-card-actions>
+    <mat-form-field appearance="legacy">
+      <mat-icon matPrefix class="icone-info-card">face</mat-icon>
+      <mat-label>Prénom</mat-label>
+      <input matInput type="text" formControlName="prenom">
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <mat-icon matPrefix class="icone-info-card">cake</mat-icon>
+      <mat-label>Date de Naissance</mat-label>
+      <input matInput type="date" formControlName="dateDeNaissance">
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <mat-icon matPrefix class="icone-info-card">euro</mat-icon>
+      <mat-label>Salaire</mat-label>
+      <input matInput type="number" formControlName="salaire">
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <mat-icon matPrefix class="icone-info-card">phone</mat-icon>
+      <mat-label>Téléphone</mat-label>
+      <input matInput type="text" formControlName="tel">
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <mat-icon matPrefix class="icone-info-card">military_tech</mat-icon>
+      <mat-label>Statut</mat-label>
+      <mat-select formControlName="responsable">
+        <mat-option [value]=false>Employé</mat-option>
+        <mat-option [value]=true>Responsable</mat-option>
+      </mat-select>
+    </mat-form-field><br>
+
+    <h2>Adresse : </h2>
+
+    <mat-form-field appearance="legacy">
+      <mat-icon matPrefix class="icone-info-card">home</mat-icon>
+      <mat-label>Numéro</mat-label>
+      <input matInput type="number" formControlName="numero">
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <mat-icon matPrefix class="icone-info-card">home</mat-icon>
+      <mat-label>Rue</mat-label>
+      <input matInput type="text" formControlName="rue">
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <mat-icon matPrefix class="icone-info-card">home</mat-icon>
+      <mat-label>Complément</mat-label>
+      <input matInput type="text" formControlName="complement">
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <mat-icon matPrefix class="icone-info-card">home</mat-icon>
+      <mat-label>Code Postal</mat-label>
+      <input matInput type="text" formControlName="codePostal">
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <mat-icon matPrefix class="icone-info-card">home</mat-icon>
+      <mat-label>Ville</mat-label>
+      <input matInput type="text" formControlName="ville">
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <mat-icon matPrefix class="icone-info-card">home</mat-icon>
+      <mat-label>pays</mat-label>
+      <input matInput type="text" formControlName="pays">
+    </mat-form-field><br>
+
+    <button mat-raised-button [disabled]="!utilisateurForm.valid" type="submit" class="bouton-ajouter">Ajouter</button>
+  </form>
+
 </mat-card>
