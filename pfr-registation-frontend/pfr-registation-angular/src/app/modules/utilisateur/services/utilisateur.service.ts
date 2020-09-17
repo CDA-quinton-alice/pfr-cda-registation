@@ -19,5 +19,8 @@ export class UtilisateurService {
   save(utilisateur: Utilisateur) {
     return this.http.post<Utilisateur>(this.url, utilisateur);
   }
+  supprimerUtilisateur(matricule: string) {
+    return this.http.delete<Utilisateur>(this.url + "/" + matricule);
+  }
 }
 

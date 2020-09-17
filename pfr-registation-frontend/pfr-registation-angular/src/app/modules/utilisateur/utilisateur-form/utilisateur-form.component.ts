@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Utilisateur } from '../interfaces/utilisateur';
 import { UtilisateurService } from '../services/utilisateur.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -10,29 +11,37 @@ import { UtilisateurService } from '../services/utilisateur.service';
   styleUrls: ['./utilisateur-form.component.css']
 })
 export class UtilisateurFormComponent implements OnInit {
-  utilisateur: Utilisateur;
+  utilisateur: Utilisateur = {};
   utilisateurs: Array<Utilisateur> = [];
-
-  utilisateurForm = this.fb.group({
-    matricule: ['', Validators.required],
-    nom: ['', Validators.required],
-    prenom: ['', Validators.required],
-    dateDeNaissance: ['', Validators.required],
-    salaire: ['', Validators.required],
-    mail: ['', Validators.required],
-    tel: ['', Validators.required],
-    responsable: ['', Validators.required]
-
-
-
-
-
-
-  });
-
+  utilisateurForm: FormGroup;
 
   constructor(private utilisateurService: UtilisateurService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder, private route: ActivatedRoute,
+    private router: Router) {
+    this.initForm();
+  }
+
+//Vérification des inputs saisis restent à faire
+  initForm(): void {
+    this.utilisateurForm = this.fb.group({
+      matricule: ['TEST001', Validators.required],
+      nom: ['AMB', Validators.required],
+      prenom: ['MAT', Validators.required],
+      dateDeNaissance: ['15-01-1999', Validators.required],
+      salaire: ['1', Validators.required],
+      mail: ['mat@gmail.com', Validators.required],
+      tel: ['0707070707', Validators.required],
+      responsable: ['', Validators.required],
+
+      password: ['aze', Validators.required],
+
+      numero: ['2', Validators.required],
+      rue: ['rue du chat', Validators.required],
+      complement: ['complement', Validators.required],
+      codePostal: ['59000', Validators.required],
+      ville: ['LILLE', Validators.required],
+      pays: ['FRANCE', Validators.required]
+    });
   }
 
   ngOnInit() {
@@ -41,17 +50,14 @@ export class UtilisateurFormComponent implements OnInit {
     });
   }
   ajouterUtilisateur() {
-    this.utilisateurService.save(this.utilisateur).subscribe(res => {
-      console.log(res);
-      this.utilisateurService.findAll().subscribe(result => {
-        this.utilisateurs = result;
-      });
-    });
+    this.utilisateur = <Utilisateur> this.utilisateurForm.value;
+    console.log(this.utilisateurForm.value);
+    console.log(this.utilisateur);
+        
+    this.utilisateurService.save(this.utilisateur).subscribe(res => this.gotoUtilisateurListe());
   }
 
-  afficherUser() {
-    console.log("COUCOUCOU");
-
+  gotoUtilisateurListe() {
+    this.router.navigate(['/utilisateur/liste']);
   }
-
 }
