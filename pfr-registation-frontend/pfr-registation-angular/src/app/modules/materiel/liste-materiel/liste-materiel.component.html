@@ -1,33 +1,43 @@
+<div class="container">
+
+    <div class="container-image">
+        
+            <img src="/assets/images/logo-big2.png" alt="logo-big" id="logo-big">
+      
+    </div>
 
 
-<table class="transparent" role="row">
-    <caption id="caption">Listing du matériel</caption>
-    <thead >
-        <tr >
-            <th  scope="col">Id du matériel</th>
-            <th  scope="col">Référence</th>
-            <th  scope="col">Marque</th>
-            <th  scope="col">Modèle</th>
-            <th  scope="col">Prix d'achat</th>
-            <th  scope="col">Etat actuel</th>
-            <th scope="col">Date d'achat</th>
-            <th  scope="col">Type de matériel</th>
-            <th  scope="col">Localisation</th>
-        </tr>
-    </thead>
-    <tbody >
-        <tr *ngFor="let mat of list_materiel" >
-            <td data-label="Id du matériel" >{{mat.idMat}}</td>
-            <td data-label="Référence" >{{mat.ref}}</td>
-            <td data-label="Marque" >{{mat.marque}}</td>
-            <td data-label="Modèle" >{{mat.modele}}</td>
-            <td data-label="Prix" >{{mat.prix}}</td>
-            <td data-label="Etat" >{{mat.etat}}</td>
-            <td data-label="Date d'achat" >{{mat.dateAchat}}</td>
-            <td data-label="Type de matériel" >{{mat.typeMateriel}}</td>
-            <td data-label="Localisation" >{{mat.localisation}}</td>
-        </tr>
-    </tbody>
-</table>
-
-
+    <div>
+    <h1>Liste du matériel</h1>
+    <table class="rwd-table">
+        <!-- <table class="transparent" role="row">
+    <caption id="caption">Listing du matériel</caption> -->
+        <thead>
+            <tr>
+                <th scope="col">Id du matériel</th>
+                <th scope="col">Référence</th>
+                <th scope="col">Marque</th>
+                <th scope="col">Modèle</th>
+                <th scope="col">Prix d'achat</th>
+                <th scope="col">Etat actuel</th>
+                <th scope="col">Date d'achat</th>
+                <th scope="col">Type de matériel</th>
+                <th scope="col">Localisation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let mat of list_materiel">
+                <td data-th="Id du matériel">{{mat.idMat}}</td>
+                <td data-th="Référence">{{mat.ref}}</td>
+                <td data-th="Marque">{{mat.marque}}</td>
+                <td data-th="Modèle">{{mat.modele}}</td>
+                <td data-th="Prix">{{mat.prix}}</td>
+                <td data-th="Etat">{{mat.etat}}</td>
+                <td data-th="Date d'achat">{{mat.dateAchat}}</td>
+                <td data-th="Type de matériel">{{mat.typeMateriel}}</td>
+                <td data-th="Localisation">{{mat.localisation}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
