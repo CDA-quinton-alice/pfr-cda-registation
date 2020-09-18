@@ -306,30 +306,23 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 
 	@Override
 	public void contactUs(MessageContactDto pMessage) {
-
-		System.out.println("-----> JSON recup : "+pMessage);
-		
-		log.info("--------------->Coucou envoi mail");
+		log.info("---->Début envoi mail");
 		// Etape 1 envoi mail à l'appli
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setFrom("registationcdatest@gmail.com"); // Impossible de modifier celui qui envoie
 		message.setTo("registationcdatest@gmail.com"); // L'appli reçoit le message
 
 		String mailSubject = "Nouvelle demande de contact";
-		String mailContent = "Voici le message envoyé de : "+"\n"
-		+"Nom : "+pMessage.getNom()+"\n"
-		+"Prénom : "+pMessage.getPrenom()+"\n"
-		+"Email : "+pMessage.getEmail()+"\n"
-		+"Message : "+"\n"
-		+pMessage.getMessage()+"\n"
-		+"Fin du message.";
-		
+		String mailContent = "Voici le message envoyé de : " + "\n" + "Nom : " + pMessage.getNom() + "\n" + "Prénom : "
+				+ pMessage.getPrenom() + "\n" + "Email : " + pMessage.getEmail() + "\n" + "Message : " + "\n"
+				+ pMessage.getMessage() + "\n" + "Fin du message.";
+
 		message.setSubject(mailSubject);
 		message.setText(mailContent);
 
 		mailSender.send(message);
-		
-		log.info("--------------->mail 1 envoyé");
+
+		log.info("-------->mail 1 envoyé");
 
 		// Etape2 envoi du mail auto au demandeur
 		message = new SimpleMailMessage();
@@ -345,9 +338,9 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 		message.setText(mailContent);
 
 		mailSender.send(message);
-		
-		log.info("--------------->mail 2 envoyé");
 
+		log.info("-------->mail 2 envoyé");
+		log.info("---->FIN envoi mail");
 	}
 
 }

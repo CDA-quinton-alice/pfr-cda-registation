@@ -46,16 +46,8 @@ public class UtilisateurController {
 		utilisateurService.deleteUtilisateurByMatricule(pMatriculeToDelete);
 	}
 
-//	@PostMapping("/utilisateurtest/contact")
-//	public void contactUs(@RequestBody String pEmail) {
-//		utilisateurService.contactUs(pEmail);
-//	}
-	
 	@PostMapping("/utilisateurtest/contact")
 	public void contactUs(@RequestBody MessageContactDto pMessage) {
-		log.info("---------> post ok !"+pMessage);
-		
-		
 		utilisateurService.contactUs(pMessage);
 	}
 
