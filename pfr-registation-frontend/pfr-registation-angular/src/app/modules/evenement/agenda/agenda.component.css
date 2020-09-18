@@ -8,7 +8,7 @@
 }
 .titre{
     display:inline-block;
-    width:5rem;
+    width:8rem;
 }
 .cal-ligne{
     width:14.28%;
@@ -27,7 +27,6 @@ table td{
     width:14.28%;
     height:9rem;
 }   
-
 @media(max-width:600px){
     .container{
         padding-right:0;
@@ -49,11 +48,12 @@ table td{
     }
     .titre{
         display:inline-block;
-        width:3.5rem;
+        width:5rem;
     }
     table td{
         padding:0;
         width:14.28%;
+        height:5.5rem;
     }
 
     .prev,.next{

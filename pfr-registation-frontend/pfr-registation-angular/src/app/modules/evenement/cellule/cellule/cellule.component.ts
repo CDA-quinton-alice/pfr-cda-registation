@@ -12,19 +12,41 @@ export class CelluleComponent implements OnInit {
   @Input() jour: string;
   @Input() dates: Date;
   @Input() tete: boolean;
-  
+  @Input() headColor:String;
+  nbSpan: number = 0;
+  plusDisplayed: boolean = false;
   constructor() {
    }
  
   ngOnInit(): void {
+    this.nbSpan=0;
   }
 
   estDansIntervale(d1:Date,d2:Date,t:Date):boolean{
     let date1 = new Date((d1.getMonth()+1)+"/"+d1.getDate()+"/"+d1.getFullYear());
     let date2 = new Date((d2.getMonth()+1)+"/"+d2.getDate()+"/"+d2.getFullYear());
     let test = new Date((t.getMonth()+1)+"/"+t.getDate()+"/"+t.getFullYear());
-    console.log("test: "+test+" date1<=test: "+(test<=date2)+" test<=date2: "+(test<=date2))
     return date1<=test&&test<=date2;
+  }
+
+  incSpan(){
+    this.nbSpan++;
+  }
+  testSpan():boolean{
+    return this.nbSpan>2;
+  }
+
+  setPlusDisplayed(){
+    this.plusDisplayed = true;
+  }
+  
+  resetSpan(){
+    this.nbSpan=0;
+    this.plusDisplayed = false;
+  }
+
+  isPlusDisplayed():boolean{
+    return this.plusDisplayed;
   }
 
   getShortType(s:string):string{
