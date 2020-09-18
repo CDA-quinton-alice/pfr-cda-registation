@@ -231,10 +231,9 @@ public class Calendrier {
 	 * @param m {@link Month} : mois à localiser en Français.
 	 * @return {@link String} : mois en construit depuis l'objet en paramètre
 	 */
-	public static String localizeMonth(Month m) {
-		int month = m.getValue();
+	public static String localizeMonth(int m) {
 		String str = "";
-		switch(month){
+		switch(m){
 		case 1:
 			str = "Janvier";
 			break;
