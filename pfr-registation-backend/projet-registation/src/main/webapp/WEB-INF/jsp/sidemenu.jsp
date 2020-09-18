@@ -6,7 +6,7 @@
             </li>
             <li>
                 <a href="#anch1" data-toggle="collapse" data-target="#anch1">
-                    <span class="fa fa-anchor solo">Anchor 1</span>
+                    <span class="fa fa-anchor solo">Calendrier</span>
                 </a>
                 <div class="collapse" id="anch1" aria-expanded="false">
                     <ul class="flex-column pl-2 nav">
@@ -38,18 +38,18 @@
                 </div>
             </li>
             <li>
-                <a href="#anch2">
-                    <span class="fa fa-anchor solo">Anchor 2</span>
+                <a id="lien-responsable" href="#anch2">
+                    <span class="fa fa-anchor solo">Tableau de bord</span>
                 </a>
             </li>
             <li>
                 <a href="#anch3">
-                    <span class="fa fa-anchor solo">Anchor 3</span>
+                    <span class="fa fa-anchor solo">Matériel</span>
                 </a>
             </li>
             <li>
                 <a href="#anch4">
-                    <span class="fa fa-anchor solo">Anchor 4</span>
+                    <span class="fa fa-anchor solo">Document</span>
                 </a>
             </li>
         </ul>

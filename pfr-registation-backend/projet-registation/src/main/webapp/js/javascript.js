@@ -29,6 +29,7 @@ $(document).ready(
                         $('#passwordInput').val('');
                         alert("ok authentification");
                         infoUserEnCours();
+                        affichageBouttonSelonRole(utilisateurEnCours);
                         console.log(utilisateurEnCours);
                         top.location.href = 'responsable/accueil';
                     },
@@ -49,9 +50,15 @@ $(document).ready(
         $('#co_ins').click(function () {
             $('#div-connection').css('display', 'block');
         });
+        
         $('#crashTest').click(function () {
             alert(utilisateurEnCours);
+            console.log(utilisateurEnCours);
+            if(utilisateurEnCours.responsable == true){
+            	  $('#crashTest').css('display', 'none');
+            }
         });
+        affichageBouttonSelonRole(utilisateurEnCours);
     }
 )
 function infoUserEnCours() {
@@ -100,20 +107,19 @@ function affichageBouttonSelonRole(utilisateurEnCours) {
             'margin-left', 'auto');
         $('#logoutLien').css('display', 'none').parent().css(
             'margin-left', '');
-        $('#lienDashboard').css('display', 'none');
+        $('#lien-responsable').css('display', 'none');
         $('.actionTd').css('display', 'none');
     } else {
         $('#logoutLien').css('display', 'block').parent().css(
             'margin-left', 'auto');
         $('#loginLien').css('display', 'none').parent().css(
             'margin-left', '');
-        rendreLignCliquablePourDetail();
-        if ('ROLE_RESPONSABLE' == utilisateurEnCours.role) {
+        if (utilisateurEnCours.responsable == true) {
             $('.actionTd').css('display', 'block');
-            $('#lienDashboard').css('display', 'block');
-        } else if ('ROLE_EMPLOYE' == utilisateurEnCours.role) {
+            $('#lien-responsable').css('display', 'block');
+        } else if ( utilisateurEnCours.responsable== false ) {
             $('#ajoutLien').css('display', 'none');
-            $('#lienDashboard').css('display', 'none');
+            $('#lien-responsable').css('display', 'none');
         } else {
             logout();
         }

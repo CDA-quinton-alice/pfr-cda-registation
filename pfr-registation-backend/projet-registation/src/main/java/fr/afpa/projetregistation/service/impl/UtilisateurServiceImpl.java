@@ -15,6 +15,7 @@ import fr.afpa.projetregistation.dao.IAdresseDao;
 import fr.afpa.projetregistation.dao.IConnexionDao;
 import fr.afpa.projetregistation.dao.IUtilisateurDao;
 import fr.afpa.projetregistation.dto.UtilisateurDto;
+import fr.afpa.projetregistation.dto.UtilisateurSimpleDto;
 import fr.afpa.projetregistation.entity.AdresseEntity;
 import fr.afpa.projetregistation.entity.ConnexionEntity;
 import fr.afpa.projetregistation.entity.UtilisateurEntity;
@@ -190,27 +191,53 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 	 * @param pPageEnCours int correspondant à la page en cours
 	 * @return List de UtilisateurDto
 	 */
+//	@Override
+//	public List<UtilisateurDto> getAllUtilisateurs(int pPageEnCours) {
+//		List<UtilisateurDto> listeUtilisateurs = new ArrayList<>();
+//		PageRequest page = PageRequest.of(pPageEnCours - 1, Constantes.ELEMENTS_PAR_PAGE);
+//		Page<UtilisateurEntity> listeUsers = this.utilisateurDao.findAll(page);
+//		UtilisateurDto userDto = new UtilisateurDto();
+//		for (UtilisateurEntity utilisateurEntity : listeUsers) {
+//			userDto = this.modelMapper.map(utilisateurEntity, UtilisateurDto.class);
+//			userDto.setPassword(utilisateurEntity.getConnexion().getPassword());
+//			userDto.setNumero(utilisateurEntity.getAdresse().getNumero());
+//			userDto.setRue(utilisateurEntity.getAdresse().getRue());
+//			userDto.setComplement(utilisateurEntity.getAdresse().getComplement());
+//			userDto.setCodePostal(utilisateurEntity.getAdresse().getCodePostal());
+//			userDto.setVille(utilisateurEntity.getAdresse().getVille());
+//			userDto.setPays(utilisateurEntity.getAdresse().getPays());
+//			
+//			listeUtilisateurs.add(userDto);
+//
+//		}
+//		return listeUtilisateurs;
+//	}
+	
+	//Testouille
 	@Override
-	public List<UtilisateurDto> getAllUtilisateurs(int pPageEnCours) {
-		List<UtilisateurDto> listeUtilisateurs = new ArrayList<>();
+	public List<UtilisateurSimpleDto> getAllUtilisateurs(int pPageEnCours) {
+		List<UtilisateurSimpleDto> listeUtilisateurs = new ArrayList<>();
 		PageRequest page = PageRequest.of(pPageEnCours - 1, Constantes.ELEMENTS_PAR_PAGE);
 		Page<UtilisateurEntity> listeUsers = this.utilisateurDao.findAll(page);
-		UtilisateurDto userDto = new UtilisateurDto();
+		UtilisateurSimpleDto userDto = new UtilisateurSimpleDto();
 		for (UtilisateurEntity utilisateurEntity : listeUsers) {
-			userDto = this.modelMapper.map(utilisateurEntity, UtilisateurDto.class);
-			userDto.setPassword(utilisateurEntity.getConnexion().getPassword());
-			userDto.setNumero(utilisateurEntity.getAdresse().getNumero());
-			userDto.setRue(utilisateurEntity.getAdresse().getRue());
-			userDto.setComplement(utilisateurEntity.getAdresse().getComplement());
-			userDto.setCodePostal(utilisateurEntity.getAdresse().getCodePostal());
-			userDto.setVille(utilisateurEntity.getAdresse().getVille());
-			userDto.setPays(utilisateurEntity.getAdresse().getPays());
+			userDto = this.modelMapper.map(utilisateurEntity, UtilisateurSimpleDto.class);
+			userDto.setMatricule(utilisateurEntity.getMatricule());
+			userDto.setNom(utilisateurEntity.getNom());
+			userDto.setPrenom(utilisateurEntity.getPrenom());
+			userDto.setDateDeNaissance(utilisateurEntity.getDateDeNaissance());
+			userDto.setSalaire(utilisateurEntity.getSalaire());
+			userDto.setMail(utilisateurEntity.getMail());
+			userDto.setTel(utilisateurEntity.getTel());
+			userDto.setResponsable((utilisateurEntity.isResponsable()));
 			
 			listeUtilisateurs.add(userDto);
 
 		}
 		return listeUtilisateurs;
 	}
+	
+	
 
 	/**
 	 * Permet de retourner une liste de tous les emlpoyés 
