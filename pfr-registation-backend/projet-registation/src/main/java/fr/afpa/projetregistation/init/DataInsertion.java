@@ -2,7 +2,9 @@ package fr.afpa.projetregistation.init;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -16,12 +18,14 @@ import fr.afpa.projetregistation.dao.IMaterielDao;
 import fr.afpa.projetregistation.dao.IUtilisateurDao;
 import fr.afpa.projetregistation.dto.DocumentDto;
 import fr.afpa.projetregistation.dto.MaterielDto;
+import fr.afpa.projetregistation.dto.TypeMaterielDto;
 import fr.afpa.projetregistation.dto.EvenementDto;
 import fr.afpa.projetregistation.dto.UtilisateurDto;
 import fr.afpa.projetregistation.entity.UtilisateurEntity;
 import fr.afpa.projetregistation.service.IDocumentService;
 import fr.afpa.projetregistation.service.IEvenementService;
 import fr.afpa.projetregistation.service.IMaterielService;
+import fr.afpa.projetregistation.service.ITypeMaterielService;
 import fr.afpa.projetregistation.service.IUtilisateurService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -49,10 +53,16 @@ public class DataInsertion {
 	
 	@Autowired
 	IEvenementService eserv;
+	
+	@Autowired
+	ITypeMaterielService typeService;
 
 	@PostConstruct
 	public void cdaInit() {
 
+		
+	
+		
 		this.insertionMateriel();
 		this.insertionUtilisateurs();
 
@@ -85,15 +95,15 @@ public class DataInsertion {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		MaterielDto materiel = new MaterielDto("P001", "Orion", "PistoXC", 500, "pompe2", 1, achat, "pompe");
+		MaterielDto materiel = new MaterielDto("P001", "Orion", "PistoXC", 500,  1, achat, "pompe","pompe2");
 		materielService.create(materiel);
-		MaterielDto materiel2 = new MaterielDto("C001", "Neptune", "Cuve3000", 2000, "emplacement1", 1, achat, "cuve");
+		MaterielDto materiel2 = new MaterielDto("C001", "Neptune", "Cuve3000", 2000,  1, achat, "cuve","emplacement1");
 		materielService.create(materiel2);
-		MaterielDto materiel3 = new MaterielDto("P002", "Orion", "PistoXC", 500, "pompe2", 1, achat, "pompe");
+		MaterielDto materiel3 = new MaterielDto("P002", "Orion", "PistoXC", 500,  1, achat, "pompe", "pompe2");
 		materielService.create(materiel3);
-		MaterielDto materiel4 = new MaterielDto("P003", "Orion", "PistoXC", 500, "pompe2", 1, achat, "pompe");
+		MaterielDto materiel4 = new MaterielDto("P003", "Orion", "PistoXC", 500,  1, achat, "pompe", "pompe2");
 		materielService.create(materiel4);
-		MaterielDto mat3 = new MaterielDto("MC001", "Mars", "Cafe3000", 200, "allée 1", 1, achat, "MACHINE A CAFE");
+		MaterielDto mat3 = new MaterielDto("MC001", "Mars", "Cafe3000", 200,  1, achat, "MACHINE A CAFE","allée 1");
 		materielService.create(mat3);
 	}
 

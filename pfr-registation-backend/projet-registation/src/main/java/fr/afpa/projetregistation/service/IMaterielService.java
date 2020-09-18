@@ -77,19 +77,27 @@ public interface IMaterielService {
 	void updateEtatByRef(String pRef, int pEtat);
 
 	/**
-	 * Permet de supprimer un matériel en sélectionnant son id
+	 * Permet de supprimer un matériel en sélectionnant sa référence
 	 * 
 	 * @param pRef
 	 */
 	void deleteByRef(String pRef);
 
+	
+	/**
+	 * Permet de supprimer un matériel en sélectionnant son id
+	 * 
+	 * @param pId
+	 */
+	void deleteById(int pId);
+	
 	/**
 	 * LOiste de matériel à supprimer par type
 	 * 
 	 * @param pPage    page en cours
 	 * @param pLibelle type de matériel à supprimer
 	 */
-	void deleteAllByType(int pPage, String pLibelle);
+	void deleteAllByType(int pPage, String pType);
 
 	/**
 	 * Vérifie la présence d'un matériel par sa référence
@@ -98,5 +106,8 @@ public interface IMaterielService {
 	 * @return booléen vrai ou faux
 	 */
 	boolean existsByRef(String pRef);
+	
+	
+	
 
 }

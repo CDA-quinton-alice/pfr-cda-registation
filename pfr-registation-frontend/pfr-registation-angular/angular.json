@@ -20,16 +20,18 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
+              
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.css"
+              "src/styles.css",           
+              "src/custom-theme.scss",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.js"
-            ]
+              "./node_modules/jquery/dist/jquery.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"]
           },
           "configurations": {
             "production": {
@@ -122,6 +124,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "pfr-registation-angular"
 }

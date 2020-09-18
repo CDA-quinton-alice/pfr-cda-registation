@@ -40,7 +40,7 @@ public class TestMaterielServiceImpl {
 
 	private Date date = new Date();
 
-	private MaterielDto mat = new MaterielDto("P004", "Orion", "PistoXC", 500, "pompe2", 1, nouvelleDate(), "POMPE");
+	private MaterielDto mat = new MaterielDto("P004", "Orion", "PistoXC", 500,  1, nouvelleDate(), "POMPE", "pompe2");
 	private MaterielDto mat3 = new MaterielDto(5, "MC001", "Pluton", "Cafe3000", 200, "allée 1", 1, nouvelleDate(),
 			"MACHINE A CAFE");
 
