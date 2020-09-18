@@ -25,11 +25,12 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { UtilisateurContactComponent } from './utilisateur-contact/utilisateur-contact.component';
 
 
 
 @NgModule({
-  declarations: [AccueilComponent, UtilisateurListComponent, UtilisateurFormComponent],
+  declarations: [AccueilComponent, UtilisateurListComponent, UtilisateurFormComponent, UtilisateurContactComponent],
   imports: [
     CommonModule,
     UtilisateurRoutingModule,
@@ -48,7 +49,6 @@ import { MatSelectModule } from '@angular/material/select';
     MatDialogModule,
     MatDialogModule, 
     MatInputModule, 
-    MatButtonModule, 
     MatCardModule, 
     MatFormFieldModule,
     MatSelectModule,
