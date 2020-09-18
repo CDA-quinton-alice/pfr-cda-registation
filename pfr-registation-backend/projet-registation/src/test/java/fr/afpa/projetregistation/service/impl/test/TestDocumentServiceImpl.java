@@ -32,22 +32,20 @@ public class TestDocumentServiceImpl {
 
 	@Autowired
 	private IDocumentService documentService;
-	
-	@Autowired
-	private UtilisateurEntity utilisateurEntity;
+
 
 	private DocumentDto document = DocumentDto.builder().nomDocument(Constantes.STRING_TEST)
 			.categorieDocument(Constantes.STRING_TEST).dateAjoutDocument(Constantes.DATE_TEST)
 			.dateDerniereModificationDocument(Constantes.DATE_TEST).descriptionDocument(Constantes.STRING_TEST)
-			.commentairesDocument(Constantes.STRING_TEST).build();
+			.commentairesDocument(Constantes.STRING_TEST).matriculeUtilisateur(Constantes.STRING_TEST).build();
 
 	@Test
 	@Order(1)
 	public void testAjouterDocument() throws Exception {
 
 		document = documentService.ajouterDocument(document);
-		
-		
+
+
 		assertNotNull(document);
 		assertEquals(Constantes.STRING_TEST, document.getNomDocument());
 		assertEquals(Constantes.STRING_TEST, document.getCategorieDocument());
@@ -55,6 +53,7 @@ public class TestDocumentServiceImpl {
 		assertEquals(Constantes.DATE_TEST, document.getDateDerniereModificationDocument());
 		assertEquals(Constantes.STRING_TEST, document.getDescriptionDocument());
 		assertEquals(Constantes.STRING_TEST, document.getCommentairesDocument());
+		assertEquals(Constantes.STRING_TEST, document.getMatriculeUtilisateur());
 
 	}
 
@@ -160,6 +159,17 @@ public class TestDocumentServiceImpl {
 
 	@Test
 	@Order(10)
+	public void testMajMatriculeUtilisateur() throws Exception {
+
+		int index = documentService.getMaxid();
+		documentService.majCategorieDocument(Constantes.STRING_TEST2, index);
+		document = documentService.getDocument(index);
+
+		assertEquals(Constantes.STRING_TEST2, document.getCategorieDocument());
+	}
+
+	@Test
+	@Order(11)
 	public void testGetAllDocuments() throws Exception {
 
 		List<DocumentDto> listeDocs = documentService.getAllDocuments(2);
@@ -172,14 +182,14 @@ public class TestDocumentServiceImpl {
 	}
 
 	@Test
-	@Order(11)
+	@Order(12)
 	public void testExistById() throws Exception {
 
 		assertTrue(documentService.existById(documentService.getMaxid()));
 	}
 
 	@Test
-	@Order(12)
+	@Order(13)
 	public void testSupprimerDocument() throws Exception {
 
 		int index = documentService.getMaxid();

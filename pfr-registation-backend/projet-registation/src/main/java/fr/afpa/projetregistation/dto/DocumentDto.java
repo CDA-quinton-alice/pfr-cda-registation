@@ -2,6 +2,7 @@ package fr.afpa.projetregistation.dto;
 
 import java.util.Date;
 
+import fr.afpa.projetregistation.entity.UtilisateurEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,8 +29,12 @@ public class DocumentDto {
 
 	private String commentairesDocument;
 
+	private String matriculeUtilisateur;
+
+
+
 	public DocumentDto(String pNomDocument, String pCategorieDocument, Date pDateAjoutDocument,
-			Date pDateDerniereModificationDocument, String pDescriptionDocument, String pCommentairesDocument) {
+			Date pDateDerniereModificationDocument, String pDescriptionDocument, String pCommentairesDocument, String pMatriculeUtilisateur) {
 
 		this.nomDocument = pNomDocument;
 		this.categorieDocument = pCategorieDocument;
@@ -37,6 +42,7 @@ public class DocumentDto {
 		this.dateDerniereModificationDocument = pDateDerniereModificationDocument;
 		this.descriptionDocument = pDescriptionDocument;
 		this.commentairesDocument = pCommentairesDocument;
+		this.matriculeUtilisateur = pMatriculeUtilisateur; 
 
 	}
 

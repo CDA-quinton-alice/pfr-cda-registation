@@ -12,7 +12,9 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatButtonModule} from '@angular/material/button';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [FondComponent, HeaderComponent],
@@ -28,8 +30,10 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     MatListModule,
     MatBadgeModule,
     MatExpansionModule,
-    NgbModule
-   
+    NgbModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule
   ]
 })
 export class SharedModule { }
