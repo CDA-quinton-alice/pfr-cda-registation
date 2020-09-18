@@ -1,3 +1,13 @@
+<mat-card class="card-top">
+    
+    <h2 style="margin: 0;">Les Collaborateurs</h2>
+    
+    <button mat-mini-fab color="warn" id="bouton-ajouter" [routerLink]="'/materiel/ajouter'">
+        <mat-icon>add</mat-icon>
+    </button>
+
+</mat-card>
+
 <div id="form-materiel">
 
     <form #ajoutMaterielForm=ngForm  (ngSubmit)=addMateriel()>
