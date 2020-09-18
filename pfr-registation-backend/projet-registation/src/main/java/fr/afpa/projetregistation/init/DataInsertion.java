@@ -2,7 +2,9 @@ package fr.afpa.projetregistation.init;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -16,12 +18,14 @@ import fr.afpa.projetregistation.dao.IMaterielDao;
 import fr.afpa.projetregistation.dao.IUtilisateurDao;
 import fr.afpa.projetregistation.dto.DocumentDto;
 import fr.afpa.projetregistation.dto.MaterielDto;
+import fr.afpa.projetregistation.dto.TypeMaterielDto;
 import fr.afpa.projetregistation.dto.EvenementDto;
 import fr.afpa.projetregistation.dto.UtilisateurDto;
 import fr.afpa.projetregistation.entity.UtilisateurEntity;
 import fr.afpa.projetregistation.service.IDocumentService;
 import fr.afpa.projetregistation.service.IEvenementService;
 import fr.afpa.projetregistation.service.IMaterielService;
+import fr.afpa.projetregistation.service.ITypeMaterielService;
 import fr.afpa.projetregistation.service.IUtilisateurService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -49,10 +53,16 @@ public class DataInsertion {
 	
 	@Autowired
 	IEvenementService eserv;
+	
+	@Autowired
+	ITypeMaterielService typeService;
 
 	@PostConstruct
 	public void cdaInit() {
 
+		
+	
+		
 		this.insertionMateriel();
 		this.insertionUtilisateurs();
 

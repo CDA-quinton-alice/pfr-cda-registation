@@ -1,6 +1,6 @@
 
   
-
+/* Début du tableau tableau */
 
 .rwd-table {
   margin: auto;
@@ -122,6 +122,13 @@ h1 {
   100%  { transform: translateX(0)}
 } 
 
+/* fin du tableau */
+
+
+/* ********* */
+
+/* Début du système de carte */
+
 #bouton-ajouter{
   width: 40px;
   height: 40px;
@@ -130,8 +137,8 @@ h1 {
 .card-top{
   display: flex;
   justify-content: space-between;
-  margin-left: 30px;
-  background-image: url("/assets/images/station2.png");
+  margin-left: 10%;
+  background-image: url("/assets/images/station3.jpg");
   background-repeat: no-repeat;
   background-position: center;
 
@@ -140,10 +147,38 @@ h1 {
   margin-right: 5px;
 }
 
+@media screen and (min-width: 600px) {
 .content{
-  padding-top: 2rem;
-  padding-left: 2.6rem;
+  padding-top: 5rem;
+  padding-left: 17rem;
 }
 .mat-elevation-z4 {
   width: 250px;
+}
+
+.card-container{
+  height: 300px;
+  width: 90%;
+}
+}
+
+
+@media screen and (max-width: 601px) {
+  .content{
+    padding-top: 5rem;
+    padding-left: 5rem;
+  }
+  .mat-elevation-z4 {
+    width: 250px;
+  }
+  
+  .card-container{
+    height: 300px;
+    width: auto;
+  }
+
+  h2{
+    background-color: white;
+    color:rgb(50, 74, 94);
+  }
 }

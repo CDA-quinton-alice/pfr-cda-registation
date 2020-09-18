@@ -1,14 +1,66 @@
 <mat-card class="card-top">
-
     <h2 style="margin: 0;">Listing équipements</h2>
-
-
     <button mat-mini-fab color="warn" id="bouton-ajouter" [routerLink]="'/materiel/ajouter'">
         <mat-icon>add</mat-icon>
     </button>
-
-    
 </mat-card>
+
+<div class="content" fxLayout="row wrap" fxLayoutGap="10% grid">
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="50%">
+        <mat-card class="mat-elevation-z4">
+            <img mat-card-image src="/assets/images/pompe.jpg" alt="Photo of a Shiba Inu">
+            <mat-card-content>
+                <h1>
+                    POMPES
+                </h1>
+            </mat-card-content>
+            <mat-card-actions>
+                <form #getType=ngForm>
+                    <input type="hidden" value=1>
+                    <button (click)='getAllByType("POMPE")' mat-raised-button color="primary"
+                        type="submit">Afficher</button>
+                </form>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="50%">
+        <mat-card class="mat-elevation-z4">
+            <img mat-card-image src="/assets/images/cuve.jpg" alt="Photo of a Shiba Inu">
+            <mat-card-content>
+                <h1>
+                    CUVES
+                </h1>
+            </mat-card-content>
+            <mat-card-actions>
+                <form #getType=ngForm>
+                    <input type="hidden" value=2>
+                    <button (click)='getAllByType("CUVE")' mat-raised-button color="primary"
+                        type="submit">Afficher</button>
+                </form>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="50%">
+        <mat-card class="mat-elevation-z4">
+            <img mat-card-image src="/assets/images/boutique.jpg" alt="Photo of a Shiba Inu">
+            <mat-card-content>
+                <h1 class="titreType">
+                    BOUTIQUE
+                </h1>
+            </mat-card-content>
+            <mat-card-actions>
+                <form #getType=ngForm>
+                    <input type="hidden" value=3>
+                    <button (click)='getAllByType("BOUTIQUE")' mat-raised-button color="primary"
+                        type="submit">Afficher</button>
+                </form>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
 
 <div class="container">
     <h1>Liste du matériel</h1>
@@ -41,4 +93,3 @@
         </tbody>
     </table>
 </div>
-
