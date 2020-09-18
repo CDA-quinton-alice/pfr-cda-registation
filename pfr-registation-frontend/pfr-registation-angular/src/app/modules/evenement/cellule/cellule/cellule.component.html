@@ -4,8 +4,8 @@
     <div class="evenements w-100">
         <ng-container *ngFor="let e of event">
             <span class="ev btn btn-light" *ngIf="estDansIntervale(e.date_debut,e.date_fin,dates)" [ngClass]=''>
-                {{e.type}}:{{e.description}}
+                    {{e.description}}
             </span>
         </ng-container>
     </div>
-</div>  
+</div>      

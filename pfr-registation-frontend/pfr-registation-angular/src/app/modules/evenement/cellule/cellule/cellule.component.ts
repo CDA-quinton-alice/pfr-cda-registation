@@ -27,6 +27,22 @@ export class CelluleComponent implements OnInit {
     return date1<=test&&test<=date2;
   }
 
+  getShortType(s:string):string{
+    switch(s){
+      case 'Autre':
+          return "A";
+        break;
+      case 'Révision':
+        return "R";
+        break;
+      case 'Inspection':
+        return "I";
+        break;
+      case 'Panne':
+        return "P";
+        break;
+    }
+  }
   getEventColor(e:Ievent):string{
     switch(e.type){
       case 'Autre':

@@ -1,10 +1,9 @@
 .cellule{
-	height:6.5rem;
     text-align: center;
     font-size:0.7rem;
 }
 .cellule-tete{
-	height:7rem;
+	height:8rem;
     text-align: center;
     font-size:0.7rem;
 }
@@ -14,6 +13,7 @@
     font-size: 0.8rem;
 }
 .tete{
+    margin-top:0.3rem;
     display:inline-block;
 }   
 .no-tete{
@@ -24,9 +24,48 @@
     display:inline-block;
 }
 .ev{
-    height:1.2rem;
-    width:100%;
+    height:1.5rem;
     padding:0 0 0 0;
-    font-size:0.7rem;
-    display:inline-block;
+    font-size:0.85rem;
+    width:100%;
 }
+
+ @media(max-width:600px){
+     .ev{
+        height:0.8rem;
+        width:100%;
+        font-size:0.5rem;
+     }
+
+     .cellule-tete{
+        height:6rem;
+        text-align: center;
+        font-size:0.5rem;
+    }
+    .cellule .tete, .cellule .jourC, .cellule-tete .tete, .cellule-tete .jourC{
+        padding:0 0 0 0;
+        margin:0 0 0 0;
+        font-size: 0.4rem;
+    }
+    .cellule{
+        height:5rem;
+        text-align: center;
+        font-size:0.5rem;
+    }
+    .tete{
+        margin-top:0;
+        height:0.8rem;
+        display:block;
+    }    
+    .no-tete{
+        display:none;
+    }  
+    .jourC{
+        padding-top:0.2rem;
+        display:inline-block;
+    }
+    .evenements{
+        padding:0;
+        width:1.2rem;
+    }
+ }

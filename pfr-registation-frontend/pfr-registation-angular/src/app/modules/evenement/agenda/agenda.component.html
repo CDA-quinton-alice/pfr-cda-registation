@@ -3,15 +3,15 @@
         <div class="col-1">
             <button class="btn btn-outline-secondary auj" (click)='getMonth(year,month,"n")'>Aujourd'hui</button>
         </div>
-        <div class="col-11 cal-titre">
+        <div class="col-10 cal-titre">
             <button class="prev btn btn-light" (click)='getMonth(year,month,"p")'><</button>
             <span class="titre">{{titre}}</span>    
             <button class="next btn btn-light" (click)='getMonth(year,month,"s")'>></button>
         </div>
     </div>
     <div class="calendrier w-100">
-        <table class="table table-bordered">
-            <tr class="cal-ligne" *ngFor="let cld of groupsCalendar; index as i">
+        <table class="table table-bordered col">
+            <tr class="cal-ligne col-md-1" *ngFor="let cld of groupsCalendar; index as i">
                 <td *ngFor="let el of cld; index as j">
                     <app-cellule [dates]=el [jour]=getCalendrier()[i+j] [event]="cal.event" [tete]='i==0'></app-cellule>
                 </td>
