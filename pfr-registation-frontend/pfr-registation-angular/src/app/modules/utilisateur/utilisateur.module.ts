@@ -26,6 +26,7 @@ import {MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { UtilisateurContactComponent } from './utilisateur-contact/utilisateur-contact.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 
@@ -52,6 +53,7 @@ import { UtilisateurContactComponent } from './utilisateur-contact/utilisateur-c
     MatCardModule, 
     MatFormFieldModule,
     MatSelectModule,
+    MatTabsModule
     
   ],
 

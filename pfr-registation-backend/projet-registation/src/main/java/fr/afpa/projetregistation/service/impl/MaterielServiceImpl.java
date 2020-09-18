@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.taglibs.standard.lang.jstl.NotEqualsOperator;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,9 +16,11 @@ import fr.afpa.projetregistation.controller.MaterielController;
 import fr.afpa.projetregistation.dao.IMaterielDao;
 import fr.afpa.projetregistation.dao.ITypeMaterielDao;
 import fr.afpa.projetregistation.dto.MaterielDto;
+import fr.afpa.projetregistation.dto.TypeMaterielDto;
 import fr.afpa.projetregistation.entity.MaterielEntity;
 import fr.afpa.projetregistation.entity.TypeMaterielEntity;
 import fr.afpa.projetregistation.service.IMaterielService;
+import fr.afpa.projetregistation.service.ITypeMaterielService;
 import fr.afpa.projetregistation.utils.Constantes;
 import lombok.extern.slf4j.Slf4j;
 
@@ -45,6 +48,8 @@ public class MaterielServiceImpl implements IMaterielService {
 	 */
 	@Autowired
 	ITypeMaterielDao typeMaterielDao;
+
+	ITypeMaterielService typeService;
 
 	/**
 	 * Instanciation de l'outil modelMapper permettant de simplifier la conversion
@@ -166,15 +171,12 @@ public class MaterielServiceImpl implements IMaterielService {
 
 		while (iter.hasNext()) {
 			MaterielDto mat = iter.next();
-
-			if (mat.getTypeMateriel() != pType)
+			String vType = mat.getTypeMateriel().trim().toUpperCase();
+			if (! vType.equals(pType) ) {
 				iter.remove();
+			}
 		}
-//		for (MaterielDto materielDto : listeMateriel) {
-//			if (materielDto.getTypeMateriel() != pType) {
-//				listeMateriel.remove(materielDto);
-//			}
-//		}
+
 		return listeMateriel;
 	}
 
@@ -246,10 +248,9 @@ public class MaterielServiceImpl implements IMaterielService {
 		if (opRes.isPresent()) {
 			matEntity = opRes.get();
 		}
-		this.materielDao.delete(matEntity);	
+		this.materielDao.delete(matEntity);
 	}
-	
-	
+
 	/**
 	 * Méthodes permettant de supprimer tous les matériels d'un type choisi.
 	 * 
@@ -258,9 +259,9 @@ public class MaterielServiceImpl implements IMaterielService {
 	 *                 veut supprimer toutes les instances.
 	 */
 	@Override
-	public void deleteAllByType(int pPage, String pLibelle) {
+	public void deleteAllByType(int pPage, String pType) {
 
-		List<MaterielDto> liste = this.getAllByType(pPage, pLibelle);
+		List<MaterielDto> liste = this.getAllByType(pPage, pType);
 
 		for (MaterielDto materielDto : liste) {
 			this.deleteByRef(materielDto.getRef());
@@ -280,7 +281,5 @@ public class MaterielServiceImpl implements IMaterielService {
 
 		return res;
 	}
-
-	
 
 }

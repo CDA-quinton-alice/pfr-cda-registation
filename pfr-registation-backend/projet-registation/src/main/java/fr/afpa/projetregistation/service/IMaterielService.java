@@ -97,7 +97,7 @@ public interface IMaterielService {
 	 * @param pPage    page en cours
 	 * @param pLibelle type de matériel à supprimer
 	 */
-	void deleteAllByType(int pPage, String pLibelle);
+	void deleteAllByType(int pPage, String pType);
 
 	/**
 	 * Vérifie la présence d'un matériel par sa référence

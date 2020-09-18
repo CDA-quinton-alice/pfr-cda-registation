@@ -26,6 +26,12 @@ export class MaterielService {
     return this.http.get<Imateriel>(this.url + "/" + id);
   }
 
+
+  public findAllByType(type: string): Observable<Imateriel[]> {
+
+    return this.http.get<Imateriel[]>(this.url + "/listeMateriel/" + type);
+  }
+
   public addMateriel(mat: Imateriel) {
     return this.http.post<Imateriel>(this.url, mat);
   }
