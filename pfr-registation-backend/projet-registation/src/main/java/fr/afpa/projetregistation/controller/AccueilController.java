@@ -4,13 +4,19 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.YearMonth;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.google.gson.Gson;
 
 import fr.afpa.projetregistation.dto.EvenementDto;
 import fr.afpa.projetregistation.service.IEvenementService;
@@ -19,7 +25,8 @@ import fr.afpa.projetregistation.utils.Calendrier;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Controller
+@RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class AccueilController {
 	
 	@Autowired
@@ -28,14 +35,23 @@ public class AccueilController {
 	@Autowired
 	IEvenementService eserv;
 	
-	@GetMapping(value="/evenement/accueil")
-	protected ModelAndView eventAccueil() {
+	@GetMapping(value="/evenement/{year}/{month}/{action}")
+	protected ResponseEntity<String> eventPost(@PathVariable(value="year") int annee, @PathVariable(value="month") int mois, @PathVariable(value="action") char action) {
 		log.info("Accès à la page d'accueil");
+		YearMonth ym = null;
+		if(action=='p') {
+			ym = Calendrier.getPrevYearMonth(YearMonth.of(annee,mois));
+		}else if(action=='s') {
+			ym = Calendrier.getNextYearMonth(YearMonth.of(annee,mois));
+		}else if(action=='n'){
+			ym = YearMonth.of(annee,mois);
+		}else {
+			return null;
+		}
 		
-		ModelAndView mv = new ModelAndView();
-		YearMonth now = YearMonth.now();
-//		YearMonth now = YearMonth.of(2020, 8);
-		List<String> cal = Calendrier.getFullMonthOfStr(now.getYear(), now.getMonthValue());
+		log.debug(ym.toString());
+		
+		List<String> cal = Calendrier.getFullMonthOfStr(ym.getYear(), ym.getMonthValue());
 		SimpleDateFormat dtf = new SimpleDateFormat("EEEE-dd-MM-yyyy",Locale.FRENCH);
 		Date deb = null;
 		Date fin = null;
@@ -51,12 +67,19 @@ public class AccueilController {
 		} 
 		List<EvenementDto> listEvent = eserv.getByDate(deb, fin);
 		
-		mv.addObject("calendrier",cal);
-		mv.addObject("titre",Calendrier.localizeMonth(now.getMonth()));
-		mv.addObject("event",listEvent);
+		Gson gson = new Gson();
+		Map<String,Object> res2 = new HashMap<>();
+		res2.put("calendrier",cal);
+		res2.put("titre",Calendrier.localizeMonth(ym.getMonthValue()));
+		res2.put("event", listEvent);
+		res2.put("current", ym);
+		res2.put("success", 1);
 		
-		mv.setViewName("calendrier");
-		return mv;
+		if(listEvent!=null) {
+			log.debug(listEvent.toString());
+		}else {
+			log.debug("Liste NULL");
+		}
+		return ResponseEntity.ok(gson.toJson(res2));
 	}
-	
 }

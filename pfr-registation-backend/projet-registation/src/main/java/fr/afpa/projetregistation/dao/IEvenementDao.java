@@ -27,7 +27,7 @@ public interface IEvenementDao extends PagingAndSortingRepository<EvenementEntit
 	 * @param dateFin
 	 * @return une @see List de @see EvenementEntity
 	 */
-	@Query(value="SELECT e FROM evenement e WHERE date_debut >= :date1 and date_fin <= :date2")
+	@Query(value="select * from (select * from evenement where date_fin >= :date1) a where a.date_debut<=:date2",nativeQuery = true)
 	public  List<EvenementEntity> findByDate(@Param("date1") Date dateDebut, @Param("date2") Date dateFin);
 
 	
@@ -47,4 +47,5 @@ public interface IEvenementDao extends PagingAndSortingRepository<EvenementEntit
 	 * @return une @see(List) de @see(EvenementEntity)
 	 */
 	public List<EvenementEntity> findByType(@Param("type2") String type);
+	
 }
