@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Utilisateur } from '../interfaces/utilisateur';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { MessageContact } from '../interfaces/messageContact';
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +24,10 @@ export class UtilisateurService {
   supprimerUtilisateur(matricule: string) {
     return this.http.delete<Utilisateur>(this.url + "/" + matricule);
   }
-  contactUs(email: string){
+  contactUs(messageContact: MessageContact): Observable<MessageContact>{
     console.log("service ok !");
     
-    return this.http.post<string>(this.url+"/"+"contact" , email);
+    return this.http.post<MessageContact>(this.url +"/contact" , messageContact);   
   }
 }
 

@@ -3,8 +3,8 @@ logging:
     name: ${user.home}/Registation/app-registation.log
   level:
     fr:
-      afpa: trace
-    root: info
+      afpa: info
+    root: warn
 
 spring:
   datasource:

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import fr.afpa.projetregistation.dao.IAdresseDao;
 import fr.afpa.projetregistation.dao.IConnexionDao;
 import fr.afpa.projetregistation.dao.IUtilisateurDao;
+import fr.afpa.projetregistation.dto.MessageContactDto;
 import fr.afpa.projetregistation.dto.UtilisateurDto;
 import fr.afpa.projetregistation.dto.UtilisateurSimpleDto;
 import fr.afpa.projetregistation.entity.AdresseEntity;
@@ -23,7 +24,6 @@ import fr.afpa.projetregistation.entity.ConnexionEntity;
 import fr.afpa.projetregistation.entity.UtilisateurEntity;
 import fr.afpa.projetregistation.service.IUtilisateurService;
 import fr.afpa.projetregistation.utils.Constantes;
-import fr.afpa.projetregistation.utils.Securite;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -305,18 +305,25 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 	}
 
 	@Override
-	public void contactUs(String pEmail) {
+	public void contactUs(MessageContactDto pMessage) {
 
+		System.out.println("-----> JSON recup : "+pMessage);
+		
 		log.info("--------------->Coucou envoi mail");
 		// Etape 1 envoi mail à l'appli
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setFrom("registationcdatest@gmail.com"); // Impossible de modifier celui qui envoie
-		message.setTo("registationcdatest@gmail.com");
+		message.setTo("registationcdatest@gmail.com"); // L'appli reçoit le message
 
 		String mailSubject = "Nouvelle demande de contact";
-		String mailContent = "Demande de contact de : " + pEmail + "\n"
-				+ "Ici viendra s'ajouter son message avec ses différentes infos saisies.";
-
+		String mailContent = "Voici le message envoyé de : "+"\n"
+		+"Nom : "+pMessage.getNom()+"\n"
+		+"Prénom : "+pMessage.getPrenom()+"\n"
+		+"Email : "+pMessage.getEmail()+"\n"
+		+"Message : "+"\n"
+		+pMessage.getMessage()+"\n"
+		+"Fin du message.";
+		
 		message.setSubject(mailSubject);
 		message.setText(mailContent);
 
@@ -327,7 +334,7 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 		// Etape2 envoi du mail auto au demandeur
 		message = new SimpleMailMessage();
 		message.setFrom("registationcdatest@gmail.com"); //
-		message.setTo(pEmail);
+		message.setTo(pMessage.getEmail());
 
 		mailSubject = "Demande de contact bien reçue";
 		mailContent = "Bonjour, " + "\n"

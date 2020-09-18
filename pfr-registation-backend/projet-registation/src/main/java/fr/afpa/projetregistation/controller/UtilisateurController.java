@@ -52,11 +52,11 @@ public class UtilisateurController {
 //	}
 	
 	@PostMapping("/utilisateurtest/contact")
-	public void contactUs(@RequestBody String pEmail) {
-		log.info("------> OK POST email reçu format JSON : "+pEmail);
-		String[] tab = pEmail.split("\"");		
-		String emailRecup = tab[3];
-		utilisateurService.contactUs(emailRecup);
+	public void contactUs(@RequestBody MessageContactDto pMessage) {
+		log.info("---------> post ok !"+pMessage);
+		
+		
+		utilisateurService.contactUs(pMessage);
 	}
 
 }
