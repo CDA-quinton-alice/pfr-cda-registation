@@ -218,9 +218,9 @@ public class MaterielServiceImpl implements IMaterielService {
 	}
 
 	/**
-	 * Permet de supprimer un matériel via son id
+	 * Permet de supprimer un matériel via sa référence
 	 * 
-	 * @param pRef id deu materiel à supprimer
+	 * @param pRef Référence du materiel à supprimer
 	 */
 	@Override
 	public void deleteByRef(String pRef) {
@@ -234,6 +234,22 @@ public class MaterielServiceImpl implements IMaterielService {
 
 	}
 
+	/**
+	 * Permet de supprimer un matériel via son id
+	 * 
+	 * @param pRef id du materiel à supprimer
+	 */
+	@Override
+	public void deleteById(int pId) {
+		Optional<MaterielEntity> opRes = materielDao.findById(pId);
+		MaterielEntity matEntity = null;
+		if (opRes.isPresent()) {
+			matEntity = opRes.get();
+		}
+		this.materielDao.delete(matEntity);	
+	}
+	
+	
 	/**
 	 * Méthodes permettant de supprimer tous les matériels d'un type choisi.
 	 * 
@@ -264,5 +280,7 @@ public class MaterielServiceImpl implements IMaterielService {
 
 		return res;
 	}
+
+	
 
 }
