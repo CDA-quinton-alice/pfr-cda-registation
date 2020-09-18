@@ -23,14 +23,11 @@ import { MajDerniereModificationDocumentModule } from './modules/document/maj-de
 import { MajDescriptionDocumentModule } from './modules/document/maj-description-document/maj-description-document.module';
 import { MajCommentairesDocumentModule } from './modules/document/maj-commentaires-document/maj-commentaires-document.module';
 import { MajMatriculeUtilisateurModule } from './modules/document/maj-matricule-utilisateur/maj-matricule-utilisateur.module';
-import { GetDocumentModule } from './modules/document/get-document/get-document.module';
 import { ListeDocumentModule } from './modules/document/liste-document/liste-document.module';
 import { DocumentExistByIdModule } from './modules/document/document-exist-by-id/document-exist-by-id.module';
 import { GetDocumentByNomModule } from './modules/document/get-document-by-nom/get-document-by-nom.module';
 import { GetDocumentByIdModule } from './modules/document/get-document-by-id/get-document-by-id.module';
-
-
-
+import { MatDatepickerModule} from '@angular/material/datepicker';
 
 
 @NgModule({
@@ -60,7 +57,6 @@ import { GetDocumentByIdModule } from './modules/document/get-document-by-id/get
     MajDescriptionDocumentModule,
     MajCommentairesDocumentModule,
     MajMatriculeUtilisateurModule,
-    GetDocumentModule,
     ListeDocumentModule,
     DocumentExistByIdModule,
     GetDocumentByNomModule,

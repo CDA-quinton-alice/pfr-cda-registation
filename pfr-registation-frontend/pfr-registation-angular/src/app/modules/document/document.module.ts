@@ -20,10 +20,28 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {AjouterDocumentComponent} from './ajouter-document/ajouter-document.component';
+import {DocumentExistByIdComponent} from './document-exist-by-id/document-exist-by-id.component';
+import {GetDocumentByIdComponent} from './get-document-by-id/get-document-by-id.component';
+import {GetDocumentByNomComponent} from './get-document-by-nom/get-document-by-nom.component';
+import {ListeDocumentComponent} from './liste-document/liste-document.component';
+import {MajCategorieDocumentComponent} from './maj-categorie-document/maj-categorie-document.component';
+import {MajCommentairesDocumentComponent} from './maj-commentaires-document/maj-commentaires-document.component';
+import {MajDateAjoutDocumentComponent} from './maj-date-ajout-document/maj-date-ajout-document.component';
+import {MajDerniereModificationDocumentComponent} from './maj-derniere-modification-document/maj-derniere-modification-document.component';
+import {MajDescriptionDocumentComponent} from './maj-description-document/maj-description-document.component';
+import {MajMatriculeUtilisateurComponent} from './maj-matricule-utilisateur/maj-matricule-utilisateur.component';
+import {MajNomDocumentComponent} from './maj-nom-document/maj-nom-document.component';
+import {SupprimerDocumentComponent} from './supprimer-document/supprimer-document.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [AjouterDocumentComponent, DocumentExistByIdComponent, GetDocumentByIdComponent, GetDocumentByNomComponent, ListeDocumentComponent,
+  MajCategorieDocumentComponent, MajCommentairesDocumentComponent, MajDateAjoutDocumentComponent, MajDerniereModificationDocumentComponent,
+  MajDescriptionDocumentComponent, MajMatriculeUtilisateurComponent, MajNomDocumentComponent, SupprimerDocumentComponent],
   imports: [
     CommonModule,
     DocumentRoutingModule,
@@ -33,6 +51,9 @@ import {MatIconModule} from '@angular/material/icon';
     ReactiveFormsModule,
     MatButtonModule,
     MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
   ]
 })
 export class DocumentModule { }
