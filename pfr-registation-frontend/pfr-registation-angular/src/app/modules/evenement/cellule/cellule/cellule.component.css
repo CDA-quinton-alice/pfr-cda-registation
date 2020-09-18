@@ -3,7 +3,7 @@
     font-size:0.7rem;
 }
 .cellule-tete{
-	height:8rem;
+	height:10rem;
     text-align: center;
     font-size:0.7rem;
 }
@@ -24,15 +24,43 @@
     display:inline-block;
 }
 .ev{
-    height:1.5rem;
-    padding:0 0 0 0;
-    font-size:0.85rem;
+    height:2rem;
+    padding:0.2rem 0 0 0;
+    font-size:1.0rem;
     width:100%;
+    
+}
+.panne{
+    background-color: #ff952b;
+}
+.panne:hover{
+    background-color: #ffb66e;
 }
 
+.inspection{
+    background-color: #e6cd17;
+}
+
+.inspection:hover{
+    background-color: #ebdb6c;
+}
+
+.revision{
+    background-color: #4294ff;
+}
+.revision:hover{
+    background-color: #80b7ff;
+}
+
+.autre{
+    background-color: #b3b3b3;
+}
+.autre:hover{
+    background-color: #d6d6d6;
+}
  @media(max-width:600px){
      .ev{
-        height:0.8rem;
+        height:1.1rem;
         width:100%;
         font-size:0.5rem;
      }

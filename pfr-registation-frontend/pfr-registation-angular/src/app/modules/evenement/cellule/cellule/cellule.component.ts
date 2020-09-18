@@ -23,7 +23,7 @@ export class CelluleComponent implements OnInit {
     let date1 = new Date((d1.getMonth()+1)+"/"+d1.getDate()+"/"+d1.getFullYear());
     let date2 = new Date((d2.getMonth()+1)+"/"+d2.getDate()+"/"+d2.getFullYear());
     let test = new Date((t.getMonth()+1)+"/"+t.getDate()+"/"+t.getFullYear());
-
+    console.log("test: "+test+" date1<=test: "+(test<=date2)+" test<=date2: "+(test<=date2))
     return date1<=test&&test<=date2;
   }
 
@@ -46,16 +46,16 @@ export class CelluleComponent implements OnInit {
   getEventColor(e:Ievent):string{
     switch(e.type){
       case 'Autre':
-          return "";
+          return "autre";
         break;
       case 'Révision':
-        return "";
+        return "revision";
         break;
       case 'Inspection':
-        return "";
+        return "inspection";
         break;
       case 'Panne':
-        return "";
+        return "panne";
         break;
     }
   }

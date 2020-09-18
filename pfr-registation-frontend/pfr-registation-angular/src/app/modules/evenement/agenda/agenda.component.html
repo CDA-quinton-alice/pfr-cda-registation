@@ -4,16 +4,16 @@
             <button class="btn btn-outline-secondary auj" (click)='getMonth(year,month,"n")'>Aujourd'hui</button>
         </div>
         <div class="col-10 cal-titre">
-            <button class="prev btn btn-light" (click)='getMonth(year,month,"p")'><</button>
+            <button class="prev btn btn-outline-secondary" (click)='getMonth(year,month,"p")'><</button>
             <span class="titre">{{titre}}</span>    
-            <button class="next btn btn-light" (click)='getMonth(year,month,"s")'>></button>
+            <button class="next btn btn-outline-secondary" (click)='getMonth(year,month,"s")'>></button>
         </div>
     </div>
     <div class="calendrier w-100">
         <table class="table table-bordered col">
             <tr class="cal-ligne col-md-1" *ngFor="let cld of groupsCalendar; index as i">
                 <td *ngFor="let el of cld; index as j">
-                    <app-cellule [dates]=el [jour]=getCalendrier()[i+j] [event]="cal.event" [tete]='i==0'></app-cellule>
+                    <app-cellule [dates]=el [jour]=getCalendrier()[i*7+j] [event]="cal.event" [tete]='i==0'></app-cellule>
                 </td>
             </tr>
         </table>    
