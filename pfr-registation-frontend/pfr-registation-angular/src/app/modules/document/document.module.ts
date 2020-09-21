@@ -38,9 +38,7 @@ import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
-  declarations: [AjouterDocumentComponent, DocumentExistByIdComponent, GetDocumentByIdComponent, GetDocumentByNomComponent, ListeDocumentComponent,
-  MajCategorieDocumentComponent, MajCommentairesDocumentComponent, MajDateAjoutDocumentComponent, MajDerniereModificationDocumentComponent,
-  MajDescriptionDocumentComponent, MajMatriculeUtilisateurComponent, MajNomDocumentComponent, SupprimerDocumentComponent],
+  declarations: [],
   imports: [
     CommonModule,
     DocumentRoutingModule,
