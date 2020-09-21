@@ -40,12 +40,9 @@ public class DocumentEntity {
 	private String descriptionDocument;
 	@Column(name = "commentaires_document")
 	private String commentairesDocument;
-	@Column(name ="matricule_utilisateur")
-	private String matriculeUtilisateur;
 
-
-//	@ManyToOne
-//	@JoinColumn(name="matricule")
-//	private UtilisateurEntity utilisateur;
+	@ManyToOne
+	@JoinColumn(name="matricule")
+	UtilisateurEntity utilisateur;
 
 }

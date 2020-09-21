@@ -29,8 +29,6 @@ public interface IDocumentService {
 
 	public void majCommentairesDocument(String pCommentairesDocument, int pIdDocument);
 
-	public void majMatriculeUtilisateur(String pMatriculeUtilisateur, int pIdDocument);
-
 	public DocumentDto getDocument(int pIdDocument);
 
 	public List<DocumentDto> getAllDocuments(int pPageEnCours);
