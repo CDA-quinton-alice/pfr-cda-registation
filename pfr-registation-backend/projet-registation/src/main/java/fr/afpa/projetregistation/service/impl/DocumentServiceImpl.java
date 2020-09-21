@@ -17,7 +17,6 @@ import fr.afpa.projetregistation.dto.DocumentDto;
 import fr.afpa.projetregistation.entity.DocumentEntity;
 import fr.afpa.projetregistation.entity.UtilisateurEntity;
 import fr.afpa.projetregistation.service.IDocumentService;
-import fr.afpa.projetregistation.service.IUtilisateurService;
 import fr.afpa.projetregistation.utils.Constantes;
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,9 +41,6 @@ public class DocumentServiceImpl implements IDocumentService {
 	IUtilisateurDao utilisateurDao;
 
 	@Autowired
-	IUtilisateurService utilisateurService;
-
-	@Autowired
 	private ModelMapper modelDocumentServiceImpl;
 
 	/**
@@ -67,32 +63,33 @@ public class DocumentServiceImpl implements IDocumentService {
 		log.info("ajouter un document - Registation DocumentServiceImpl");
 
 		// !!!! Vérifier présence en BDD.
+		UtilisateurEntity utilisateur2 = new UtilisateurEntity();
+		DocumentEntity document2 = this.modelDocumentServiceImpl.map(document, DocumentEntity.class);
+//		document2.setIdDocument(document.getIdDocument());
 
-//		DocumentEntity document2 = this.modelDocumentServiceImpl.map(document, DocumentEntity.class);
-
-		DocumentEntity document2 = new DocumentEntity();
-
-		document2.setNomDocument(document.getNomDocument());
-		document2.setCategorieDocument(document.getCategorieDocument());
-		document2.setDateAjoutDocument(document.getDateAjoutDocument());
-		document2.setDateDerniereModificationDocument(document.getDateDerniereModificationDocument());
-		document2.setDescriptionDocument(document.getDescriptionDocument());
-		document2.setCommentairesDocument(document.getCommentairesDocument());
-		document2.setMatriculeUtilisateur(document.getMatriculeUtilisateur());
+//		document2.setNomDocument(document.getNomDocument());
+//		document2.setCategorieDocument(document.getCategorieDocument());
+//		document2.setDateAjoutDocument(document.getDateAjoutDocument());
+//		document2.setDateDerniereModificationDocument(document.getDateDerniereModificationDocument());
+//		document2.setDescriptionDocument(document.getDescriptionDocument());
+//		document2.setCommentairesDocument(document.getCommentairesDocument());
 
 		// toutes les lignes au dessus.
 
-//		UtilisateurEntity utilisateurEntity = new UtilisateurEntity();
-//		Optional<UtilisateurEntity> optionelUtilisateurEntity = utilisateurDao.findById(document.getMatriculeUtilisateur());
-//		if (optionelUtilisateurEntity.isPresent()) {
-//			utilisateurEntity = optionelUtilisateurEntity.get();
-//		}
+		Optional<UtilisateurEntity> optionelUtilisateurEntity = utilisateurDao.findByNom(document2.getNomDocument());
+		if (optionelUtilisateurEntity.isPresent()) {
+			document2.setUtilisateur(utilisateur2);
+		}
 
 		document2 = documentDao.save(document2);
-		document = this.getDocument(document2.getIdDocument());
+
+//		document = this.getDocument(document2.getIdDocument());
 //		utilisateur2.getMatricule();
+
 		log.info("document ajouté avec succès - Registation DocumentServiceImpl");
+
 		return document;
+
 	}
 
 	/**
@@ -240,22 +237,6 @@ public class DocumentServiceImpl implements IDocumentService {
 		log.info("Commentaires du document mis à jour avec succès - Registation DocumentServiceImpl");
 	}
 
-	@Override
-	public void majMatriculeUtilisateur(String vMatriculeUtilisateur, int vIdDocument) {
-		log.info("Mettre à jour le matricule d'un utilisateur dans la table document - Registation DocumentServiceImpl");
-
-		Optional<DocumentEntity> optionelDocumentEntity = documentDao.findById(vIdDocument);
-		DocumentEntity document3 = null;
-		if (optionelDocumentEntity.isPresent()) {
-			document3 = optionelDocumentEntity.get();
-		}
-		document3.setCommentairesDocument(vMatriculeUtilisateur);
-		documentDao.save(document3);
-
-		log.info("matricule utilisateur mis à jour avec succès dans la table document - Registation DocumentServiceImpl");
-
-	}
-
 	/**
 	 * @param int vIdDocument : c'est l'identifiant du document qui va être récupéré
 	 */
@@ -269,7 +250,7 @@ public class DocumentServiceImpl implements IDocumentService {
 			document = new DocumentDto(document3.getIdDocument(), document3.getNomDocument(),
 					document3.getCategorieDocument(), document3.getDateAjoutDocument(),
 					document3.getDateDerniereModificationDocument(), document3.getDescriptionDocument(),
-					document3.getCommentairesDocument(),document3.getMatriculeUtilisateur());
+					document3.getCommentairesDocument());
 		}
 
 		log.info("document récupéré avec succès - Registation DocumentServiceImpl");
@@ -290,7 +271,7 @@ public class DocumentServiceImpl implements IDocumentService {
 			DocumentDto document2 = new DocumentDto(document.getIdDocument(), document.getCategorieDocument(),
 					document.getNomDocument(), document.getDateAjoutDocument(),
 					document.getDateDerniereModificationDocument(), document.getDescriptionDocument(),
-					document.getCommentairesDocument(), document.getMatriculeUtilisateur());
+					document.getCommentairesDocument());
 
 			listeDocumentsDto.add(document2);
 		}
@@ -336,7 +317,7 @@ public class DocumentServiceImpl implements IDocumentService {
 			document = new DocumentDto(document3.getIdDocument(), document3.getNomDocument(),
 					document3.getCategorieDocument(), document3.getDateAjoutDocument(),
 					document3.getDateDerniereModificationDocument(), document3.getDescriptionDocument(),
-					document3.getCommentairesDocument(), document3.getMatriculeUtilisateur());
+					document3.getCommentairesDocument());
 		}
 
 		log.info("document récupéré avec succès - Registation DocumentServiceImpl");

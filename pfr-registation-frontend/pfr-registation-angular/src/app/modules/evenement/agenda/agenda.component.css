@@ -8,9 +8,7 @@
 }
 .titre{
     display:inline-block;
-    padding-left:0.5rem;
-    padding-right: 0.5rem;
-    width:5rem;
+    width:8rem;
 }
 .cal-ligne{
     width:14.28%;
@@ -27,17 +25,21 @@
 table td{
     padding:0;
     width:14.28%;
-    height:7.5rem;
+    height:9rem;
 }   
-
 @media(max-width:600px){
     .container{
         padding-right:0;
     }
     .auj{
+        margin: 0 0 0 0;
         display:inline-block;
-        margin-top:0.2rem;
-        font-size: 0.5rem;
+        font-size: 0.3rem;
+
+    }
+    .cal-entete{
+        padding:0 0 0 0;
+        margin: 0.2rem 0 0.2rem 0;
     }
     .cal-titre{
         padding-left:5rem;
@@ -46,12 +48,16 @@ table td{
     }
     .titre{
         display:inline-block;
-        padding-left:0.5rem;
-        padding-right: 0.5rem;
-        width:3.5rem;
+        width:5rem;
     }
     table td{
         padding:0;
         width:14.28%;
+        height:5.5rem;
+    }
+
+    .prev,.next{
+        padding: 0 0.2rem 0.1rem 0.2rem;
+        font-size:0.8rem;
     }
 }

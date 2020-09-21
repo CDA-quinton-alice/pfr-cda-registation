@@ -37,8 +37,28 @@ export class AgendaComponent implements OnInit {
     this.year = new Date().getFullYear();
     this.month = new Date().getMonth()+1;
     this.action= "n"; 
-    this.getMonth(this.year, this.month, this.action);
+    this.getMonthAgenda(this.action);
   }
+
+  getMonthAgenda(action:string){
+    this.isNow(action);
+
+    this.eServ.findByYearMonth(this.year,this.month,action).subscribe(data => {
+      this.updateParams(action);
+      this.calendar = new Array<Date>();
+      this.evenements = new Array<Ievent>();
+      this.cal = data;
+      this.titre = this.formatMonth(this.month)+" "+this.year;
+
+      this.formatDateCustom(this.getCalendrier());
+      this.formatEventDate(this.getEvents());
+
+      this.groupsCalendar = this.calendar.map((x,index)=>{
+        return index % this.chunkSize === 0 ? this.calendar.slice(index, index + this.chunkSize): null; 
+      }).filter(x=>x);
+    })
+  }
+
   getCalendrier(){
     return (this.cal&&this.cal.calendrier)?this.cal.calendrier:[];
   }
@@ -60,42 +80,6 @@ export class AgendaComponent implements OnInit {
       e.date_fin = new Date(e.date_fin);
       this.evenements.push(e);
     }
-  }
-
-  getMonth(year:number,month:number,action:string){
-    this.eServ.findByYearMonth(year,month,action).subscribe(data => {
-      this.calendar = new Array<Date>();
-      this.evenements = new Array<Ievent>();
-      this.cal = data;
-      if(action=="p"){
-        if(month>1){
-          this.month = month-1;
-          this.year = year;
-        }else{
-          this.month = 12;
-          this.year = year-1;
-        }
-      }else if(action == "s"){
-        if(month<12){
-          this.month = month+1;
-          this.year = year;
-        }else{
-          this.month = 1;
-          this.year = year+1;
-        }
-      }else if(action =="n"){
-        this.year = new Date().getFullYear();
-        this.month = new Date().getMonth()+1;
-      }
-      this.formatDateCustom(this.getCalendrier());
-      this.formatEventDate(this.getEvents());
-      this.titre = this.formatMonth(this.month);
-
-      this.groupsCalendar = this.calendar.map((x,index)=>{
-        return index % this.chunkSize === 0 ? this.calendar.slice(index, index + this.chunkSize): null; 
-      }).filter(x=>x);
-
-    })
   }
 
   formatMonth(month:number):string{
@@ -141,4 +125,46 @@ export class AgendaComponent implements OnInit {
   resetCal(){
     $(".calendrier table tr").remove();
   } 
+
+  updateParams(action:string){
+    if(action=="p"){
+      if(this.month>1){
+        this.month = this.month-1;
+        this.year = this.year;
+      }else{
+        this.month = 12;
+        this.year = this.year-1;
+      }
+    }else if(action == "s"){
+      if(this.month<12){
+        this.month =this.month+1;
+        this.year = this.year;
+      }else{
+        this.month = 1;
+        this.year = this.year+1;
+      }
+    }else if(action =="n"){
+      this.isNow(action);
+    }
+  }
+  isNow(str:string){
+    if(str =="n"){
+      this.year = new Date().getFullYear();
+      this.month = new Date().getMonth()+1;
+    }
+  }
+  getCalendarColor(str:string){
+    let y = this.year;
+    let m = this.month;
+
+    let v = str.split("-");
+    let vm:number = +v[2];
+    let vy:number = +v[3];
+
+    if(vm!=m||vy!=y){
+      return "ncm";
+    }else{
+      return "";
+    }
+  }
 }

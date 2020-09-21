@@ -67,33 +67,21 @@ public class DataInsertion {
 		
 		this.insertionMateriel();
 		this.insertionUtilisateurs();
-		this.insertionDocument();
-		this.insertionEvenements();
-		//METHODE POUR AJOUTER 3 DOCUMENTS ALICE
-	}
-		public void insertionDocument() {
+
+		// METHODE POUR AJOUTER 3 DOCUMENTS MAX ALICE TO DO
 
 		Date dateAjoutDoc = new Date();
 		Date dateDerniereModificationdoc = new Date();
 
 		DocumentDto doc = new DocumentDto("facture entretien cuve n°3", "facture", dateAjoutDoc,
 				dateDerniereModificationdoc, "facture qui correspond au dernier entretien de la cuve n°3.",
-				"rien à signaler, fonctionnement de la cuve n°3 ok.","RESP001");
+				"rien à signaler, fonctionnement de la cuve n°3 ok.");
 		documentService.ajouterDocument(doc);
 
-		DocumentDto doc2 = new DocumentDto("facture entretien cuve n°4", "facture", dateAjoutDoc,
-				dateDerniereModificationdoc, "facture qui correspond au dernier entretien de la cuve n°4.",
-				"rien à signaler, fonctionnement de la cuve n°4 ok.","RESP001");
-		documentService.ajouterDocument(doc2);
+		// Ajout de 2 évènements
+		insertionEvenements();
 
-		DocumentDto doc3 = new DocumentDto("facture entretien cuve n°5", "facture", dateAjoutDoc,
-				dateDerniereModificationdoc, "facture qui correspond au dernier entretien de la cuve n°5.",
-				"rien à signaler, fonctionnement de la cuve n°5 ok.","RESP001");
-		documentService.ajouterDocument(doc3);
-
-// pour le moment ce sont des strings RESP001 dans matricule utilisateur mais à l'occasion modifier en "vrai utilisateur"
-		}
-
+	}
 
 	public void insertionMateriel() {
 		// Ajout de trois matériels.

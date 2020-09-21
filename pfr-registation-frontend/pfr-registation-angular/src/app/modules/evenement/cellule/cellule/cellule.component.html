@@ -1,11 +1,25 @@
 <div [ngClass]="tete?'cellule-tete':'cellule'">
-    <span class="tete w-100" [ngClass]="tete?'tete':'no-tete'">{{jour.split('-')[0]}}</span>
-    <span class="jourC w-100">{{jour.split('-')[1]}}</span>
+    <span class="tete w-100" [ngClass]="[tete?'tete':'no-tete',headColor]">{{jour.split('-')[0]}}</span>
+    <span class="jourC w-100" [ngClass]="headColor">{{jour.split('-')[1]}}</span>
     <div class="evenements w-100">
+        {{resetSpan()}}
         <ng-container *ngFor="let e of event">
-            <span class="ev btn btn-light" *ngIf="estDansIntervale(e.date_debut,e.date_fin,dates)" [ngClass]=''>
-                    {{e.description}}
-            </span>
+            <ng-container *ngIf="estDansIntervale(e.date_debut,e.date_fin,dates)">
+                        {{incSpan()}}
+                        <ng-container *ngIf="!testSpan(); else plusSpan">
+                            <span class="ev btn btn-light"  [ngClass]='getEventColor(e)'>
+                                {{e.description}}
+                            </span>
+                        </ng-container>
+                        <ng-template #plusSpan>
+                            <ng-container *ngIf="!isPlusDisplayed()">
+                                <span class="ev btn btn-light"  [ngClass]='getEventColor(e)'>
+                                    +
+                                </span>
+                                {{setPlusDisplayed()}}
+                            </ng-container>
+                        </ng-template>
+            </ng-container>
         </ng-container>
     </div>
 </div>      
