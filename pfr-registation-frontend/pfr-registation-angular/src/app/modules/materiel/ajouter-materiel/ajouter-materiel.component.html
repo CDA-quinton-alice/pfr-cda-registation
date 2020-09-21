@@ -13,10 +13,17 @@
               <input matInput type="text" formControlName="ref">
             </mat-form-field>
 
-        <div>
+            <mat-form-field appearance="legacy">
+                <mat-label>Référence</mat-label>
+                <mat-icon matPrefix class="icone-info-card">fingerprint</mat-icon>
+                <input matInput type="text" formControlName="ref">
+              </mat-form-field>
+
+        <!-- <div>
             Référence: <input type="text" name=ref [(ngModel)]=materiel.ref required #ref="ngModel">
         </div>
 
+        
         <div [hidden]="ref.valid || ref.pristine">
             La référence est obligatoire.
         </div>
@@ -71,7 +78,7 @@
         </div>
         <div [hidden]="localisation.valid || localisation.pristine">
             La localisation est obligatoire.
-        </div>
+        </div> -->
 
         <div>
             <button mat-raised-button [disabled]=!materielForm.valid  class="bouton-ajouter">Ajouter le matériel</button>
