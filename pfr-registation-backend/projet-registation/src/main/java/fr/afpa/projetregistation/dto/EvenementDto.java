@@ -2,8 +2,6 @@ package fr.afpa.projetregistation.dto;
 
 import java.util.Date;
 
-import fr.afpa.projetregistation.entity.MaterielEntity;
-import fr.afpa.projetregistation.entity.UtilisateurEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -66,7 +64,7 @@ public class EvenementDto {
 	 * L'utilisateur responsable de l'ajout de l'évènement
 	 * en base de donnée
 	 */
-	private UtilisateurEntity user;
+	private UtilisateurSimpleDto user;
 	
 	/**
 	 * Le possible matériel en panne

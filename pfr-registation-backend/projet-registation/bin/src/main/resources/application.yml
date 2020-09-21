@@ -1,0 +1,25 @@
+logging:
+  file:
+    name: ${user.home}/Registation/app-registation.log
+  level:
+    fr:
+      afpa: trace
+    root: info
+
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/registation
+    username: registation_user
+    password: pwd
+    driver-class-name: org.mariadb.jdbc.Driver
+    
+  jpa:
+    hibernate:      ddl-auto: update    show-sql: true
+  
+  
+  
+# configuration spring-mvc
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp

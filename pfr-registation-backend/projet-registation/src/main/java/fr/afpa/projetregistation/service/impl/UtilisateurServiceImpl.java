@@ -8,12 +8,15 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fr.afpa.projetregistation.dao.IAdresseDao;
 import fr.afpa.projetregistation.dao.IConnexionDao;
 import fr.afpa.projetregistation.dao.IUtilisateurDao;
+import fr.afpa.projetregistation.dto.MessageContactDto;
 import fr.afpa.projetregistation.dto.UtilisateurDto;
 import fr.afpa.projetregistation.dto.UtilisateurSimpleDto;
 import fr.afpa.projetregistation.entity.AdresseEntity;
@@ -21,7 +24,6 @@ import fr.afpa.projetregistation.entity.ConnexionEntity;
 import fr.afpa.projetregistation.entity.UtilisateurEntity;
 import fr.afpa.projetregistation.service.IUtilisateurService;
 import fr.afpa.projetregistation.utils.Constantes;
-import fr.afpa.projetregistation.utils.Securite;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -56,9 +58,12 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 
 	@Autowired
 	private ModelMapper modelMapper;
-	
+
 	@Autowired
-	BCryptPasswordEncoder monEncodeur; 
+	BCryptPasswordEncoder monEncodeur;
+
+	@Autowired
+	JavaMailSender mailSender;
 
 	/**
 	 * Crée un UtilisateurDto et sauvegarde un utilisateur en BDD en utilisant
@@ -185,8 +190,8 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 	}
 
 	/**
-	 * Retourne la liste de tous les utilisateurs avec pagination
-	 * les champs manquants de l'utilisateurDto sont set
+	 * Retourne la liste de tous les utilisateurs avec pagination les champs
+	 * manquants de l'utilisateurDto sont set
 	 * 
 	 * @param pPageEnCours int correspondant à la page en cours
 	 * @return List de UtilisateurDto
@@ -212,8 +217,8 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 //		}
 //		return listeUtilisateurs;
 //	}
-	
-	//Testouille
+
+	// Testouille
 	@Override
 	public List<UtilisateurSimpleDto> getAllUtilisateurs(int pPageEnCours) {
 		List<UtilisateurSimpleDto> listeUtilisateurs = new ArrayList<>();
@@ -230,19 +235,16 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 			userDto.setMail(utilisateurEntity.getMail());
 			userDto.setTel(utilisateurEntity.getTel());
 			userDto.setResponsable((utilisateurEntity.isResponsable()));
-			
+
 			listeUtilisateurs.add(userDto);
 
 		}
 		return listeUtilisateurs;
 	}
-	
-	
 
 	/**
-	 * Permet de retourner une liste de tous les emlpoyés 
-	 * (boolean responsable = false)
-	 * Utilisation du Page, liste avec pagination
+	 * Permet de retourner une liste de tous les emlpoyés (boolean responsable =
+	 * false) Utilisation du Page, liste avec pagination
 	 * 
 	 * @return List de UtilisateurEntity qui sont des employés
 	 */
@@ -261,7 +263,7 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 			userDto.setCodePostal(utilisateurEntity.getAdresse().getCodePostal());
 			userDto.setVille(utilisateurEntity.getAdresse().getVille());
 			userDto.setPays(utilisateurEntity.getAdresse().getPays());
-			
+
 			listeEmployes.add(userDto);
 
 		}
@@ -269,9 +271,8 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 	}
 
 	/**
-	 * Permet de retourner une liste de tous les responsables 
-	 * (boolean responsable = true)
-	 * Utilisation du Page, liste avec pagination
+	 * Permet de retourner une liste de tous les responsables (boolean responsable =
+	 * true) Utilisation du Page, liste avec pagination
 	 * 
 	 * @return List de UtilisateurEntity qui sont des responsables
 	 */
@@ -290,7 +291,7 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 			userDto.setCodePostal(utilisateurEntity.getAdresse().getCodePostal());
 			userDto.setVille(utilisateurEntity.getAdresse().getVille());
 			userDto.setPays(utilisateurEntity.getAdresse().getPays());
-			
+
 			listeResponsables.add(userDto);
 
 		}
@@ -301,6 +302,45 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 	public boolean authentification(String login, String motdepasse) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void contactUs(MessageContactDto pMessage) {
+		log.info("---->Début envoi mail");
+		// Etape 1 envoi mail à l'appli
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setFrom("registationcdatest@gmail.com"); // Impossible de modifier celui qui envoie
+		message.setTo("registationcdatest@gmail.com"); // L'appli reçoit le message
+
+		String mailSubject = "Nouvelle demande de contact";
+		String mailContent = "Voici le message envoyé de : " + "\n" + "Nom : " + pMessage.getNom() + "\n" + "Prénom : "
+				+ pMessage.getPrenom() + "\n" + "Email : " + pMessage.getEmail() + "\n" + "Message : " + "\n"
+				+ pMessage.getMessage() + "\n" + "Fin du message.";
+
+		message.setSubject(mailSubject);
+		message.setText(mailContent);
+
+		mailSender.send(message);
+
+		log.info("-------->mail 1 envoyé");
+
+		// Etape2 envoi du mail auto au demandeur
+		message = new SimpleMailMessage();
+		message.setFrom("registationcdatest@gmail.com"); //
+		message.setTo(pMessage.getEmail());
+
+		mailSubject = "Demande de contact bien reçue";
+		mailContent = "Bonjour, " + "\n"
+				+ "Nous avons bien reçue votre demande, elle sera traitée dans les meilleurs délais (aka JAMAIS)."
+				+ "\n" + "L'équipe RegiStation vous remercie. ";
+
+		message.setSubject(mailSubject);
+		message.setText(mailContent);
+
+		mailSender.send(message);
+
+		log.info("-------->mail 2 envoyé");
+		log.info("---->FIN envoi mail");
 	}
 
 }

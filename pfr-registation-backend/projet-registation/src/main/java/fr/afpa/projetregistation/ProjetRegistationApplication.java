@@ -1,22 +1,17 @@
 package fr.afpa.projetregistation;
 
 import java.util.Collections;
-import java.util.stream.Stream;
 
 import org.apache.catalina.Context;
 import org.apache.tomcat.util.descriptor.web.JspConfigDescriptorImpl;
 import org.apache.tomcat.util.descriptor.web.JspPropertyGroup;
 import org.apache.tomcat.util.descriptor.web.JspPropertyGroupDescriptorImpl;
 import org.modelmapper.ModelMapper;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
-
-import fr.afpa.projetregistation.dao.IUserTestDao;
-import fr.afpa.projetregistation.entity.UserTestEntity;
 
 @SpringBootApplication
 public class ProjetRegistationApplication {
@@ -40,7 +35,7 @@ public class ProjetRegistationApplication {
 //            userRepository.findAll().forEach(System.out::println);
 //        };
 //    }
-	
+
 	@Bean
 	public ConfigurableServletWebServerFactory configurableServletWebServerFactory() {
 		return new TomcatServletWebServerFactory() {
@@ -60,4 +55,5 @@ public class ProjetRegistationApplication {
 			}
 		};
 	}
+
 }

@@ -2,6 +2,7 @@ package fr.afpa.projetregistation.service;
 
 import java.util.List;
 
+import fr.afpa.projetregistation.dto.MessageContactDto;
 import fr.afpa.projetregistation.dto.UtilisateurDto;
 import fr.afpa.projetregistation.dto.UtilisateurSimpleDto;
 
@@ -44,6 +45,10 @@ public interface IUtilisateurService {
 	public void deleteUtilisateurByMatricule(String pMatricule);
 
 	public boolean authentification(String login, String motdepasse);
+
+	public void contactUs(MessageContactDto pMessageContactDto);
+
+	
 
 //	public boolean validerEvenement(EvenementEntity pEvent);
 }
