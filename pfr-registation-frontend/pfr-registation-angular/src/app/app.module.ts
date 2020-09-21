@@ -13,7 +13,8 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { UserService } from './user-service.service';
 import { FormsModule } from '@angular/forms';
 import { MaterielService } from './services/materiel.service';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { EvenementModule } from './modules/evenement/evenement.module';
 
 
 
@@ -21,7 +22,6 @@ import { MaterielService } from './services/materiel.service';
 @NgModule({
   declarations: [
     AppComponent,
-
     UserListComponent,
     UserFormComponent,
   ],
@@ -35,7 +35,7 @@ import { MaterielService } from './services/materiel.service';
     MaterielModule,
     SharedModule,
     FormsModule,
-    
+    EvenementModule,
   ],
 
   providers: [UserService, MaterielService],
