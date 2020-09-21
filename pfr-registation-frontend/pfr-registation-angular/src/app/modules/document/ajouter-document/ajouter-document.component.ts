@@ -25,7 +25,7 @@ export class AjouterDocumentComponent implements OnInit {
   //   commentairesDocument: new FormControl('', Validators.required),
   //   matriculeUtilisateur: new FormControl('', Validators.required),
   // });
-  document: Document = {};
+  document: Document;
   documents: Array<Document> = [];
   DocumentForm: FormGroup;
 
