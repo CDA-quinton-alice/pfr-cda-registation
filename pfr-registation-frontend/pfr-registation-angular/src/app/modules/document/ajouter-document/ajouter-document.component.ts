@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {DocumentService} from '../../../services/document.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {IDocument} from '../../../interfaces/idocument';
 
-// Bonjour Mathieu Ambroise ! Aimes tu l'ambroisie ? 
+// Bonjour Mathieu Ambroise ! Aimes tu l'ambroisie ?
 
 @Component({
   selector: 'app-ajouter-document',
   templateUrl: './ajouter-document.component.html',
   styleUrls: ['./ajouter-document.component.css']
 })
-export class AjouterDocumentComponent implements OnInit {
+export class AjouterDocumentComponent {
   // todayNumber: number = Date.now();
   // todayDate: Date = new Date();
   // todayString: string = new Date().toDateString();
@@ -26,40 +29,18 @@ export class AjouterDocumentComponent implements OnInit {
   //   commentairesDocument: new FormControl('', Validators.required),
   //   matriculeUtilisateur: new FormControl('', Validators.required),
   // });
-  document: Document;
-  documents: Array<Document> = [];
-  DocumentForm: FormGroup;
 
-  constructor() {
+  document: IDocument;
+  listeDocuments: Array<IDocument> = [];
+
+  constructor(private route: ActivatedRoute, private router: Router, private documentService: DocumentService) {
   }
 
-  ngOnInit(): void {
+  addDocument(){
+    this.documentService.addDocument(this.document).subscribe(result => this.goToDocumentList());
   }
-  // get nomDocument() {
-  //   return this.documentForm.get('nomDocument');
-  // }
-  //
-  // get categorieDocument() {
-  //   return this.documentForm.get('categorieDocument');
-  // }
-  //
-  // get dateAjoutDocument() {
-  //   return this.documentForm.get('dateAjoutDocument');
-  // }
-  //
-  // get dateDerniereModificationDocument() {
-  //   return this.documentForm.get('dateDerniereModificationDocument');
-  // }
-  //
-  // get descriptionDocument() {
-  //   return this.documentForm.get('descriptionDocument');
-  // }
-  //
-  // get commentairesDocument() {
-  //   return this.documentForm.get('commentairesDocument');
-  // }
-  //
-  // get matriculeUtilisateur() {
-  //   return this.documentForm.get('matriculeUtilisateur');
-  // }
+
+  goToDocumentList(){
+    this.router.navigate(['document/liste']);
+  }
 }

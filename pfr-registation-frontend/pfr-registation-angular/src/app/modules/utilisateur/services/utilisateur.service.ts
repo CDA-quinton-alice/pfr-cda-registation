@@ -26,8 +26,8 @@ export class UtilisateurService {
   }
   contactUs(messageContact: MessageContact): Observable<MessageContact>{
     console.log("service ok !");
-    
-    return this.http.post<MessageContact>(this.url +"/contact" , messageContact);   
+
+    return this.http.post<MessageContact>(this.url +"/contact" , messageContact);
   }
 }
 
