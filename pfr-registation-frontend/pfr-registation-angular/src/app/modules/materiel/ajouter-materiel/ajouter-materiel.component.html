@@ -44,7 +44,10 @@
             <mat-form-field appearance="legacy">
                 <mat-label>Type de Matériel</mat-label>
                 <mat-icon matPrefix class="icone-info-card">fingerprint</mat-icon>
-                <mat-select formControlName="etat">
+                <mat-select formControlName="typeMateriel">
+                    <mat-option *ngFor="let item of typeMatList" [value]="item">
+                        {{item}}
+                      </mat-option>
                     <!-- <mat-option [value]=POMPE>Pompe</mat-option> -->
                     <!-- <mat-option [value]='CUVE'>Cuve</mat-option> -->
                     <!-- <mat-option [value]="materiel3">Eléments de la boutique</mat-option> -->

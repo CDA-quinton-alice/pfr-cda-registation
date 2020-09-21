@@ -14,8 +14,11 @@ export class AjouterMaterielComponent {
   materiel: Imateriel = {};
   list_materiel: Array<Imateriel> = [];
   date: Date = new Date;
-
   
+
+
+  typeMatList: string[] = ['POMPE', 'CUVE', 'BOUTIQUE'];
+
 
   
   materielForm = this.fb.group({
@@ -36,7 +39,8 @@ export class AjouterMaterielComponent {
 
 
   addMateriel() {
-
+    this.materiel = <Imateriel> this.materielForm.value;
+    console.log(this.materiel);
       this.materielService.addMateriel(this.materiel).subscribe(result => this.gotoMaterielList());
     
   }
