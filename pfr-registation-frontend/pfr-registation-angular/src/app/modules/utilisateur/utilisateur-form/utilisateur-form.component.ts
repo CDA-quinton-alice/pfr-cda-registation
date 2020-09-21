@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Utilisateur } from '../interfaces/utilisateur';
-import { UtilisateurService } from '../services/utilisateur.service';
+
 import { ActivatedRoute, Router } from '@angular/router';
+import { IUtilisateur } from 'src/app/interfaces/iutilisateur';
+import { UtilisateurService } from 'src/app/services/utilisateur-service/utilisateur.service';
 
 
 @Component({
@@ -11,8 +12,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./utilisateur-form.component.css']
 })
 export class UtilisateurFormComponent implements OnInit {
-  utilisateur: Utilisateur = {};
-  utilisateurs: Array<Utilisateur> = [];
+  utilisateur: IUtilisateur = {};
+  utilisateurs: Array<IUtilisateur> = [];
   utilisateurForm: FormGroup;
 
   constructor(private utilisateurService: UtilisateurService,
@@ -50,7 +51,7 @@ export class UtilisateurFormComponent implements OnInit {
     });
   }
   ajouterUtilisateur() {
-    this.utilisateur = <Utilisateur> this.utilisateurForm.value;
+    this.utilisateur = <IUtilisateur> this.utilisateurForm.value;
     console.log(this.utilisateurForm.value);
     console.log(this.utilisateur);
         

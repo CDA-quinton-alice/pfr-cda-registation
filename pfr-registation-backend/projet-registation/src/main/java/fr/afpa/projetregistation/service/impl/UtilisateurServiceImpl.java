@@ -8,12 +8,15 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fr.afpa.projetregistation.dao.IAdresseDao;
 import fr.afpa.projetregistation.dao.IConnexionDao;
 import fr.afpa.projetregistation.dao.IUtilisateurDao;
+import fr.afpa.projetregistation.dto.MessageContactDto;
 import fr.afpa.projetregistation.dto.UtilisateurDto;
 import fr.afpa.projetregistation.dto.UtilisateurSimpleDto;
 import fr.afpa.projetregistation.entity.AdresseEntity;
@@ -21,7 +24,6 @@ import fr.afpa.projetregistation.entity.ConnexionEntity;
 import fr.afpa.projetregistation.entity.UtilisateurEntity;
 import fr.afpa.projetregistation.service.IUtilisateurService;
 import fr.afpa.projetregistation.utils.Constantes;
-import fr.afpa.projetregistation.utils.Securite;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -53,6 +55,9 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 	 */
 	@Autowired
 	IUtilisateurDao utilisateurDao;
+	
+	@Autowired
+	JavaMailSender mailSender;
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -303,4 +308,43 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 		return false;
 	}
 
+	@Override
+	public void contactUs(MessageContactDto pMessage) {
+		log.info("---->Début envoi mail");
+		// Etape 1 envoi mail à l'appli
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setFrom("registationcdatest@gmail.com"); // Impossible de modifier celui qui envoie
+		message.setTo("registationcdatest@gmail.com"); // L'appli reçoit le message
+
+		String mailSubject = "Nouvelle demande de contact";
+		String mailContent = "Voici le message envoyé de : " + "\n" + "Nom : " + pMessage.getNom() + "\n" + "Prénom : "
+				+ pMessage.getPrenom() + "\n" + "Email : " + pMessage.getEmail() + "\n" + "Message : " + "\n"
+				+ pMessage.getMessage() + "\n" + "Fin du message.";
+
+		message.setSubject(mailSubject);
+		message.setText(mailContent);
+
+		mailSender.send(message);
+
+		log.info("-------->mail 1 envoyé");
+
+		// Etape2 envoi du mail auto au demandeur
+		message = new SimpleMailMessage();
+		message.setFrom("registationcdatest@gmail.com"); //
+		message.setTo(pMessage.getEmail());
+
+		mailSubject = "Demande de contact bien reçue";
+		mailContent = "Bonjour, " + "\n"
+				+ "Nous avons bien reçue votre demande, elle sera traitée dans les meilleurs délais (aka JAMAIS)."
+				+ "\n" + "L'équipe RegiStation vous remercie. ";
+
+		message.setSubject(mailSubject);
+		message.setText(mailContent);
+
+		mailSender.send(message);
+
+		log.info("-------->mail 2 envoyé");
+		log.info("---->FIN envoi mail");
+	}
+	
 }

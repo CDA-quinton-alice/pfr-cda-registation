@@ -3,8 +3,8 @@ logging:
     name: ${user.home}/Registation/app-registation.log
   level:
     fr:
-      afpa: trace
-    root: info
+      afpa: info
+    root: warn
 
 spring:
   datasource:
@@ -14,7 +14,7 @@ spring:
     driver-class-name: org.mariadb.jdbc.Driver
     
   jpa:
-    hibernate:      ddl-auto: update    show-sql: true
+    hibernate:      ddl-auto: update    show-sql: false
   
   
   
