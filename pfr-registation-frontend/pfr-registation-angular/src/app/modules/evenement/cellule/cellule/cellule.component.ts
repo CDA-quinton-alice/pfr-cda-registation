@@ -1,5 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit,Inject} from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Ievent } from 'src/app/interfaces/ievent';
+import { PlusModalComponent } from '../plus-modal/plus-modal.component';
+import {MatDialogModule} from '@angular/material/dialog';
+
+export interface DialogData {
+  eventData: Array<Ievent>;
+  dates:Date;
+}
 
 @Component({
   selector: 'app-cellule',
@@ -9,6 +17,7 @@ import { Ievent } from 'src/app/interfaces/ievent';
 export class CelluleComponent implements OnInit {
 
   @Input() event: Array<Ievent>;
+  eventInInterval : Array<Ievent>;
   @Input() jour: string;
   @Input() dates: Date;
   @Input() tete: boolean;
@@ -16,11 +25,18 @@ export class CelluleComponent implements OnInit {
 
   nbSpan: number;
   plusDisplayed: boolean = false;
-  constructor() {
+  constructor(public dialog: MatDialog) {
    }
  
   ngOnInit(): void {
     this.nbSpan=0;
+
+    this.eventInInterval = new Array<Ievent>();
+    for(let e of this.event){
+      if(this.estDansIntervale(e.date_debut,e.date_fin,this.dates)){
+        this.eventInInterval.push(e);
+      }
+    }
   }
 
   estDansIntervale(d1:Date,d2:Date,t:Date):boolean{
@@ -42,8 +58,7 @@ export class CelluleComponent implements OnInit {
     return this.nbSpan>=2;
   }
   testFini(i:number):boolean{
-    console.log("i: "+i+" taille : "+this.event.length+" : "+(i==this.event.length));
-    return i==this.event.length;
+    return i==this.eventInInterval.length;
   }
 
   setPlusDisplayed(){
@@ -59,6 +74,12 @@ export class CelluleComponent implements OnInit {
     return this.plusDisplayed;
   }
 
+  plusModal():void{
+    const dialogRef = this.dialog.open(PlusModalComponent, {
+      width: '250px',
+      data: {eventData: this.eventInInterval, dates:this.dates}
+    });
+  }
   getShortType(s:string):string{
     switch(s){
       case 'Autre':
