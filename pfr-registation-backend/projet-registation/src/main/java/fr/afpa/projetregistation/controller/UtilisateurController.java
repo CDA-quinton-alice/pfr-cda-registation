@@ -31,30 +31,6 @@ public class UtilisateurController {
 	@Autowired
 	IUtilisateurService utilisateurService;
 
-//	@RequestMapping(value = "/utilisateurtest", method = { RequestMethod.POST, RequestMethod.GET })
-//	protected ModelAndView connexion() {
-//		ModelAndView mv = new ModelAndView();
-//
-//		// Récupération du context Spring Security
-//		Authentication authentification = SecurityContextHolder.getContext().getAuthentication();
-//
-//		String userConnecte = authentification.getName();
-//		UtilisateurDto vUserDto = utilisateurService.getUtilisateurByMatricule(userConnecte);
-//
-//		log.info(authentification.toString());
-//
-//		log.info("Acces page test Responsable");
-//
-//		mv.addObject("utilisateur", utilisateurDao.findAll());
-//		mv.addObject("session", "Utilisateur Par Nom");
-//
-////		mv.addObject("utilisateur", utilisateurService.getUtilisateurByMatricule(authentification.getName()));
-//
-//		mv.addObject("infoUtilisateur", vUserDto);
-//
-//		mv.setViewName("accueil");
-//		return mv;
-//	}
 	
 	@GetMapping("/utilisateurtest")
     public List<UtilisateurSimpleDto> findAll() {
