@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Utilisateur } from '../interfaces/utilisateur';
-import { UtilisateurService } from '../services/utilisateur.service';
+
 import { ActivatedRoute, Router } from '@angular/router';
+import { IUtilisateur } from 'src/app/interfaces/iutilisateur';
+import { IUtilisateurSimple } from 'src/app/interfaces/iutilisateurSimple';
+import { UtilisateurService } from 'src/app/services/utilisateur-service/utilisateur.service';
 
 @Component({
   selector: 'app-utilisateur-list',
@@ -9,8 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./utilisateur-list.component.css']
 })
 export class UtilisateurListComponent implements OnInit {
-  utilisateur: Utilisateur;
-  utilisateurs: Utilisateur[];
+  utilisateur: IUtilisateur;
+  utilisateurs: IUtilisateurSimple[];
   matricule: string;
   constructor(private utilisateurService: UtilisateurService, private route: ActivatedRoute,
     private router: Router) { }
