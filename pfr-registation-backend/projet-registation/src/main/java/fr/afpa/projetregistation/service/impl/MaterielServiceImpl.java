@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.taglibs.standard.lang.jstl.NotEqualsOperator;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,7 +15,6 @@ import fr.afpa.projetregistation.controller.MaterielController;
 import fr.afpa.projetregistation.dao.IMaterielDao;
 import fr.afpa.projetregistation.dao.ITypeMaterielDao;
 import fr.afpa.projetregistation.dto.MaterielDto;
-import fr.afpa.projetregistation.dto.TypeMaterielDto;
 import fr.afpa.projetregistation.entity.MaterielEntity;
 import fr.afpa.projetregistation.entity.TypeMaterielEntity;
 import fr.afpa.projetregistation.service.IMaterielService;
