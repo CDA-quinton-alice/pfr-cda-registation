@@ -1,4 +1,4 @@
-export interface Utilisateur {
+export interface IUtilisateurSimple {
    matricule: string;
    nom: string;
    prenom: string;

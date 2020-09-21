@@ -16,7 +16,6 @@ import {MatCardModule} from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { UtilisateurFormComponent } from './utilisateur-form/utilisateur-form.component';
 
-import { UtilisateurService } from './services/utilisateur.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
@@ -27,6 +26,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { UtilisateurContactComponent } from './utilisateur-contact/utilisateur-contact.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { UtilisateurService } from 'src/app/services/utilisateur-service/utilisateur.service';
 
 
 
