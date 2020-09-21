@@ -61,6 +61,12 @@
 .ncm{
     color: #8a8a8a;
 }
+.plus{
+    padding-top:0.3rem;
+    font-size:0.8rem;
+    color:black;
+}
+
  @media(max-width:600px){
      .ev{
         height:1.1rem;

@@ -13,7 +13,8 @@ export class CelluleComponent implements OnInit {
   @Input() dates: Date;
   @Input() tete: boolean;
   @Input() headColor:String;
-  nbSpan: number = 0;
+
+  nbSpan: number;
   plusDisplayed: boolean = false;
   constructor() {
    }
@@ -29,11 +30,20 @@ export class CelluleComponent implements OnInit {
     return date1<=test&&test<=date2;
   }
 
+  getNbSpan(){
+    return this.nbSpan;
+  }
+
   incSpan(){
     this.nbSpan++;
   }
+
   testSpan():boolean{
-    return this.nbSpan>2;
+    return this.nbSpan>=2;
+  }
+  testFini(i:number):boolean{
+    console.log("i: "+i+" taille : "+this.event.length+" : "+(i==this.event.length));
+    return i==this.event.length;
   }
 
   setPlusDisplayed(){

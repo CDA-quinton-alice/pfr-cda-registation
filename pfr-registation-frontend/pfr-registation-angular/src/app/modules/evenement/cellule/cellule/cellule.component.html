@@ -3,22 +3,35 @@
     <span class="jourC w-100" [ngClass]="headColor">{{jour.split('-')[1]}}</span>
     <div class="evenements w-100">
         {{resetSpan()}}
-        <ng-container *ngFor="let e of event">
+        <ng-container *ngFor="let e of event; let i = index">
+            {{incSpan()}}
             <ng-container *ngIf="estDansIntervale(e.date_debut,e.date_fin,dates)">
-                        {{incSpan()}}
-                        <ng-container *ngIf="!testSpan(); else plusSpan">
+                <ng-container *ngIf="!testSpan(); else plusSpan">
+                    <span class="ev btn btn-light"  [ngClass]='getEventColor(e)'>
+                        {{e.description}}
+                    </span>
+                </ng-container> 
+                <ng-template #plusSpan>
+                    <ng-container *ngIf="(getNbSpan()<=3)&&!testFini(i+1) else nonFini">
+                            <span class="ev btn btn-light"  [ngClass]='getEventColor(e)'>
+                                {{e.description}}
+                            </span>
+                    </ng-container>
+                    <ng-template #nonFini>
+                        <ng-container *ngIf="getNbSpan()<=4&&testFini(i+1) else sup3">
                             <span class="ev btn btn-light"  [ngClass]='getEventColor(e)'>
                                 {{e.description}}
                             </span>
                         </ng-container>
-                        <ng-template #plusSpan>
-                            <ng-container *ngIf="!isPlusDisplayed()">
-                                <span class="ev btn btn-light"  [ngClass]='getEventColor(e)'>
-                                    +
+                        <ng-template #sup3>
+                            <ng-container *ngIf="testFini(i+1)">
+                                <span class="ev btn btn-light plus">
+                                    {{getNbSpan()-3}} autres
                                 </span>
-                                {{setPlusDisplayed()}}
                             </ng-container>
                         </ng-template>
+                    </ng-template>
+                </ng-template>
             </ng-container>
         </ng-container>
     </div>
