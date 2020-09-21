@@ -13,7 +13,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AjouterMaterielComponent {
   materiel: Imateriel = {};
   list_materiel: Array<Imateriel> = [];
+  date: Date = new Date;
 
+  
+
+  
   materielForm = this.fb.group({
     ref: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
     marque: ['',[Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
@@ -21,7 +25,7 @@ export class AjouterMaterielComponent {
     prix: [null, [Validators.required, Validators.min(1), Validators.max(1000000)]],
     etat: [null, [Validators.required, Validators.min(1), Validators.max(3)]],
     typeMateriel: ['',[Validators.required]],
-    dateAchat: [Date, [Validators.required]],
+    dateAchat: [this.date, [Validators.required]],
     localisation: ['',[Validators.required, Validators.minLength(3)]]
   })
 

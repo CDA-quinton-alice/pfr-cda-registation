@@ -1,25 +1,73 @@
 <mat-card class="ajout-utilisateur-form">
-    
-
-<div id="form-materiel">
-
-    <form [formGroup]="materielForm"  (ngSubmit)="addMateriel()">
 
 
-     
-            <mat-form-field appearance="legacy">
-              <mat-label>Référence</mat-label>
-              <mat-icon matPrefix class="icone-info-card">fingerprint</mat-icon>
-              <input matInput type="text" formControlName="ref">
-            </mat-form-field>
+    <div id="form-materiel">
+
+        <form [formGroup]="materielForm" (ngSubmit)="addMateriel()">
+
+
 
             <mat-form-field appearance="legacy">
                 <mat-label>Référence</mat-label>
                 <mat-icon matPrefix class="icone-info-card">fingerprint</mat-icon>
                 <input matInput type="text" formControlName="ref">
-              </mat-form-field>
+            </mat-form-field>
 
-        <!-- <div>
+            <mat-form-field appearance="legacy">
+                <mat-label>Marque</mat-label>
+                <mat-icon matPrefix class="icone-info-card">fingerprint</mat-icon>
+                <input matInput type="text" formControlName="marque">
+            </mat-form-field>
+
+            <mat-form-field appearance="legacy">
+                <mat-label>Modèle</mat-label>
+                <mat-icon matPrefix class="icone-info-card">fingerprint</mat-icon>
+                <input matInput type="text" formControlName="modele">
+            </mat-form-field>
+
+            <mat-form-field appearance="legacy">
+                <mat-label>Prix</mat-label>
+                <mat-icon matPrefix class="icone-info-card">fingerprint</mat-icon>
+                <input matInput type="number" formControlName="prix">
+            </mat-form-field>
+
+            <mat-form-field appearance="legacy">
+                <mat-label>Etat du matériel</mat-label>
+                <mat-icon matPrefix class="icone-info-card">fingerprint</mat-icon>
+                <mat-select formControlName="etat">
+                    <mat-option [value]=1>En cours de fonctionnement</mat-option>
+                    <mat-option [value]=2>Problème mineur détecté</mat-option>
+                    <mat-option [value]=3>En panne</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="legacy">
+                <mat-label>Type de Matériel</mat-label>
+                <mat-icon matPrefix class="icone-info-card">fingerprint</mat-icon>
+                <mat-select formControlName="etat">
+                    <!-- <mat-option [value]=POMPE>Pompe</mat-option> -->
+                    <!-- <mat-option [value]='CUVE'>Cuve</mat-option> -->
+                    <!-- <mat-option [value]="materiel3">Eléments de la boutique</mat-option> -->
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="legacy">
+                <mat-label>Localisation</mat-label>
+                <mat-icon matPrefix class="icone-info-card">fingerprint</mat-icon>
+                <input matInput type="text" formControlName="localisation">
+            </mat-form-field>
+
+            <mat-form-field appearance="legacy">
+                <mat-label>Date d'achat</mat-label>
+                <mat-icon matPrefix class="icone-info-card">fingerprint</mat-icon>
+                <input matInput type="date" formControlName="dateAchat">
+            </mat-form-field>
+
+
+
+
+
+            <!-- <div>
             Référence: <input type="text" name=ref [(ngModel)]=materiel.ref required #ref="ngModel">
         </div>
 
@@ -80,10 +128,10 @@
             La localisation est obligatoire.
         </div> -->
 
-        <div>
-            <button mat-raised-button [disabled]=!materielForm.valid  class="bouton-ajouter">Ajouter le matériel</button>
-        </div>
-    </form>
-</div>
+            <div>
+                <button mat-raised-button [disabled]=!materielForm.valid class="bouton-ajouter">Ajouter le
+                    matériel</button>
+            </div>
+        </form>
+    </div>
 </mat-card>
-
