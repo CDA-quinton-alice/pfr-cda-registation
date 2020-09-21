@@ -5,7 +5,6 @@ import { DocumentRoutingModule } from './document-routing.module';
 import {SharedModule} from '../shared/shared.module';
 import { AjouterDocumentModule} from './ajouter-document/ajouter-document.module';
 import { DocumentExistByIdModule} from './document-exist-by-id/document-exist-by-id.module';
-import { GetDocumentModule} from './get-document/get-document.module';
 import { GetDocumentByNomModule} from './get-document-by-nom/get-document-by-nom.module';
 import { ListeDocumentModule} from './liste-document/liste-document.module';
 import { MajCategorieDocumentModule} from './maj-categorie-document/maj-categorie-document.module';
