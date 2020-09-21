@@ -23,8 +23,8 @@ export class UtilisateurContactComponent implements OnInit {
 
   initForm() {
     this.contactForm = this.fb.group({
-      nom: ['AMB', Validators.required],
-      prenom: ['MAT', Validators.required],
+      nom: ['', Validators.required],
+      prenom: ['', Validators.required],
       email: ['', Validators.required],
       message: ['', Validators.required]
     });
