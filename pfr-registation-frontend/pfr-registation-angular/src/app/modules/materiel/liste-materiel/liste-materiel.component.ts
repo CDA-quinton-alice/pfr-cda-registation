@@ -8,9 +8,10 @@ import { MaterielService } from 'src/app/services/materiel.service';
   styleUrls: ['./liste-materiel.component.css']
 })
 export class ListeMaterielComponent implements OnInit {
- 
-  list_materiel: Array<Imateriel> = [];
 
+  materiel: Imateriel = {};
+  list_materiel: Array<Imateriel> = [];
+  monType: string;
   constructor(private materielService: MaterielService) { }
 
   ngOnInit(): void {
@@ -20,5 +21,10 @@ export class ListeMaterielComponent implements OnInit {
     })
   }
 
-  
+  getAllByType(monType: string) {
+
+    this.materielService.findAllByType(monType).subscribe(data => {
+    this.list_materiel = data;
+    })
+  }
 }

@@ -39,6 +39,14 @@ public class MaterielController {
 	
 	}
 	
+	@GetMapping("/materiel/listeMateriel/{pType}")
+	public List<MaterielDto> getAllByType(@PathVariable (value="pType") String pType) {
+		System.out.println(pType);
+		List<MaterielDto> listeMat =new ArrayList<MaterielDto>();
+		listeMat=materielService.getAllByType(1, pType);
+		return listeMat;	
+	}
+	
 	@GetMapping("/materiel/{pId}")
 	public MaterielDto getById(@PathVariable (value="pId") int pId) {
 	
@@ -48,8 +56,19 @@ public class MaterielController {
 	}
 	
 	@PostMapping("/materiel")
-    public void addUser(@RequestBody MaterielDto pMat) {
+    public void addMateriel(@RequestBody MaterielDto pMat) {
 		materielService.create(pMat);       
+    }
+	
+	@PostMapping("/materiel/{pId}/delete")
+    public void deleteMateriel(@PathVariable (value="pId") int pId) {
+		materielService.deleteById(pId);       
+    }
+	
+	@PostMapping("/materiel/update")
+    public void updateMateriel(@RequestBody MaterielDto pMat) {
+		System.out.println(pMat);
+		materielService.updateByRef(pMat.getRef(), pMat);       
     }
 	
 }

@@ -24,7 +24,6 @@ import { EvenementModule } from './modules/evenement/evenement.module';
     AppComponent,
     UserListComponent,
     UserFormComponent,
-   
   ],
 
   imports: [

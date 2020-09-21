@@ -1,17 +1,7 @@
-.content{
-    padding-top: 2rem;
-    padding-left: 2.6rem;
-}
-.mat-elevation-z4 {
-    width: 250px;
-}
+
 #bouton-ajouter{
     width: 40px;
     height: 40px;
-}
-.toolbar-collabs{
-    padding: 12px;
-    margin-left: 100px;
 }
 .card-top{
     display: flex;
@@ -20,4 +10,12 @@
 }
 .icone-info-card{
     margin-right: 5px;
+}
+
+.content{
+    padding-top: 2rem;
+    padding-left: 2.6rem;
+}
+.mat-elevation-z4 {
+    width: 250px;
 }
