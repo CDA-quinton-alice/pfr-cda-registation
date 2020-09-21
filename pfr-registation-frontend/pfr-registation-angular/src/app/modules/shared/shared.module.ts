@@ -15,9 +15,10 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [FondComponent, HeaderComponent],
+  declarations: [FondComponent, HeaderComponent, FooterComponent],
   exports: [HeaderComponent, FondComponent],
 
   imports: [
