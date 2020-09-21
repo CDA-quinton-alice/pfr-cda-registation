@@ -1,17 +1,17 @@
-<mat-card class="card-top">
+<mat-card class="ajout-utilisateur-form">
     
-    <h2 style="margin: 0;">Les Collaborateurs</h2>
-    
-    <button mat-mini-fab color="warn" id="bouton-ajouter" [routerLink]="'/materiel/ajouter'">
-        <mat-icon>add</mat-icon>
-    </button>
-
-</mat-card>
 
 <div id="form-materiel">
 
-    <form #ajoutMaterielForm=ngForm  (ngSubmit)=addMateriel()>
+    <form [formGroup]="materielForm"  (ngSubmit)="addMateriel()">
 
+
+     
+            <mat-form-field appearance="legacy">
+              <mat-label>Référence</mat-label>
+              <mat-icon matPrefix class="icone-info-card">fingerprint</mat-icon>
+              <input matInput type="text" formControlName="ref">
+            </mat-form-field>
 
         <div>
             Référence: <input type="text" name=ref [(ngModel)]=materiel.ref required #ref="ngModel">
@@ -74,8 +74,9 @@
         </div>
 
         <div>
-            <button [disabled]=!ajoutMaterielForm.valid>Ajouter le matériel</button>
+            <button mat-raised-button [disabled]=!materielForm.valid  class="bouton-ajouter">Ajouter le matériel</button>
         </div>
     </form>
 </div>
+</mat-card>
 

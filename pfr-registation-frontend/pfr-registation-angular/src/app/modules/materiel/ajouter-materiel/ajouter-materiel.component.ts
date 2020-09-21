@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Imateriel } from 'src/app/interfaces/imateriel';
 import { MaterielService } from 'src/app/services/materiel.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -10,14 +11,25 @@ import { MaterielService } from 'src/app/services/materiel.service';
   styleUrls: ['./ajouter-materiel.component.css']
 })
 export class AjouterMaterielComponent {
-
   materiel: Imateriel = {};
-
   list_materiel: Array<Imateriel> = [];
 
+  materielForm = this.fb.group({
+    ref: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
+    marque: ['',[Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+    modele: ['',[Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+    prix: [null, [Validators.required, Validators.min(1), Validators.max(1000000)]],
+    etat: [null, [Validators.required, Validators.min(1), Validators.max(3)]],
+    typeMateriel: ['',[Validators.required]],
+    dateAchat: [Date, [Validators.required]],
+    localisation: ['',[Validators.required, Validators.minLength(3)]]
+  })
 
   constructor(private route: ActivatedRoute,
-    private router: Router, private materielService: MaterielService) { }
+    private router: Router, private materielService: MaterielService,
+    private fb: FormBuilder,) {
+     }
+
 
   addMateriel() {
 

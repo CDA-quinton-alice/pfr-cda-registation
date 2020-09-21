@@ -10,3 +10,19 @@
 .ng-valid:not(form){
     border-left: 5px solid green;
 }
+
+.icone-info-card{
+    margin-right: 5px;
+}
+.mat-form-field{
+    margin-right: 15px;
+}
+.ajout-utilisateur-form{
+    margin-left: 2.3rem;
+    margin-right: auto;
+}
+
+.bouton-ajouter{
+    color:#fff;
+     background-image: linear-gradient(to right, #CDDFA0, #6FD08C );
+}
