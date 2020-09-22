@@ -8,11 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './modules/shared/shared.module';
 import { MaterielModule } from './modules/materiel/materiel.module';
-import { UserListComponent } from './user-list/user-list.component';
-import { UserFormComponent } from './user-form/user-form.component';
-import { UserService } from './user-service.service';
 import { FormsModule } from '@angular/forms';
-import { MaterielService } from './services/materiel.service';
 import { DocumentModule } from './modules/document/document.module';
 import { AjouterDocumentModule } from './modules/document/ajouter-document/ajouter-document.module';
 import { SupprimerDocumentModule } from './modules/document/supprimer-document/supprimer-document.module';
@@ -30,6 +26,7 @@ import { GetDocumentByIdModule } from './modules/document/get-document-by-id/get
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EvenementModule } from './modules/evenement/evenement.module';
+import { MaterielService } from './services/materiel-service/materiel.service';
 
 
 
@@ -37,8 +34,6 @@ import { EvenementModule } from './modules/evenement/evenement.module';
 @NgModule({
   declarations: [
     AppComponent,
-    UserListComponent,
-    UserFormComponent,
   ],
 
   imports: [
@@ -67,7 +62,7 @@ import { EvenementModule } from './modules/evenement/evenement.module';
     EvenementModule,
   ],
 
-  providers: [UserService, MaterielService],
+  providers: [MaterielService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
