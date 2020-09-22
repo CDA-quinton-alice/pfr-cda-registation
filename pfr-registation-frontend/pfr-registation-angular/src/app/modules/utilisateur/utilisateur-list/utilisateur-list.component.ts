@@ -24,8 +24,6 @@ export class UtilisateurListComponent implements OnInit {
     });
   }
 
-
-
   supprimerUtilisateur(matricule: string) {
     console.log(matricule);
     this.utilisateurService.supprimerUtilisateur(matricule).subscribe(res => this.ngOnInit()

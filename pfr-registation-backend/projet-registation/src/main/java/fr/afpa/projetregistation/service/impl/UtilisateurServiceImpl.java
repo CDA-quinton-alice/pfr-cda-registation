@@ -335,7 +335,7 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 
 		mailSubject = "Demande de contact bien reçue";
 		mailContent = "Bonjour, " + "\n"
-				+ "Nous avons bien reçue votre demande, elle sera traitée dans les meilleurs délais (aka JAMAIS)."
+				+ "Nous avons bien reçue votre demande, elle sera traitée dans les meilleurs délais."
 				+ "\n" + "L'équipe RegiStation vous remercie. ";
 
 		message.setSubject(mailSubject);

@@ -32,22 +32,22 @@ public class UtilisateurController {
 	IUtilisateurService utilisateurService;
 
 	
-	@GetMapping("/utilisateurtest")
+	@GetMapping("/utilisateur")
     public List<UtilisateurSimpleDto> findAll() {
         return (List<UtilisateurSimpleDto>) utilisateurService.getAllUtilisateurs(1);
     }
 
-	@PostMapping("/utilisateurtest")
+	@PostMapping("/utilisateur")
     public void addUser(@RequestBody UtilisateurDto pUtilisateur) {
 		utilisateurService.create(pUtilisateur);       
     }	
 	
-	@DeleteMapping("/utilisateurtest/{matriculeToDelete}")
+	@DeleteMapping("/utilisateur/{matriculeToDelete}")
 	public void supprimerUtilisateur(@PathVariable (value="matriculeToDelete") String pMatriculeToDelete) {
 		utilisateurService.deleteUtilisateurByMatricule(pMatriculeToDelete);
 	}
 	
-	@PostMapping("/utilisateurtest/contact")
+	@PostMapping("/utilisateur/contact")
 	public void contactUs(@RequestBody MessageContactDto pMessage) {
 		utilisateurService.contactUs(pMessage);
 	}

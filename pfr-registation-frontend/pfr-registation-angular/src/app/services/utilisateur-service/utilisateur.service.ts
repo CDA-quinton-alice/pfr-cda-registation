@@ -9,8 +9,7 @@ import { IMessageContact } from 'src/app/interfaces/imessageContact';
   providedIn: 'root'
 })
 export class UtilisateurService {
-  url: string = "http://localhost:8080/utilisateurtest";
-
+  url: string = "http://localhost:8080/utilisateur";
 
   constructor(private http: HttpClient) {
 
@@ -26,8 +25,6 @@ export class UtilisateurService {
     return this.http.delete<IUtilisateur>(this.url + "/" + matricule);
   }
   contactUs(messageContact: IMessageContact): Observable<IMessageContact> {
-    console.log("service ok !");
-
     return this.http.post<IMessageContact>(this.url + "/contact", messageContact);
   }
 }
