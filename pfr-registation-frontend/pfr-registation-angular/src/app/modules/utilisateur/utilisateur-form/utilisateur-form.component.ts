@@ -24,7 +24,7 @@ export class UtilisateurFormComponent implements OnInit {
 
   initForm(): void {
     this.utilisateurForm = this.fb.group({
-      matricule: ['TEST012', Validators.required],
+      matricule: ['', Validators.required],
       nom: ['', [Validators.required , Validators.minLength(3)]],
       prenom: ['', [Validators.required , Validators.minLength(3)]],
       dateDeNaissance: ['', Validators.required],
@@ -51,10 +51,7 @@ export class UtilisateurFormComponent implements OnInit {
   }
   ajouterUtilisateur() {
     this.utilisateur = <IUtilisateur> this.utilisateurForm.value;
-    console.log(this.utilisateurForm.value);
-    console.log(this.utilisateur);
-        
-    this.utilisateurService.save(this.utilisateur).subscribe(res => this.gotoUtilisateurListe());
+      this.utilisateurService.save(this.utilisateur).subscribe(res => this.gotoUtilisateurListe());
   }
 
   gotoUtilisateurListe() {
