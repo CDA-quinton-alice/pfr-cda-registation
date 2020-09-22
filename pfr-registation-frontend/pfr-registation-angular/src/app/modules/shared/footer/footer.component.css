@@ -1,5 +1,13 @@
-mat-grid-tile {
+.container-fluid{
     background: #ffd05b;
     margin-top: 100px;
-    color:rgb(50, 74, 94);
+    color:rgb(80, 111, 136);
+    height: 110px; 
+    text-align: center;
+    list-style-type: none;
+  }
+
+  .footer-liste{
+    color: rgb(80, 111, 136);
+    margin-left: 100px;
   }
