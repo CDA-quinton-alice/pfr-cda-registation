@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './modules/shared/shared.module';
 import { MaterielModule } from './modules/materiel/materiel.module';
 
-import { UserService } from './user-service.service';
+
 import { FormsModule } from '@angular/forms';
 import { MaterielService } from './services/materiel.service';
 import { DocumentModule } from './modules/document/document.module';
@@ -66,7 +66,7 @@ import { ContentComponent } from './component/content/content.component';
     EvenementModule,
   ],
 
-  providers: [UserService, MaterielService],
+  providers: [MaterielService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

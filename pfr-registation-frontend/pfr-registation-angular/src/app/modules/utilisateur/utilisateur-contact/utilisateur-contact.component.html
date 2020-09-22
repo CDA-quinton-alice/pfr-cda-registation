@@ -2,6 +2,8 @@
     <mat-card-header>
         <h2>Contactez-nous !</h2>
     </mat-card-header>
+
+    <!-- Début formulaire -->
     <form [formGroup]="contactForm" (ngSubmit)="envoyer()" class="monFormContact">
 
         <mat-form-field appearance="legacy">
@@ -30,6 +32,7 @@
 
         <button mat-raised-button [disabled]="!contactForm.valid" type="submit" class="bouton-envoyer">Envoyer</button>
     </form>
+    <!-- Fin formulaire -->
 
 </mat-card>
 {{info}}

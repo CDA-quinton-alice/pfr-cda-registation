@@ -42,9 +42,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/utilisateur").authenticated() // seuls les utilisateurs authentifiés ont accès à cette url
-				.antMatchers(HttpMethod.GET, "/utilisateur/*").authenticated()
-				.antMatchers(HttpMethod.DELETE, "/utilisateur/*").authenticated()
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/uti").authenticated() // seuls les utilisateurs authentifiés ont accès à cette url
+				.antMatchers(HttpMethod.GET, "/uti/*").authenticated()
+				.antMatchers(HttpMethod.DELETE, "/uti/*").authenticated()
 				.antMatchers("/user").authenticated()
 				.anyRequest().permitAll() // toutes les autres url sont accessibles
 				.and().csrf().disable() // authoriser l'envoi de donnée depuis des formulaire non genenrés depuis le back-end

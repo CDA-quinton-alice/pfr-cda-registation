@@ -1,25 +1,23 @@
 <div class="container-div">
+    <!-- Début card top -->
     <mat-card class="card-top">
-
         <h2 style="margin: 0;">Les Collaborateurs</h2>
-
         <button mat-mini-fab color="warn" id="bouton-ajouter" [routerLink]="'/utilisateur/add'">
             <mat-icon>add</mat-icon>
         </button>
-
     </mat-card>
+    <!-- Fin -->
 
+    <!-- Début Card -->
     <div class="content" fxLayout="row wrap" fxLayoutGap="20px grid">
-        <!-- Pour afficher plusieurs cards à remplasser par data bdd-->
         <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let utilisateur of utilisateurs">
-            <!--  -->
             <mat-card class="mat-elevation-z4">
                 <mat-card-header>
                     <img mat-card-avatar src="/assets/images/aurel.jpg" style="width: 40px;">
                     <mat-card-title>{{utilisateur.prenom}}</mat-card-title>
                     <mat-card-subtitle>{{utilisateur.nom}}</mat-card-subtitle>
                 </mat-card-header>
-                <img mat-card-image src="/assets/images/toad.jpg" alt="Photo of a Shiba Inu">
+                <img mat-card-image src="/assets/images/toad.jpg" alt="Photo principale">
                 <mat-card-content>
                     <mat-list dense>
                         <mat-list-item>
@@ -38,7 +36,7 @@
                             <mat-icon matPrefix class="icone-info-card">phone</mat-icon>
                             {{utilisateur.tel}}
                         </mat-list-item>
-                       
+
                         <mat-list-item>
                             <mat-icon matPrefix class="icone-info-card">military_tech</mat-icon>
 
@@ -61,4 +59,6 @@
             </mat-card>
         </div>
     </div>
+    <!-- Fin Card -->
+
 </div>
