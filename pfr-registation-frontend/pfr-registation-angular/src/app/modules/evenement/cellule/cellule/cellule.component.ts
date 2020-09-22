@@ -1,13 +1,8 @@
 import { Component, Input, OnInit,Inject} from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Ievent } from 'src/app/interfaces/ievent';
+import { AjoutModalComponent } from '../ajout-modal/ajout-modal.component';
 import { PlusModalComponent } from '../plus-modal/plus-modal.component';
-import {MatDialogModule} from '@angular/material/dialog';
-
-export interface DialogData {
-  eventData: Array<Ievent>;
-  dates:Date;
-}
 
 @Component({
   selector: 'app-cellule',
@@ -41,12 +36,25 @@ export class CelluleComponent implements OnInit {
     }
   }
 
+  ajoutModal(){
+    const dialogRef = this.dialog.open(AjoutModalComponent, {
+      width: '30rem',
+      height:'25rem',
+      data: {}
+    });
+  }
+
+  editModal(){
+    alert("Vous avez cliqué sur un évènement !");
+  }
+
   estDansIntervale(d1:Date,d2:Date,t:Date):boolean{
     let date1 = new Date((d1.getMonth()+1)+"/"+d1.getDate()+"/"+d1.getFullYear());
     let date2 = new Date((d2.getMonth()+1)+"/"+d2.getDate()+"/"+d2.getFullYear());
     let test = new Date((t.getMonth()+1)+"/"+t.getDate()+"/"+t.getFullYear());
     return date1<=test&&test<=date2;
   }
+
 
   getNbSpan(){
     return this.nbSpan;
@@ -117,5 +125,5 @@ export class CelluleComponent implements OnInit {
   testFini(i:number):boolean{
     return i==this.eventInInterval.length;
   }
-  
+
 }
