@@ -75,7 +75,7 @@
 }
 @media screen and (min-width: 600px) {
   .rwd-table tr:hover:not(:first-child) {
-    background:	#ffd05b
+    background:	#ffd05b;
   }
   .rwd-table td:before {
     display: none;
