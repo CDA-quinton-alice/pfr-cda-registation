@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule , CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,8 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './modules/shared/shared.module';
 import { MaterielModule } from './modules/materiel/materiel.module';
-import { UserListComponent } from './user-list/user-list.component';
-import { UserFormComponent } from './user-form/user-form.component';
+
 import { UserService } from './user-service.service';
 import { FormsModule } from '@angular/forms';
 import { MaterielService } from './services/materiel.service';
@@ -27,9 +26,9 @@ import { ListeDocumentModule } from './modules/document/liste-document/liste-doc
 import { DocumentExistByIdModule } from './modules/document/document-exist-by-id/document-exist-by-id.module';
 import { GetDocumentByNomModule } from './modules/document/get-document-by-nom/get-document-by-nom.module';
 import { GetDocumentByIdModule } from './modules/document/get-document-by-id/get-document-by-id.module';
-import { MatDatepickerModule} from '@angular/material/datepicker';
-import { ReactiveFormsModule } from '@angular/forms';
 import { EvenementModule } from './modules/evenement/evenement.module';
+import { PresentationTeamComponent } from './presentation-team/presentation-team.component';
+import { ContentComponent } from './component/content/content.component';
 
 
 
@@ -37,8 +36,8 @@ import { EvenementModule } from './modules/evenement/evenement.module';
 @NgModule({
   declarations: [
     AppComponent,
-    UserListComponent,
-    UserFormComponent,
+    // PresentationTeamComponent,
+    // ContentComponent
   ],
 
   imports: [

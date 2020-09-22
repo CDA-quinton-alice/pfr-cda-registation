@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'materiel', loadChildren: './modules/materiel/materiel.module#MaterielModule' },
   { path: 'evenement', loadChildren:'./modules/evenement/evenement.module#EvenementModule'},
   { path: 'document', component: ListeDocumentComponent},
-  { path: '', component: ContentComponent},
+  { path: 'accueil', component: ContentComponent},
 ];
 
 @NgModule({
@@ -18,4 +18,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-// test
+

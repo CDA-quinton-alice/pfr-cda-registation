@@ -31,10 +31,10 @@
       <a mat-list-item [routerLink]="'/utilisateur/contact'" (click)="sidenav.close()"><mat-icon class="icone-side" >contact_support</mat-icon>Contactez-nous</a>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content class="content">
     <div >
       <router-outlet></router-outlet>
-      <app-footer></app-footer>
+      <!-- <app-footer></app-footer> -->
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
