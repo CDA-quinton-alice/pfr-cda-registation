@@ -4,8 +4,8 @@
   <button mat-icon-button (click)="sidenav.open()" class="icone-bars" aria-label="icone-bars">
     <mat-icon>menu</mat-icon>
   </button>
-  <img src="assets/images/logo.png" alt="logo-navbar" id="logo-navbar">
-  <span>RegiStation</span>
+
+  <a style="color:white;" [routerLink]="'/utilisateur/liste'"><img src="assets/images/logo.png" alt="logo-navbar" id="logo-navbar">RegiStation</a>
   <span class="example-spacer"></span>
   <button mat-icon-button class="" aria-label="icone-utilisateur">
     <mat-icon>person</mat-icon>

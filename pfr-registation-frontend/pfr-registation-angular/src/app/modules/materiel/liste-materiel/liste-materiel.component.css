@@ -134,6 +134,15 @@ h1 {
   height: 40px;
 }
 
+.bouton-modifier{
+  color:#fff;
+  background-image: linear-gradient(to right, #CDDFA0, #6FD08C );
+}
+
+.bouton-afficher{
+  color:#fff;
+  background-image: linear-gradient(to right, #CDDFA0, #6FD08C );
+}
 .card-top{
   display: flex;
   justify-content: space-between;
