@@ -26,15 +26,17 @@ export class CelluleComponent implements OnInit {
   nbSpan: number;
   plusDisplayed: boolean = false;
   constructor(public dialog: MatDialog) {
-   }
+  }
  
   ngOnInit(): void {
     this.nbSpan=0;
 
     this.eventInInterval = new Array<Ievent>();
-    for(let e of this.event){
-      if(this.estDansIntervale(e.date_debut,e.date_fin,this.dates)){
-        this.eventInInterval.push(e);
+    if(this.event){
+      for(let e of this.event){
+        if(this.estDansIntervale(e.date_debut,e.date_fin,this.dates)){
+          this.eventInInterval.push(e);
+        }
       }
     }
   }
@@ -50,36 +52,6 @@ export class CelluleComponent implements OnInit {
     return this.nbSpan;
   }
 
-  incSpan(){
-    this.nbSpan++;
-  }
-
-  testSpan():boolean{
-    return this.nbSpan>=2;
-  }
-  testFini(i:number):boolean{
-    return i==this.eventInInterval.length;
-  }
-
-  setPlusDisplayed(){
-    this.plusDisplayed = true;
-  }
-  
-  resetSpan(){
-    this.nbSpan=0;
-    this.plusDisplayed = false;
-  }
-
-  isPlusDisplayed():boolean{
-    return this.plusDisplayed;
-  }
-
-  plusModal():void{
-    const dialogRef = this.dialog.open(PlusModalComponent, {
-      width: '250px',
-      data: {eventData: this.eventInInterval, dates:this.dates}
-    });
-  }
   getShortType(s:string):string{
     switch(s){
       case 'Autre':
@@ -96,6 +68,7 @@ export class CelluleComponent implements OnInit {
         break;
     }
   }
+
   getEventColor(e:Ievent):string{
     switch(e.type){
       case 'Autre':
@@ -112,4 +85,37 @@ export class CelluleComponent implements OnInit {
         break;
     }
   }
+
+  incSpan(){
+    this.nbSpan++;
+  }
+
+  isPlusDisplayed():boolean{
+    return this.plusDisplayed;
+  }
+
+  plusModal():void{
+    const dialogRef = this.dialog.open(PlusModalComponent, {
+      width: '250px',
+      data: {eventData: this.eventInInterval, dates:this.dates}
+    });
+  }
+  
+  resetSpan(){
+    this.nbSpan=0;
+    this.plusDisplayed = false;
+  }
+
+  setPlusDisplayed(){
+    this.plusDisplayed = true;
+  }
+
+  testSpan():boolean{
+    return this.nbSpan>=2;
+  }
+
+  testFini(i:number):boolean{
+    return i==this.eventInInterval.length;
+  }
+  
 }

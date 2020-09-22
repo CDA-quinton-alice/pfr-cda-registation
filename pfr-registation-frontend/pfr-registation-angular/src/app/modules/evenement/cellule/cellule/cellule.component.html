@@ -3,7 +3,8 @@
     <span class="jourC w-100" [ngClass]="headColor">{{jour.split('-')[1]}}</span>
     <div class="evenements w-100">
         {{resetSpan()}}
-        <ng-container *ngFor="let e of eventInInterval; let i = index">
+        <ng-container *ngIf="eventInInterval">
+            <ng-container *ngFor="let e of eventInInterval; let i = index">
                 {{incSpan()}}
                 <ng-container *ngIf="!testSpan(); else plusSpan">
                     <span class="ev btn btn-light"  [ngClass]='getEventColor(e)'>
@@ -32,5 +33,7 @@
                     </ng-template>
                 </ng-template>
             </ng-container>
+        </ng-container>
+        
     </div>
 </div>      
