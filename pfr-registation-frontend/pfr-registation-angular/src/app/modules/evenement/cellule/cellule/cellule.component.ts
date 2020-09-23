@@ -1,5 +1,5 @@
 import { Component, Input, OnInit,Inject} from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { Ievent } from 'src/app/interfaces/ievent';
 import { AjoutModalComponent } from '../ajout-modal/ajout-modal.component';
 import { PlusModalComponent } from '../plus-modal/plus-modal.component';
@@ -45,7 +45,6 @@ export class CelluleComponent implements OnInit {
   }
 
   editModal(){
-    alert("Vous avez cliqué sur un évènement !");
   }
 
   estDansIntervale(d1:Date,d2:Date,t:Date):boolean{
