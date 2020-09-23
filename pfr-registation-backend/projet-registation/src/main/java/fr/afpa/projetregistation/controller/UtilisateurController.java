@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.afpa.projetregistation.dao.IUtilisateurDao;
 import fr.afpa.projetregistation.dto.MaterielDto;
+import fr.afpa.projetregistation.dto.MessageContactDto;
 import fr.afpa.projetregistation.dto.UtilisateurDto;
 import fr.afpa.projetregistation.dto.UtilisateurSimpleDto;
 import fr.afpa.projetregistation.entity.UtilisateurEntity;
@@ -68,6 +69,11 @@ public class UtilisateurController {
 	@DeleteMapping("/utilisateurtest/{matriculeToDelete}")
 	public void supprimerUtilisateur(@PathVariable (value="matriculeToDelete") String pMatriculeToDelete) {
 		utilisateurService.deleteUtilisateurByMatricule(pMatriculeToDelete);
+	}
+	
+	@PostMapping("/utilisateurtest/contact")
+	public void contactUs(@RequestBody MessageContactDto pMessage) {
+		utilisateurService.contactUs(pMessage);
 	}
 	
 }

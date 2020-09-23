@@ -1,4 +1,4 @@
-export interface MessageContact {
+export interface IMessageContact {
     nom?: string;
     prenom?: string;
     email?: string;
