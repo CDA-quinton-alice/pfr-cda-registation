@@ -13,7 +13,12 @@
         <table class="table table-bordered col">
             <tr class="cal-ligne col-md-1" *ngFor="let cld of groupsCalendar; index as i">
                 <td *ngFor="let el of cld; index as j">
-                    <app-cellule [dates]=el [jour]=getCalendrier()[i*7+j] [event]="cal.event" [tete]='i==0' [headColor]=getCalendarColor(getCalendrier()[i*7+j])></app-cellule>
+                    <app-cellule 
+                        [dates]=el 
+                        [jour]=getCalendrier()[i*7+j] 
+                        [event]="cal.event" 
+                        [tete]='i==0' 
+                        [headColor]=getCalendarColor(getCalendrier()[i*7+j])></app-cellule>
                 </td>
             </tr> 
         </table>    

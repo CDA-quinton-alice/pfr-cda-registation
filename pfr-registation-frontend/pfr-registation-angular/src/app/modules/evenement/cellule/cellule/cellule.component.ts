@@ -1,5 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit,Inject} from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Ievent } from 'src/app/interfaces/ievent';
+import { AjoutModalComponent } from '../ajout-modal/ajout-modal.component';
+import { PlusModalComponent } from '../plus-modal/plus-modal.component';
 
 @Component({
   selector: 'app-cellule',
@@ -9,17 +12,40 @@ import { Ievent } from 'src/app/interfaces/ievent';
 export class CelluleComponent implements OnInit {
 
   @Input() event: Array<Ievent>;
+  eventInInterval : Array<Ievent>;
   @Input() jour: string;
   @Input() dates: Date;
   @Input() tete: boolean;
   @Input() headColor:String;
-  nbSpan: number = 0;
+
+  nbSpan: number;
   plusDisplayed: boolean = false;
-  constructor() {
-   }
+  constructor(public dialog: MatDialog) {
+  }
  
   ngOnInit(): void {
     this.nbSpan=0;
+
+    this.eventInInterval = new Array<Ievent>();
+    if(this.event){
+      for(let e of this.event){
+        if(this.estDansIntervale(e.date_debut,e.date_fin,this.dates)){
+          this.eventInInterval.push(e);
+        }
+      }
+    }
+  }
+
+  ajoutModal(){
+    const dialogRef = this.dialog.open(AjoutModalComponent, {
+      width: '40rem',
+      height:'30rem',
+      data: {}
+    });
+  }
+
+  editModal(){
+    alert("Vous avez cliqué sur un évènement !");
   }
 
   estDansIntervale(d1:Date,d2:Date,t:Date):boolean{
@@ -29,24 +55,9 @@ export class CelluleComponent implements OnInit {
     return date1<=test&&test<=date2;
   }
 
-  incSpan(){
-    this.nbSpan++;
-  }
-  testSpan():boolean{
-    return this.nbSpan>2;
-  }
 
-  setPlusDisplayed(){
-    this.plusDisplayed = true;
-  }
-  
-  resetSpan(){
-    this.nbSpan=0;
-    this.plusDisplayed = false;
-  }
-
-  isPlusDisplayed():boolean{
-    return this.plusDisplayed;
+  getNbSpan(){
+    return this.nbSpan;
   }
 
   getShortType(s:string):string{
@@ -65,6 +76,7 @@ export class CelluleComponent implements OnInit {
         break;
     }
   }
+
   getEventColor(e:Ievent):string{
     switch(e.type){
       case 'Autre':
@@ -81,4 +93,37 @@ export class CelluleComponent implements OnInit {
         break;
     }
   }
+
+  incSpan(){
+    this.nbSpan++;
+  }
+
+  isPlusDisplayed():boolean{
+    return this.plusDisplayed;
+  }
+
+  plusModal():void{
+    const dialogRef = this.dialog.open(PlusModalComponent, {
+      width: '250px',
+      data: {eventData: this.eventInInterval, dates:this.dates}
+    });
+  }
+  
+  resetSpan(){
+    this.nbSpan=0;
+    this.plusDisplayed = false;
+  }
+
+  setPlusDisplayed(){
+    this.plusDisplayed = true;
+  }
+
+  testSpan():boolean{
+    return this.nbSpan>=2;
+  }
+
+  testFini(i:number):boolean{
+    return i==this.eventInInterval.length;
+  }
+
 }
