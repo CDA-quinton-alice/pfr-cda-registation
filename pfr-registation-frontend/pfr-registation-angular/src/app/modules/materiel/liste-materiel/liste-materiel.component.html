@@ -1,5 +1,5 @@
 <mat-card class="card-top">
-    <h2 style="margin: 0;">Listing équipements</h2>
+    <h2 >Liste d'équipements</h2>
     <button mat-mini-fab color="warn" id="bouton-ajouter" [routerLink]="'/materiel/ajouter'">
         <mat-icon>add</mat-icon>
     </button>
@@ -17,7 +17,7 @@
             <mat-card-actions>
                 <form #getType=ngForm>
                     <input type="hidden" value=1>
-                    <button (click)='getAllByType("POMPE")' mat-raised-button color="primary"
+                    <button (click)='getAllByType("POMPE")' class="bouton-afficher" mat-raised-button 
                         type="submit">Afficher</button>
                 </form>
             </mat-card-actions>
@@ -35,7 +35,7 @@
             <mat-card-actions>
                 <form #getType=ngForm>
                     <input type="hidden" value=2>
-                    <button (click)='getAllByType("CUVE")' mat-raised-button color="primary"
+                    <button (click)='getAllByType("CUVE")'   class="bouton-afficher" mat-raised-button 
                         type="submit">Afficher</button>
                 </form>
             </mat-card-actions>
@@ -54,7 +54,7 @@
             <mat-card-actions>
                 <form #getType=ngForm>
                     <input type="hidden" value=3>
-                    <button (click)='getAllByType("BOUTIQUE")' mat-raised-button color="primary"
+                    <button (click)='getAllByType("BOUTIQUE")' mat-raised-button class="bouton-afficher"
                         type="submit">Afficher</button>
                 </form>
             </mat-card-actions>
@@ -89,6 +89,14 @@
                 <td data-th="Date d'achat">{{mat.dateAchat}}</td>
                 <td data-th="Type de matériel">{{mat.typeMateriel}}</td>
                 <td data-th="Localisation">{{mat.localisation}}</td>
+                <td>
+                    <button mat-mini-fab class="bouton-modifier"  [routerLink]="'/materiel/ajouter'">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-mini-fab color="warn" id="bouton-ajouter" [routerLink]="'/materiel/ajouter'">
+                        <mat-icon>delete_sweep</mat-icon>
+                    </button>
+                </td>
             </tr>
         </tbody>
     </table>

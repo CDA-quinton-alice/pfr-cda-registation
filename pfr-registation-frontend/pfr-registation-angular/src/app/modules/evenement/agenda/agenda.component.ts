@@ -40,6 +40,10 @@ export class AgendaComponent implements OnInit {
     this.getMonthAgenda(this.action);
   }
 
+  ajoutModal(){
+    alert("Vous avez cliqué sur une cellule !");
+  }
+
   getMonthAgenda(action:string){
     this.isNow(action);
 

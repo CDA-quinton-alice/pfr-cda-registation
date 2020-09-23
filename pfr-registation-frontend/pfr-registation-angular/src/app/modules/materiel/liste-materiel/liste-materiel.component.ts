@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Imateriel } from 'src/app/interfaces/imateriel';
-import { MaterielService } from 'src/app/services/materiel.service';
+import { MaterielService } from 'src/app/services/materiel-service/materiel.service';
+
 
 @Component({
   selector: 'app-liste-materiel',

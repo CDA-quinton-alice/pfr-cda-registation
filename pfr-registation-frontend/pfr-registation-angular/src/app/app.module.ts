@@ -8,10 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './modules/shared/shared.module';
 import { MaterielModule } from './modules/materiel/materiel.module';
-
-
 import { FormsModule } from '@angular/forms';
-import { MaterielService } from './services/materiel.service';
 import { DocumentModule } from './modules/document/document.module';
 import { AjouterDocumentModule } from './modules/document/ajouter-document/ajouter-document.module';
 import { SupprimerDocumentModule } from './modules/document/supprimer-document/supprimer-document.module';
@@ -27,8 +24,7 @@ import { DocumentExistByIdModule } from './modules/document/document-exist-by-id
 import { GetDocumentByNomModule } from './modules/document/get-document-by-nom/get-document-by-nom.module';
 import { GetDocumentByIdModule } from './modules/document/get-document-by-id/get-document-by-id.module';
 import { EvenementModule } from './modules/evenement/evenement.module';
-import { PresentationTeamComponent } from './presentation-team/presentation-team.component';
-import { ContentComponent } from './component/content/content.component';
+import { MaterielService } from './services/materiel-service/materiel.service';
 
 
 
@@ -36,8 +32,6 @@ import { ContentComponent } from './component/content/content.component';
 @NgModule({
   declarations: [
     AppComponent,
-    // PresentationTeamComponent,
-    // ContentComponent
   ],
 
   imports: [

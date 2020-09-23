@@ -134,10 +134,20 @@ h1 {
   height: 40px;
 }
 
+.bouton-modifier{
+  color:#fff;
+  background-image: linear-gradient(to right, #CDDFA0, #6FD08C );
+}
+
+.bouton-afficher{
+  color:#fff;
+  background-image: linear-gradient(to right, #CDDFA0, #6FD08C );
+}
 .card-top{
   display: flex;
   justify-content: space-between;
   margin-left: 10%;
+  margin-right: 10%;
   background-image: url("/assets/images/station3.jpg");
   background-repeat: no-repeat;
   background-position: center;
@@ -159,6 +169,9 @@ h1 {
 .card-container{
   height: 300px;
   width: 90%;
+}
+h2{
+  color:rgb(50, 74, 94);
 }
 }
 
