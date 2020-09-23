@@ -99,8 +99,22 @@ public class EvenementController {
 	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
 	protected ResponseEntity<EvenementDto> creeEvenement(@RequestBody EvenementDto event){
 		log.info("Création d'évènement !");
-		Gson g = new Gson();
-		log.info(event.toString());
-		return ResponseEntity.ok(new EvenementDto());
+		UtilisateurDto udto = userv.getUtilisateurByMatricule("RESP001");
+		UtilisateurSimpleDto usdto = UtilisateurSimpleDto.builder()
+										.dateDeNaissance(udto.getDateDeNaissance())
+										.mail(udto.getMail())
+										.matricule(udto.getMatricule())
+										.nom(udto.getNom())
+										.prenom(udto.getPrenom())
+										.responsable(udto.isResponsable())
+										.salaire(udto.getSalaire())
+										.build();
+		
+		int seconds = (int) ((event.getDate_debut().getTime()-event.getDate_fin().getTime())/1000);
+		
+		event.setUser(usdto);
+		event.setDuree(seconds);
+		event = eserv.create(event);
+		return ResponseEntity.ok(event);
 	}
 }
