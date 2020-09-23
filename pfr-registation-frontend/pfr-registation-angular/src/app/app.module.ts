@@ -9,7 +9,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './modules/shared/shared.module';
 import { MaterielModule } from './modules/materiel/materiel.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { MaterielService } from './services/materiel.service';
 import { DocumentModule } from './modules/document/document.module';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { EvenementModule } from './modules/evenement/evenement.module';
@@ -47,7 +46,7 @@ import {MatCardModule} from '@angular/material/card';
     MatCardModule,
   ],
 
-  providers: [MaterielService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
