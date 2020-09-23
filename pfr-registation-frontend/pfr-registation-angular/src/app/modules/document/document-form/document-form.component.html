@@ -1,8 +1,9 @@
-<p>ajouter-document works!</p>
+<p>document-form works!</p>
+
 
 <form [formGroup]="">
   <div>
-  Nom du document :
+    Nom du document :
     <input type="text" formControlName="nomDocument">
   </div>
   <mat-icon> insert_drive_file</mat-icon>
@@ -20,15 +21,15 @@
       <mat-datepicker #dateAjoutDocument></mat-datepicker>
     </mat-form-field>
   </div>
-<div>
-  <mat-icon>bookmark</mat-icon>
-  <mat-form-field appearance="fill">
-    <mat-label>Date de dernière modification du document</mat-label>
-    <input matInput [ matDatepicker ]="dateDerniereModificationDocument">
-    <mat-datepicker-toggle matSuffix [for]="dateDerniereModificationDocument"></mat-datepicker-toggle>
-    <mat-datepicker #dateDerniereModificationDocument></mat-datepicker>
-  </mat-form-field>
-</div>
+  <div>
+    <mat-icon>bookmark</mat-icon>
+    <mat-form-field appearance="fill">
+      <mat-label>Date de dernière modification du document</mat-label>
+      <input matInput [ matDatepicker ]="dateDerniereModificationDocument">
+      <mat-datepicker-toggle matSuffix [for]="dateDerniereModificationDocument"></mat-datepicker-toggle>
+      <mat-datepicker #dateDerniereModificationDocument></mat-datepicker>
+    </mat-form-field>
+  </div>
   <mat-icon>description</mat-icon>
   <div>
     Description du document :

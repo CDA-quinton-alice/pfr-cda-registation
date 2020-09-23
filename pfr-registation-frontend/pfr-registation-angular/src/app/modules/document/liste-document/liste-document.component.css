@@ -1,0 +1,22 @@
+/* tableau responsif */
+
+/* correspond à l'encadrement carte ici autres documents */
+.rwd-table{
+  margin: auto;
+  min-width: 300px;
+  max-width: 100%;
+  border-collapse: collapse;
+}
+
+/* pas de changement tout seul */
+.rwd-table tr:first-child {
+  border-top: none;
+  background: rgba(0, 0, 0, 0.1);
+  color: black;
+}
+
+.rwd-table tr {
+  border-top: 1px solid rgb(50, 74, 94);
+  border-bottom: 1px solid rgb(50, 74, 94);
+  background: 	rgba(0, 0, 0, 0.01);
+}

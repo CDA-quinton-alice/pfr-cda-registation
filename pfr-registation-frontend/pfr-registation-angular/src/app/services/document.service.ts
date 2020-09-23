@@ -51,8 +51,7 @@ export class DocumentService {
   public deleteDocument(idDocument: number) {
     return this.http.delete<IDocument>(this.documentsUrl + '/' + 'delete' + idDocument);
   }
-  // updateDocumentByNom(idDocument: number, nomDocument: string){
-  //   return this.http.
-  //
-  // }
+  public save(document: IDocument){
+    return this.http.post<IDocument>(this.documentsUrl, document);
+  }
 }
