@@ -38,8 +38,8 @@ export class CelluleComponent implements OnInit {
 
   ajoutModal(){
     const dialogRef = this.dialog.open(AjoutModalComponent, {
-      width: '30rem',
-      height:'25rem',
+      width: '40rem',
+      height:'30rem',
       data: {}
     });
   }

@@ -26,7 +26,7 @@
                             </ng-container>
                             <ng-template #sup3>
                                 <ng-container *ngIf="testFini(i+1)">
-                                    <span class="ev btn btn-light plus" (click)="plusModal()">
+                                    <span class="ev btn btn-light plus" (click)="plusModal();$event.stopPropagation();">
                                         {{getNbSpan()-2}} autres
                                     </span>
                                 </ng-container>

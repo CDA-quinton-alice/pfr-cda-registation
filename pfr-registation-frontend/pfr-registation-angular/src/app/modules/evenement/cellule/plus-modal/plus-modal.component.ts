@@ -1,7 +1,7 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { IPlusData } from 'src/app/interfaces/i-plus-data';
 import { Ievent } from 'src/app/interfaces/ievent';
-import { DialogData } from '../cellule/cellule.component';
 
 @Component({
   selector: 'app-plus-modal',
@@ -13,7 +13,7 @@ export class PlusModalComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<PlusModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+    @Inject(MAT_DIALOG_DATA) public data: IPlusData) { }
 
   ngOnInit(): void {
   }
