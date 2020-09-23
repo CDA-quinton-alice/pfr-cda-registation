@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Imateriel } from 'src/app/interfaces/imateriel';
 import { MaterielService } from 'src/app/services/materiel-service/materiel.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -10,10 +13,12 @@ import { MaterielService } from 'src/app/services/materiel-service/materiel.serv
 })
 export class ListeMaterielComponent implements OnInit {
 
+  idToDelete: number;
   materiel: Imateriel = {};
   list_materiel: Array<Imateriel> = [];
   monType: string;
-  constructor(private materielService: MaterielService) { }
+  
+  constructor(private materielService: MaterielService,public dialog: MatDialog, private fb: FormBuilder ) { }
 
   ngOnInit(): void {
 
@@ -27,5 +32,14 @@ export class ListeMaterielComponent implements OnInit {
     this.materielService.findAllByType(monType).subscribe(data => {
     this.list_materiel = data;
     })
+  }
+
+  deleteModal(idToDelete: number){
+    const dialogRef = this.dialog.open(DeleteModalComponent, {
+      width: '40rem',
+      height:'30rem',
+      data: {idToDelete: this.idToDelete}     
+    });
+    console.log(idToDelete)
   }
 }
