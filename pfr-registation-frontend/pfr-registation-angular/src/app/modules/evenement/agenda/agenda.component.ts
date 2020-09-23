@@ -22,6 +22,7 @@ export class AgendaComponent implements OnInit {
   local = 'fr-FR';
   numbers:Array<number>;
   titre:string;
+  ac: AgendaComponent = this;
   
   chunkSize= 7;
   groupsCalendar = this.calendar.map((x,index)=>{
@@ -151,11 +152,34 @@ export class AgendaComponent implements OnInit {
       this.isNow(action);
     }
   }
+
+  public updateCalendar(action:string, date:Date){
+    this.setDate(date);
+    this.eServ.findByYearMonth(this.year,this.month,action).subscribe(data => {
+      this.calendar = new Array<Date>();
+      this.evenements = new Array<Ievent>();
+      this.cal = data;
+      this.titre = this.formatMonth(this.month)+" "+this.year;
+
+      this.formatDateCustom(this.getCalendrier());
+      this.formatEventDate(this.getEvents());
+
+      this.groupsCalendar = this.calendar.map((x,index)=>{
+        return index % this.chunkSize === 0 ? this.calendar.slice(index, index + this.chunkSize): null; 
+      }).filter(x=>x);
+    })
+  }
+
   isNow(str:string){
     if(str =="n"){
       this.year = new Date().getFullYear();
       this.month = new Date().getMonth()+1;
     }
+  }
+
+  setDate(date:Date){
+    this.year = date.getFullYear();
+    this.month = date.getMonth()+1;
   }
   getCalendarColor(str:string){
     let y = this.year;

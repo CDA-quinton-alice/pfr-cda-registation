@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
-import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {NgbDate, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import { Ievent } from 'src/app/interfaces/ievent';
 import { EvenementService } from 'src/app/services/evenement/evenement.service';
-
+import {AgendaComponent} from 'src/app/modules/evenement/agenda/agenda.component';
+import { IAjoutData } from 'src/app/interfaces/i-ajout-data';
+import { Inject } from '@angular/core';
 
 @Component({
   selector: 'app-ajout-modal',
@@ -13,18 +15,25 @@ import { EvenementService } from 'src/app/services/evenement/evenement.service';
 })
 
 export class AjoutModalComponent implements OnInit {
-  model: NgbDateStruct;
-  model2: NgbDateStruct;
+  model: NgbDateStruct = undefined;
+  model2: NgbDateStruct= undefined;
   IsmodelShow:boolean;
   event: Ievent = {};
-
+  ac : AgendaComponent;
+  
   constructor(private fb: FormBuilder, private eserv: EvenementService,
-    public dialogRef: MatDialogRef<AjoutModalComponent>) { }
+    public dialogRef: MatDialogRef<AjoutModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: IAjoutData) { }
 
   ngOnInit(): void {
+    this.model = new NgbDate(this.data.date.getFullYear(),this.data.date.getMonth() + 1,this.data.date.getDate());
+
+    
+    this.model2 = new NgbDate(this.data.date.getFullYear(),this.data.date.getMonth() + 1,this.data.date.getDate());
   }
 
-  ajouterEvenement(){
+
+  ajouterEvenement(ac:AgendaComponent){
     if(this.event){
       let strDd = JSON.stringify(this.event.date_debut);
       let jsonDd = JSON.parse(strDd);
@@ -35,9 +44,19 @@ export class AjoutModalComponent implements OnInit {
       this.event.date_fin = new Date(jsonDf.year+"-"+jsonDf.month+"-"+jsonDf.day);
 
       this.eserv.createEvenement(this.event).subscribe(res=>{
+        ac.updateCalendar("n",this.data.date);
         this.dialogRef.close();
       });
       console.log("Component: ajout");
+    } 
+  }
+
+  getFullMonth(m:number):string{
+    if(m<10){
+      return "0"+m;
+    }else{
+      return m+"";
     }
   }
+
 }
