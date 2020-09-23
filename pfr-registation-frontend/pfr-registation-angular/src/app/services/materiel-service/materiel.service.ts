@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Imateriel } from '../interfaces/imateriel';
+import { Imateriel } from 'src/app/interfaces/imateriel';
 import { Observable } from 'rxjs';
 
 @Injectable({

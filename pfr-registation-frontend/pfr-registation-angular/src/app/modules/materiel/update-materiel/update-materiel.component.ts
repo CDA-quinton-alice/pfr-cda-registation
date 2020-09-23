@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Imateriel } from 'src/app/interfaces/imateriel';
-import { MaterielService } from 'src/app/services/materiel.service';
+import { MaterielService } from 'src/app/services/materiel-service/materiel.service';
+
 
 @Component({
   selector: 'app-update-materiel',

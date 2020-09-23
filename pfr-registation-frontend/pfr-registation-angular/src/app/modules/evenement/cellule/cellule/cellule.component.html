@@ -1,25 +1,40 @@
-<div [ngClass]="tete?'cellule-tete':'cellule'">
-    <span class="tete w-100" [ngClass]="[tete?'tete':'no-tete',headColor]">{{jour.split('-')[0]}}</span>
-    <span class="jourC w-100" [ngClass]="headColor">{{jour.split('-')[1]}}</span>
-    <div class="evenements w-100">
-        {{resetSpan()}}
-        <ng-container *ngFor="let e of event">
-            <ng-container *ngIf="estDansIntervale(e.date_debut,e.date_fin,dates)">
-                        {{incSpan()}}
-                        <ng-container *ngIf="!testSpan(); else plusSpan">
-                            <span class="ev btn btn-light"  [ngClass]='getEventColor(e)'>
+<div (click)="ajoutModal()"> 
+    <div [ngClass]="tete?'cellule-tete':'cellule'">
+        <span class="tete w-100" [ngClass]="[tete?'tete':'no-tete',headColor]">{{jour.split('-')[0]}}</span>
+        <span class="jourC w-100" [ngClass]="headColor">{{jour.split('-')[1]}}</span>
+        <div class="evenements w-100">
+            {{resetSpan()}}
+            <ng-container *ngIf="eventInInterval">
+                <ng-container *ngFor="let e of eventInInterval; let i = index">
+                    {{incSpan()}}
+                    <ng-container *ngIf="!testSpan(); else plusSpan">
+                        <span class="ev btn btn-light"  [ngClass]='getEventColor(e)' (click)="$event.stopPropagation();editModal();">
+                            {{e.description}}
+                        </span>
+                    </ng-container> 
+                    <ng-template #plusSpan>
+                        <ng-container *ngIf="(getNbSpan()<3)&&!testFini(i+1) else nonFini">
+                            <span class="ev btn btn-light"  [ngClass]='getEventColor(e)' (click)="$event.stopPropagation();editModal();">
                                 {{e.description}}
                             </span>
                         </ng-container>
-                        <ng-template #plusSpan>
-                            <ng-container *ngIf="!isPlusDisplayed()">
-                                <span class="ev btn btn-light"  [ngClass]='getEventColor(e)'>
-                                    +
+                        <ng-template #nonFini>
+                            <ng-container *ngIf="getNbSpan()<=3&&testFini(i+1) else sup3">
+                                <span class="ev btn btn-light"  [ngClass]='getEventColor(e)' (click)="$event.stopPropagation();editModal();">
+                                    {{e.description}}
                                 </span>
-                                {{setPlusDisplayed()}}
                             </ng-container>
+                            <ng-template #sup3>
+                                <ng-container *ngIf="testFini(i+1)">
+                                    <span class="ev btn btn-light plus" (click)="plusModal();$event.stopPropagation();">
+                                        {{getNbSpan()-2}} autres
+                                    </span>
+                                </ng-container>
+                            </ng-template>
                         </ng-template>
+                    </ng-template>
+                </ng-container>
             </ng-container>
-        </ng-container>
+        </div> 
     </div>
-</div>      
+</div>
