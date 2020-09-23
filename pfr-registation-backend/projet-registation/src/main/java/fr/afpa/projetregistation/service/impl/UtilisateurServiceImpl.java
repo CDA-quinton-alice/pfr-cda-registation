@@ -126,9 +126,24 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 	}
 
 	@Override
-	public UtilisateurDto updateUtilisateur(UtilisateurDto pUtilisateur) {
-		// TODO Auto-generated method stub
-		return null;
+	public void updateUtilisateur(UtilisateurDto pUtilisateur) {
+		Optional<UtilisateurEntity> optiUtilisateur = utilisateurDao.findById(pUtilisateur.getMatricule());
+		if (!optiUtilisateur.isPresent()) {
+			log.warn("UTILISATEUR - Update impossible ce matricule n'existe pas !");
+		}else {
+			UtilisateurEntity user = optiUtilisateur.get();
+			user = UtilisateurEntity.builder()
+					.prenom(pUtilisateur.getPrenom())
+					.nom(pUtilisateur.getNom())
+					.dateDeNaissance(pUtilisateur.getDateDeNaissance())
+					.salaire(pUtilisateur.getSalaire())
+					.mail(pUtilisateur.getMail())
+					.tel(pUtilisateur.getTel())
+					.responsable(pUtilisateur.isResponsable())
+					.build();
+			utilisateurDao.save(user);
+		}
+		
 	}
 
 	/**

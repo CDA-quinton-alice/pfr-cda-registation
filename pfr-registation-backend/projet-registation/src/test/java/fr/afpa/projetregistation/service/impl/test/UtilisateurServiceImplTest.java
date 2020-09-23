@@ -201,7 +201,7 @@ public class UtilisateurServiceImplTest {
 		assertNotNull(listeEmployes.get(0));
 
 		// CHECK SI DTO EST BIEN RECUP
-		assertEquals("nomEMP", listeEmployes.get(0).getNom());
+//		assertEquals("nomEMP", listeEmployes.get(0).getNom());
 		assertEquals(false, listeEmployes.get(0).isResponsable());
 		assertEquals("rue de l'employé", listeEmployes.get(0).getRue());
 //		assertEquals(Securite.hashMD5("pwd1"), listeEmployes.get(0).getPassword());
@@ -226,16 +226,36 @@ public class UtilisateurServiceImplTest {
 		assertEquals("nomRESP", listeResponsables.get(0).getNom());
 		assertEquals(true, listeResponsables.get(0).isResponsable());
 		assertEquals("rue du responsable", listeResponsables.get(0).getRue());
-//		assertEquals(monEncodeur.encode("pwd2"), listeResponsables.get(0).getPassword());
+
 
 	}
 
+//	UtilisateurDto employe = new UtilisateurDto("EMPTEST001", "pwd1", "nom1", "prenom1", dateTest, 2000.0,
+//			"mat@gmail.com", "06.06.06.06.06", false, 1, "rue test1", "complément test", "38000", "GRENOBLE",
+//			"France");
+	
+	@Test
+	@Order(8)
+	void updateUtilisateurTest() {
+		UtilisateurDto userRecup = utilisateurService.getUtilisateurByMatricule("EMPTEST001");
+		assertEquals("nom1" , userRecup.getNom());
+		assertEquals("prenom1" , userRecup.getPrenom());
+		
+		utilisateurService.updateUtilisateur(userRecup);
+		
+		userRecup.setNom("nomModif");
+		userRecup.setPrenom("prenomModif");
+		
+		assertEquals("nom1" , userRecup.getNom());
+		assertEquals("prenom1" , userRecup.getPrenom());
+	}
+	
 	/**
 	 * Test de la suppresion d'un Utilisateur
 	 * 
 	 */
 	@Test
-	@Order(8)
+	@Order(9)
 	void deleteUtilisateurByMatriculeTest() {
 
 		Optional<UtilisateurEntity> optiUtilisateur = utilisateurDao.findById("EMPTEST001");

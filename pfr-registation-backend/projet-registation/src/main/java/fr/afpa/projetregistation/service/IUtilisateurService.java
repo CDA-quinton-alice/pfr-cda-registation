@@ -10,7 +10,7 @@ public interface IUtilisateurService {
 
 	UtilisateurDto create(UtilisateurDto pUtilisateur);
 
-	UtilisateurDto updateUtilisateur(UtilisateurDto pUtilisateur);
+	void updateUtilisateur(UtilisateurDto pUtilisateur);
 
 	UtilisateurDto getUtilisateurByMatricule(String pMatricule);
 
