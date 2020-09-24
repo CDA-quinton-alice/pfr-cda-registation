@@ -241,13 +241,17 @@ public class UtilisateurServiceImplTest {
 		assertEquals("nom1" , userRecup.getNom());
 		assertEquals("prenom1" , userRecup.getPrenom());
 		
-		utilisateurService.updateUtilisateur(userRecup);
+		System.out.println(userRecup);
 		
 		userRecup.setNom("nomModif");
 		userRecup.setPrenom("prenomModif");
 		
-		assertEquals("nom1" , userRecup.getNom());
-		assertEquals("prenom1" , userRecup.getPrenom());
+		utilisateurService.updateUtilisateur(userRecup);
+		
+		System.out.println(userRecup);
+		
+		assertEquals("nomModif" , userRecup.getNom());
+		assertEquals("prenomModif" , userRecup.getPrenom());
 	}
 	
 	/**

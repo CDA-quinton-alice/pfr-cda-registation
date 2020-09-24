@@ -128,11 +128,12 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 	@Override
 	public void updateUtilisateur(UtilisateurDto pUtilisateur) {
 		Optional<UtilisateurEntity> optiUtilisateur = utilisateurDao.findById(pUtilisateur.getMatricule());
+		UtilisateurEntity user = null;
 		if (!optiUtilisateur.isPresent()) {
 			log.warn("UTILISATEUR - Update impossible ce matricule n'existe pas !");
 		}else {
-			UtilisateurEntity user = optiUtilisateur.get();
-			user = UtilisateurEntity.builder()
+			user = optiUtilisateur.get();
+			user = UtilisateurEntity.builder().matricule(pUtilisateur.getMatricule())
 					.prenom(pUtilisateur.getPrenom())
 					.nom(pUtilisateur.getNom())
 					.dateDeNaissance(pUtilisateur.getDateDeNaissance())
@@ -140,6 +141,11 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 					.mail(pUtilisateur.getMail())
 					.tel(pUtilisateur.getTel())
 					.responsable(pUtilisateur.isResponsable())
+					.adresse(AdresseEntity.builder().rue(pUtilisateur.getRue()).complement(pUtilisateur.getComplement()).codePostal(pUtilisateur.getCodePostal())
+							.ville(pUtilisateur.getVille())
+							.pays(pUtilisateur.getPays())
+							
+							.build())
 					.build();
 			utilisateurDao.save(user);
 		}
