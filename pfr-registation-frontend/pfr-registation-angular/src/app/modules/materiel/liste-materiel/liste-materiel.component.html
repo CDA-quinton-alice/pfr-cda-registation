@@ -76,6 +76,7 @@
                 <th scope="col">Date d'achat</th>
                 <th scope="col">Type de matériel</th>
                 <th scope="col">Localisation</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -91,9 +92,9 @@
                 <td data-th="Localisation">{{mat.localisation}}</td>
                 <td>
                     
-                        <!-- <button mat-mini-fab class="bouton-modifier" [routerLink]="'/materiel/ajouter'">
+                        <button mat-mini-fab class="bouton-modifier" [routerLink]="'/materiel/ajouter'">
                             <mat-icon>edit</mat-icon>
-                        </button> -->
+                        </button>
                         
                         <form #getIdToDelete=ngForm>
                         <input type="hidden" name=idToDelete [(ngModel)]=mat.idMat required #idToDelete="ngModel">
