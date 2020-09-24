@@ -39,8 +39,8 @@ export class AgendaComponent implements OnInit {
     this.year = new Date().getFullYear();
     this.month = new Date().getMonth()+1;
     this.action= "n"; 
-    this.getMonthAgenda(this.action);
     this.user = "RESP001";
+    this.getMonthAgenda(this.action);
   }
 
   ajoutModal(){
