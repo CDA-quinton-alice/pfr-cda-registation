@@ -23,6 +23,7 @@ export class AgendaComponent implements OnInit {
   numbers:Array<number>;
   titre:string;
   ac: AgendaComponent = this;
+  user:string;
   
   chunkSize= 7;
   groupsCalendar = this.calendar.map((x,index)=>{
@@ -39,6 +40,7 @@ export class AgendaComponent implements OnInit {
     this.month = new Date().getMonth()+1;
     this.action= "n"; 
     this.getMonthAgenda(this.action);
+    this.user = "RESP001";
   }
 
   ajoutModal(){
@@ -48,7 +50,7 @@ export class AgendaComponent implements OnInit {
   getMonthAgenda(action:string){
     this.isNow(action);
 
-    this.eServ.findByYearMonth(this.year,this.month,action).subscribe(data => {
+    this.eServ.findByYearMonth(this.user,this.year,this.month,action).subscribe(data => {
       this.updateParams(action);
       this.calendar = new Array<Date>();
       this.evenements = new Array<Ievent>();
@@ -155,7 +157,8 @@ export class AgendaComponent implements OnInit {
 
   public updateCalendar(action:string, date:Date){
     this.setDate(date);
-    this.eServ.findByYearMonth(this.year,this.month,action).subscribe(data => {
+    
+    this.eServ.findByYearMonth(this.user,this.year,this.month,action).subscribe(data => {
       this.calendar = new Array<Date>();
       this.evenements = new Array<Ievent>();
       this.cal = data;
