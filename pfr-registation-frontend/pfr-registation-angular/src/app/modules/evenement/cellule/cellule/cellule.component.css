@@ -29,7 +29,7 @@
 }
 .ev{
     height:2rem;
-    padding:0.2rem 0 0 0;
+    padding:0.23rem 0 0 0;
     font-size:1.0rem;
     width:100%;
     color:white;
@@ -74,25 +74,27 @@
 
  @media(max-width:600px){
      .ev{
-        height:1.1rem;
+        padding:0.2rem 0 0 0;
+        height:1rem;
         width:100%;
-        font-size:0.5rem;
+        font-size:0.4rem;
      }
 
      .cellule-tete{
         text-align: center;
         font-size:0.5rem;
-        height:6rem;
+        height:4rem;
     }
     .cellule .tete, .cellule .jourC, .cellule-tete .tete, .cellule-tete .jourC{
         padding:0 0 0 0;
         margin:0 0 0 0;
-        height:0.5rem;
+        height:0.4rem;
         font-size: 0.35rem;
     }
     .cellule{
         text-align: center;
         font-size:0.5rem;
+        height:4rem;
     }
     .tete{
         margin-top:0;
@@ -103,7 +105,7 @@
         display:none;
     }  
     .jourC{
-        padding-top:0.2rem;
+        padding-top:0rem;
         display:inline-block;
     }
     .evenements{

@@ -20,6 +20,7 @@ export class AjoutModalComponent implements OnInit {
   IsmodelShow:boolean;
   event: Ievent = {};
   ac : AgendaComponent;
+  user:string;
   
   constructor(private fb: FormBuilder, private eserv: EvenementService,
     public dialogRef: MatDialogRef<AjoutModalComponent>,
@@ -30,6 +31,9 @@ export class AjoutModalComponent implements OnInit {
 
     
     this.model2 = new NgbDate(this.data.date.getFullYear(),this.data.date.getMonth() + 1,this.data.date.getDate());
+
+    
+    this.user = "RESP001";
   }
 
 
@@ -43,11 +47,11 @@ export class AjoutModalComponent implements OnInit {
       let jsonDf = JSON.parse(strDf);
       this.event.date_fin = new Date(jsonDf.year+"-"+jsonDf.month+"-"+jsonDf.day);
 
+      this.event.user = this.user;
       this.eserv.createEvenement(this.event).subscribe(res=>{
         ac.updateCalendar("n",this.data.date);
         this.dialogRef.close();
       });
-      console.log("Component: ajout");
     } 
   }
 

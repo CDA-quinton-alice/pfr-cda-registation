@@ -40,7 +40,6 @@ export class CelluleComponent implements OnInit {
 
   ajoutModal(a:AgendaComponent){
     let j = this.jour.split("-");
-    console.log(j);
     const dialogRef = this.dialog.open(AjoutModalComponent, {
       width: '40rem',
       data: {ac:a, date:this.dates, jour:j[1]}
