@@ -14,7 +14,7 @@ import { MaterielService } from 'src/app/services/materiel-service/materiel.serv
 })
 export class DeleteModalComponent implements OnInit {
 
-  idToDelete: number;
+  
   materiel: Imateriel = {};
   
   constructor(private fb: FormBuilder, private materielService: MaterielService,
@@ -23,11 +23,9 @@ export class DeleteModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  afficherId(){
-  alert(this.idToDelete)
-}
-  deleteMateriel(idMat: number) {
-    this.materielService.deleteMateriel(idMat).subscribe(result => this.gotoMaterielList());
+
+  deleteMateriel() {
+    this.materielService.deleteMateriel(this.data.idToDelete).subscribe(result => this.gotoMaterielList());
   }
 
   gotoMaterielList() {

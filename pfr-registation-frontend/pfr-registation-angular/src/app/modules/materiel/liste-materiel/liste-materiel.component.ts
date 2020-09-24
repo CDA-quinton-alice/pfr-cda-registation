@@ -13,7 +13,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ListeMaterielComponent implements OnInit {
 
-  idToDelete: number;
+
   materiel: Imateriel = {};
   list_materiel: Array<Imateriel> = [];
   monType: string;
@@ -34,12 +34,12 @@ export class ListeMaterielComponent implements OnInit {
     })
   }
 
-  deleteModal(idToDelete: number){
+  deleteModal(idModal: number){
     const dialogRef = this.dialog.open(DeleteModalComponent, {
       width: '40rem',
       height:'30rem',
-      data: {idToDelete: this.idToDelete}     
+      data: {idToDelete: idModal}     
     });
-    console.log(idToDelete)
+    console.log(idModal)
   }
 }
