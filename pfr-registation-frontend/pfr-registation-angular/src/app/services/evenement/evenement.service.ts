@@ -25,7 +25,8 @@ export class EvenementService {
   }
 
   public createEvenement(event:Ievent):Observable<Ievent>{
-    return this.http.post<Ievent>(this.url+"/create",{type:event.type, description:event.description,date_debut:event.date_debut, date_fin:event.date_fin});
+    return this.http.post<Ievent>(this.url+"/create",
+      {titre:event.titre,type:event.type, description:event.description,date_debut:event.date_debut, date_fin:event.date_fin});
 
   }
 

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Ievent } from 'src/app/interfaces/ievent';
 import { AgendaComponent } from '../../agenda/agenda.component';
 import { AjoutModalComponent } from '../ajout-modal/ajout-modal.component';
+import { EditModalComponent } from '../edit-modal/edit-modal.component';
 import { PlusModalComponent } from '../plus-modal/plus-modal.component';
 
 @Component({
@@ -47,6 +48,10 @@ export class CelluleComponent implements OnInit {
   }
 
   editModal(){
+    const dialogRef = this.dialog.open(EditModalComponent, {
+      width: '40rem',
+      data: {}
+    });
   }
 
   estDansIntervale(d1:Date,d2:Date,t:Date):boolean{

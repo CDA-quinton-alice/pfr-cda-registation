@@ -1,7 +1,7 @@
 <div mat-dialog-content>
     <ng-container *ngFor="let e of data.eventData; let i = index">
         <span class="ev btn btn-light"  [ngClass]='getEventColor(e)'>
-            {{e.description}}
+            {{e.titre}}
         </span>
     </ng-container>
 </div>

@@ -11,9 +11,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AjoutModalComponent } from './cellule/ajout-modal/ajout-modal.component';
+import { EditModalComponent } from './cellule/edit-modal/edit-modal.component';
 
 @NgModule({
-  declarations: [AgendaComponent, CelluleComponent, PlusModalComponent, AjoutModalComponent],
+  declarations: [AgendaComponent, CelluleComponent, PlusModalComponent, AjoutModalComponent, EditModalComponent],
   providers:[
     DatePipe,
   ],
