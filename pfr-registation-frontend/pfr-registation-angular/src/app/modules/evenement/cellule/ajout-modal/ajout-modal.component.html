@@ -40,7 +40,7 @@
             </div>
             <input class="text-center" [matDatepicker]="basicDatepicker" [(ngModel)]="event.date_debut" name="date_debut">
             <mat-datepicker-toggle [for]="basicDatepicker"></mat-datepicker-toggle>
-            <mat-datepicker  [startAt]="data.date" #basicDatepicker></mat-datepicker>
+            <mat-datepicker  [startAt]="aj" #basicDatepicker></mat-datepicker>
         </div>
 
 
@@ -50,7 +50,7 @@
             </div>
             <input class="text-center" [matDatepicker]="basicDatepicker2" [(ngModel)]="event.date_fin" name="date_fin">
             <mat-datepicker-toggle [for]="basicDatepicker2"></mat-datepicker-toggle>
-            <mat-datepicker  [startAt]="data.date" #basicDatepicker2></mat-datepicker>
+            <mat-datepicker  [startAt]="aj" #basicDatepicker2></mat-datepicker>
         </div> 
         <button class="btn btn-success" type="submit" [disabled]="!eventForm.valid">Créer</button>
     </form> 

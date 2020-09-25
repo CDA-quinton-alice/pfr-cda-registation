@@ -7,6 +7,7 @@ import { EvenementService } from 'src/app/services/evenement/evenement.service';
 import {AgendaComponent} from 'src/app/modules/evenement/agenda/agenda.component';
 import { IAjoutData } from 'src/app/interfaces/i-ajout-data';
 import { Inject } from '@angular/core';
+import { DateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-ajout-modal',
@@ -21,16 +22,19 @@ export class AjoutModalComponent implements OnInit {
   event: Ievent = {};
   ac : AgendaComponent;
   user:string;
+  aj:Date;
   
   constructor(private fb: FormBuilder, private eserv: EvenementService,
     public dialogRef: MatDialogRef<AjoutModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: IAjoutData) { }
+    @Inject(MAT_DIALOG_DATA) public data: IAjoutData,
+    private dateAdapter: DateAdapter<Date>,
+    ) { 
+      this.dateAdapter.setLocale('fr-FR');
+    }
 
   ngOnInit(): void {
-    
-
-    
-    this.user = "RESP001";
+    this.event.date_debut = new Date(this.data.date);
+    this.event.date_fin = new Date(this.data.date);
   }
 
 
