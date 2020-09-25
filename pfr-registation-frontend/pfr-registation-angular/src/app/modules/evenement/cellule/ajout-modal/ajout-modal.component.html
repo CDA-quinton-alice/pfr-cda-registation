@@ -28,10 +28,10 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="desc">Description</span>
             </div>
-            <input type="text" class="form-control"
+            <textarea type="text" class="form-control"
                 aria-label="description" aria-describedby="desc" 
                 placeholder="Description de l'évènement"
-                name="description" [(ngModel)]="event.description" #description="ngModel" required>
+                name="description" [(ngModel)]="event.description" #description="ngModel" required></textarea>
         </div>
 
         <div class="input-group mb-3">
