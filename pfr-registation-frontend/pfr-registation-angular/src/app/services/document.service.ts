@@ -14,7 +14,7 @@ export class DocumentService {
   dateNow2: Date = new Date();
 
   constructor(private  http: HttpClient) {
-    this.documentsUrl = 'http:localhost:8080/document';
+    this.documentsUrl = 'http://localhost:8080/documenttest';
   }
 //   // CRUD Generique
 //   // 1) Créer du crud
@@ -38,6 +38,7 @@ export class DocumentService {
 //   }
   public findAll(): Observable<IDocument[]>{
     return this.http.get<IDocument[]>(this.documentsUrl);
+    //Elle est où ta page là ?
   }
   public findById(idDocument: number): Observable<IDocument>{
     return this.http.get<IDocument>(this.documentsUrl + '/' + idDocument);
@@ -51,7 +52,7 @@ export class DocumentService {
   public deleteDocument(idDocument: number) {
     return this.http.delete<IDocument>(this.documentsUrl + '/' + 'delete' + idDocument);
   }
-  public save(document: IDocument){
+  public save(document: IDocument): Observable<any>{
     return this.http.post<IDocument>(this.documentsUrl, document);
   }
 }

@@ -1,0 +1,29 @@
+<p>document-liste works!</p>
+<div class="container">
+  <h1>Liste des documents</h1>
+  <table class="rwd-table"></table>
+  <thead>
+  <tr>
+    <th scope="col">id du document</th>
+    <th scope="col">nom document</th>
+    <th scope="col">categorie du document</th>
+    <th scope="col">date d'ajout du document</th>
+    <th scope="col">date de dernière modification du document</th>
+    <th scope="col">description du document</th>
+    <th scope="col">commentaires du document</th>
+    <th scope="col">matricule de l'utilisateur à son origine</th>
+  </tr>
+  </thead>
+</div>
+<tbody>
+<tr *ngFor="let documents2 of documentList2">
+  <td data-th="idDocument">{{documents2.idDocument}}</td>
+  <td data-th="nomDocument">{{documents2.nomDocument}}</td>
+  <td data-th="categorieDocument">{{documents2.categorieDocument}}</td>
+  <td data-th="dateAjoutDocument">{{documents2.dateAjoutDocument}}</td>
+  <td data-th="dateDerniereModificationDocument">{{documents2.dateDerniereModificationDocument}}</td>
+  <td data-th="descriptionDocument">{{documents2.descriptionDocument}}</td>
+  <td data-th="commentairesDocument">{{documents2.commentairesDocument}}</td>
+  <td data-th="matriculeUtilisateur">{{documents2.matriculeUtilisateur}}</td>
+</tr>
+</tbody>

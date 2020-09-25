@@ -17,6 +17,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {ListeDocumentComponent} from './modules/document/liste-document/liste-document.component';
 import {MatCardModule} from '@angular/material/card';
+import {Document2Module} from './modules/document2/document2.module';
 
 
 
@@ -38,6 +39,7 @@ import {MatCardModule} from '@angular/material/card';
     SharedModule,
     FormsModule,
     DocumentModule,
+    Document2Module,
     EvenementModule,
     ReactiveFormsModule,
     MatIconModule,
@@ -49,4 +51,5 @@ import {MatCardModule} from '@angular/material/card';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { constructor() {console.log('app-module');
+} }
