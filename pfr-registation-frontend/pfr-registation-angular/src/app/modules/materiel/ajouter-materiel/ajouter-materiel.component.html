@@ -8,10 +8,7 @@
    <div id="form-materiel">
 
         <form [formGroup]="materielForm" (ngSubmit)="addMateriel()">
-
-
-
-            <mat-form-field appearance="legacy">
+        <mat-form-field appearance="legacy">
                 <mat-label>Référence</mat-label>
                 <mat-icon matPrefix class="icone-info-card">reorder</mat-icon>
                 <input matInput type="text" formControlName="ref">
@@ -52,9 +49,6 @@
                     <mat-option *ngFor="let item of typeMatList" [value]="item">
                         {{item}}
                       </mat-option>
-                    <!-- <mat-option [value]=POMPE>Pompe</mat-option> -->
-                    <!-- <mat-option [value]='CUVE'>Cuve</mat-option> -->
-                    <!-- <mat-option [value]="materiel3">Eléments de la boutique</mat-option> -->
                 </mat-select>
             </mat-form-field>
 
@@ -69,71 +63,6 @@
                 <mat-icon matPrefix class="icone-info-card">date_range</mat-icon>
                 <input matInput type="date" formControlName="dateAchat">
             </mat-form-field>
-
-
-
-
-
-            <!-- <div>
-            Référence: <input type="text" name=ref [(ngModel)]=materiel.ref required #ref="ngModel">
-        </div>
-
-        
-        <div [hidden]="ref.valid || ref.pristine">
-            La référence est obligatoire.
-        </div>
-
-        <div>
-            Marque: <input type="text" name=marque [(ngModel)]=materiel.marque required
-                #marque="ngModel">
-        </div>
-        <div [hidden]="marque.valid || marque.pristine">
-            La marque est obligatoire.
-        </div>
-
-        <div>
-            Modele: <input type="text" name=modele [(ngModel)]=materiel.modele required
-                #modele="ngModel">
-        </div>
-        <div [hidden]="modele.valid || modele.pristine">
-            Le modele est obligatoire.
-        </div>
-
-        <div>
-            Prix: <input type="number" name=prix [(ngModel)]=materiel.prix required #prix="ngModel">
-        </div>
-        <div [hidden]="prix.valid || prix.pristine">
-            La prix d'achat est obligatoire.
-        </div>
-
-        <div>
-            Etat: <input type="number" min="1" max="3" name=etat [(ngModel)]=materiel.etat required #etat="ngModel">
-        </div>
-        <div [hidden]="etat.valid || etat.pristine">
-            L'état du matériel est obligatoire.
-        </div>
-
-        <div>
-            Date d'achat: <input type="date" name=dateAchat [(ngModel)]=materiel.dateAchat required #dateAchat="ngModel">
-        </div>
-        <div [hidden]="dateAchat.valid || dateAchat.pristine">
-            La date d'achat est obligatoire.
-        </div>
-
-        <div>
-            Type de matériel: <input type="text" name=typeMateriel [(ngModel)]=materiel.typeMateriel required
-                #typeMateriel="ngModel">
-        </div>
-        <div [hidden]="typeMateriel.valid || typeMateriel.pristine">
-            Le type de matériel est obligatoire.
-        </div>
-
-        <div>
-            Localisation: <input type="text" name=localisation [(ngModel)]=materiel.localisation required #localisation="ngModel">
-        </div>
-        <div [hidden]="localisation.valid || localisation.pristine">
-            La localisation est obligatoire.
-        </div> -->
 
             <div>
                 <button mat-raised-button [disabled]=!materielForm.valid class="bouton-ajouter">Ajouter le
