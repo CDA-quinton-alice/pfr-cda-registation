@@ -102,7 +102,7 @@ public class DataInsertion {
 		materielService.create(materiel3);
 		MaterielDto materiel4 = new MaterielDto("P003", "Orion", "PistoXC", 500, 1, achat, "pompe", "pompe2");
 		materielService.create(materiel4);
-		MaterielDto mat3 = new MaterielDto("MC001", "Mars", "Cafe3000", 200, 1, achat, "MACHINE A CAFE", "allée 1");
+		MaterielDto mat3 = new MaterielDto("MC001", "Mars", "Cafe3000", 200, 1, achat, "boutique", "allée 1");
 		materielService.create(mat3);
 	}
 
