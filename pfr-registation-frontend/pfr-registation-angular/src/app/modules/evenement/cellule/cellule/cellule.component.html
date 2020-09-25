@@ -8,19 +8,19 @@
                 <ng-container *ngFor="let e of eventInInterval; let i = index">
                     {{incSpan()}}
                     <ng-container *ngIf="!testSpan(); else plusSpan">
-                        <span class="ev btn btn-light"  [ngClass]='getEventColor(e)' (click)="$event.stopPropagation();editModal();">
+                        <span class="ev btn btn-light"  [ngClass]='getEventColor(e)' (click)="$event.stopPropagation();editModal(e,ac);">
                             {{e.titre}}
                         </span>
                     </ng-container> 
                     <ng-template #plusSpan>
                         <ng-container *ngIf="(getNbSpan()<3)&&!testFini(i+1) else nonFini">
-                            <span class="ev btn btn-light"  [ngClass]='getEventColor(e)' (click)="$event.stopPropagation();editModal();">
+                            <span class="ev btn btn-light"  [ngClass]='getEventColor(e)' (click)="$event.stopPropagation();editModal(e,ac);">
                                 {{e.titre}}
                             </span>
                         </ng-container>
                         <ng-template #nonFini>
                             <ng-container *ngIf="getNbSpan()<=3&&testFini(i+1) else sup3">
-                                <span class="ev btn btn-light"  [ngClass]='getEventColor(e)' (click)="$event.stopPropagation();editModal();">
+                                <span class="ev btn btn-light"  [ngClass]='getEventColor(e)' (click)="$event.stopPropagation();editModal(e,ac);">
                                     {{e.titre}}
                                 </span>
                             </ng-container>

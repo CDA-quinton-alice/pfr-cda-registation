@@ -42,15 +42,15 @@ export class CelluleComponent implements OnInit {
   ajoutModal(a:AgendaComponent){
     let j = this.jour.split("-");
     const dialogRef = this.dialog.open(AjoutModalComponent, {
-      width: '40rem',
+      width: '30rem',
       data: {ac:a, date:this.dates, jour:j[1]}
     });
   }
 
-  editModal(){
+  editModal(e:Ievent,a:AgendaComponent){
     const dialogRef = this.dialog.open(EditModalComponent, {
-      width: '40rem',
-      data: {}
+      width: '30rem',
+      data: {event:e,ac:a, date:this.dates}
     });
   }
 
