@@ -57,17 +57,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/etudiants").authenticated() // seuls les utilisateurs
-																							// authtifiés ont accès à
-																							// cette url
-				.antMatchers(HttpMethod.GET, "/etudiants/*").authenticated()
-				.antMatchers(HttpMethod.DELETE, "/etudiants/*").authenticated().antMatchers("/user").authenticated()
+		http.authorizeRequests()
 
-				.antMatchers(HttpMethod.GET, "/helloresponsable").authenticated()
+				.antMatchers(HttpMethod.GET, "/helloresponsable").hasRole("RESPONSABLE")
 
-				.antMatchers(HttpMethod.GET, "/helloemploye").authenticated()
+				.antMatchers(HttpMethod.GET, "/helloemploye").hasAnyRole("EMPLOYE", "RESPONSABLE")
 
-				.anyRequest().permitAll() // toutes les autres url sont accessibles
+				 .anyRequest().authenticated()
 				.and().csrf().disable() // authoriser l'envoi de donnée depuis des formulaire non genenrés depuis le
 										// back-end
 				.formLogin().loginProcessingUrl("/login") // personnaliser l'url d'authentification
