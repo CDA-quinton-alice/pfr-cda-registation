@@ -56,6 +56,9 @@ export class EditModalComponent implements OnInit {
     this.eServ.deleteEvenement(this.event).subscribe(res=>{
       this.data.ac.updateCalendar("n",this.data.date);
       this.dialogRef.close();
+      if(this.data.pc){
+        this.data.pc.onNoClick();
+      }
     });
   }
 }

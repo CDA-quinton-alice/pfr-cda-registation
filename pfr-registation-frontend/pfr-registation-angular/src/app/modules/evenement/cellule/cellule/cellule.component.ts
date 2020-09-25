@@ -111,7 +111,7 @@ export class CelluleComponent implements OnInit {
   plusModal():void{
     const dialogRef = this.dialog.open(PlusModalComponent, {
       width: '250px',
-      data: {eventData: this.eventInInterval, dates:this.dates}
+      data: {eventData: this.eventInInterval, dates:this.dates, ac:this.ac}
     });
   }
   
