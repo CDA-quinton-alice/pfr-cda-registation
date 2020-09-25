@@ -29,7 +29,7 @@ export class DeleteModalComponent implements OnInit {
   }
 
   gotoMaterielList() {
-    this.onNoClick();
+    this.onNoClick(); 
     this.router.navigate(['/materiel']);
   }
 

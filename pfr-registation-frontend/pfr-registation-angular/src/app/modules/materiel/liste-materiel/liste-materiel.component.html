@@ -92,13 +92,16 @@
                 <td data-th="Localisation">{{mat.localisation}}</td>
                 <td>
                     
-                    <form #getIdMaterielUtils=ngForm>
-                        <input type="hidden" name=idMaterielUtils [(ngModel)]=mat.idMat required #idMaterielUtils="ngModel">
+                    <form #getIdMaterielUpdate=ngForm>
+                        <input type="hidden" name=idMaterielUpdate [(ngModel)]=mat.idMat required #idMaterielUpdate="ngModel">
 
-                        <button mat-mini-fab class="bouton-modifier" [routerLink]="'/materiel/modifier/'+mat.idMat">
+                        <button mat-mini-fab class="bouton-modifier" (click)="redirectToUpdate(mat.idMat)">
                             <mat-icon>edit</mat-icon>
                         </button>
+                    </form>
                                   
+                        <form #getIdMaterielUtils=ngForm>
+                            <input type="hidden" name=idMaterielUtils [(ngModel)]=mat.idMat required #idMaterielUtils="ngModel">
                         <button mat-mini-fab color="warn" id="bouton-supprimer" (click)="deleteModal(mat.idMat)">
                             <mat-icon>delete_sweep</mat-icon>
                         </button>

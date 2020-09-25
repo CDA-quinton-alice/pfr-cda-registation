@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { Imateriel } from 'src/app/interfaces/imateriel';
 import { MaterielService } from 'src/app/services/materiel-service/materiel.service';
 
@@ -18,8 +18,13 @@ export class UpdateMaterielComponent implements OnInit {
     private router: Router, private materielService: MaterielService) { }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe(res=>{
+      console.log(res.get('param1'));
+      this.idMat = +res.get('param1');
+      console.log(this.idMat + ' = '  + 'param1');
+      this.getMaterielById(this.idMat);
+    })
   }
-
 
   getMaterielById(idMat: number) {
     this.materielService.findById(idMat).subscribe(res => {

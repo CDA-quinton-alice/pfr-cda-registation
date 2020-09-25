@@ -4,6 +4,7 @@ import { MaterielService } from 'src/app/services/materiel-service/materiel.serv
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class ListeMaterielComponent implements OnInit {
   list_materiel: Array<Imateriel> = [];
   monType: string;
   
-  constructor(private materielService: MaterielService,public dialog: MatDialog, private fb: FormBuilder ) { }
+  constructor(private materielService: MaterielService,public dialog: MatDialog, private fb: FormBuilder ,private router: Router, private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
 
@@ -32,6 +33,11 @@ export class ListeMaterielComponent implements OnInit {
     this.materielService.findAllByType(monType).subscribe(data => {
     this.list_materiel = data;
     })
+  }
+
+  redirectToUpdate(idToUpdate:number){
+    console.log(idToUpdate);
+    this.router.navigate(['/materiel/modifier/'+ idToUpdate]);
   }
 
   deleteModal(idModal: number){
