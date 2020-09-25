@@ -27,10 +27,7 @@ export class AjoutModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: IAjoutData) { }
 
   ngOnInit(): void {
-    this.model = new NgbDate(this.data.date.getFullYear(),this.data.date.getMonth() + 1,this.data.date.getDate());
-
     
-    this.model2 = new NgbDate(this.data.date.getFullYear(),this.data.date.getMonth() + 1,this.data.date.getDate());
 
     
     this.user = "RESP001";
@@ -39,14 +36,6 @@ export class AjoutModalComponent implements OnInit {
 
   ajouterEvenement(ac:AgendaComponent){
     if(this.event){
-      let strDd = JSON.stringify(this.event.date_debut);
-      let jsonDd = JSON.parse(strDd);
-      this.event.date_debut = new Date(jsonDd.year+"-"+jsonDd.month+"-"+jsonDd.day);
-
-      let strDf = JSON.stringify(this.event.date_fin);
-      let jsonDf = JSON.parse(strDf);
-      this.event.date_fin = new Date(jsonDf.year+"-"+jsonDf.month+"-"+jsonDf.day);
-
       this.event.user = this.user;
       this.eserv.createEvenement(this.event).subscribe(res=>{
         ac.updateCalendar("n",this.data.date);

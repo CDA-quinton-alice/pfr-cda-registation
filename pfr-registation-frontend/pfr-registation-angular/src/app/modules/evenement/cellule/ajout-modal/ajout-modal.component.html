@@ -38,28 +38,19 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="dateD">Date début</span>
             </div>
-            <input class="form-control datepicker" aria-describedby="dateD"name="dd" [(ngModel)]="model" ngbDatepicker #dd="ngbDatepicker" 
-                 placeholder="Choissisez une date" container="body"
-                 [startDate]="{year:data.date.getFullYear(),month:(data.date.getMonth()+1), day:data.date.getDate()}" [(ngModel)]="event.date_debut" required #date_debut>
-            <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" (click)="dd.toggle()" type="button">
-                <mat-icon class="mat-icon notranslate material-icons cal-icon" aria-hidden="true" data-mat-icon-type="fond">calendar_today</mat-icon>
-            </button>
-            </div>
+            <input class="text-center" [matDatepicker]="basicDatepicker" [(ngModel)]="event.date_debut" name="date_debut">
+            <mat-datepicker-toggle [for]="basicDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker  [startAt]="data.date" #basicDatepicker></mat-datepicker>
         </div>
+
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="dateF">Date fin</span>
             </div>
-            <input class="form-control datepicker" aria-describedby="dateF" name="df" [(ngModel)]="model2" ngbDatepicker #df2="ngbDatepicker" 
-                placeholder="Choissisez une date" container="body"
-                [startDate]="{year:data.date.getFullYear(),month:(data.date.getMonth()+1), day:data.date.getDate()}" [(ngModel)]="event.date_fin" required #date_fin>
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary calendar" (click)="df2.toggle()" type="button">
-                    <mat-icon class="mat-icon notranslate material-icons cal-icon" aria-hidden="true" data-mat-icon-type="fond">calendar_today</mat-icon>
-                </button>
-            </div>
+            <input class="text-center" [matDatepicker]="basicDatepicker2" [(ngModel)]="event.date_fin" name="date_fin">
+            <mat-datepicker-toggle [for]="basicDatepicker2"></mat-datepicker-toggle>
+            <mat-datepicker  [startAt]="data.date" #basicDatepicker2></mat-datepicker>
         </div> 
         <button class="btn btn-success" type="submit" [disabled]="!eventForm.valid">Créer</button>
     </form> 
