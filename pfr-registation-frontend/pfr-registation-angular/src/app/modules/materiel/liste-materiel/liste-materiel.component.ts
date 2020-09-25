@@ -38,8 +38,7 @@ export class ListeMaterielComponent implements OnInit {
     const dialogRef = this.dialog.open(DeleteModalComponent, {
       width: '40rem',
       height:'31rem',
-      data: {idToDelete: idModal}     
+      data: {idMaterielUtils: idModal}     
     });
-    console.log(idModal)
   }
 }

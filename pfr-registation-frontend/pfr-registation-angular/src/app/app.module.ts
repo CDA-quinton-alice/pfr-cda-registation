@@ -23,17 +23,16 @@ import { ListeDocumentModule } from './modules/document/liste-document/liste-doc
 import { DocumentExistByIdModule } from './modules/document/document-exist-by-id/document-exist-by-id.module';
 import { GetDocumentByNomModule } from './modules/document/get-document-by-nom/get-document-by-nom.module';
 import { GetDocumentByIdModule } from './modules/document/get-document-by-id/get-document-by-id.module';
-import { MatDatepickerModule} from '@angular/material/datepicker';
-import { ReactiveFormsModule } from '@angular/forms';
 import { EvenementModule } from './modules/evenement/evenement.module';
 import { MaterielService } from './services/materiel-service/materiel.service';
 
 
 
 
+
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
 
   imports: [
