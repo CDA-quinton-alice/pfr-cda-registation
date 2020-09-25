@@ -107,9 +107,9 @@ public class EvenementServiceImpl implements IEvenementService{
 	 * @return @see List de @see EvenementDto
 	 */
 	@Override
-	public List<EvenementDto> getByDate(Date debut, Date fin) {
+	public List<EvenementDto> getByDate(Date debut, Date fin, String mat) {
 		log.info("Obtention de la liste des évènements : par date de début ("+debut+") et fin("+fin+")");
-		Iterable<EvenementEntity> itE = edao.findByDate(debut, fin);
+		Iterable<EvenementEntity> itE = edao.findByDate(debut, fin, mat);
 		Iterator<EvenementEntity> it = itE.iterator();
 		List<EvenementDto> list = new ArrayList<>(); 
 		while(it.hasNext()) {

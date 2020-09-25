@@ -47,8 +47,11 @@ public class EvenementController {
 	@Autowired
 	IEvenementService eserv;
 	
-	@GetMapping(value="/evenement/{year}/{month}/{action}")
-	protected ResponseEntity<String> eventPost(@PathVariable(value="year") int annee, @PathVariable(value="month") int mois, @PathVariable(value="action") char action) {
+	@GetMapping(value="/evenement/{user}/{year}/{month}/{action}")
+	protected ResponseEntity<String> eventPost(@PathVariable(value="year") int annee, 
+								@PathVariable(value="month") int mois, 
+								@PathVariable(value="action") char action,
+								@PathVariable(value="user") String user) {
 		log.info("Accès à la page d'accueil");
 		YearMonth ym = null;
 		if(action=='p') {
@@ -77,7 +80,8 @@ public class EvenementController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-		List<EvenementDto> listEvent = eserv.getByDate(deb, fin);
+
+		List<EvenementDto> listEvent = eserv.getByDate(deb, fin,user);
 		
 		Gson gson = new Gson();
 		Map<String,Object> res2 = new HashMap<>();
@@ -99,8 +103,24 @@ public class EvenementController {
 	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
 	protected ResponseEntity<EvenementDto> creeEvenement(@RequestBody EvenementDto event){
 		log.info("Création d'évènement !");
-		Gson g = new Gson();
-		log.info(event.toString());
-		return ResponseEntity.ok(new EvenementDto());
+		
+		
+		UtilisateurDto udto = userv.getUtilisateurByMatricule("RESP001");
+		UtilisateurSimpleDto usdto = UtilisateurSimpleDto.builder()
+										.dateDeNaissance(udto.getDateDeNaissance())
+										.mail(udto.getMail())
+										.matricule(udto.getMatricule())
+										.nom(udto.getNom())
+										.prenom(udto.getPrenom())
+										.responsable(udto.isResponsable())
+										.salaire(udto.getSalaire())
+										.build();
+		
+		Long s = (event.getDate_fin().getTime()-event.getDate_debut().getTime())/1000;
+		int seconds = s.intValue();
+		event.setUser(usdto);
+		event.setDuree(seconds);
+		event = eserv.create(event);
+		return ResponseEntity.ok(event);
 	}
 }

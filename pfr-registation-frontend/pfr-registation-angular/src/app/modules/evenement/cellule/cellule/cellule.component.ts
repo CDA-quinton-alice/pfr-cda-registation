@@ -1,6 +1,7 @@
 import { Component, Input, OnInit,Inject} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Ievent } from 'src/app/interfaces/ievent';
+import { AgendaComponent } from '../../agenda/agenda.component';
 import { AjoutModalComponent } from '../ajout-modal/ajout-modal.component';
 import { PlusModalComponent } from '../plus-modal/plus-modal.component';
 
@@ -17,6 +18,7 @@ export class CelluleComponent implements OnInit {
   @Input() dates: Date;
   @Input() tete: boolean;
   @Input() headColor:String;
+  @Input() ac: AgendaComponent;
 
   nbSpan: number;
   plusDisplayed: boolean = false;
@@ -36,11 +38,11 @@ export class CelluleComponent implements OnInit {
     }
   }
 
-  ajoutModal(){
+  ajoutModal(a:AgendaComponent){
+    let j = this.jour.split("-");
     const dialogRef = this.dialog.open(AjoutModalComponent, {
       width: '40rem',
-      height:'30rem',
-      data: {}
+      data: {ac:a, date:this.dates, jour:j[1]}
     });
   }
 

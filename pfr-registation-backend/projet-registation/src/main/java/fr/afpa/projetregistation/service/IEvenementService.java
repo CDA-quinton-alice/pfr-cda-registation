@@ -38,7 +38,7 @@ public interface IEvenementService {
 	 * @param fin de type @see Date
 	 * @return @see List de @see EvenementDto
 	 */
-	public List<EvenementDto> getByDate(Date debut, Date fin);
+	public List<EvenementDto> getByDate(Date debut, Date fin, String mat);
 	
 	/**
 	 * Récupère la liste des évènements
