@@ -5,5 +5,5 @@ export interface Ievent {
     date_debut?:Date;
     date_fin?:Date;
     duree?:number;
-    //user?:iuser;
+    user?:string;
 }

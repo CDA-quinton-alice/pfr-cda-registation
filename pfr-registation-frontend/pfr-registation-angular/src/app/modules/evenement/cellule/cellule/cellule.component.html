@@ -1,4 +1,4 @@
-<div (click)="ajoutModal()"> 
+<div (click)="ajoutModal(ac)"> 
     <div [ngClass]="tete?'cellule-tete':'cellule'">
         <span class="tete w-100" [ngClass]="[tete?'tete':'no-tete',headColor]">{{jour.split('-')[0]}}</span>
         <span class="jourC w-100" [ngClass]="headColor">{{jour.split('-')[1]}}</span>
