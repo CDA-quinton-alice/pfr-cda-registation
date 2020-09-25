@@ -1,4 +1,4 @@
-package fr.afpa.projetregistation.security;
+package fr.afpa.projetregistation.security.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -36,7 +37,7 @@ public class UtilisateurDetailService implements UserDetailsService {
 
 		UtilisateurEntity uEnt = userOpt.get();
 		ConnexionEntity user = uEnt.getConnexion();
-		return new org.springframework.security.core.userdetails.User(user.getMatricule(), user.getPassword(),
+		return new User(user.getMatricule(), user.getPassword(),
 				getGrantedAuthorities(uEnt));
 	}
 
@@ -51,4 +52,30 @@ public class UtilisateurDetailService implements UserDetailsService {
 		return authorities;
 	}
 
+//	@Autowired
+//	private IUtilisateurDao utilisateurDao;
+//	
+//	@Override
+//	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//		if (username.trim().isEmpty()) {
+//			throw new UsernameNotFoundException("username is empty");
+//		}
+// 
+//		Optional<UtilisateurEntity> userOpt = this.utilisateurDao.findByLogin(username);
+// 
+//		if (! userOpt.isPresent()) {
+//			throw new UsernameNotFoundException("User " + username + " not found");
+//		}
+//		
+//		UtilisateurEntity user = userOpt.get();
+//		return new User(user.getLogin(), user.getPassword(), getGrantedAuthorities(user));
+//	}
+// 
+//	private List<GrantedAuthority> getGrantedAuthorities(UtilisateurEntity user) {
+//		List<GrantedAuthority> authorities = new ArrayList<>();
+//		RoleEntity role = user.getRole();
+//		authorities.add(new SimpleGrantedAuthority("ROLE_"+role.getLibelle()));
+//		return authorities;
+//	}
+	
 }

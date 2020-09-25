@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import fr.afpa.projetregistation.dao.IAdresseDao;
@@ -63,7 +64,7 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 	private ModelMapper modelMapper;
 	
 	@Autowired
-	BCryptPasswordEncoder monEncodeur; 
+	PasswordEncoder monEncodeur; 
 
 	/**
 	 * Crée un UtilisateurDto et sauvegarde un utilisateur en BDD en utilisant

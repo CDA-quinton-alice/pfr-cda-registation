@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.afpa.projetregistation.dao.IUtilisateurDao;
@@ -50,6 +51,16 @@ public class UtilisateurController {
 	@PostMapping("/utilisateur/contact")
 	public void contactUs(@RequestBody MessageContactDto pMessage) {
 		utilisateurService.contactUs(pMessage);
+	}
+	
+	@RequestMapping({"/helloemploye"})
+	public String helloEmploye(){
+		return "Hello Employe";
+	}
+	
+	@RequestMapping({"/helloresponsable"})
+	public String helloResponsable(){
+		return "Hello Responsable";
 	}
 	
 }

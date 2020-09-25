@@ -1,4 +1,4 @@
-package fr.afpa.projetregistation.security;
+package fr.afpa.projetregistation.security.config;
 
 import java.io.IOException;
 
@@ -15,13 +15,23 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import fr.afpa.projetregistation.security.filter.JwtAuthenticationTokenFilter;
+import fr.afpa.projetregistation.security.model.JwtToken;
+import fr.afpa.projetregistation.security.service.JwtTokenService;
+import fr.afpa.projetregistation.security.service.UtilisateurDetailService;
 
 @Configuration
 @EnableWebSecurity
@@ -30,31 +40,52 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UtilisateurDetailService utilisateurDetailService;
 
+	@Autowired
+	private JwtTokenService jwtTokenService;
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder authManagerBuilder) throws Exception {
 		authManagerBuilder.userDetailsService(utilisateurDetailService);
 	}
 
 	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
+	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
-	@Override
+	@Autowired
+	private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
+
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers(HttpMethod.POST, "/uti").authenticated() // seuls les utilisateurs authentifiés ont accès à cette url
-				.antMatchers(HttpMethod.GET, "/uti/*").authenticated()
-				.antMatchers(HttpMethod.DELETE, "/uti/*").authenticated()
-				.antMatchers("/user").authenticated()
+		http.authorizeRequests().antMatchers(HttpMethod.POST, "/etudiants").authenticated() // seuls les utilisateurs
+																							// authtifiés ont accès à
+																							// cette url
+				.antMatchers(HttpMethod.GET, "/etudiants/*").authenticated()
+				.antMatchers(HttpMethod.DELETE, "/etudiants/*").authenticated().antMatchers("/user").authenticated()
+
+				.antMatchers(HttpMethod.GET, "/helloresponsable").authenticated()
+
+				.antMatchers(HttpMethod.GET, "/helloemploye").authenticated()
+
 				.anyRequest().permitAll() // toutes les autres url sont accessibles
-				.and().csrf().disable() // authoriser l'envoi de donnée depuis des formulaire non genenrés depuis le back-end
+				.and().csrf().disable() // authoriser l'envoi de donnée depuis des formulaire non genenrés depuis le
+										// back-end
 				.formLogin().loginProcessingUrl("/login") // personnaliser l'url d'authentification
 				.successHandler(successHandler()) // succes authentification
 				.failureHandler(failureHandler()) // echec authentification
-				.and().exceptionHandling().authenticationEntryPoint(authenticationEntryPoint()) // utilisateur avec session mais sans droit sspring suffisant et tente d'acceder à l'url
-				.accessDeniedHandler(accessDeniedHandler()) // utilisateur sans session donc sans droit et tente d'acceder à l'url
+				.and().exceptionHandling().authenticationEntryPoint(authenticationEntryPoint()) // utilisateur avec
+																								// session mais sans
+																								// droit sspring
+																								// suffisant et tente
+																								// d'acceder à l'url
+				.accessDeniedHandler(accessDeniedHandler()) // utilisateur sans session donc sans droit et tente
+															// d'acceder à l'url
 				.and().headers().frameOptions().disable()// authoriser les requetes genenrées depuis des frames
-		;
+				.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)// Pour ne pas stocker
+																									// les infos d'auth
+																									// dans la session
+				.and().addFilterBefore(this.jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
+
 	}
 
 	private AuthenticationEntryPoint authenticationEntryPoint() {
@@ -84,7 +115,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			public void onAuthenticationSuccess(HttpServletRequest httpServletRequest,
 					HttpServletResponse httpServletResponse, Authentication authentication)
 					throws IOException, ServletException {
-				httpServletResponse.getWriter().append("OK");
+				ObjectMapper objectMapper = new ObjectMapper();
+				JwtToken tokens = jwtTokenService.createTokens(authentication);
+				objectMapper.writeValue(httpServletResponse.getWriter(), tokens);
 				httpServletResponse.setStatus(200);
 			}
 		};
@@ -101,4 +134,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			}
 		};
 	}
+
 }
