@@ -25,9 +25,18 @@ export class EvenementService {
   }
 
   public createEvenement(event:Ievent):Observable<Ievent>{
-    return this.http.post<Ievent>(this.url+"/create",
+    return this.http.post<Ievent>(this.url,
       {titre:event.titre,type:event.type, description:event.description,date_debut:event.date_debut, date_fin:event.date_fin});
 
+  }
+
+  public updateEvenement(event:Ievent):Observable<Ievent>{
+    return this.http.patch<Ievent>(this.url,
+      {id:event.id,titre:event.titre,type:event.type, description:event.description,date_debut:event.date_debut, date_fin:event.date_fin});
+  }
+
+  public deleteEvenement(event:Ievent){
+    return this.http.delete(this.url+"/"+event.id);
   }
 
 /**  public findById(id: number): Observable<Imateriel> {
