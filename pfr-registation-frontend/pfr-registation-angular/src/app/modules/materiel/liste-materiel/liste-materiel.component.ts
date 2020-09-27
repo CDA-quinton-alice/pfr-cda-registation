@@ -5,6 +5,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { InfoModalComponent } from '../info-modal/info-modal.component';
 
 
 @Component({
@@ -42,6 +43,14 @@ export class ListeMaterielComponent implements OnInit {
 
   deleteModal(idModal: number){
     const dialogRef = this.dialog.open(DeleteModalComponent, {
+      width: '40rem',
+      height:'31rem',
+      data: {idMaterielUtils: idModal}     
+    });
+  }
+
+  infoModal(idModal: number){
+    const dialogRef = this.dialog.open(InfoModalComponent, {
       width: '40rem',
       height:'31rem',
       data: {idMaterielUtils: idModal}     

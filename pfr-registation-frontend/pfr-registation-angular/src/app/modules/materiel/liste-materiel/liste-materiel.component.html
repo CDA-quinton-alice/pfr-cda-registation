@@ -80,7 +80,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let mat of list_materiel">
+            <tr *ngFor="let mat of list_materiel" (click)="infoModal(mat.idMat)">
                 <td data-th="Id du matériel">{{mat.idMat}}</td>
                 <td data-th="Référence">{{mat.ref}}</td>
                 <td data-th="Marque">{{mat.marque}}</td>
