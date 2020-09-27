@@ -8,8 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './modules/shared/shared.module';
 import { MaterielModule } from './modules/materiel/materiel.module';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatDatepickerModule} from '@angular/material/datepicker';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { EvenementModule } from './modules/evenement/evenement.module';
 import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -22,7 +22,7 @@ import {Document2Module} from './modules/document2/document2.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
 
   imports: [

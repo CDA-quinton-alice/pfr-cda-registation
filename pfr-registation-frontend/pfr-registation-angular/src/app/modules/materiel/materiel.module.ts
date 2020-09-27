@@ -26,9 +26,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MaterielService} from '../../services/materiel-service/materiel.service';
+import { DeleteModalComponent } from './delete-modal/delete-modal.component';
+
 
 @NgModule({
-  declarations: [ListeMaterielComponent, InfosMaterielComponent, AjouterMaterielComponent, UpdateMaterielComponent],
+  declarations: [ListeMaterielComponent, InfosMaterielComponent, AjouterMaterielComponent, UpdateMaterielComponent, DeleteModalComponent],
   imports: [
     CommonModule,
     MaterielRoutingModule,

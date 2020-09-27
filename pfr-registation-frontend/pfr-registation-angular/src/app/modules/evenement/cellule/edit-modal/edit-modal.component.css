@@ -13,3 +13,12 @@
 .datepicker{
     overflow: visible !important;
 }
+
+.btn-es{
+    margin: 0 0.2rem 0 0;
+    padding: 0.5rem 0.5rem 0.2rem 0.5rem;
+}
+
+.boutons{
+    float:right;
+}

@@ -26,7 +26,9 @@ table td{
     padding:0;
     width:14.28%;
     height:9rem;
-}   
+} 
+
+
 @media(max-width:600px){
     .container{
         padding-right:0;
