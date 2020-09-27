@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Ievent } from 'src/app/interfaces/ievent';
 import { AgendaComponent } from '../../agenda/agenda.component';
 import { AjoutModalComponent } from '../ajout-modal/ajout-modal.component';
+import { EditModalComponent } from '../edit-modal/edit-modal.component';
 import { PlusModalComponent } from '../plus-modal/plus-modal.component';
 
 @Component({
@@ -41,12 +42,16 @@ export class CelluleComponent implements OnInit {
   ajoutModal(a:AgendaComponent){
     let j = this.jour.split("-");
     const dialogRef = this.dialog.open(AjoutModalComponent, {
-      width: '40rem',
+      width: '30rem',
       data: {ac:a, date:this.dates, jour:j[1]}
     });
   }
 
-  editModal(){
+  editModal(e:Ievent,a:AgendaComponent){
+    const dialogRef = this.dialog.open(EditModalComponent, {
+      width: '30rem',
+      data: {event:e,ac:a, date:this.dates}
+    });
   }
 
   estDansIntervale(d1:Date,d2:Date,t:Date):boolean{
@@ -106,7 +111,7 @@ export class CelluleComponent implements OnInit {
   plusModal():void{
     const dialogRef = this.dialog.open(PlusModalComponent, {
       width: '250px',
-      data: {eventData: this.eventInInterval, dates:this.dates}
+      data: {eventData: this.eventInInterval, dates:this.dates, ac:this.ac}
     });
   }
   

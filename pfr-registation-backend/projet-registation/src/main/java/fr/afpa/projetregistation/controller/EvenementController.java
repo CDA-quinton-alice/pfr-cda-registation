@@ -99,11 +99,11 @@ public class EvenementController {
 		return ResponseEntity.ok(gson.toJson(res2));
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, value="/evenement/create")
+	@RequestMapping(method=RequestMethod.POST, value="/evenement")
 	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
 	protected ResponseEntity<EvenementDto> creeEvenement(@RequestBody EvenementDto event){
 		log.info("Création d'évènement !");
-		
+			
 		
 		UtilisateurDto udto = userv.getUtilisateurByMatricule("RESP001");
 		UtilisateurSimpleDto usdto = UtilisateurSimpleDto.builder()
@@ -122,5 +122,33 @@ public class EvenementController {
 		event.setDuree(seconds);
 		event = eserv.create(event);
 		return ResponseEntity.ok(event);
+	}
+	
+	@RequestMapping(method=RequestMethod.PATCH, value="/evenement")
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
+	protected ResponseEntity<EvenementDto> updateEvenement(@RequestBody EvenementDto event){
+		log.info("Update d'un évènement");
+
+		UtilisateurDto udto = userv.getUtilisateurByMatricule("RESP001");
+		UtilisateurSimpleDto usdto = UtilisateurSimpleDto.builder()
+										.dateDeNaissance(udto.getDateDeNaissance())
+										.mail(udto.getMail())
+										.matricule(udto.getMatricule())
+										.nom(udto.getNom())
+										.prenom(udto.getPrenom())
+										.responsable(udto.isResponsable())
+										.salaire(udto.getSalaire())
+										.build();
+		event.setUser(usdto);
+		eserv.update(event);
+		return null;
+	}
+	
+	@RequestMapping(method=RequestMethod.DELETE, value="/evenement/{id}")
+	protected ResponseEntity<EvenementDto> deleteEvenement(@PathVariable(value="id") int id){
+		log.info("Update d'un évènement");
+		EvenementDto edto = eserv.getById(id);
+		eserv.delete(edto);
+		return null;
 	}
 }

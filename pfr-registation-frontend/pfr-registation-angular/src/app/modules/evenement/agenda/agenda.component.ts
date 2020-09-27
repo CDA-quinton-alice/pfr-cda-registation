@@ -43,10 +43,6 @@ export class AgendaComponent implements OnInit {
     this.getMonthAgenda(this.action);
   }
 
-  ajoutModal(){
-    alert("Vous avez cliqué sur une cellule !");
-  }
-
   getMonthAgenda(action:string){
     this.isNow(action);
 
@@ -73,6 +69,21 @@ export class AgendaComponent implements OnInit {
   getEvents(){
     return (this.cal&&this.cal.event)?this.cal.event:[];
   }
+  
+  getCalendarColor(str:string){
+    let y = this.year;
+    let m = this.month;
+
+    let v = str.split("-");
+    let vm:number = +v[2];
+    let vy:number = +v[3];
+
+    if(vm!=m||vy!=y){
+      return "ncm";
+    }else{
+      return "";
+    }
+  }
 
   formatDateCustom(cal:Array<string>){
     for(let c of cal){
@@ -81,6 +92,7 @@ export class AgendaComponent implements OnInit {
       this.calendar.push(d);
     }
   }
+  
   formatEventDate(events:Array<Ievent>){
     for(let e of events){
       e.date_debut = new Date(e.date_debut);
@@ -183,19 +195,5 @@ export class AgendaComponent implements OnInit {
   setDate(date:Date){
     this.year = date.getFullYear();
     this.month = date.getMonth()+1;
-  }
-  getCalendarColor(str:string){
-    let y = this.year;
-    let m = this.month;
-
-    let v = str.split("-");
-    let vm:number = +v[2];
-    let vy:number = +v[3];
-
-    if(vm!=m||vy!=y){
-      return "ncm";
-    }else{
-      return "";
-    }
   }
 }

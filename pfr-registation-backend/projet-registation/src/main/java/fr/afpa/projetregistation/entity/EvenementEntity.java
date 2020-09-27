@@ -37,6 +37,13 @@ public class EvenementEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	
+	/**
+	 * Titre de l'évènement
+	 * de type {@link String}
+	 */
+	private String titre;
+	
 	/**
 	 * Type d'évènement parmis les 4 possibles :
 	 *  - Autre

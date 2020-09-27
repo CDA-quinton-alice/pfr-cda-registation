@@ -27,6 +27,12 @@ public class EvenementDto {
 	private int id;
 	
 	/**
+	 * Titre de l'évènement
+	 * de type {@link String}
+	 */
+	private String titre;
+	
+	/**
 	 * Type de l'évènement parmis 4 choix :
 	 * 	- Autre
 	 *  - Panne
