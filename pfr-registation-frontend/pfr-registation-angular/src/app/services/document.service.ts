@@ -38,7 +38,6 @@ export class DocumentService {
 //   }
   public findAll(): Observable<IDocument[]>{
     return this.http.get<IDocument[]>(this.documentsUrl);
-    //Elle est où ta page là ?
   }
   public findById(idDocument: number): Observable<IDocument>{
     return this.http.get<IDocument>(this.documentsUrl + '/' + idDocument);

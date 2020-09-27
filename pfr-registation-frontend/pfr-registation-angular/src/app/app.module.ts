@@ -9,15 +9,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './modules/shared/shared.module';
 import { MaterielModule } from './modules/materiel/materiel.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { DocumentModule } from './modules/document/document.module';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { EvenementModule } from './modules/evenement/evenement.module';
-import { DocumentFormComponent } from './modules/document/document-form/document-form.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {ListeDocumentComponent} from './modules/document/liste-document/liste-document.component';
 import {MatCardModule} from '@angular/material/card';
 import {Document2Module} from './modules/document2/document2.module';
+
 
 
 
@@ -25,8 +23,6 @@ import {Document2Module} from './modules/document2/document2.module';
 @NgModule({
   declarations: [
     AppComponent,
-    ListeDocumentComponent,
-    DocumentFormComponent,
   ],
 
   imports: [
@@ -38,7 +34,6 @@ import {Document2Module} from './modules/document2/document2.module';
     MaterielModule,
     SharedModule,
     FormsModule,
-    DocumentModule,
     Document2Module,
     EvenementModule,
     ReactiveFormsModule,

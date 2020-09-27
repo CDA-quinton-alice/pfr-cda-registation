@@ -21,4 +21,4 @@ export class DocumentListeComponent implements OnInit {
     });
   }
 
-}//si tu le charges pas en lazy ça donne quoi ?
+}
