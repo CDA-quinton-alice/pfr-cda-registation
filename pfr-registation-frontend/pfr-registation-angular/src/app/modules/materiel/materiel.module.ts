@@ -25,6 +25,7 @@ import {MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MaterielService} from '../../services/materiel-service/materiel.service';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 
 
@@ -39,19 +40,20 @@ import { DeleteModalComponent } from './delete-modal/delete-modal.component';
     MatListModule,
     MatBadgeModule,
     MatCardModule,
-    FlexLayoutModule,  
+    FlexLayoutModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
     MatDialogModule,
-    MatDialogModule, 
-    MatInputModule, 
-    MatCardModule, 
+    MatDialogModule,
+    MatInputModule,
+    MatCardModule,
     MatFormFieldModule,
     MatSelectModule,
     MatTabsModule,
     MatIconModule,
     MatButtonModule,
-  ]
+  ],
+  providers: [MaterielService]
 })
 export class MaterielModule { }

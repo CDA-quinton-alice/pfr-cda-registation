@@ -22,10 +22,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table(name = "document_entity")
-public class DocumentEntity {
+public class DocumentTestEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_document")
 	private int idDocument;
 	@Column(name = "nom_document")
