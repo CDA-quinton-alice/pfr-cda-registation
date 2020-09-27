@@ -61,6 +61,7 @@ $(document).ready(
         affichageBouttonSelonRole(utilisateurEnCours);
     }
 )
+
 function infoUserEnCours() {
     $.ajax({
         url: 'user',
@@ -84,6 +85,7 @@ function infoUserEnCours() {
         },
     });
 }
+
 function logout() {
     utilisateurEnCours = null;
     sessionStorage.removeItem("utilisateur_en_cours");

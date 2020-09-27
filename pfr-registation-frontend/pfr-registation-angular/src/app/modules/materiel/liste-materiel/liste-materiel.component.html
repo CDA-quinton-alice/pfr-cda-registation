@@ -91,7 +91,7 @@
                 <td data-th="Type de matériel">{{mat.typeMateriel}}</td>
                 <td data-th="Localisation">{{mat.localisation}}</td>
                 <td>
-                    
+                    <div>
                     <form #getIdMaterielUpdate=ngForm>
                         <input type="hidden" name=idMaterielUpdate [(ngModel)]=mat.idMat required #idMaterielUpdate="ngModel">
 
@@ -106,6 +106,7 @@
                             <mat-icon>delete_sweep</mat-icon>
                         </button>
                     </form>
+                </div>
                 </td>
             </tr>
         </tbody>

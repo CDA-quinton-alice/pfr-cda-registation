@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.afpa.projetregistation.dto.MaterielDto;
 import fr.afpa.projetregistation.service.IMaterielService;
 import fr.afpa.projetregistation.service.ITypeMaterielService;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 

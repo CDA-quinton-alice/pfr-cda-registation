@@ -93,7 +93,6 @@ public class MaterielServiceImpl implements IMaterielService {
 			else {
 				matEntity.setTypeMaterielEntity(optionalType.get());
 			}
-
 			matEntity = materielDao.save(matEntity);
 			pMateriel = this.getMaterielByRef(matEntity.getRef());
 			log.info("ajout avec succes");
@@ -102,7 +101,6 @@ public class MaterielServiceImpl implements IMaterielService {
 			log.info("matériel déjà existant");
 		}
 		return pMateriel;
-
 	}
 
 	/**

@@ -51,8 +51,8 @@ export class ListeMaterielComponent implements OnInit {
 
   infoModal(idModal: number){
     const dialogRef = this.dialog.open(InfoModalComponent, {
-      width: '40rem',
-      height:'31rem',
+      width: '600px',
+      height:'400px',
       data: {idMaterielUtils: idModal}     
     });
   }
