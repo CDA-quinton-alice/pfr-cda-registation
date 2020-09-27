@@ -53,6 +53,7 @@ public class EvenementServiceImpl implements IEvenementService{
 			
 			//A MODIFIER POUR INCLURE L'UTILISATEUR
 			list.add(new EvenementDto(ee.getId(),
+						ee.getTitre(),
 						ee.getType(),
 						ee.getDescription(),
 						ee.getDate_debut(),
@@ -86,6 +87,7 @@ public class EvenementServiceImpl implements IEvenementService{
 			
 			EvenementDto edto = EvenementDto.builder()
 									.id(ee.getId())
+									.titre(ee.getTitre())
 									.type(ee.getType())
 									.description(ee.getDescription())
 									.date_debut(ee.getDate_debut())
@@ -120,6 +122,7 @@ public class EvenementServiceImpl implements IEvenementService{
 					.responsable(ee.getUser().isResponsable()).build();
 			//A MODIFIER POUR INCLURE L'UTILISATEUR
 			list.add(new EvenementDto(ee.getId(),
+						ee.getTitre(),
 						ee.getType(),
 						ee.getDescription(),
 						ee.getDate_debut(),
@@ -154,6 +157,7 @@ public class EvenementServiceImpl implements IEvenementService{
 					.responsable(ee.getUser().isResponsable()).build();
 			//A MODIFIER POUR INCLURE L'UTILISATEUR
 			list.add(new EvenementDto(ee.getId(),
+						ee.getTitre(),
 						ee.getType(),
 						ee.getDescription(),
 						ee.getDate_debut(),
@@ -189,6 +193,7 @@ public class EvenementServiceImpl implements IEvenementService{
 			
 			//A MODIFIER POUR INCLURE L'UTILISATEUR
 			list.add(new EvenementDto(ee.getId(),
+						ee.getTitre(),
 						ee.getType(),
 						ee.getDescription(),
 						ee.getDate_debut(),
@@ -216,6 +221,7 @@ public class EvenementServiceImpl implements IEvenementService{
 		UtilisateurEntity ue = udao.findById(evenement.getUser().getMatricule()).get();
 		
 		EvenementEntity ee = EvenementEntity.builder() 
+				.titre(evenement.getTitre())
 				.type(evenement.getType())
 				.description(evenement.getDescription())
 				.date_debut(evenement.getDate_debut())
@@ -231,6 +237,7 @@ public class EvenementServiceImpl implements IEvenementService{
 				.responsable(ee.getUser().isResponsable()).build();
 		EvenementDto edto = EvenementDto.builder()
 								.id(ee.getId())
+								.titre(ee.getTitre())
 								.type(ee.getType())
 								.description(ee.getDescription())
 								.date_debut(ee.getDate_debut())
@@ -255,6 +262,7 @@ public class EvenementServiceImpl implements IEvenementService{
 		
 		EvenementEntity ee = EvenementEntity.builder()
 				.id(evenement.getId())
+				.titre(evenement.getTitre())
 				.type(evenement.getType())
 				.description(evenement.getDescription())
 				.date_debut(evenement.getDate_debut())
@@ -270,6 +278,7 @@ public class EvenementServiceImpl implements IEvenementService{
 				.responsable(ee.getUser().isResponsable()).build();
 		EvenementDto edto = EvenementDto.builder()
 								.id(ee.getId())
+								.titre(ee.getTitre())
 								.type(ee.getType())
 								.description(ee.getDescription())
 								.date_debut(ee.getDate_debut())
@@ -293,6 +302,7 @@ public class EvenementServiceImpl implements IEvenementService{
 		
 		EvenementEntity ee = EvenementEntity.builder()
 				.id(evenement.getId())
+				.titre(evenement.getTitre())
 				.type(evenement.getType())
 				.description(evenement.getDescription())
 				.date_debut(evenement.getDate_debut())

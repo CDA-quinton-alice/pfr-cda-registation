@@ -157,7 +157,7 @@ public class DataInsertion {
 
 			log.debug(user.getMatricule());
 			EvenementDto ee = EvenementDto.builder().type("Révision").description("test1").date_debut(date1)
-					.date_fin(date2).duree(diff).user(user).build();
+					.date_fin(date2).duree(diff).user(user).titre("Cuve 1").build();
 
 			if (eserv.getByType("Révision") == null) {
 				ee = eserv.create(ee);
@@ -219,7 +219,7 @@ public class DataInsertion {
 					.salaire(user2.getSalaire()).mail(user2.getMail()).tel(user2.getTel())
 					.responsable(user2.isResponsable()).build();
 			EvenementDto ee = EvenementDto.builder().type("Inspection").description("test3").date_debut(date5)
-					.date_fin(date6).duree(diff).user(user).build();
+					.date_fin(date6).duree(diff).user(user).titre("Pompe 3").build();
 
 			if (eserv.getByType("Inspection") == null) {
 				ee = eserv.create(ee);
