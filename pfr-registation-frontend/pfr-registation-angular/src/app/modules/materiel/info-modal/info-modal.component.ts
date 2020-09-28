@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { IMaterielUtils } from 'src/app/interfaces/i-materiel-utils';
 import { Imateriel } from 'src/app/interfaces/imateriel';
 import { MaterielService } from 'src/app/services/materiel-service/materiel.service';
+import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
 
 @Component({
   selector: 'app-info-modal',
@@ -17,7 +18,7 @@ export class InfoModalComponent implements OnInit {
   materiel: Imateriel = {};
   
   constructor(private fb: FormBuilder, private materielService: MaterielService,
-    private router: Router,public dialogRef: MatDialogRef<InfoModalComponent>,  @Inject(MAT_DIALOG_DATA) public data: IMaterielUtils) { }
+    private router: Router, public dialog: MatDialog, public dialogRef: MatDialogRef<InfoModalComponent>,  @Inject(MAT_DIALOG_DATA) public data: IMaterielUtils) { }
 
   ngOnInit(): void {
 
@@ -32,10 +33,7 @@ export class InfoModalComponent implements OnInit {
     });
   }
 
-  deleteMateriel() {
-    this.materielService.deleteMateriel(this.data.idMaterielUtils).subscribe(result => this.gotoMaterielList());
-  }
-
+  
   gotoMaterielList() {
     this.onNoClick(); 
     this.router.navigate(['/materiel']);
@@ -43,5 +41,19 @@ export class InfoModalComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  
+  redirectToUpdate(idToUpdate:number){
+    console.log(idToUpdate);
+    this.router.navigate(['/materiel/modifier/'+ idToUpdate]);
+  }
+
+  deleteModal(idModal: number){
+    const dialogRef = this.dialog.open(DeleteModalComponent, {
+      width: '40rem',
+      height:'31rem',
+      data: {idMaterielUtils: idModal}     
+    });
   }
 }

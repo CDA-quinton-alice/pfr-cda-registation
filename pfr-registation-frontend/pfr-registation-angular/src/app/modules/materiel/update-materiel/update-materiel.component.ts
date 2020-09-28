@@ -37,8 +37,7 @@ export class UpdateMaterielComponent implements OnInit {
   ngOnInit(): void { 
     this.route.paramMap.subscribe(res=>{
       this.idMat = +res.get('param1');   
-      this.getMaterielById(this.idMat); 
-     
+      this.getMaterielById(this.idMat);  
     })
   }
 
