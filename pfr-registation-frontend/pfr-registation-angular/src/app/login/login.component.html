@@ -22,7 +22,39 @@
         </form>
     </mat-card-content>
 </mat-card> -->
-<div class="container">
+
+
+
+<mat-card class="card-login">
+  <div class="position-icon-login">
+    <mat-icon class="icon-login" [inline]="true">account_circle</mat-icon>
+  </div>
+  <mat-form-field class="full-width-input">
+    <mat-label>Matricule</mat-label>
+    <mat-icon matPrefix class="icone-info-card">fingerprint</mat-icon>
+    <input matInput [(ngModel)]="user.username" type="text" name="username" id="username" required>
+  </mat-form-field>
+
+  <mat-form-field class="full-width-input">
+    <mat-label>Enter your password</mat-label>
+    <mat-icon matPrefix class="icone-info-card">lock</mat-icon>
+    <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="user.password" type="password" name="password"
+      id="password" required>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+<div class="div-bouton">
+  <button mat-raised-button color="primary" [disabled]='user.password.length==0 || user.username.length==0'
+    (click)="login()" class="bouton-login">Connexion
+  </button>
+</div>
+</mat-card>
+
+
+
+<!-- <div class="container">
   <div class="row justify-content-center">
     <div class="col-6">
       <h2>CONNEXION</h2>
@@ -49,4 +81,4 @@
     </div>
 
   </div>
-</div>
+</div> -->

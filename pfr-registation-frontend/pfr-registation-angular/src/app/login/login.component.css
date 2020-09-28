@@ -1,0 +1,24 @@
+.card-login{
+    width: 350px;
+    height: 300px;
+    
+}
+.mat-form-field{
+    display: block;
+}
+.position-icon-login{
+  text-align: center;
+  
+}
+.icon-login{
+    margin-top: 40px;
+    font-size: 100px;
+    color:lightseagreen;
+}
+.icone-info-card{
+    margin-right: 10px;
+}
+.div-bouton{
+    margin-top: 10px;
+    text-align: center;
+}

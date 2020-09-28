@@ -11,7 +11,7 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  hide = true;
   user: UserAuth;
 
   constructor(private authService: AuthService, private router: Router) { }
