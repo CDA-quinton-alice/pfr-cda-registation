@@ -43,3 +43,8 @@
     font-size: 6em;
     opacity: 0.8;
 }
+/* Second ROW */
+.second-row{
+    width: 100%;
+background-color: lightgoldenrodyellow;
+}
