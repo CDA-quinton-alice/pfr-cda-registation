@@ -69,30 +69,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-
+		http.cors().and().csrf().disable().headers().frameOptions().disable()
+				.and().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+				.and().authorizeRequests()
+				
 				.antMatchers(HttpMethod.GET, "/helloresponsable").hasRole("RESPONSABLE")
-
 				.antMatchers(HttpMethod.GET, "/helloemploye").hasAnyRole("EMPLOYE", "RESPONSABLE")
-
-				.anyRequest().authenticated().and().csrf().disable() // authoriser l'envoi de donnée depuis des
-																		// formulaire non genenrés depuis le
-																		// back-end
-				.formLogin().loginProcessingUrl("/login") // personnaliser l'url d'authentification
-				.successHandler(successHandler()) // succes authentification
-				.failureHandler(failureHandler()) // echec authentification
-				.and().exceptionHandling().authenticationEntryPoint(authenticationEntryPoint()) // utilisateur avec
-																								// session mais sans
-																								// droit sspring
-																								// suffisant et tente
-																								// d'acceder à l'url
-				.accessDeniedHandler(accessDeniedHandler()) // utilisateur sans session donc sans droit et tente
-															// d'acceder à l'url
-				.and().headers().frameOptions().disable()// authoriser les requetes genenrées depuis des frames
-				.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)// Pour ne pas stocker
-																									// les infos d'auth
-																									// dans la session
-				.and().addFilterBefore(this.jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
+				
+				.antMatchers("/login").permitAll()
+				
+				.anyRequest().authenticated()
+				.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+				.and()
+				.addFilterBefore(this.jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
 	}
 

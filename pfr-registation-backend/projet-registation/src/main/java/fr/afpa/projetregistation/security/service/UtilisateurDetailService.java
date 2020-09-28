@@ -52,30 +52,6 @@ public class UtilisateurDetailService implements UserDetailsService {
 		return authorities;
 	}
 
-//	@Autowired
-//	private IUtilisateurDao utilisateurDao;
-//	
-//	@Override
-//	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//		if (username.trim().isEmpty()) {
-//			throw new UsernameNotFoundException("username is empty");
-//		}
-// 
-//		Optional<UtilisateurEntity> userOpt = this.utilisateurDao.findByLogin(username);
-// 
-//		if (! userOpt.isPresent()) {
-//			throw new UsernameNotFoundException("User " + username + " not found");
-//		}
-//		
-//		UtilisateurEntity user = userOpt.get();
-//		return new User(user.getLogin(), user.getPassword(), getGrantedAuthorities(user));
-//	}
-// 
-//	private List<GrantedAuthority> getGrantedAuthorities(UtilisateurEntity user) {
-//		List<GrantedAuthority> authorities = new ArrayList<>();
-//		RoleEntity role = user.getRole();
-//		authorities.add(new SimpleGrantedAuthority("ROLE_"+role.getLibelle()));
-//		return authorities;
-//	}
+
 	
 }

@@ -59,4 +59,6 @@ public class JwtTokenService {
 				AuthorityUtils.commaSeparatedStringToAuthorityList(token.getBody().get("roles", String.class)));
 	}
 
+	
+	
 }

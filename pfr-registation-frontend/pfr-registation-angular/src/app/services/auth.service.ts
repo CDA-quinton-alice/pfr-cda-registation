@@ -25,7 +25,7 @@ export class AuthService {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
       'Access-Control-Allow-Headers': 'Content-Type',
-      'Access-Control-Allow-Methods': 'GET',
+      'Access-Control-Allow-Methods': 'POST',
       'Access-Control-Allow-Origin': '*'
     })
   };
@@ -33,8 +33,8 @@ export class AuthService {
   constructor(private router: Router,
     private http: HttpClient,
     private alertService: AlertService) {
-    this.url = `${environment.backSchema}://${environment.backServer}/login`;
-    // this.url = "http://localhost:8080/login";
+    // this.url = `${environment.backSchema}://${environment.backServer}/login`;
+    this.url = "http://localhost:8080/login";
     this.subjectConnexion = new Subject<number>();
 
   }
@@ -53,7 +53,7 @@ export class AuthService {
 
     return new Observable(
       observer => {
-        this.http.post(this.url, user).subscribe(
+        this.http.post(this.url, user , this.httpOptions ).subscribe(
           res => {
             localStorage.setItem('isConnected', 'true');
             localStorage.setItem('access_token', res['token']);
