@@ -23,29 +23,30 @@
     </mat-card-content>
 </mat-card> -->
 <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-6">
-  <h2>LOGIN</h2>
-        <div class="row">
-          <label for="username">login</label>
-          <input [(ngModel)]="user.username" type="text" name="username" id="username" class="form-control">
-          <div class="form-group">
-          </div>
-        </div>
-  
-        <div class="row">
-          <label for="password">password</label>
-          <input [(ngModel)]="user.password" type="password" name="password" id="password" class="form-control">
-          <div class="form-group">
-          </div>
-        </div>
-  
-        <div class="row mt-1">
-          <button [disabled]='user.password.length==0 || user.username.length==0' (click)="login()" type="button" class="btn btn-primary btn-lg btn-block">
-            login
-          </button>
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <h2>CONNEXION</h2>
+      <div class="row">
+        <label for="username">login</label>
+        <input [(ngModel)]="user.username" type="text" name="username" id="username" class="form-control">
+        <div class="form-group">
         </div>
       </div>
-  
+
+      <div class="row">
+        <label for="password">password</label>
+        <input [(ngModel)]="user.password" type="password" name="password" id="password" class="form-control">
+        <div class="form-group">
+        </div>
+      </div>
+
+      <div class="row mt-1">
+        <button [disabled]='user.password.length==0 || user.username.length==0' (click)="login()" type="button"
+          class="btn btn-primary btn-lg btn-block">
+          login
+        </button>
+      </div>
     </div>
+
   </div>
+</div>

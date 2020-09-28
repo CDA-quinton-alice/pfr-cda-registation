@@ -42,3 +42,4 @@ spring:
 registation:
   token:
     secret: azertyui #multiple 4 ? taille
+    

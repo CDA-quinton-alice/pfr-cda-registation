@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.afpa.projetregistation.dao.IUtilisateurDao;
@@ -53,14 +54,19 @@ public class UtilisateurController {
 		utilisateurService.contactUs(pMessage);
 	}
 	
-	@RequestMapping({"/helloemploye"})
+	@CrossOrigin(origins = "http://localhost:4200")
+	@RequestMapping(value = "/helloemploye", method = RequestMethod.GET)
 	public String helloEmploye(){
 		return "Hello Employe";
 	}
 	
-	@RequestMapping({"/helloresponsable"})
+	
+	
+	@RequestMapping(value = "/helloresponsable", method = RequestMethod.GET)
 	public String helloResponsable(){
 		return "Hello Responsable";
 	}
+
+	
 	
 }

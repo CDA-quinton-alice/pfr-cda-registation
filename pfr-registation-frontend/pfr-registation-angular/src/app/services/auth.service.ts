@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
@@ -7,6 +7,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { User } from '../models/user';
 import { UserAuth } from '../models/user-auth';
+import { AlertService } from './alert.service';
 
 
 
@@ -19,12 +20,23 @@ export class AuthService {
   subjectConnexion: Subject<number>;
   currentUser: User;
 
+  //httpOptions
+  httpOptions: any = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Methods': 'GET',
+      'Access-Control-Allow-Origin': '*'
+    })
+  };
 
   constructor(private router: Router,
-    private http: HttpClient) {
-    // this.url = `${environment.backSchema}://${environment.backServer}/login`;
-    this.url = "http://localhost:8080/login";
+    private http: HttpClient,
+    private alertService: AlertService) {
+    this.url = `${environment.backSchema}://${environment.backServer}/login`;
+    // this.url = "http://localhost:8080/login";
     this.subjectConnexion = new Subject<number>();
+
   }
 
   isConnected(): boolean {
@@ -37,6 +49,8 @@ export class AuthService {
   }
 
   login(user: UserAuth): Observable<boolean> {
+    console.log(user);
+
     return new Observable(
       observer => {
         this.http.post(this.url, user).subscribe(
@@ -54,8 +68,11 @@ export class AuthService {
 
             localStorage.setItem('current_user', JSON.stringify(currentUser));
 
+            console.log(currentUser);
+
+
             this.subjectConnexion.next(3);
-            // this.alertService.addSuccess('bienvenu '+currentUser.nom);
+            this.alertService.addSuccess('bienvenu ' + currentUser.nom);
             observer.next(true);
           },
           () => {
