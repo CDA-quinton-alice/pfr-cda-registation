@@ -25,6 +25,7 @@ import { GetDocumentByNomModule } from './modules/document/get-document-by-nom/g
 import { GetDocumentByIdModule } from './modules/document/get-document-by-id/get-document-by-id.module';
 import { EvenementModule } from './modules/evenement/evenement.module';
 import { MaterielService } from './services/materiel-service/materiel.service';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -32,6 +33,7 @@ import { MaterielService } from './services/materiel-service/materiel.service';
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
   ],
 
   imports: [
