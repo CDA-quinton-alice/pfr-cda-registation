@@ -31,6 +31,12 @@ import { environment } from 'src/environments/environment';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { LoginComponent } from './login/login.component';
 
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+
 
 export function jwtTokenGetter() {
   return localStorage.getItem('access_token');
@@ -40,6 +46,7 @@ export function jwtTokenGetter() {
   declarations: [
     AppComponent,
     LoginComponent,
+
   ],
 
   imports: [
@@ -67,11 +74,17 @@ export function jwtTokenGetter() {
     GetDocumentByIdModule,
     EvenementModule,
 
+    MatIconModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+
     JwtModule.forRoot({
       config: {
         // pour injecter le token dans toutes les requetes
         tokenGetter: jwtTokenGetter,
-       
+
         // inject le token pour tous ces chemin
         allowedDomains: [environment.backServer],
 

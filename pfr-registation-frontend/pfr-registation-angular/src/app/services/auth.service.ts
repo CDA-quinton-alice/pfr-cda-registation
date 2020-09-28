@@ -49,8 +49,6 @@ export class AuthService {
   }
 
   login(user: UserAuth): Observable<boolean> {
-    console.log(user);
-
     return new Observable(
       observer => {
         this.http.post(this.url, user , this.httpOptions ).subscribe(
@@ -59,18 +57,11 @@ export class AuthService {
             localStorage.setItem('access_token', res['token']);
             const currentUser = new User();
             const helper = new JwtHelperService();
-
             const decodedToken = helper.decodeToken(res['token']);
-            currentUser.matricule = decodedToken.sub;
-            currentUser.nom = decodedToken.username;
 
+            currentUser.matricule = decodedToken.username;
             currentUser.responsable = decodedToken.roles; //attention boolean ??
-
             localStorage.setItem('current_user', JSON.stringify(currentUser));
-
-            console.log(currentUser);
-
-
             this.subjectConnexion.next(3);
             this.alertService.addSuccess('bienvenu ' + currentUser.nom);
             observer.next(true);
@@ -90,7 +81,7 @@ export class AuthService {
     localStorage.removeItem('access_token');
     localStorage.removeItem('current_user');
     this.subjectConnexion.next(3);
-    this.router.navigateByUrl('/login'); //rediriger vers page d'accueil
+    this.router.navigateByUrl('/login'); //rediriger vers page de login
   }
 
 
