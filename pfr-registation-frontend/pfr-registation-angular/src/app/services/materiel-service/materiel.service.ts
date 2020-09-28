@@ -42,6 +42,6 @@ export class MaterielService {
 
 
   public updateMateriel(mat:Imateriel){
-    return this.http.post<Imateriel>(this.url  + "/update",  mat);
+    return this.http.patch<Imateriel>(this.url  + "/update",  mat);
   }
 }

@@ -8,21 +8,29 @@ import { Imateriel } from 'src/app/interfaces/imateriel';
 import { MaterielService } from 'src/app/services/materiel-service/materiel.service';
 
 @Component({
-  selector: 'app-delete-modal',
-  templateUrl: './delete-modal.component.html',
-  styleUrls: ['./delete-modal.component.css']
+  selector: 'app-info-modal',
+  templateUrl: './info-modal.component.html',
+  styleUrls: ['./info-modal.component.css']
 })
-export class DeleteModalComponent implements OnInit {
+export class InfoModalComponent implements OnInit {
 
-  
   materiel: Imateriel = {};
   
   constructor(private fb: FormBuilder, private materielService: MaterielService,
-    private router: Router,public dialogRef: MatDialogRef<DeleteModalComponent>,  @Inject(MAT_DIALOG_DATA) public data: IMaterielUtils) { }
+    private router: Router,public dialogRef: MatDialogRef<InfoModalComponent>,  @Inject(MAT_DIALOG_DATA) public data: IMaterielUtils) { }
 
   ngOnInit(): void {
+
+   this.getMaterielById(this.data.idMaterielUtils);
+   
   }
 
+  
+  getMaterielById(idMaterielUtils: number) {
+    this.materielService.findById(idMaterielUtils).subscribe(res => {
+      this.materiel = res;
+    });
+  }
 
   deleteMateriel() {
     this.materielService.deleteMateriel(this.data.idMaterielUtils).subscribe(result => this.gotoMaterielList());
