@@ -36,6 +36,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { PresentationTeamComponent } from './presentation-team/presentation-team.component';
 
 
 export function jwtTokenGetter() {
@@ -46,6 +47,7 @@ export function jwtTokenGetter() {
   declarations: [
     AppComponent,
     LoginComponent,
+    PresentationTeamComponent,
 
   ],
 

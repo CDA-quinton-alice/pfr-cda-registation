@@ -1,84 +1,53 @@
-<!-- <p>login works!</p>
-<mat-card>
-    <mat-card-content>
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <h2>Log In</h2>
-            <mat-error *ngIf="loginInvalid">
-                The username and password were not recognised
-            </mat-error>
-            <mat-form-field class="full-width-input">
-                <input matInput placeholder="Email" formControlName="username" required>
-                <mat-error>
-                    Please provide a valid email address
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field class="full-width-input">
-                <input matInput type="password" placeholder="Password" formControlName="password" required>
-                <mat-error>
-                    Please provide a valid password
-                </mat-error>
-            </mat-form-field>
-            <button mat-raised-button color="primary">Login</button>
-        </form>
-    </mat-card-content>
-</mat-card> -->
-
-
-
-<mat-card class="card-login">
-  <div class="position-icon-login">
-    <mat-icon class="icon-login" [inline]="true">account_circle</mat-icon>
-  </div>
-  <mat-form-field class="full-width-input">
-    <mat-label>Matricule</mat-label>
-    <mat-icon matPrefix class="icone-info-card">fingerprint</mat-icon>
-    <input matInput [(ngModel)]="user.username" type="text" name="username" id="username" required>
-  </mat-form-field>
-
-  <mat-form-field class="full-width-input">
-    <mat-label>Enter your password</mat-label>
-    <mat-icon matPrefix class="icone-info-card">lock</mat-icon>
-    <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="user.password" type="password" name="password"
-      id="password" required>
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-      [attr.aria-pressed]="hide">
-      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </button>
-  </mat-form-field>
-<div class="div-bouton">
-  <button mat-raised-button color="primary" [disabled]='user.password.length==0 || user.username.length==0'
-    (click)="login()" class="bouton-login">Connexion
-  </button>
-</div>
-</mat-card>
-
-
-
-<!-- <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-6">
-      <h2>CONNEXION</h2>
-      <div class="row">
-        <label for="username">login</label>
-        <input [(ngModel)]="user.username" type="text" name="username" id="username" class="form-control">
-        <div class="form-group">
+<div class="container-fluid" style="padding: 0;">
+  <div class="row">
+    
+    <div class="col col-gauche">
+      <div class="container">
+        <h1 id="nom-appli">REGISTATION</h1>
+        <div class="row">
+          <img src="assets/images/logo.png" alt="logo" id="logo">
         </div>
-      </div>
-
-      <div class="row">
-        <label for="password">password</label>
-        <input [(ngModel)]="user.password" type="password" name="password" id="password" class="form-control">
-        <div class="form-group">
-        </div>
-      </div>
-
-      <div class="row mt-1">
-        <button [disabled]='user.password.length==0 || user.username.length==0' (click)="login()" type="button"
-          class="btn btn-primary btn-lg btn-block">
-          login
-        </button>
       </div>
     </div>
 
+    <div class="col col-droite">
+      <!-- Début Card Login -->
+      <mat-card class="card-login">
+        <div class="position-icon-login">
+          <mat-icon class="icon-login" [inline]="true">account_circle</mat-icon>
+        </div>
+        <mat-form-field class="full-width-input">
+          <mat-label>Matricule</mat-label>
+          <mat-icon matPrefix class="icone-info-card">fingerprint</mat-icon>
+          <input matInput [(ngModel)]="user.username" type="text" name="username" id="username" required>
+        </mat-form-field>
+
+        <mat-form-field class="full-width-input">
+          <mat-label>Password</mat-label>
+          <mat-icon matPrefix class="icone-info-card">lock</mat-icon>
+          <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="user.password" type="password"
+            name="password" id="password" required>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <div class="div-bouton">
+          <button mat-raised-button color="primary" [disabled]='user.password.length==0 || user.username.length==0'
+            (click)="login()" class="bouton-login">Connexion
+          </button>
+        </div>
+      </mat-card>
+      <!-- Fin Card-login -->
+    </div>
+
   </div>
-</div> -->
+<!-- Fin Row principale -->
+
+<!-- Début Row2 présentation Equipe -->
+
+
+<app-presentation-team></app-presentation-team>
+
+
+</div>

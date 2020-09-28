@@ -1,7 +1,9 @@
 .card-login{
-    width: 350px;
+    width: 250px;
     height: 300px;
-    
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
 }
 .mat-form-field{
     display: block;
@@ -13,7 +15,7 @@
 .icon-login{
     margin-top: 40px;
     font-size: 100px;
-    color:lightseagreen;
+    color:#5B8E7D;
 }
 .icone-info-card{
     margin-right: 10px;
@@ -21,4 +23,23 @@
 .div-bouton{
     margin-top: 10px;
     text-align: center;
+}
+#logo{
+	opacity: 0.4;
+	margin-left: auto;
+	margin-right: auto;
+	
+}
+.col-gauche{
+    background-color: #F4E285;
+}
+.col-droite{
+    background-color: #5B8E7D;
+}
+#nom-appli{
+    margin-top: 20px;
+    text-align: center;
+    font-family: 'Racing Sans One', cursive;
+    font-size: 6em;
+    opacity: 0.8;
 }
