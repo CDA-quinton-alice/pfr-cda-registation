@@ -55,27 +55,26 @@ public class DataInsertion {
 
 	@Autowired
 	IEvenementService eserv;
-	
+
 	@Autowired
 	ITypeMaterielService typeService;
 
 	@PostConstruct
 	public void cdaInit() {
 
-		
-	
-		
+
+
+
 		this.insertionMateriel();
 		this.insertionUtilisateurs();
 
 		// METHODE POUR AJOUTER 3 DOCUMENTS MAX ALICE TO DO
 
 		Date dateAjoutDoc = new Date();
-		Date dateDerniereModificationdoc = new Date();
+		Date dateDerniereModificationDoc = new Date();
 
-		DocumentDto doc = new DocumentDto("facture entretien cuve n°3", "facture", dateAjoutDoc,
-				dateDerniereModificationdoc, "facture qui correspond au dernier entretien de la cuve n°3.",
-				"rien à signaler, fonctionnement de la cuve n°3 ok.");
+		DocumentDto doc = new DocumentDto("facture entretien cuve n°3", "facture", dateAjoutDoc, dateDerniereModificationDoc,
+				"facture qui correspond au dernier entretien de la cuve n°3.", "rien à signaler, fonctionnement de la cuve n°3 ok.", "RESP001");
 		documentService.ajouterDocument(doc);
 
 		// Ajout de 2 évènements
@@ -128,7 +127,7 @@ public class DataInsertion {
 		materielService.create(materielD);
 		MaterielDto materielE = new MaterielDto("P008", "Orion", "PistoXC", 500, 1, achat, "pompe", "pompe 8");
 		materielService.create(materielE);
-		
+
 	}
 
 	public void insertionUtilisateurs() {
@@ -196,16 +195,16 @@ public class DataInsertion {
 //		Date date3 = null;
 //		Date date4 = null;
 //		diff = 0;
-//		
+//
 //		try {
 //			date3 = sdf.parse(d3);
 //			date4 = sdf.parse(d4);
 //			long mse = date4.getTime()-date3.getTime();
-//			diff = (int)TimeUnit.SECONDS.convert(mse, TimeUnit.MILLISECONDS); 
+//			diff = (int)TimeUnit.SECONDS.convert(mse, TimeUnit.MILLISECONDS);
 //		}catch(ParseException e) {
 //			log.warn("Erreur lors du parsing des dates lors du test unitaire !");
 //		}
-//		
+//
 //		if(optUser.isPresent()) {
 //			UtilisateurEntity user = optUser.get();
 //			EvenementDto ee = EvenementDto.builder().type("Inspection")
@@ -214,13 +213,13 @@ public class DataInsertion {
 //					.date_fin(date4)
 //					.duree(diff)
 //					.user(user).build();
-//			
+//
 //			if(eserv.getByType("Inspection") == null) {
 //				ee = eserv.create(ee);
 //			}else {
 //				log.info("Inspection n'a été ajouté !");
 //			}
-//		}  
+//		}
 
 		String d5 = "14-09-2020";
 		String d6 = "01-01-2021";

@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IDocument} from '../../../interfaces/idocument';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DocumentService} from '../../../services/document.service';
+import {HttpClient, HttpEvent, HttpEventType, HttpRequest, HttpResponse} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {UploadFileServiceService} from '../../../services/upload-file-service.service';
 
 @Component({
   selector: 'app-document-form',
@@ -10,7 +13,12 @@ import {DocumentService} from '../../../services/document.service';
   styleUrls: ['./document-form.component.css']
 })
 export class DocumentFormComponent implements OnInit {
-
+  title = 'document-test-lambda-registation';
+  selectedFiles: FileList;
+  currentFileUplolad: File;
+  progress: {percentage: number} = {percentage: 0 };
+  selectedFile = null;
+  changeImage = false;
   document2: IDocument;
   documentList2: Array<IDocument> = [];
   documentForm2: FormGroup;
@@ -25,7 +33,7 @@ export class DocumentFormComponent implements OnInit {
   todayString2: string = new Date().toDateString();
   todayISOString2: string = new Date().toISOString();
 
-  constructor(private route: ActivatedRoute, private router: Router, private documentService: DocumentService, private fb: FormBuilder) {
+  constructor(private route: ActivatedRoute, private router: Router, private documentService: DocumentService, private fb: FormBuilder, private uploadFileService: UploadFileServiceService) {
     this.initForm();
   }
   initForm(): void {
@@ -55,13 +63,43 @@ export class DocumentFormComponent implements OnInit {
       this.documentList2 = result;
     });
   }
-  ajouterDocument() {
+  ajouterDocument(): void {
     this.document2 = (this.documentForm2.value as IDocument);
     console.log(this.documentForm2.value);
     console.log(this.document2);
     this.documentService.save(this.document2).subscribe(result => this.goToDocumentList());
   }
-  goToDocumentList(){
+  goToDocumentList(): void {
     this.router.navigate(['/document/liste']);
+  }
+  downloadFile(): void{
+    const link = document.createElement('a');
+    link.setAttribute('target', '_blank');
+    link.setAttribute('href', 'File_Saved_Path');
+    link.setAttribute('download', 'file_name.pdf');
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }
+  change($event): void {
+    this.changeImage = true;
+  }
+  changedImage(event): void{
+    this.selectedFile = event.target.files[0];
+  }
+  upload(): void {
+    this.progress.percentage = 0;
+    this.currentFileUplolad = this.selectedFiles.item(0);
+    this.uploadFileService.pushFileStorage(this.currentFileUplolad).subscribe(event => {
+      if (event.type === HttpEventType.UploadProgress) {
+        this.progress.percentage = Math.round(100 * event.loaded / event.total);
+      } else if (event instanceof HttpResponse) {
+        alert('document sauvegardé avec succès');
+      }
+      this.selectedFiles = undefined;
+    });
+  }
+  selectFile(event): void{
+    this.selectedFiles = event.target.files;
   }
 }
