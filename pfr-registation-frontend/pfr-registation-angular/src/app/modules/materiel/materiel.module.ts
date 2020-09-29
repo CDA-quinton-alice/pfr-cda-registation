@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { MaterielRoutingModule } from './materiel-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { ListeMaterielComponent } from './liste-materiel/liste-materiel.component';
-import { InfosMaterielComponent } from './infos-materiel/infos-materiel.component';
 import { AjouterMaterielComponent } from './ajouter-materiel/ajouter-materiel.component';
 import { UpdateMaterielComponent } from './update-materiel/update-materiel.component';
 
@@ -31,7 +30,7 @@ import { InfoModalComponent } from './info-modal/info-modal.component';
 
 
 @NgModule({
-  declarations: [ListeMaterielComponent, InfosMaterielComponent, AjouterMaterielComponent, UpdateMaterielComponent, DeleteModalComponent, InfoModalComponent],
+  declarations: [ListeMaterielComponent,  AjouterMaterielComponent, UpdateMaterielComponent, DeleteModalComponent, InfoModalComponent],
   imports: [
     CommonModule,
     MaterielRoutingModule,
