@@ -10,18 +10,18 @@
       <mat-icon>filter_frames</mat-icon>
      <input type="text" [formControl]="documentForm2.controls.categorieDocument">
   </div>
-<!--  <div>-->
-<!--    <mat-icon>calendar_today</mat-icon>-->
-<!--    <input matInput [matDatepicker]="picker1" formControlName="dateAjoutDocument" placeholder="Date d'ajout du document" required>-->
-<!--    <mat-date-picker-toggle matSuffix [for]="picker1"></mat-date-picker-toggle>-->
-<!--    <mat-datepicker touchUi="true" #picker1></mat-datepicker>-->
-<!--  </div>-->
-<!--  <div>-->
-<!--    <mat-icon>bookmark</mat-icon>-->
-<!--    <input matInput [matDatepicker]="picker2" formControlName="dateDerniereModificationDocument" placeholder="Dernière date de modification du document" required>-->
-<!--    <mat-date-picker-toggle matSuffix [for]="picker2"></mat-date-picker-toggle>-->
-<!--    <mat-datepicker touchUi="true" #picker2></mat-datepicker>-->
-<!--  </div>-->
+<div>
+  <mat-icon>calendar_today</mat-icon>
+  <input matInput [matDatepicker]="picker1" formControlName="dateAjoutDocument" placeholder="Date d'ajout du document" required>
+  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+  <mat-datepicker touchUi="true" #picker1></mat-datepicker>
+</div>
+  <div>
+    <mat-icon>bookmark</mat-icon>
+    <input matInput [matDatepicker]="picker2" formControlName="dateDerniereModificationDocument" placeholder="Dernière date de modification du document" required>
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker touchUi="true" #picker2></mat-datepicker>
+  </div>
   <div>
     Description du Document :
      <mat-icon>description</mat-icon>
@@ -41,10 +41,10 @@
     <button mat-raised-button [disabled]=!documentForm2.valid class="bouton-ajouter" (click)="ajouterDocument()" (submit)="ajouterDocument()">Ajouter les informations du document
       document</button>
   </div>
-<!--  <div>-->
-<!--    <h1> Soumettre le document </h1>-->
-<!--    <input type="file" id="customFile" (change)="selectionnerDocument($event)">-->
+  <div>
+    <input type="file" id="customFile" (change)="selectFile($event)">
 <!--    <button class="btn btn-primary" [disabled]="!selectedFiles || admincheck || status" (click)="upload()"> Sauver le document</button>-->
-<!--  <button class="btn btn-success"-->
-<!--  </div>-->
+    <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="upload()"> Sauver le document</button>
+    <button class="btn btn-success" style="margin-left: 10px" (click)="downloadFile()">Aperçu du document</button>
+  </div>
 </form>
