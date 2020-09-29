@@ -12,6 +12,8 @@ export class HeaderComponent implements OnInit {
   panelOpenState = false;
   // subjectConnexion: Subject<number>;
 
+  
+
   constructor(private authService: AuthService,private router: Router) { }
 
   ngOnInit(): void {

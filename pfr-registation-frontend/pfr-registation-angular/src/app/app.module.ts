@@ -10,7 +10,7 @@ import { SharedModule } from './modules/shared/shared.module';
 import { MaterielModule } from './modules/materiel/materiel.module';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { DocumentModule } from './modules/document/document.module';
+
 import { EvenementModule } from './modules/evenement/evenement.module';
 import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -22,9 +22,8 @@ import { environment } from 'src/environments/environment';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { LoginComponent } from './login/login.component';
 
-import { MatIconModule } from '@angular/material/icon';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
+
+
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { PresentationTeamComponent } from './presentation-team/presentation-team.component';
@@ -77,7 +76,7 @@ export function jwtTokenGetter() {
 
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    MaterielService],
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { constructor() {console.log('app-module');
