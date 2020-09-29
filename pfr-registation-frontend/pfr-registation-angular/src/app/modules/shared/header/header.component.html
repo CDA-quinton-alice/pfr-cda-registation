@@ -1,19 +1,19 @@
 
 
 <mat-toolbar color="primary">
-  <button mat-icon-button (click)="sidenav.open()" class="icone-bars" aria-label="icone-bars">
+  <button mat-icon-button (click)="sidenav.open()" class="icone-bars" aria-label="icone-bars" >
     <mat-icon>menu</mat-icon>
   </button>
 
   <a style="color:white;" [routerLink]="'/utilisateur/liste'"><img src="assets/images/logo.png" alt="logo-navbar" id="logo-navbar">RegiStation</a>
   <span class="example-spacer"></span>
-  <button mat-icon-button class="" aria-label="icone-utilisateur">
+  <button mat-icon-button class="" aria-label="icone-utilisateur" >
     <mat-icon>person</mat-icon>
   </button>
-  <button mat-icon-button class="" aria-label="icone-notifications">
+  <button mat-icon-button class="" aria-label="icone-notifications" >
     <mat-icon matBadge="6" matBadgeColor="warn">notifications</mat-icon>
   </button>
-  <button mat-icon-button class="" aria-label="icone-signout">
+  <button mat-icon-button class="" (click)="logout()" aria-label="icone-signout">
     <mat-icon>power_settings_new</mat-icon>
   </button>
 </mat-toolbar>
