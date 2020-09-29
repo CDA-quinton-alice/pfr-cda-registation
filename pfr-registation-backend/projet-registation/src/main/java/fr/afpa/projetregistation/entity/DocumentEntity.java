@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 public class DocumentEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_document")
 	private int idDocument;
 	@Column(name = "nom_document")
@@ -43,6 +43,6 @@ public class DocumentEntity {
 
 	@ManyToOne
 	@JoinColumn(name="matricule")
-	UtilisateurEntity utilisateur;
+	private UtilisateurEntity user;
 
 }
