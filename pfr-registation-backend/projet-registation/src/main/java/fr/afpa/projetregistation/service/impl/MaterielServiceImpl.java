@@ -277,5 +277,10 @@ public class MaterielServiceImpl implements IMaterielService {
 
 		return res;
 	}
+	
+	@Override
+	public long count() {
+		return this.materielDao.count();
+	}
 
 }

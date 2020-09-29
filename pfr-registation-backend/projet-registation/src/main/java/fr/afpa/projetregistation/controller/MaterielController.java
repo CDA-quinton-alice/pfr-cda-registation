@@ -22,22 +22,44 @@ import fr.afpa.projetregistation.service.ITypeMaterielService;
 public class MaterielController {
 
 	@Autowired
-	IMaterielService materielService;
+	IMaterielService materielService; 
 
 	@Autowired
 	ITypeMaterielService typeService;
 
 	@GetMapping("/materiel")
-	public List<MaterielDto> getAll() {
+	public List<MaterielDto> getAll(@RequestBody int pageParam) {
+				
+		int pageEnCours = 1;
+		
+		if(pageParam != 0) {
+			try {
+				if(pageEnCours < 1) {
+					pageEnCours = 1;
+				}
+			} catch (NumberFormatException e) {
+				System.err.println("attention : " + e.getMessage());
+			}
+		}
 		List<MaterielDto> listeMat = new ArrayList<MaterielDto>();
-		listeMat = materielService.getAll(1);
+		listeMat = materielService.getAll(pageEnCours);
 		return listeMat;
-
 	}
 
 	@GetMapping("/materiel/listeMateriel/{pType}")
-	public List<MaterielDto> getAllByType(@PathVariable(value = "pType") String pType) {
-		System.out.println(pType);
+	public List<MaterielDto> getAllByType(@PathVariable(value = "pType") String pType,@RequestBody int pageParam) {
+		int pageEnCours = 1;
+		
+		if(pageParam != 0) {
+			try {
+				if(pageEnCours < 1) {
+					pageEnCours = 1;
+				}
+			} catch (NumberFormatException e) {
+				System.err.println("attention : " + e.getMessage());
+			}
+		}
+
 		List<MaterielDto> listeMat = new ArrayList<MaterielDto>();
 		listeMat = materielService.getAllByType(1, pType);
 		return listeMat;
