@@ -29,7 +29,7 @@ export class UtilisateurService {
   }
 
   findByMatricule(matricule: string): Observable<IUtilisateurSimple> {
-    return this.http.post<IUtilisateurSimple>(this.url ,  matricule);
+    return this.http.post<IUtilisateurSimple>(this.url + "/mat", matricule);
   }
 
 }

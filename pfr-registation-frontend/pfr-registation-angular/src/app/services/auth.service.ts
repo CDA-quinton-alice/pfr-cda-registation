@@ -65,6 +65,8 @@ export class AuthService {
             localStorage.setItem('current_user', JSON.stringify(currentUser));
             this.subjectConnexion.next(3);
             this.alertService.addSuccess('bienvenu ' + currentUser.nom);
+         
+            
             observer.next(true);
           },
           () => {

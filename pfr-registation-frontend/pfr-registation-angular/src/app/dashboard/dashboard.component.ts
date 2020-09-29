@@ -14,7 +14,7 @@ import { UtilisateurService } from '../services/utilisateur-service/utilisateur.
 export class DashboardComponent implements OnInit {
 
   currentUser: User;
-  utilisateur: IUtilisateurSimple;
+  utilisateurSimple: IUtilisateurSimple = {};
 
   constructor(private authService: AuthService,
     private utilisateurService: UtilisateurService) { }
@@ -22,10 +22,14 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = this.authService.getCurrentUser();
     console.log(this.currentUser.matricule);
+
     this.utilisateurService.findByMatricule(this.currentUser.matricule).subscribe(res => {
-      this.utilisateur = res;
+      this.utilisateurSimple = res; //Transformer un JSON en utilisateurSimpleDto
     });
+
+    
   }
+
 
 
 
