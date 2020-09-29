@@ -2,7 +2,7 @@
     <!-- Début card top -->
     <mat-card class="card-top">
         <h2 style="margin: 0;">Les Collaborateurs</h2>
-        <button mat-mini-fab color="warn" id="bouton-ajouter" [routerLink]="'/utilisateur/add'">
+        <button mat-mini-fab color="warn" id="bouton-ajouter" [routerLink]="'/utilisateur/add'" *ngIf="isResponsable">
             <mat-icon>add</mat-icon>
         </button>
     </mat-card>
@@ -47,9 +47,9 @@
                     </mat-list>
                 </mat-card-content>
                 <mat-card-actions>
-                    <button mat-button [disabled]>Modifier</button>
+                    <button mat-button [disabled] *ngIf="isResponsable">Modifier</button>
 
-                    <form #deleteUtilisateur=ngForm>
+                    <form #deleteUtilisateur=ngForm *ngIf="isResponsable">
                         <input type="hidden" value="{{utilisateur.matricule}}">
                         <button (click)='supprimerUtilisateur(utilisateur.matricule)' mat-raised-button color="warn"
                             type="submit">Supprimer</button>

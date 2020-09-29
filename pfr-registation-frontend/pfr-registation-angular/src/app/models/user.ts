@@ -5,17 +5,17 @@ export class User {
     dateDeNaissance: Date;
     mail: string;
     tel: string;
-    responsable: boolean;
+    role: string;
     password: string;
     
-    constructor(matricule?: string, nom?: string, prenom?: string, tel?: string, dateDeNaissance?: Date, mail?: string, responsable?: boolean) {
+    constructor(matricule?: string, nom?: string, prenom?: string, tel?: string, dateDeNaissance?: Date, mail?: string, role?: string) {
         this.matricule = matricule;
         this.nom = nom;
         this.prenom = prenom;
         this.dateDeNaissance = dateDeNaissance;
         this.mail = mail;
         this.tel = tel;
-        this.responsable = responsable;
+        this.role = role;
 
     }
 }
