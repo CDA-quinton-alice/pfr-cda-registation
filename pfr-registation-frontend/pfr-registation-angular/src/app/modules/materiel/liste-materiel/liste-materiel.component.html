@@ -80,7 +80,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let mat of list_materiel">
+            <tr *ngFor="let mat of list_materiel" (click)="infoModal(mat.idMat)">
                 <td data-th="Id du matériel">{{mat.idMat}}</td>
                 <td data-th="Référence">{{mat.ref}}</td>
                 <td data-th="Marque">{{mat.marque}}</td>
@@ -91,20 +91,25 @@
                 <td data-th="Type de matériel">{{mat.typeMateriel}}</td>
                 <td data-th="Localisation">{{mat.localisation}}</td>
                 <td>
-                    
-                    <form #getIdMaterielUtils=ngForm>
-                        <input type="hidden" name=idMaterielUtils [(ngModel)]=mat.idMat required #idMaterielUtils="ngModel">
+                    <div>
+                    <form #getIdMaterielUpdate=ngForm>
+                        <input type="hidden" name=idMaterielUpdate [(ngModel)]=mat.idMat required #idMaterielUpdate="ngModel">
 
-                        <button mat-mini-fab class="bouton-modifier" [routerLink]="'/materiel/modifier/'+mat.idMat">
+                        <button mat-mini-fab class="bouton-modifier" (click)="redirectToUpdate(mat.idMat); $event.stopPropagation()">
                             <mat-icon>edit</mat-icon>
                         </button>
+                    </form>
                                   
-                        <button mat-mini-fab color="warn" id="bouton-supprimer" (click)="deleteModal(mat.idMat)">
+                        <form #getIdMaterielUtils=ngForm>
+                            <input type="hidden" name=idMaterielUtils [(ngModel)]=mat.idMat required #idMaterielUtils="ngModel">
+                        <button mat-mini-fab color="warn" id="bouton-supprimer" (click)="$event.stopPropagation(); deleteModal(mat.idMat)">
                             <mat-icon>delete_sweep</mat-icon>
                         </button>
                     </form>
+                </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </div>
+

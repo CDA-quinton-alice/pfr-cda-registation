@@ -73,7 +73,33 @@
     border-top: none;
   }
 }
+
+
+#bouton-ajouter{
+  width: 40px;
+  height: 40px;
+  float: right;
+}
+
+.bouton-modifier{
+  color:#fff;
+  background-image: linear-gradient(to right, #CDDFA0, #6FD08C );
+ float: left;
+
+}
 @media screen and (min-width: 600px) {
+  
+#bouton-ajouter{
+  width: 40px;
+  height: 40px;
+}
+
+.bouton-modifier{
+  color:#fff;
+  background-image: linear-gradient(to right, #CDDFA0, #6FD08C );
+  margin-bottom: 10px;
+}
+
   .rwd-table tr:hover:not(:first-child) {
     background:	#ffd05b;
   }
@@ -129,15 +155,6 @@ h1 {
 
 /* Début du système de carte */
 
-#bouton-ajouter{
-  width: 40px;
-  height: 40px;
-}
-
-.bouton-modifier{
-  color:#fff;
-  background-image: linear-gradient(to right, #CDDFA0, #6FD08C );
-}
 
 .bouton-afficher{
   color:#fff;
@@ -151,8 +168,8 @@ h1 {
   background-image: url("/assets/images/station3.jpg");
   background-repeat: no-repeat;
   background-position: center;
-
 }
+
 .icone-info-card{
   margin-right: 5px;
 }

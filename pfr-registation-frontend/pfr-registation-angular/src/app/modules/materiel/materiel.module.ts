@@ -27,10 +27,11 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MaterielService} from '../../services/materiel-service/materiel.service';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
+import { InfoModalComponent } from './info-modal/info-modal.component';
 
 
 @NgModule({
-  declarations: [ListeMaterielComponent, InfosMaterielComponent, AjouterMaterielComponent, UpdateMaterielComponent, DeleteModalComponent],
+  declarations: [ListeMaterielComponent, InfosMaterielComponent, AjouterMaterielComponent, UpdateMaterielComponent, DeleteModalComponent, InfoModalComponent],
   imports: [
     CommonModule,
     MaterielRoutingModule,
