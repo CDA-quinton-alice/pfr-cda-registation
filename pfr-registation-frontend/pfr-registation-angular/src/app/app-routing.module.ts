@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {ListeDocumentComponent} from './modules/document/liste-document/liste-document.component';
+import {DocumentListeComponent} from './modules/document2/document-liste/document-liste.component';
 
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: 'utilisateur', loadChildren: './modules/utilisateur/utilisateur.module#UtilisateurModule' },
   { path: 'materiel', loadChildren: './modules/materiel/materiel.module#MaterielModule' },
-  { path: 'evenement', loadChildren:'./modules/evenement/evenement.module#EvenementModule'},
-  { path: 'document', component: ListeDocumentComponent},
+  { path: 'evenement', loadChildren: './modules/evenement/evenement.module#EvenementModule'},
+  { path: 'document', loadChildren: './modules/document/document.module#DocumentModule'},
   {path: 'login', component: LoginComponent},
 ];
 

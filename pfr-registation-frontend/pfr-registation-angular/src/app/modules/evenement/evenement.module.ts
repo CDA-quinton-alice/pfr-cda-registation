@@ -11,9 +11,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AjoutModalComponent } from './cellule/ajout-modal/ajout-modal.component';
+import { EditModalComponent } from './cellule/edit-modal/edit-modal.component';
+import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import { MatFormField, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
-  declarations: [AgendaComponent, CelluleComponent, PlusModalComponent, AjoutModalComponent],
+  declarations: [AgendaComponent, CelluleComponent, PlusModalComponent, AjoutModalComponent, EditModalComponent],
   providers:[
     DatePipe,
   ],
@@ -24,6 +28,9 @@ import { AjoutModalComponent } from './cellule/ajout-modal/ajout-modal.component
     NgbModule,
     MatIconModule,
     ReactiveFormsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
   ]
 })
 export class EvenementModule { }

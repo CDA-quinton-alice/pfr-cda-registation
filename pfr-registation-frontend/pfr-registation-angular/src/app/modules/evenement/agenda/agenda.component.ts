@@ -22,6 +22,8 @@ export class AgendaComponent implements OnInit {
   local = 'fr-FR';
   numbers:Array<number>;
   titre:string;
+  ac: AgendaComponent = this;
+  user:string;
   
   chunkSize= 7;
   groupsCalendar = this.calendar.map((x,index)=>{
@@ -37,17 +39,14 @@ export class AgendaComponent implements OnInit {
     this.year = new Date().getFullYear();
     this.month = new Date().getMonth()+1;
     this.action= "n"; 
+    this.user = "RESP001";
     this.getMonthAgenda(this.action);
-  }
-
-  ajoutModal(){
-    alert("Vous avez cliqué sur une cellule !");
   }
 
   getMonthAgenda(action:string){
     this.isNow(action);
 
-    this.eServ.findByYearMonth(this.year,this.month,action).subscribe(data => {
+    this.eServ.findByYearMonth(this.user,this.year,this.month,action).subscribe(data => {
       this.updateParams(action);
       this.calendar = new Array<Date>();
       this.evenements = new Array<Ievent>();
@@ -70,6 +69,21 @@ export class AgendaComponent implements OnInit {
   getEvents(){
     return (this.cal&&this.cal.event)?this.cal.event:[];
   }
+  
+  getCalendarColor(str:string){
+    let y = this.year;
+    let m = this.month;
+
+    let v = str.split("-");
+    let vm:number = +v[2];
+    let vy:number = +v[3];
+
+    if(vm!=m||vy!=y){
+      return "ncm";
+    }else{
+      return "";
+    }
+  }
 
   formatDateCustom(cal:Array<string>){
     for(let c of cal){
@@ -78,6 +92,7 @@ export class AgendaComponent implements OnInit {
       this.calendar.push(d);
     }
   }
+  
   formatEventDate(events:Array<Ievent>){
     for(let e of events){
       e.date_debut = new Date(e.date_debut);
@@ -151,24 +166,34 @@ export class AgendaComponent implements OnInit {
       this.isNow(action);
     }
   }
+
+  public updateCalendar(action:string, date:Date){
+    this.setDate(date);
+    
+    this.eServ.findByYearMonth(this.user,this.year,this.month,action).subscribe(data => {
+      this.calendar = new Array<Date>();
+      this.evenements = new Array<Ievent>();
+      this.cal = data;
+      this.titre = this.formatMonth(this.month)+" "+this.year;
+
+      this.formatDateCustom(this.getCalendrier());
+      this.formatEventDate(this.getEvents());
+
+      this.groupsCalendar = this.calendar.map((x,index)=>{
+        return index % this.chunkSize === 0 ? this.calendar.slice(index, index + this.chunkSize): null; 
+      }).filter(x=>x);
+    })
+  }
+
   isNow(str:string){
     if(str =="n"){
       this.year = new Date().getFullYear();
       this.month = new Date().getMonth()+1;
     }
   }
-  getCalendarColor(str:string){
-    let y = this.year;
-    let m = this.month;
 
-    let v = str.split("-");
-    let vm:number = +v[2];
-    let vy:number = +v[3];
-
-    if(vm!=m||vy!=y){
-      return "ncm";
-    }else{
-      return "";
-    }
+  setDate(date:Date){
+    this.year = date.getFullYear();
+    this.month = date.getMonth()+1;
   }
 }

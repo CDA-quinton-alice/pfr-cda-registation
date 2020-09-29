@@ -18,16 +18,25 @@ export class EvenementService {
 
   constructor(private http: HttpClient,public datepipe: DatePipe) { }
 
-  public findByYearMonth(year: number, month: number, action:string): Observable<Icalendrier> {
+  public findByYearMonth(user:string,year: number, month: number, action:string): Observable<Icalendrier> {
     if(action.length<=1){
-      return this.http.get<Icalendrier>(this.url+"/"+year+"/"+month+"/"+action);
+      return this.http.get<Icalendrier>(this.url+"/"+user+"/"+year+"/"+month+"/"+action);
     }
   }
 
-  public createEvenement(event:Ievent){
-    console.log("service: ajout");
-    return this.http.post<Ievent>(this.url+"/create",{type:event.type, description:event.description,date_debut:event.date_debut, date_fin:event.date_fin});
+  public createEvenement(event:Ievent):Observable<Ievent>{
+    return this.http.post<Ievent>(this.url,
+      {titre:event.titre,type:event.type, description:event.description,date_debut:event.date_debut, date_fin:event.date_fin});
 
+  }
+
+  public updateEvenement(event:Ievent):Observable<Ievent>{
+    return this.http.patch<Ievent>(this.url,
+      {id:event.id,titre:event.titre,type:event.type, description:event.description,date_debut:event.date_debut, date_fin:event.date_fin});
+  }
+
+  public deleteEvenement(event:Ievent){
+    return this.http.delete(this.url+"/"+event.id);
   }
 
 /**  public findById(id: number): Observable<Imateriel> {

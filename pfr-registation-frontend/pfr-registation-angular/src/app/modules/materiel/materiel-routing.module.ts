@@ -8,12 +8,13 @@ import { UpdateMaterielComponent } from './update-materiel/update-materiel.compo
 
 
 
+
 const routes: Routes = [
   {path:'', component:ListeMaterielComponent},
   {path:'materiel/liste', component:ListeMaterielComponent},
   {path:'materiel/infos', component:InfosMaterielComponent},
   {path:'materiel/ajouter', component:AjouterMaterielComponent},
-  {path:'materiel/modifier', component:UpdateMaterielComponent},
+  {path:'materiel/modifier/:param1', component:UpdateMaterielComponent},
 ];
 
 @NgModule({

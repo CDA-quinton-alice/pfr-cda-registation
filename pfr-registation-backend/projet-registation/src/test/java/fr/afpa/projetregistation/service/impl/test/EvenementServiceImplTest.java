@@ -127,7 +127,7 @@ public class EvenementServiceImplTest {
 			}
 			
 			List<EvenementDto> le = null;
-			le = eserv.getByDate(date1, date2);
+			le = eserv.getByDate(date1, date2,"EMP001");
 			assertEquals(2,le.size());
 			if(le.size()==1) {
 				assertEquals(date2,le.get(0).getDate_fin());

@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 public class DocumentEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_document")
 	private int idDocument;
 	@Column(name = "nom_document")
