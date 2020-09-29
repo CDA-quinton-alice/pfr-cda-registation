@@ -18,6 +18,7 @@ export class DocumentService {
   }
   public findAll(): Observable<IDocument[]>{
     return this.https.get<IDocument[]>(this.documentsUrl);
+    console.log(this.documentsListe);
   }
   public findById(idDocument: number): Observable<IDocument>{
     return this.https.get<IDocument>(this.documentsUrl + '/' + idDocument);
@@ -25,10 +26,10 @@ export class DocumentService {
   public findByNom(nomDocument: string): Observable<IDocument> {
     return this.https.get<IDocument>(this.documentsUrl + '/' + nomDocument);
   }
-  public addDocument(document: IDocument) {
+  public addDocument(document: IDocument): Observable<IDocument> {
     return this.https.post<IDocument>(this.documentsUrl, document);
   }
-  public deleteDocument(idDocument: number) {
+  public deleteDocument(idDocument: number): Observable<IDocument> {
     return this.https.delete<IDocument>(this.documentsUrl + '/' + 'delete' + idDocument);
   }
   public save(document: IDocument): Observable<any>{

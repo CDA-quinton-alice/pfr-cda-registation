@@ -78,7 +78,7 @@ public class DocumentServiceImpl implements IDocumentService {
 
 		Optional<UtilisateurEntity> optionelUtilisateurEntity = utilisateurDao.findByNom(document2.getNomDocument());
 		if (optionelUtilisateurEntity.isPresent()) {
-			document2.setUtilisateur(utilisateur2);
+			document2.setUser(utilisateur2);
 		}
 
 		document2 = documentDao.save(document2);
