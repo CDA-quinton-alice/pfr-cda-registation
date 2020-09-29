@@ -28,6 +28,8 @@ public class DocumentDto {
 
 	private String commentairesDocument;
 
+	private String matriculeUtilisateur;
+
 	public DocumentDto(String pNomDocument, String pCategorieDocument, Date pDateAjoutDocument,
 			Date pDateDerniereModificationDocument, String pDescriptionDocument, String pCommentairesDocument) {
 
@@ -38,6 +40,18 @@ public class DocumentDto {
 		this.descriptionDocument = pDescriptionDocument;
 		this.commentairesDocument = pCommentairesDocument;
 
+	}
+
+	public DocumentDto(String pNomDocument, String pCategorieDocument, Date pDateAjoutDocument,
+			Date pDateDerniereModificationDocument, String pDescriptionDocument, String pCommentairesDocument, String pMatriculeUtilisateur) {
+
+		this.nomDocument = pNomDocument;
+		this.categorieDocument = pCategorieDocument;
+		this.dateAjoutDocument = pDateAjoutDocument;
+		this.dateDerniereModificationDocument = pDateDerniereModificationDocument;
+		this.descriptionDocument = pDescriptionDocument;
+		this.commentairesDocument = pCommentairesDocument;
+		this.matriculeUtilisateur= pMatriculeUtilisateur;
 	}
 
 }
