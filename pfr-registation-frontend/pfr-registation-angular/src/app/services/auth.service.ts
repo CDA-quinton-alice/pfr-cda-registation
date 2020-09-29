@@ -60,7 +60,8 @@ export class AuthService {
             const decodedToken = helper.decodeToken(res['token']);
 
             currentUser.matricule = decodedToken.username;
-            currentUser.responsable = decodedToken.roles; //attention boolean ??
+            
+            currentUser.responsable = decodedToken.roles;
             localStorage.setItem('current_user', JSON.stringify(currentUser));
             this.subjectConnexion.next(3);
             this.alertService.addSuccess('bienvenu ' + currentUser.nom);

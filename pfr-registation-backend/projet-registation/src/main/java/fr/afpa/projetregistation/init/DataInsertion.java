@@ -73,10 +73,10 @@ public class DataInsertion {
 		Date dateAjoutDoc = new Date();
 		Date dateDerniereModificationdoc = new Date();
 
-		DocumentDto doc = new DocumentDto("facture entretien cuve n°3", "facture", dateAjoutDoc,
-				dateDerniereModificationdoc, "facture qui correspond au dernier entretien de la cuve n°3.",
-				"rien à signaler, fonctionnement de la cuve n°3 ok.");
-		documentService.ajouterDocument(doc);
+//		DocumentDto doc = new DocumentDto("facture entretien cuve n°3", "facture", dateAjoutDoc,
+//				dateDerniereModificationdoc, "facture qui correspond au dernier entretien de la cuve n°3.",
+//				"rien à signaler, fonctionnement de la cuve n°3 ok.");
+//		documentService.ajouterDocument(doc);
 
 		// Ajout de 2 évènements
 		insertionEvenements();

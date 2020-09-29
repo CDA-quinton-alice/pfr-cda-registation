@@ -13,6 +13,8 @@ public interface IUtilisateurService {
 	void updateUtilisateur(UtilisateurDto pUtilisateur);
 
 	UtilisateurDto getUtilisateurByMatricule(String pMatricule);
+	
+	UtilisateurSimpleDto getUtilisateurSimpleByMatricule(String pMatricule);
 
 	UtilisateurDto getUtilisateurByName(String pNom);
 

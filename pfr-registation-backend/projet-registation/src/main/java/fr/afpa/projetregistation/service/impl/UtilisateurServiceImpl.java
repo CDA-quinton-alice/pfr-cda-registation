@@ -56,15 +56,15 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 	 */
 	@Autowired
 	IUtilisateurDao utilisateurDao;
-	
+
 	@Autowired
 	JavaMailSender mailSender;
 
 	@Autowired
 	private ModelMapper modelMapper;
-	
+
 	@Autowired
-	PasswordEncoder monEncodeur; 
+	PasswordEncoder monEncodeur;
 
 	/**
 	 * Crée un UtilisateurDto et sauvegarde un utilisateur en BDD en utilisant
@@ -132,25 +132,21 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 		UtilisateurEntity user = null;
 		if (!optiUtilisateur.isPresent()) {
 			log.warn("UTILISATEUR - Update impossible ce matricule n'existe pas !");
-		}else {
+		} else {
 			user = optiUtilisateur.get();
-			user = UtilisateurEntity.builder().matricule(pUtilisateur.getMatricule())
-					.prenom(pUtilisateur.getPrenom())
-					.nom(pUtilisateur.getNom())
-					.dateDeNaissance(pUtilisateur.getDateDeNaissance())
-					.salaire(pUtilisateur.getSalaire())
-					.mail(pUtilisateur.getMail())
-					.tel(pUtilisateur.getTel())
+			user = UtilisateurEntity.builder().matricule(pUtilisateur.getMatricule()).prenom(pUtilisateur.getPrenom())
+					.nom(pUtilisateur.getNom()).dateDeNaissance(pUtilisateur.getDateDeNaissance())
+					.salaire(pUtilisateur.getSalaire()).mail(pUtilisateur.getMail()).tel(pUtilisateur.getTel())
 					.responsable(pUtilisateur.isResponsable())
-					.adresse(AdresseEntity.builder().rue(pUtilisateur.getRue()).complement(pUtilisateur.getComplement()).codePostal(pUtilisateur.getCodePostal())
-							.ville(pUtilisateur.getVille())
+					.adresse(AdresseEntity.builder().rue(pUtilisateur.getRue()).complement(pUtilisateur.getComplement())
+							.codePostal(pUtilisateur.getCodePostal()).ville(pUtilisateur.getVille())
 							.pays(pUtilisateur.getPays())
-							
+
 							.build())
 					.build();
 			utilisateurDao.save(user);
 		}
-		
+
 	}
 
 	/**
@@ -212,8 +208,8 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 	}
 
 	/**
-	 * Retourne la liste de tous les utilisateurs avec pagination
-	 * les champs manquants de l'utilisateurDto sont set
+	 * Retourne la liste de tous les utilisateurs avec pagination les champs
+	 * manquants de l'utilisateurDto sont set
 	 * 
 	 * @param pPageEnCours int correspondant à la page en cours
 	 * @return List de UtilisateurDto
@@ -239,8 +235,8 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 //		}
 //		return listeUtilisateurs;
 //	}
-	
-	//Testouille
+
+	// Testouille
 	@Override
 	public List<UtilisateurSimpleDto> getAllUtilisateurs(int pPageEnCours) {
 		List<UtilisateurSimpleDto> listeUtilisateurs = new ArrayList<>();
@@ -257,19 +253,16 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 			userDto.setMail(utilisateurEntity.getMail());
 			userDto.setTel(utilisateurEntity.getTel());
 			userDto.setResponsable((utilisateurEntity.isResponsable()));
-			
+
 			listeUtilisateurs.add(userDto);
 
 		}
 		return listeUtilisateurs;
 	}
-	
-	
 
 	/**
-	 * Permet de retourner une liste de tous les emlpoyés 
-	 * (boolean responsable = false)
-	 * Utilisation du Page, liste avec pagination
+	 * Permet de retourner une liste de tous les emlpoyés (boolean responsable =
+	 * false) Utilisation du Page, liste avec pagination
 	 * 
 	 * @return List de UtilisateurEntity qui sont des employés
 	 */
@@ -288,7 +281,7 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 			userDto.setCodePostal(utilisateurEntity.getAdresse().getCodePostal());
 			userDto.setVille(utilisateurEntity.getAdresse().getVille());
 			userDto.setPays(utilisateurEntity.getAdresse().getPays());
-			
+
 			listeEmployes.add(userDto);
 
 		}
@@ -296,9 +289,8 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 	}
 
 	/**
-	 * Permet de retourner une liste de tous les responsables 
-	 * (boolean responsable = true)
-	 * Utilisation du Page, liste avec pagination
+	 * Permet de retourner une liste de tous les responsables (boolean responsable =
+	 * true) Utilisation du Page, liste avec pagination
 	 * 
 	 * @return List de UtilisateurEntity qui sont des responsables
 	 */
@@ -317,7 +309,7 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 			userDto.setCodePostal(utilisateurEntity.getAdresse().getCodePostal());
 			userDto.setVille(utilisateurEntity.getAdresse().getVille());
 			userDto.setPays(utilisateurEntity.getAdresse().getPays());
-			
+
 			listeResponsables.add(userDto);
 
 		}
@@ -357,8 +349,8 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 
 		mailSubject = "Demande de contact bien reçue";
 		mailContent = "Bonjour, " + "\n"
-				+ "Nous avons bien reçue votre demande, elle sera traitée dans les meilleurs délais."
-				+ "\n" + "L'équipe RegiStation vous remercie. ";
+				+ "Nous avons bien reçue votre demande, elle sera traitée dans les meilleurs délais." + "\n"
+				+ "L'équipe RegiStation vous remercie. ";
 
 		message.setSubject(mailSubject);
 		message.setText(mailContent);
@@ -368,5 +360,19 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 		log.info("-------->mail 2 envoyé");
 		log.info("---->FIN envoi mail");
 	}
-	
+
+	@Override
+	public UtilisateurSimpleDto getUtilisateurSimpleByMatricule(String pMatricule) {
+		Optional<UtilisateurEntity> optiUtilisateur = utilisateurDao.findById(pMatricule);
+		UtilisateurSimpleDto userSimpleDto = null;
+		if (!optiUtilisateur.isPresent()) {
+			log.info("UTILISATEUR findByMatricule - Cette personne n'existe pas");
+		} else {
+			UtilisateurEntity utilisateur = optiUtilisateur.get();
+			userSimpleDto = modelMapper.map(utilisateur, UtilisateurSimpleDto.class);
+			log.debug("UTILISATEUR findByMatricule - Utilisateur récup --> " + userSimpleDto);
+		}
+		return userSimpleDto;
+	}
+
 }

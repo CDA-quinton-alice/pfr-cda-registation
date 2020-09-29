@@ -33,7 +33,6 @@ public class UtilisateurController {
 	@Autowired
 	IUtilisateurService utilisateurService;
 
-	
 	@GetMapping("/utilisateur")
     public List<UtilisateurSimpleDto> findAll() {
         return (List<UtilisateurSimpleDto>) utilisateurService.getAllUtilisateurs(1);
@@ -54,19 +53,10 @@ public class UtilisateurController {
 		utilisateurService.contactUs(pMessage);
 	}
 	
-	@CrossOrigin(origins = "http://localhost:4200")
-	@RequestMapping(value = "/helloemploye", method = RequestMethod.GET)
-	public String helloEmploye(){
-		return "Hello Employe";
+	@PostMapping("/utilisateur/mat")
+	public UtilisateurSimpleDto findByMatricuel(@RequestBody String pMatricule) {
+		return utilisateurService.getUtilisateurSimpleByMatricule(pMatricule);
 	}
-	
-	
-	
-	@RequestMapping(value = "/helloresponsable", method = RequestMethod.GET)
-	public String helloResponsable(){
-		return "Hello Responsable";
-	}
-
 	
 	
 }

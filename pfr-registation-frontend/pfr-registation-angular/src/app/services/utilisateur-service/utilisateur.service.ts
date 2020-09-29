@@ -27,5 +27,10 @@ export class UtilisateurService {
   contactUs(messageContact: IMessageContact): Observable<IMessageContact> {
     return this.http.post<IMessageContact>(this.url + "/contact", messageContact);
   }
+
+  findByMatricule(matricule: string): Observable<IUtilisateurSimple> {
+    return this.http.post<IUtilisateurSimple>(this.url ,  matricule);
+  }
+
 }
 
