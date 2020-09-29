@@ -27,6 +27,7 @@ import { LoginComponent } from './login/login.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { PresentationTeamComponent } from './presentation-team/presentation-team.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 export function jwtTokenGetter() {
@@ -38,6 +39,7 @@ export function jwtTokenGetter() {
     AppComponent,
     LoginComponent,
     PresentationTeamComponent,
+    DashboardComponent,
 
   ],
 

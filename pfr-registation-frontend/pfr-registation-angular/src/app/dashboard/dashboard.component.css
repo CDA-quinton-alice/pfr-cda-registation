@@ -1,0 +1,14 @@
+.mat-card {
+    width: 150px;
+    height: 150px; 
+  margin-left: 40px;
+}
+.row-affichage{
+    margin-left: 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.icons-dashboard{
+  font-size: 100px;
+  color: crimson;
+}

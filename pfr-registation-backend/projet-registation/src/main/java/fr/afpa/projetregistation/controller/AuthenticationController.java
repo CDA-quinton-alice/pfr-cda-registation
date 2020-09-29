@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.afpa.projetregistation.security.model.AuthenticationRequest;
 import fr.afpa.projetregistation.security.model.JwtToken;
 import fr.afpa.projetregistation.security.service.JwtTokenService;
-import lombok.extern.slf4j.Slf4j;
 
 
 @RestController

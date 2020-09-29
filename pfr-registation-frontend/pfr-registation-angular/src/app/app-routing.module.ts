@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {DocumentListeComponent} from './modules/document2/document-liste/document-liste.component';
 
 import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: 'utilisateur', loadChildren: './modules/utilisateur/utilisateur.module#UtilisateurModule' },
@@ -10,6 +11,7 @@ const routes: Routes = [
   { path: 'evenement', loadChildren: './modules/evenement/evenement.module#EvenementModule'},
   { path: 'document', loadChildren: './modules/document/document.module#DocumentModule'},
   {path: 'login', component: LoginComponent},
+  {path: 'dashboard', component: DashboardComponent},
 ];
 
 @NgModule({
