@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Constantes {
 	public static final String USER_EN_COURS = "currentUser";
-	public static final int ELEMENTS_PAR_PAGE = 20;
+	public static final int ELEMENTS_PAR_PAGE = 3;
 
 	public static final String STRING_TEST = "TEST";
 	public static final String STRING_TEST2 = "TEST2";

@@ -106,6 +106,8 @@ public interface IMaterielService {
 	 * @return booléen vrai ou faux
 	 */
 	boolean existsByRef(String pRef);
+
+	long count();
 	
 	
 	
