@@ -5,9 +5,8 @@
     margin-right: 15px;
 }
 .ajout-utilisateur-form{
-    margin-left: 2.3rem;
-    margin-right: 2.3rem;
-    margin-top: 2rem;
+   margin: 3rem;
+    width: 40%;
 }
 .bouton-ajouter{
     color:#fff;

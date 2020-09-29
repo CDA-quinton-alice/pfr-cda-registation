@@ -24,11 +24,12 @@ export class DashboardComponent implements OnInit {
     console.log(this.currentUser.matricule);
 
     this.utilisateurService.findByMatricule(this.currentUser.matricule).subscribe(res => {
-      this.utilisateurSimple = res; //Transformer un JSON en utilisateurSimpleDto
+      this.utilisateurSimple = res; 
     });
 
-    
   }
+  
+
 
 
 
