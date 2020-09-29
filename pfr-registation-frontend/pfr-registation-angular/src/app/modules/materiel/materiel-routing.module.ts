@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ListeMaterielComponent } from './liste-materiel/liste-materiel.component';
-import { InfosMaterielComponent } from './infos-materiel/infos-materiel.component';
+
 import { AjouterMaterielComponent } from './ajouter-materiel/ajouter-materiel.component';
 import { UpdateMaterielComponent } from './update-materiel/update-materiel.component';
 
@@ -12,7 +12,6 @@ import { UpdateMaterielComponent } from './update-materiel/update-materiel.compo
 const routes: Routes = [
   {path:'', component:ListeMaterielComponent},
   {path:'materiel/liste', component:ListeMaterielComponent},
-  {path:'materiel/infos', component:InfosMaterielComponent},
   {path:'materiel/ajouter', component:AjouterMaterielComponent},
   {path:'materiel/modifier/:param1', component:UpdateMaterielComponent},
 ];
