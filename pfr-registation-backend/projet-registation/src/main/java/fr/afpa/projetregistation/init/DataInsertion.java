@@ -55,23 +55,23 @@ public class DataInsertion {
 
 	@Autowired
 	IEvenementService eserv;
-	
+
 	@Autowired
 	ITypeMaterielService typeService;
 
 	@PostConstruct
 	public void cdaInit() {
 
-		
-	
-		
+
+
+
 		this.insertionMateriel();
 		this.insertionUtilisateurs();
 
 		// METHODE POUR AJOUTER 3 DOCUMENTS MAX ALICE TO DO
 
 		Date dateAjoutDoc = new Date();
-		Date dateDerniereModificationdoc = new Date();
+		Date dateDerniereModificationDoc = new Date();
 
 //		DocumentDto doc = new DocumentDto("facture entretien cuve n°3", "facture", dateAjoutDoc,
 //				dateDerniereModificationdoc, "facture qui correspond au dernier entretien de la cuve n°3.",
@@ -94,16 +94,41 @@ public class DataInsertion {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		MaterielDto materiel = new MaterielDto("P001", "Orion", "PistoXC", 500, 1, achat, "pompe", "pompe2");
+		MaterielDto materiel = new MaterielDto("P001", "Orion", "PistoXC", 500, 1, achat, "pompe", "pompe 1");
 		materielService.create(materiel);
-		MaterielDto materiel2 = new MaterielDto("C001", "Neptune", "Cuve3000", 2000, 1, achat, "cuve", "emplacement1");
+		MaterielDto materiel2 = new MaterielDto("C001", "Neptune", "Cuve3000", 2000, 1, achat, "cuve", "emplacement 1");
 		materielService.create(materiel2);
-		MaterielDto materiel3 = new MaterielDto("P002", "Orion", "PistoXC", 500, 1, achat, "pompe", "pompe2");
+		MaterielDto materiel3 = new MaterielDto("P002", "Orion", "PistoXC", 500, 1, achat, "pompe", "pompe 2");
 		materielService.create(materiel3);
-		MaterielDto materiel4 = new MaterielDto("P003", "Orion", "PistoXC", 500, 1, achat, "pompe", "pompe2");
+		MaterielDto materiel4 = new MaterielDto("P003", "Orion", "PistoXC", 500, 1, achat, "pompe", "pompe 3");
 		materielService.create(materiel4);
 		MaterielDto mat3 = new MaterielDto("MC001", "Mars", "Cafe3000", 200, 1, achat, "boutique", "allée 1");
 		materielService.create(mat3);
+		MaterielDto mat4 = new MaterielDto("MC002", "Burotic", "Caisse tx1000", 300, 1, achat, "boutique", "caisse");
+		materielService.create(mat4);
+		MaterielDto mat5 = new MaterielDto("MC003", "Mars", "Cafe3000", 200, 1, achat, "boutique", "allée 1");
+		materielService.create(mat5);
+		MaterielDto materiel5 = new MaterielDto("C002", "Neptune", "Cuve3000", 2000, 1, achat, "cuve", "emplacement 2");
+		materielService.create(materiel5);
+		MaterielDto materiel6 = new MaterielDto("C003", "Neptune", "Cuve3000", 2000, 1, achat, "cuve", "emplacement 3");
+		materielService.create(materiel6);
+		MaterielDto materiel7 = new MaterielDto("C004", "Neptune", "Cuve3000", 2000, 1, achat, "cuve", "emplacement 4");
+		materielService.create(materiel7);
+		MaterielDto materiel8 = new MaterielDto("C005", "Neptune", "Cuve3000", 2000, 1, achat, "cuve", "emplacement 5");
+		materielService.create(materiel8);
+		MaterielDto materiel9 = new MaterielDto("C006", "Neptune", "Cuve3000", 2000, 1, achat, "cuve", "emplacement 6");
+		materielService.create(materiel9);
+		MaterielDto materielA = new MaterielDto("P004", "Orion", "PistoXC", 500, 1, achat, "pompe", "pompe 4");
+		materielService.create(materielA);
+		MaterielDto materielB = new MaterielDto("P005", "Orion", "PistoXC", 500, 1, achat, "pompe", "pompe 5");
+		materielService.create(materielB);
+		MaterielDto materielC = new MaterielDto("P006", "Orion", "PistoXC", 500, 1, achat, "pompe", "pompe 6");
+		materielService.create(materielC);
+		MaterielDto materielD = new MaterielDto("P007", "Orion", "PistoXC", 500, 1, achat, "pompe", "pompe 7");
+		materielService.create(materielD);
+		MaterielDto materielE = new MaterielDto("P008", "Orion", "PistoXC", 500, 1, achat, "pompe", "pompe 8");
+		materielService.create(materielE);
+
 	}
 
 	public void insertionUtilisateurs() {
@@ -171,16 +196,16 @@ public class DataInsertion {
 //		Date date3 = null;
 //		Date date4 = null;
 //		diff = 0;
-//		
+//
 //		try {
 //			date3 = sdf.parse(d3);
 //			date4 = sdf.parse(d4);
 //			long mse = date4.getTime()-date3.getTime();
-//			diff = (int)TimeUnit.SECONDS.convert(mse, TimeUnit.MILLISECONDS); 
+//			diff = (int)TimeUnit.SECONDS.convert(mse, TimeUnit.MILLISECONDS);
 //		}catch(ParseException e) {
 //			log.warn("Erreur lors du parsing des dates lors du test unitaire !");
 //		}
-//		
+//
 //		if(optUser.isPresent()) {
 //			UtilisateurEntity user = optUser.get();
 //			EvenementDto ee = EvenementDto.builder().type("Inspection")
@@ -189,13 +214,13 @@ public class DataInsertion {
 //					.date_fin(date4)
 //					.duree(diff)
 //					.user(user).build();
-//			
+//
 //			if(eserv.getByType("Inspection") == null) {
 //				ee = eserv.create(ee);
 //			}else {
 //				log.info("Inspection n'a été ajouté !");
 //			}
-//		}  
+//		}
 
 		String d5 = "14-09-2020";
 		String d6 = "01-01-2021";
