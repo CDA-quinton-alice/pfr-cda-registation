@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  backServer: 'localhost:8080', //8443
+  backSchema: 'http'        
 };
 
 /*

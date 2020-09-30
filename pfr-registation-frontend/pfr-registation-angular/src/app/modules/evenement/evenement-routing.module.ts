@@ -4,7 +4,7 @@ import { AgendaComponent } from './agenda/agenda.component';
 import { CelluleComponent } from './cellule/cellule/cellule.component';
 
 const routes: Routes = [
-  {path:'', component:AgendaComponent},
+  {path:'agenda', component:AgendaComponent},
   {path:'cellule', component:CelluleComponent}
 ];
 
