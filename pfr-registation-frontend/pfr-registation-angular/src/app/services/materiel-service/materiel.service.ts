@@ -39,7 +39,7 @@ console.log(type, pageEnCours );
   }
 
   public deleteMateriel(id: number) {
-   return this.http.post<Imateriel>(this.url + "/" + id + "/delete", id);
+   return this.http.delete<Imateriel>(this.url + "/" + id );
   }
 
 

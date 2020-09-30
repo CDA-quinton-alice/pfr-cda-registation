@@ -87,8 +87,20 @@
  float: left;
 
 }
+
+
+
 @media screen and (min-width: 600px) {
   
+
+
+    #btn-first{
+    display: none;
+   
+    }
+    
+
+    
 #bouton-ajouter{
   width: 40px;
   height: 40px;

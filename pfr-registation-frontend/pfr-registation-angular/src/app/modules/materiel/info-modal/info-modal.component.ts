@@ -45,7 +45,7 @@ export class InfoModalComponent implements OnInit {
 
   
   redirectToUpdate(idToUpdate:number){
-    console.log(idToUpdate);
+    this.dialogRef.close();
     this.router.navigate(['/materiel/modifier/'+ idToUpdate]);
   }
 

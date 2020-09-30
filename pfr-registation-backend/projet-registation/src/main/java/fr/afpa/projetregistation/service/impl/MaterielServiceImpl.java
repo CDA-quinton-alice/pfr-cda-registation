@@ -1,7 +1,6 @@
 package fr.afpa.projetregistation.service.impl;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -109,7 +108,7 @@ public class MaterielServiceImpl implements IMaterielService {
 	 * @param pId id du matériel recherché
 	 * @return MaterielDto Matériel recherché.
 	 */
-	@Override
+	@Override 
 	public MaterielDto getMaterielById(int pId) {
 		Optional<MaterielEntity> opsRes = materielDao.findById(pId);
 		MaterielDto materiel = null;
@@ -119,7 +118,7 @@ public class MaterielServiceImpl implements IMaterielService {
 		}
 
 		return materiel;
-	}
+	} 
 
 	/**
 	 * Récupère un matériel par son ID. Mapping des informations.
@@ -140,10 +139,12 @@ public class MaterielServiceImpl implements IMaterielService {
 	}
 
 	/**
-	 * Cette méthode permet de récupérer une liste de MatérielDto en appelant le
-	 * MaterielDao
+	 * Cette méthode permet de récupérer une liste de MatérielDto, en appelant le
+	 * MaterielDao. Le retour se fait sous forme de page d'un nombre défini par la constante
+	 * ELEMENTS_PAR_PAGE et correspond à la page appelée par le controller.
 	 * 
-	 * @return liste de MaterielDto
+	 * @return List<MaterielDto> : liste de MaterielDto
+	 * @param PageRequest  pPageEnCours: le numéro de la page désirée
 	 */
 	@Override
 	public List<MaterielDto> getAll(int pPageEnCours) {
@@ -157,22 +158,29 @@ public class MaterielServiceImpl implements IMaterielService {
 		}
 		return listeMateriel;
 	}
-
+	
+	
+	/**
+	 * Cette méthode permet de récupérer une liste de MatérielDto, en appelant le
+	 * MaterielDao, sélectionnés par type de matériel. Le retour se fait sous forme de page d'un nombre défini par la constante
+	 * ELEMENTS_PAR_PAGE et correspond à la page appelée par le controller.
+	 * 
+	 * @return List<MaterielDto> : liste de MaterielDto
+	 * @param PageRequest  pPageEnCours: le numéro de la page désirée
+	 * @param String pType: num du type de matériel désiré
+	 */
 	@Override
 	public List<MaterielDto> getAllByType(int pPageEnCours, String pType) {
 
-		List<MaterielDto> listeMateriel = this.getAll(pPageEnCours);
+		List<MaterielDto> listeMateriel = new ArrayList<>();
+		
+		PageRequest page = PageRequest.of(pPageEnCours - 1, Constantes.ELEMENTS_PAR_PAGE);
+		Page<MaterielEntity> listeMat = this.materielDao.findAllByType( pType, page);
+		for (MaterielEntity materielEntity : listeMat) {
 
-		Iterator<MaterielDto> iter = listeMateriel.iterator();
+			listeMateriel.add(this.modelMapper.map(materielEntity, MaterielDto.class));
 
-		while (iter.hasNext()) {
-			MaterielDto mat = iter.next();
-			String vType = mat.getTypeMateriel().trim().toUpperCase();
-			if (! vType.equals(pType) ) {
-				iter.remove();
-			}
 		}
-
 		return listeMateriel;
 	}
 
