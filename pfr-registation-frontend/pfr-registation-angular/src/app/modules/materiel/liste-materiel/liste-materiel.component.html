@@ -107,11 +107,11 @@
             </tr>
         </tbody>
     </table>
-            <div>
-                <button id="btn-first" (click)="getFirst()">Début</button>
-                <button id="btn-precedent" (click)="getPrevious()">Précédent</button>
-                <span id="page-en-cours">Page {{pageEnCours}}</span>
-                <button id="btn-suivant" (click)="getNext()"> Suivant</button>
-                <button id="btn-end" (click)="getLast()">Fin</button>
+            <div id="btn-container">
+                <button  mat-raised-button id="btn-first" (click)="getFirst()">Début</button>
+                <button mat-raised-button id="btn-precedent" (click)="getPrevious()">Précédent</button>
+                <button mat-raised-button id="page-en-cours">Page {{pageEnCours}}</button>
+                <button mat-raised-button id="btn-suivant" (click)="getNext()"> Suivant</button>
+                <!-- <button mat-raised-button id="btn-end" (click)="getLast()">Fin</button> -->
             </div>
 </div>

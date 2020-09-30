@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'utilisateur', loadChildren: './modules/utilisateur/utilisateur.module#UtilisateurModule' },
   { path: 'materiel', loadChildren: './modules/materiel/materiel.module#MaterielModule' },
   { path: 'evenement', loadChildren: './modules/evenement/evenement.module#EvenementModule'},
-  { path: 'documentListe', loadChildren: './modules/document/document.module#DocumentModule'},
+  { path: 'document', loadChildren: './modules/document2/document2.module#Document2Module'},
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent},
 ];

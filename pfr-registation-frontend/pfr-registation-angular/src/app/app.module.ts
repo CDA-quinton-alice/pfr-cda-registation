@@ -17,6 +17,7 @@ import {MatCardModule} from '@angular/material/card';
 import {Document2Module} from './modules/document2/document2.module';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
 import {MAT_MOMENT_DATE_FORMATS, MatMomentDateModule, MomentDateAdapter} from '@angular/material-moment-adapter';
+import { MaterielModule } from './modules/materiel/materiel.module';
 
 import { JwtModule } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
