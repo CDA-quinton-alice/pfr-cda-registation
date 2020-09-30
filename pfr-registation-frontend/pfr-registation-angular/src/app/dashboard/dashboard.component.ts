@@ -27,9 +27,9 @@ export class DashboardComponent implements OnInit {
       this.utilisateurSimple = res; 
     });
 
+    
   }
   
-
 
 
 

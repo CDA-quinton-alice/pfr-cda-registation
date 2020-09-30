@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   connect: string;
   isConnect: boolean = false;
   currentUser: User;
-  utilisateurSimple: IUtilisateurSimple = {};
+  utilisateurSimple: IUtilisateurSimple = {}; 
 
   mySubscription: any;
 
@@ -26,8 +26,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.connect = localStorage.getItem('isConnected');
+        
     if (this.connect == "true") {
       this.isConnect = true;
+
       this.currentUser = this.authService.getCurrentUser();
       this.utilisateurService.findByMatricule(this.currentUser.matricule).subscribe(res => {
         this.utilisateurSimple = res;
@@ -41,6 +43,7 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.authService.logout();
     this.ngOnInit();
+    
   }
 
 

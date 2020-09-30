@@ -29,6 +29,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { PresentationTeamComponent } from './presentation-team/presentation-team.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { MaterielModule } from './modules/materiel/materiel.module';
 
 
 export function jwtTokenGetter() {
@@ -50,6 +51,7 @@ export function jwtTokenGetter() {
     HttpClientModule,
     AppRoutingModule,
     UtilisateurModule,
+    MaterielModule,
     SharedModule,
     FormsModule,
     Document2Module,
@@ -84,5 +86,4 @@ export function jwtTokenGetter() {
     ],
   bootstrap: [AppComponent]
 })
-export class AppModule { constructor() {console.log('app-module');
-} }
+export class AppModule {}
