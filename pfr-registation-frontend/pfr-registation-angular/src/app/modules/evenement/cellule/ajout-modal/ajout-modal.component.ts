@@ -8,6 +8,7 @@ import {AgendaComponent} from 'src/app/modules/evenement/agenda/agenda.component
 import { IAjoutData } from 'src/app/interfaces/i-ajout-data';
 import { Inject } from '@angular/core';
 import { DateAdapter } from '@angular/material/core';
+import { UtilisateurService } from 'src/app/services/utilisateur-service/utilisateur.service';
 
 @Component({
   selector: 'app-ajout-modal',
@@ -28,6 +29,7 @@ export class AjoutModalComponent implements OnInit {
     public dialogRef: MatDialogRef<AjoutModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: IAjoutData,
     private dateAdapter: DateAdapter<Date>,
+    private uServ: UtilisateurService,
     ) { 
       this.dateAdapter.setLocale('fr-FR');
     }
@@ -35,12 +37,15 @@ export class AjoutModalComponent implements OnInit {
   ngOnInit(): void {
     this.event.date_debut = new Date(this.data.date);
     this.event.date_fin = new Date(this.data.date);
+    this.user = JSON.parse(localStorage.getItem("current_user")).matricule;
+    this.uServ.findByMatricule(this.user).subscribe(res=>{
+      this.event.user = res;
+    });
   }
 
 
   ajouterEvenement(ac:AgendaComponent){
     if(this.event){
-      this.event.user = this.user;
       this.eserv.createEvenement(this.event).subscribe(res=>{
         ac.updateCalendar("n",this.data.date);
         this.dialogRef.close();
