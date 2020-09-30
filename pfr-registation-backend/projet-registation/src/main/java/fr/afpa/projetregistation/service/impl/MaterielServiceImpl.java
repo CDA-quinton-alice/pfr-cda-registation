@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import fr.afpa.projetregistation.controller.MaterielController;
@@ -109,7 +110,7 @@ public class MaterielServiceImpl implements IMaterielService {
 	 * @param pId id du matériel recherché
 	 * @return MaterielDto Matériel recherché.
 	 */
-	@Override
+	@Override 
 	public MaterielDto getMaterielById(int pId) {
 		Optional<MaterielEntity> opsRes = materielDao.findById(pId);
 		MaterielDto materiel = null;
@@ -161,18 +162,33 @@ public class MaterielServiceImpl implements IMaterielService {
 	@Override
 	public List<MaterielDto> getAllByType(int pPageEnCours, String pType) {
 
-		List<MaterielDto> listeMateriel = this.getAll(pPageEnCours);
+//		List<MaterielEntity> listeMateriel = this.materielDao.findAllByType(pType);
+//		List<MaterielDto> listeFinale= new ArrayList<MaterielDto>();
+//		
+//		Iterator<MaterielEntity> iter = listeMateriel.iterator();
+//
+//		while (iter.hasNext()) {
+//			MaterielEntity mat = iter.next();
+//			
+//			String vType = mat.getTypeMaterielEntity().getLibelleMateriel();
+//			if (! vType.equals(pType) ) {
+//				iter.remove();
+//			}else {
+//				listeFinale.add(this.modelMapper.map(mat, MaterielDto.class));
+//			}
+//		}
+//
+//		return listeFinale;
+		
+		List<MaterielDto> listeMateriel = new ArrayList<>();
+		
+		PageRequest page = PageRequest.of(pPageEnCours - 1, Constantes.ELEMENTS_PAR_PAGE);
+		Page<MaterielEntity> listeMat = this.materielDao.findAllByType( pType, page);
+		for (MaterielEntity materielEntity : listeMat) {
 
-		Iterator<MaterielDto> iter = listeMateriel.iterator();
+			listeMateriel.add(this.modelMapper.map(materielEntity, MaterielDto.class));
 
-		while (iter.hasNext()) {
-			MaterielDto mat = iter.next();
-			String vType = mat.getTypeMateriel().trim().toUpperCase();
-			if (! vType.equals(pType) ) {
-				iter.remove();
-			}
 		}
-
 		return listeMateriel;
 	}
 
