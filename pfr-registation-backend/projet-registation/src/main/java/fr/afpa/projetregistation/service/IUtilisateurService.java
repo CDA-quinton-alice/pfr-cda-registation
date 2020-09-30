@@ -10,20 +10,19 @@ public interface IUtilisateurService {
 
 	UtilisateurDto create(UtilisateurDto pUtilisateur);
 
-	UtilisateurDto updateUtilisateur(UtilisateurDto pUtilisateur);
+	void updateUtilisateur(UtilisateurDto pUtilisateur);
 
 	UtilisateurDto getUtilisateurByMatricule(String pMatricule);
+	
+	UtilisateurSimpleDto getUtilisateurSimpleByMatricule(String pMatricule);
 
 	UtilisateurDto getUtilisateurByName(String pNom);
 
 	/**
 	 * Retourne la liste de tous les utilisateurs
 	 * 
-	 * @return List de UtilisateurDto
+	 * @return List de UtilisateurSimpleDto
 	 */
-//	List<UtilisateurDto> getAllUtilisateurs(int pPageEnCours);
-	
-	//TESTOUILLE
 	List<UtilisateurSimpleDto> getAllUtilisateurs(int pPageEnCours);
 
 	/**
@@ -48,5 +47,5 @@ public interface IUtilisateurService {
 
 	void contactUs(MessageContactDto pMessage);
 
-//	public boolean validerEvenement(EvenementEntity pEvent);
+
 }

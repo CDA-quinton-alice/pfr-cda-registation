@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.afpa.projetregistation.dao.IUtilisateurDao;
@@ -31,49 +33,30 @@ public class UtilisateurController {
 	@Autowired
 	IUtilisateurService utilisateurService;
 
-//	@RequestMapping(value = "/utilisateurtest", method = { RequestMethod.POST, RequestMethod.GET })
-//	protected ModelAndView connexion() {
-//		ModelAndView mv = new ModelAndView();
-//
-//		// Récupération du context Spring Security
-//		Authentication authentification = SecurityContextHolder.getContext().getAuthentication();
-//
-//		String userConnecte = authentification.getName();
-//		UtilisateurDto vUserDto = utilisateurService.getUtilisateurByMatricule(userConnecte);
-//
-//		log.info(authentification.toString());
-//
-//		log.info("Acces page test Responsable");
-//
-//		mv.addObject("utilisateur", utilisateurDao.findAll());
-//		mv.addObject("session", "Utilisateur Par Nom");
-//
-////		mv.addObject("utilisateur", utilisateurService.getUtilisateurByMatricule(authentification.getName()));
-//
-//		mv.addObject("infoUtilisateur", vUserDto);
-//
-//		mv.setViewName("accueil");
-//		return mv;
-//	}
-	
-	@GetMapping("/utilisateurtest")
+	@GetMapping("/utilisateur")
     public List<UtilisateurSimpleDto> findAll() {
         return (List<UtilisateurSimpleDto>) utilisateurService.getAllUtilisateurs(1);
     }
 
-	@PostMapping("/utilisateurtest")
+	@PostMapping("/utilisateur")
     public void addUser(@RequestBody UtilisateurDto pUtilisateur) {
 		utilisateurService.create(pUtilisateur);       
     }	
 	
-	@DeleteMapping("/utilisateurtest/{matriculeToDelete}")
+	@DeleteMapping("/utilisateur/{matriculeToDelete}")
 	public void supprimerUtilisateur(@PathVariable (value="matriculeToDelete") String pMatriculeToDelete) {
 		utilisateurService.deleteUtilisateurByMatricule(pMatriculeToDelete);
 	}
 	
-	@PostMapping("/utilisateurtest/contact")
+	@PostMapping("/utilisateur/contact")
 	public void contactUs(@RequestBody MessageContactDto pMessage) {
 		utilisateurService.contactUs(pMessage);
 	}
+	
+	@PostMapping("/utilisateur/mat")
+	public UtilisateurSimpleDto findByMatricuel(@RequestBody String pMatricule) {
+		return utilisateurService.getUtilisateurSimpleByMatricule(pMatricule);
+	}
+	
 	
 }

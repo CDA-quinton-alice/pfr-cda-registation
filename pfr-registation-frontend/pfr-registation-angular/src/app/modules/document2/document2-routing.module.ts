@@ -4,9 +4,9 @@ import {DocumentListeComponent} from './document-liste/document-liste.component'
 import {DocumentFormComponent} from './document-form/document-form.component';
 
 const routes: Routes = [
-  {path: 'documentListe', component: DocumentListeComponent},
-  {path: 'documentForm', component: DocumentFormComponent},
-  {path: '', component: DocumentListeComponent},
+  {path: 'document/liste', component: DocumentListeComponent},
+  {path: 'document/formulaire', component: DocumentFormComponent},
+  // {path: '', component: DocumentListeComponent},
 ];
 
 @NgModule({
