@@ -4,6 +4,7 @@ import { Icalendrier } from 'src/app/interfaces/icalendrier';
 import { EvenementService } from 'src/app/services/evenement/evenement.service';
 import { Ievent } from 'src/app/interfaces/ievent';
 import * as $ from "jquery";
+import { UtilisateurService } from 'src/app/services/utilisateur-service/utilisateur.service';
 
 @Component({
   selector: 'app-agenda',
@@ -30,7 +31,7 @@ export class AgendaComponent implements OnInit {
     return index % this.chunkSize === 0 ? this.calendar.slice(index, index + this.chunkSize): null; 
   }).filter(x=>x);
 
-  constructor(private eServ:EvenementService) {
+  constructor(private eServ:EvenementService, private uServ:UtilisateurService) {
     this.numbers = [0,1,2,3,4,5,6];
    }
 
