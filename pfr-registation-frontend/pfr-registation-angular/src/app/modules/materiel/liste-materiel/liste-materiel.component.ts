@@ -78,6 +78,7 @@ export class ListeMaterielComponent implements OnInit {
     } else {
       this.getAllByType(this.monType, this.pageEnCours);
     }
+    $('#btn-first').css('display', 'none');
   }
 
   getPrevious() {
@@ -91,6 +92,12 @@ export class ListeMaterielComponent implements OnInit {
     } else {
       this.getAllMateriel(this.pageEnCours);
     }
+
+    if( this.pageEnCours==1 ){
+      $('#btn-first').css('display', 'none');
+    }
+
+
   }
 
   getNext() {
@@ -100,6 +107,7 @@ export class ListeMaterielComponent implements OnInit {
     } else {
       this.getAllByType(this.monType, this.pageEnCours);
     }
+    $('#btn-first').css('display', 'inline-flex');
   }
 
   getLast() {

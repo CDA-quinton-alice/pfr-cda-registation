@@ -93,32 +93,13 @@
 @media screen and (min-width: 600px) {
   
 
-  #btn-container{
-    width: auto;
-    }
-    
+
     #btn-first{
-    
-    margin-right: 2%;
+    display: none;
+   
     }
     
-    #btn-precedent{
-      margin-right:  2%;
-    
-    }
-    
-    #btn-page-en-cours{
-      margin-right: 2%;
-    }
-    
-    #btn-suivant{
-      margin-left: 2%;
-      margin-right: 2%;
-    }
-    
-    #btn-fin {
-      margin-left: 2%;
-    }
+
     
 #bouton-ajouter{
   width: 40px;
