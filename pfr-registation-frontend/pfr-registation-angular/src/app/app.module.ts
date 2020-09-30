@@ -30,6 +30,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { PresentationTeamComponent } from './presentation-team/presentation-team.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MaterielModule } from './modules/materiel/materiel.module';
+import { AgmCoreModule } from '@agm/core';
 
 
 export function jwtTokenGetter() {
@@ -63,6 +64,10 @@ export function jwtTokenGetter() {
     MatInputModule,
     MatButtonModule,
 
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBEz6jxiWdqhyz79LyCjtgjG3ExiQVB0Nw'
+    }),
+
     JwtModule.forRoot({
       config: {
         // pour injecter le token dans toutes les requetes
@@ -76,6 +81,9 @@ export function jwtTokenGetter() {
       }
     }),
     ReactiveFormsModule,
+
+    
+
   ],
 
   providers: [

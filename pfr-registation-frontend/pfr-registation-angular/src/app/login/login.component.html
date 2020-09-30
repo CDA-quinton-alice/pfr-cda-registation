@@ -44,7 +44,7 @@
   </div>
   <!-- Fin Row principale -->
 
-<!-- ROW NOM APPLI -->
+  <!-- ROW NOM APPLI -->
   <div class="row align-items-center" style="background: #e9ecef; height: 300px;">
     <div class="container">
       <div class="row">
@@ -52,7 +52,7 @@
       </div>
     </div>
   </div>
-<!-- FIN -->
+  <!-- FIN -->
 
   <!-- DEBUT ROW3 -->
   <div class="row align-items-center" style="background: #f8f9fa; height: 500px;">
@@ -115,5 +115,12 @@
   <app-presentation-team></app-presentation-team>
 
 
+  <agm-map [latitude]="lat" [longitude]="lng">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  </agm-map>
+
+  <a href="#">
+    <mat-icon class="backTop">keyboard_arrow_up</mat-icon>
+  </a>
 
 </div>

@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'document', loadChildren: './modules/document2/document2.module#Document2Module'},
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent},
+  {path: '', component: LoginComponent},
 ];
 
 @NgModule({

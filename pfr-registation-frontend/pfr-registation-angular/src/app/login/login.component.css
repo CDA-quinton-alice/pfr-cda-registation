@@ -48,3 +48,13 @@
     width: 100%;
 background-color: lightgoldenrodyellow;
 }
+
+agm-map {
+    height: 500px;
+}
+.backTop{
+    font-size: 50px;
+    position: fixed;
+    bottom: 40px;
+    right: 50px;
+}
