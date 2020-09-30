@@ -22,7 +22,7 @@ public interface IMaterielDao extends PagingAndSortingRepository<MaterielEntity,
 	@Query(value = "SELECT ref FROM materiel order by matricule desc LIMIT 1", nativeQuery = true)
 	public int getMaxIdMat();
 
-	@Query(value = "select m.* from materiel as m left outer join type_materiel as tm on (m.id_type_materiel = tm.id_type_materiel ) where tm.libelle_materiel= ?1  ", countQuery = "SELECT count(*) FROM materiel as m left outer join type_materiel as tm on (m.id_type_materiel = tm.id_type_materiel ) where tm.libelle_materiel= ?1 ",nativeQuery = true)
-	Page<MaterielEntity> findAllByType(String  pType, Pageable page);
+	@Query(value = "select m.* from materiel as m left outer join type_materiel as tm on (m.id_type_materiel = tm.id_type_materiel ) where tm.libelle_materiel= ?1  ", countQuery = "SELECT count(*) FROM materiel as m left outer join type_materiel as tm on (m.id_type_materiel = tm.id_type_materiel ) where tm.libelle_materiel= ?1 ", nativeQuery = true)
+	Page<MaterielEntity> findAllByType(String pType, Pageable page);
 
 }
