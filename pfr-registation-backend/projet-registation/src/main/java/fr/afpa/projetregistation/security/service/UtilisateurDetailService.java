@@ -1,4 +1,4 @@
-package fr.afpa.projetregistation.security;
+package fr.afpa.projetregistation.security.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -36,7 +37,7 @@ public class UtilisateurDetailService implements UserDetailsService {
 
 		UtilisateurEntity uEnt = userOpt.get();
 		ConnexionEntity user = uEnt.getConnexion();
-		return new org.springframework.security.core.userdetails.User(user.getMatricule(), user.getPassword(),
+		return new User(user.getMatricule(), user.getPassword(),
 				getGrantedAuthorities(uEnt));
 	}
 
@@ -51,4 +52,6 @@ public class UtilisateurDetailService implements UserDetailsService {
 		return authorities;
 	}
 
+
+	
 }
