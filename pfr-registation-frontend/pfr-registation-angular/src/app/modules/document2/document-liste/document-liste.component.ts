@@ -18,6 +18,7 @@ export class DocumentListeComponent implements OnInit {
   ngOnInit(): void {
     this.documentService.findAll().subscribe( data => {
       this.documentList2 = data;
+      console.log(this.documentList2);
     });
   }
 
