@@ -3,6 +3,16 @@
      background-image: linear-gradient(to right, #CDDFA0, #6FD08C );
 }
 .card-contact{
-    margin-left: 2rem;
-    margin-top: 1rem;
+    height: 400px;
+    width:350px;
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+.monTextarea{
+  height: 3rem;
+}
+.monFormContact{
+    margin-left: 30px;
+    
 }

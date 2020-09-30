@@ -22,19 +22,20 @@ import fr.afpa.projetregistation.service.ITypeMaterielService;
 public class MaterielController {
 
 	@Autowired
-	IMaterielService materielService; 
+	IMaterielService materielService;
 
 	@Autowired
 	ITypeMaterielService typeService;
 
-	@GetMapping("/materiel")
-	public List<MaterielDto> getAll(@RequestBody int pageParam) {
-				
+	@GetMapping("/materiel/liste/{pPage}")
+	public List<MaterielDto> getAll(@PathVariable(value = "pPage") int pageParam) {
+
 		int pageEnCours = 1;
-		
-		if(pageParam != 0) {
+
+		if (pageParam != 0) {
 			try {
-				if(pageEnCours < 1) {
+				pageEnCours = pageParam;
+				if (pageEnCours < 1) {
 					pageEnCours = 1;
 				}
 			} catch (NumberFormatException e) {
@@ -46,22 +47,25 @@ public class MaterielController {
 		return listeMat;
 	}
 
-	@GetMapping("/materiel/listeMateriel/{pType}")
-	public List<MaterielDto> getAllByType(@PathVariable(value = "pType") String pType,@RequestBody int pageParam) {
+	@GetMapping("/materiel/listeType/{pType}/{pPage}")
+	public List<MaterielDto> getAllByType(@PathVariable(value = "pType") String pType,
+			@PathVariable(value = "pPage") int pageParam) {
+
+		pType= pType.toUpperCase();
 		int pageEnCours = 1;
-		
-		if(pageParam != 0) {
+
+		if (pageParam != 0) {
 			try {
-				if(pageEnCours < 1) {
+				pageEnCours = pageParam;
+				if (pageEnCours < 1) {
 					pageEnCours = 1;
 				}
 			} catch (NumberFormatException e) {
 				System.err.println("attention : " + e.getMessage());
 			}
 		}
-
 		List<MaterielDto> listeMat = new ArrayList<MaterielDto>();
-		listeMat = materielService.getAllByType(1, pType);
+		listeMat = materielService.getAllByType(pageEnCours, pType);
 		return listeMat;
 	}
 
