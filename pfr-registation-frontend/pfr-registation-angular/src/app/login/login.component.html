@@ -1,4 +1,4 @@
-<div class="container-fluid" style="padding: 0;">
+<div class="container-fluid" style="padding: 5;">
   <div class="row">
 
     <div class="col col-gauche">
@@ -110,17 +110,16 @@
     </div>
   </div>
   <!-- FIN ROW4  -->
-
-  <!-- Début Row présentation Equipe -->
-  <app-presentation-team></app-presentation-team>
-
-
+    
   <agm-map [latitude]="lat" [longitude]="lng">
     <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
   </agm-map>
-
-  <a href="#">
-    <mat-icon class="backTop">keyboard_arrow_up</mat-icon>
-  </a>
-
+  
+  <!-- Début Row présentation Equipe -->
+  <app-presentation-team></app-presentation-team>
+ 
+    <a href="#">
+      <mat-icon class="backtop" [inline]="true">keyboard_arrow_up</mat-icon>
+    </a>
+ 
 </div>
