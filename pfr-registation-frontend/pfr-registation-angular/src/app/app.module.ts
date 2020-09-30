@@ -30,7 +30,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { PresentationTeamComponent } from './presentation-team/presentation-team.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { MaterielModule } from './modules/materiel/materiel.module';
+
 
 
 export function jwtTokenGetter() {
