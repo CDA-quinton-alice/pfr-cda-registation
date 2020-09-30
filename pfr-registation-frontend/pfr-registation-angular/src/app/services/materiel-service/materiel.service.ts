@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient,HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Imateriel } from 'src/app/interfaces/imateriel';
 import { Observable } from 'rxjs';
@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class MaterielService {
 
+  pageEnCours: number;
   list_materiel: Array<Imateriel> = new Array<Imateriel>();
 
   private url: string = "http://localhost:8080/materiel";
@@ -18,8 +19,9 @@ export class MaterielService {
   constructor(private http: HttpClient) {
   }
 
-  public findAll(): Observable<Imateriel[]> {
-    return this.http.get<Imateriel[]>(this.url);
+  public findAll(pageEnCours: number): Observable<Imateriel[]> {
+    
+    return this.http.get<Imateriel[]>(this.url+"/liste/"+ pageEnCours);
   }
 
   public findById(id: number): Observable<Imateriel> {
@@ -27,9 +29,9 @@ export class MaterielService {
   }
 
 
-  public findAllByType(type: string): Observable<Imateriel[]> {
-
-    return this.http.get<Imateriel[]>(this.url + "/listeMateriel/" + type);
+  public findAllByType(type: string, pageEnCours: number): Observable<Imateriel[]> {
+console.log(type, pageEnCours );
+    return this.http.get<Imateriel[]>(this.url + "/listeType/" + type+"/" + pageEnCours );
   }
 
   public addMateriel(mat: Imateriel) {
@@ -42,6 +44,6 @@ export class MaterielService {
 
 
   public updateMateriel(mat:Imateriel){
-    return this.http.post<Imateriel>(this.url  + "/update",  mat);
+    return this.http.patch<Imateriel>(this.url  + "/update",  mat);
   }
 }

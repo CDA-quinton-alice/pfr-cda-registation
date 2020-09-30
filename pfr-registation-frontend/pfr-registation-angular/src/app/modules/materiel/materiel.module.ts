@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { MaterielRoutingModule } from './materiel-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { ListeMaterielComponent } from './liste-materiel/liste-materiel.component';
-import { InfosMaterielComponent } from './infos-materiel/infos-materiel.component';
 import { AjouterMaterielComponent } from './ajouter-materiel/ajouter-materiel.component';
 import { UpdateMaterielComponent } from './update-materiel/update-materiel.component';
 
@@ -25,11 +24,13 @@ import {MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MaterielService} from '../../services/materiel-service/materiel.service';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
+import { InfoModalComponent } from './info-modal/info-modal.component';
 
 
 @NgModule({
-  declarations: [ListeMaterielComponent, InfosMaterielComponent, AjouterMaterielComponent, UpdateMaterielComponent, DeleteModalComponent],
+  declarations: [ListeMaterielComponent,  AjouterMaterielComponent, UpdateMaterielComponent, DeleteModalComponent, InfoModalComponent],
   imports: [
     CommonModule,
     MaterielRoutingModule,
@@ -39,19 +40,20 @@ import { DeleteModalComponent } from './delete-modal/delete-modal.component';
     MatListModule,
     MatBadgeModule,
     MatCardModule,
-    FlexLayoutModule,  
+    FlexLayoutModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
     MatDialogModule,
-    MatDialogModule, 
-    MatInputModule, 
-    MatCardModule, 
+    MatDialogModule,
+    MatInputModule,
+    MatCardModule,
     MatFormFieldModule,
     MatSelectModule,
     MatTabsModule,
     MatIconModule,
     MatButtonModule,
-  ]
+  ],
+  providers: [MaterielService]
 })
 export class MaterielModule { }

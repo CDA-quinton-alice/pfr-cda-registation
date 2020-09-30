@@ -2,13 +2,11 @@ package fr.afpa.projetregistation.service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import fr.afpa.projetregistation.dto.DocumentDto;
-import fr.afpa.projetregistation.entity.DocumentEntity;
+
 
 @Service
 public interface IDocumentService {
@@ -38,5 +36,10 @@ public interface IDocumentService {
 	public boolean existById(int pIdDocument);
 
 	public DocumentDto getDocumentByNom(String pNomDocument);
+
+	/**
+	 * @param int vPageEnCours : c'est la page sur laquelle les documents en
+	 *            question vont être récupérés
+	 */
 
 }

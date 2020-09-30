@@ -78,7 +78,7 @@ public class TestMaterielServiceImpl {
 		assertEquals("POMPE", mat.getTypeMateriel());
 
 	}
-
+ 
 	/**
 	 * Teste la bonne récupération de tous les MaterielDto par le
 	 * MaterielServiceImpl

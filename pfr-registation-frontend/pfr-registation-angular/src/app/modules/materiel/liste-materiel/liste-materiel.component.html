@@ -17,7 +17,7 @@
             <mat-card-actions>
                 <form #getType=ngForm>
                     <input type="hidden" value=1>
-                    <button (click)='getAllByType("POMPE")' class="bouton-afficher" mat-raised-button
+                    <button (click)='getAllByType("POMPE", 1)' class="bouton-afficher" mat-raised-button
                         type="submit">Afficher</button>
                 </form>
             </mat-card-actions>
@@ -35,7 +35,7 @@
             <mat-card-actions>
                 <form #getType=ngForm>
                     <input type="hidden" value=2>
-                    <button (click)='getAllByType("CUVE")' class="bouton-afficher" mat-raised-button
+                    <button (click)='getAllByType("CUVE", 1)' class="bouton-afficher" mat-raised-button
                         type="submit">Afficher</button>
                 </form>
             </mat-card-actions>
@@ -54,7 +54,7 @@
             <mat-card-actions>
                 <form #getType=ngForm>
                     <input type="hidden" value=3>
-                    <button (click)='getAllByType("BOUTIQUE")' mat-raised-button class="bouton-afficher"
+                    <button (click)='getAllByType("BOUTIQUE", 1)' mat-raised-button class="bouton-afficher"
                         type="submit">Afficher</button>
                 </form>
             </mat-card-actions>
@@ -67,44 +67,51 @@
     <table class="rwd-table">
         <thead>
             <tr>
-                <th scope="col">Id du matériel</th>
                 <th scope="col">Référence</th>
                 <th scope="col">Marque</th>
                 <th scope="col">Modèle</th>
-                <th scope="col">Prix d'achat</th>
                 <th scope="col">Etat actuel</th>
-                <th scope="col">Date d'achat</th>
-                <th scope="col">Type de matériel</th>
                 <th scope="col">Localisation</th>
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let mat of list_materiel">
-                <td data-th="Id du matériel">{{mat.idMat}}</td>
+            <tr *ngFor="let mat of list_materiel" (click)="infoModal(mat.idMat)">
                 <td data-th="Référence">{{mat.ref}}</td>
                 <td data-th="Marque">{{mat.marque}}</td>
                 <td data-th="Modèle">{{mat.modele}}</td>
-                <td data-th="Prix">{{mat.prix}}</td>
                 <td data-th="Etat">{{mat.etat}}</td>
-                <td data-th="Date d'achat">{{mat.dateAchat}}</td>
-                <td data-th="Type de matériel">{{mat.typeMateriel}}</td>
                 <td data-th="Localisation">{{mat.localisation}}</td>
                 <td>
-                    
-                    <form #getIdMaterielUtils=ngForm>
-                        <input type="hidden" name=idMaterielUtils [(ngModel)]=mat.idMat required #idMaterielUtils="ngModel">
+                    <div>
+                        <form #getIdMaterielUpdate=ngForm>
+                            <input type="hidden" name=idMaterielUpdate [(ngModel)]=mat.idMat required
+                                #idMaterielUpdate="ngModel">
 
-                        <button mat-mini-fab class="bouton-modifier" [routerLink]="'/materiel/modifier/'+mat.idMat">
-                            <mat-icon>edit</mat-icon>
-                        </button>
-                                  
-                        <button mat-mini-fab color="warn" id="bouton-supprimer" (click)="deleteModal(mat.idMat)">
-                            <mat-icon>delete_sweep</mat-icon>
-                        </button>
-                    </form>
+                            <button mat-mini-fab class="bouton-modifier"
+                                (click)="redirectToUpdate(mat.idMat); $event.stopPropagation()">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                        </form>
+
+                        <form #getIdMaterielUtils=ngForm>
+                            <input type="hidden" name=idMaterielUtils [(ngModel)]=mat.idMat required
+                                #idMaterielUtils="ngModel">
+                            <button mat-mini-fab color="warn" id="bouton-supprimer"
+                                (click)="$event.stopPropagation(); deleteModal(mat.idMat)">
+                                <mat-icon>delete_sweep</mat-icon>
+                            </button>
+                        </form>
+                    </div>
                 </td>
             </tr>
         </tbody>
     </table>
+            <div>
+                <button id="btn-first" (click)="getFirst()">Début</button>
+                <button id="btn-precedent" (click)="getPrevious()">Précédent</button>
+                <span id="page-en-cours">Page {{pageEnCours}}</span>
+                <button id="btn-suivant" (click)="getNext()"> Suivant</button>
+                <button id="btn-end" (click)="getLast()">Fin</button>
+            </div>
 </div>

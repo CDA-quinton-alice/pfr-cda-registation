@@ -43,6 +43,6 @@ public class DocumentEntity {
 
 	@ManyToOne
 	@JoinColumn(name="matricule")
-	UtilisateurEntity utilisateur;
+	private UtilisateurEntity user;
 
 }
