@@ -5,6 +5,7 @@ import { Icalendrier } from 'src/app/interfaces/icalendrier';
 import { Ievent } from 'src/app/interfaces/ievent';
 import { DatePipe, formatDate } from '@angular/common';
 import { map } from 'jquery';
+import { UtilisateurService } from '../utilisateur-service/utilisateur.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class EvenementService {
 
   headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-  constructor(private http: HttpClient,public datepipe: DatePipe) { }
+  constructor(private http: HttpClient,public datepipe: DatePipe,
+    private uServ: UtilisateurService) { }
 
   public findByYearMonth(user:string,year: number, month: number, action:string): Observable<Icalendrier> {
     if(action.length<=1){
@@ -25,14 +27,16 @@ export class EvenementService {
   }
 
   public createEvenement(event:Ievent):Observable<Ievent>{
+    event.user.dateDeNaissance = new Date(event.user.dateDeNaissance);
     return this.http.post<Ievent>(this.url,
-      {titre:event.titre,type:event.type, description:event.description,date_debut:event.date_debut, date_fin:event.date_fin});
+      {titre:event.titre,type:event.type, description:event.description,date_debut:event.date_debut, date_fin:event.date_fin, user: event.user});
 
   }
 
   public updateEvenement(event:Ievent):Observable<Ievent>{
+    event.user.dateDeNaissance = new Date(event.user.dateDeNaissance);
     return this.http.patch<Ievent>(this.url,
-      {id:event.id,titre:event.titre,type:event.type, description:event.description,date_debut:event.date_debut, date_fin:event.date_fin});
+      {id:event.id,titre:event.titre,type:event.type, description:event.description,date_debut:event.date_debut, date_fin:event.date_fin, user: event.user});
   }
 
   public deleteEvenement(event:Ievent){
