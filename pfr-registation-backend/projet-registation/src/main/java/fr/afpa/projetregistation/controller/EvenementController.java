@@ -48,7 +48,7 @@ public class EvenementController {
 	IEvenementService eserv;
 	
 	@GetMapping(value="/evenement/{user}/{year}/{month}/{action}")
-	protected ResponseEntity<String> eventPost(@PathVariable(value="year") int annee, 
+	protected ResponseEntity<String> fullCalendar(@PathVariable(value="year") int annee, 
 								@PathVariable(value="month") int mois, 
 								@PathVariable(value="action") char action,
 								@PathVariable(value="user") String user) {
