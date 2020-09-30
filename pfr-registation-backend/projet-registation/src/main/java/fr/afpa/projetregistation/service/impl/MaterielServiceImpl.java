@@ -120,7 +120,7 @@ public class MaterielServiceImpl implements IMaterielService {
 		}
 
 		return materiel;
-	}
+	} 
 
 	/**
 	 * Récupère un matériel par son ID. Mapping des informations.
