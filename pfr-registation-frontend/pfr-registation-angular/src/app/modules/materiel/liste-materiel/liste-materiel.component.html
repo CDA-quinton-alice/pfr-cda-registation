@@ -17,7 +17,7 @@
             <mat-card-actions>
                 <form #getType=ngForm>
                     <input type="hidden" value=1>
-                    <button (click)='getAllByType("POMPE", 1)' class="bouton-afficher" mat-raised-button
+                    <button (click)='getAllByTypeInit("POMPE", 1)' class="bouton-afficher" mat-raised-button
                         type="submit">Afficher</button>
                 </form>
             </mat-card-actions>
@@ -35,7 +35,7 @@
             <mat-card-actions>
                 <form #getType=ngForm>
                     <input type="hidden" value=2>
-                    <button (click)='getAllByType("CUVE", 1)' class="bouton-afficher" mat-raised-button
+                    <button (click)='getAllByTypeInit("CUVE", 1)' class="bouton-afficher" mat-raised-button
                         type="submit">Afficher</button>
                 </form>
             </mat-card-actions>
@@ -54,7 +54,7 @@
             <mat-card-actions>
                 <form #getType=ngForm>
                     <input type="hidden" value=3>
-                    <button (click)='getAllByType("BOUTIQUE", 1)' mat-raised-button class="bouton-afficher"
+                    <button (click)='getAllByTypeInit("BOUTIQUE", 1)' mat-raised-button class="bouton-afficher"
                         type="submit">Afficher</button>
                 </form>
             </mat-card-actions>

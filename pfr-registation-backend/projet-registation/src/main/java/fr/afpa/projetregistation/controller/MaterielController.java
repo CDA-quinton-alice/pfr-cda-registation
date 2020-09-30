@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -82,7 +83,7 @@ public class MaterielController {
 		materielService.create(pMat);
 	}
 
-	@PostMapping("/materiel/{pId}/delete")
+	@DeleteMapping("/materiel/{pId}")
 	public void deleteMateriel(@PathVariable(value = "pId") int pId) {
 		materielService.deleteById(pId);
 	}
