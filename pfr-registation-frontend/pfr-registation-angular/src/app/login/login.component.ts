@@ -14,7 +14,10 @@ export class LoginComponent implements OnInit {
   hide = true;
   user: UserAuth;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  lat = 50.693341;
+  lng = 3.158566;
+
+   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.user = new UserAuth();
