@@ -70,7 +70,7 @@ export class DocumentFormComponent implements OnInit {
     this.documentService.addDocument(this.document2).subscribe(result => this.goToDocumentList());
   }
   goToDocumentList(): void {
-    this.router.navigate(['/documentListe']);
+    this.router.navigate(['/document/liste']);
   }
   downloadFile(): void{
     const link = document.createElement('a');
