@@ -71,6 +71,15 @@
     font-size:0.8rem;
     color:black;
 }
+.circle{
+    background-color: #4f90ff;
+    color:white;
+    border-radius: 2rem;
+    padding: 0.2rem 0.2rem 0.2rem 0.2rem;
+}
+.jourPassee{
+    opacity: 50%;
+}
 
  @media(max-width:600px){
      .ev{
