@@ -37,7 +37,7 @@ export class UtilisateurFormComponent implements OnInit {
 
       numero: ['', Validators.required],
       rue: ['', Validators.required],
-      complement: ['', Validators.required],
+      complement: [''],
       codePostal: ['', Validators.required],
       ville: ['', Validators.required],
       pays: ['', Validators.required]

@@ -48,7 +48,7 @@ public class EvenementController {
 	IEvenementService eserv;
 	
 	@GetMapping(value="/evenement/{user}/{year}/{month}/{action}")
-	protected ResponseEntity<String> eventPost(@PathVariable(value="year") int annee, 
+	protected ResponseEntity<String> fullCalendar(@PathVariable(value="year") int annee, 
 								@PathVariable(value="month") int mois, 
 								@PathVariable(value="action") char action,
 								@PathVariable(value="user") String user) {
@@ -103,22 +103,10 @@ public class EvenementController {
 	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
 	protected ResponseEntity<EvenementDto> creeEvenement(@RequestBody EvenementDto event){
 		log.info("Création d'évènement !");
-			
-		
-		UtilisateurDto udto = userv.getUtilisateurByMatricule("RESP001");
-		UtilisateurSimpleDto usdto = UtilisateurSimpleDto.builder()
-										.dateDeNaissance(udto.getDateDeNaissance())
-										.mail(udto.getMail())
-										.matricule(udto.getMatricule())
-										.nom(udto.getNom())
-										.prenom(udto.getPrenom())
-										.responsable(udto.isResponsable())
-										.salaire(udto.getSalaire())
-										.build();
+		log.info(event.toString());
 		
 		Long s = (event.getDate_fin().getTime()-event.getDate_debut().getTime())/1000;
 		int seconds = s.intValue();
-		event.setUser(usdto);
 		event.setDuree(seconds);
 		event = eserv.create(event);
 		return ResponseEntity.ok(event);
@@ -128,8 +116,8 @@ public class EvenementController {
 	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
 	protected ResponseEntity<EvenementDto> updateEvenement(@RequestBody EvenementDto event){
 		log.info("Update d'un évènement");
-
-		UtilisateurDto udto = userv.getUtilisateurByMatricule("RESP001");
+		log.info(event.toString());
+		UtilisateurDto udto = userv.getUtilisateurByMatricule(event.getUser().getMatricule());
 		UtilisateurSimpleDto usdto = UtilisateurSimpleDto.builder()
 										.dateDeNaissance(udto.getDateDeNaissance())
 										.mail(udto.getMail())

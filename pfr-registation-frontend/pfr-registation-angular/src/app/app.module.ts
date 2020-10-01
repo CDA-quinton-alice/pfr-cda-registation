@@ -18,6 +18,7 @@ import {Document2Module} from './modules/document2/document2.module';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
 import {MAT_MOMENT_DATE_FORMATS, MatMomentDateModule, MomentDateAdapter} from '@angular/material-moment-adapter';
 
+
 import { JwtModule } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
@@ -30,6 +31,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { PresentationTeamComponent } from './presentation-team/presentation-team.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MaterielModule } from './modules/materiel/materiel.module';
+import { AgmCoreModule } from '@agm/core';
+
 
 
 export function jwtTokenGetter() {
@@ -63,6 +66,10 @@ export function jwtTokenGetter() {
     MatInputModule,
     MatButtonModule,
 
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBEz6jxiWdqhyz79LyCjtgjG3ExiQVB0Nw'
+    }),
+
     JwtModule.forRoot({
       config: {
         // pour injecter le token dans toutes les requetes
@@ -76,6 +83,9 @@ export function jwtTokenGetter() {
       }
     }),
     ReactiveFormsModule,
+
+    
+
   ],
 
   providers: [
