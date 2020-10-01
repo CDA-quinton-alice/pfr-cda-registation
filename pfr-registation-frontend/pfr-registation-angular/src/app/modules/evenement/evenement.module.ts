@@ -15,6 +15,7 @@ import { EditModalComponent } from './cellule/edit-modal/edit-modal.component';
 import {MatDatepickerModule} from '@angular/material/datepicker'; 
 import { MatFormField, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [AgendaComponent, CelluleComponent, PlusModalComponent, AjoutModalComponent, EditModalComponent],
@@ -31,6 +32,10 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,
+    DragDropModule,
+  ],
+  exports:[
+    DragDropModule,
   ]
 })
 export class EvenementModule { }

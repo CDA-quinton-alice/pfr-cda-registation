@@ -5,6 +5,7 @@ import { AgendaComponent } from '../../agenda/agenda.component';
 import { AjoutModalComponent } from '../ajout-modal/ajout-modal.component';
 import { EditModalComponent } from '../edit-modal/edit-modal.component';
 import { PlusModalComponent } from '../plus-modal/plus-modal.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-cellule',
@@ -43,7 +44,8 @@ export class CelluleComponent implements OnInit {
     let j = this.jour.split("-");
     const dialogRef = this.dialog.open(AjoutModalComponent, {
       width: '30rem',
-      data: {ac:a, date:this.dates, jour:j[1]}
+      data: {ac:a, date:this.dates, jour:j[1]},
+      panelClass: 'dialog-container',
     });
   }
 
