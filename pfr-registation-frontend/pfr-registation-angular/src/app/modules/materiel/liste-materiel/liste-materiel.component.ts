@@ -41,6 +41,11 @@ export class ListeMaterielComponent implements OnInit {
     this.monType = null;
     this.materielService.findAll(pageEnCours).subscribe(data => {
       this.list_materiel = data;
+      if(this.list_materiel.length==0){
+      this.pageEnCours--;
+        this.materielService.findAll(pageEnCours-1).subscribe(data => {
+          this.list_materiel = data;})  
+      }
     })
   }
 
@@ -57,8 +62,13 @@ export class ListeMaterielComponent implements OnInit {
  
     this.materielService.findAllByType(monType, pageEnCours).subscribe(data => {
       this.list_materiel = data;
-    })
-  }
+      if(this.list_materiel.length==0){
+        this.pageEnCours--;
+          this.materielService.findAllByType(monType,pageEnCours-1).subscribe(data => {
+            this.list_materiel = data;})  
+        }
+      })
+    }
 
 
   redirectToUpdate(idToUpdate: number) {
