@@ -132,4 +132,15 @@ export class CelluleComponent implements OnInit {
     return i==this.eventInInterval.length;
   }
 
+  testJourActuel(str:string):boolean{
+    let d = new Date();
+    let d2 = new Date(str.split('-')[3]+'-'+str.split('-')[2]+'-'+str.split('-')[1]);
+    return (d.getFullYear()==d2.getFullYear())&&(d.getMonth()==d2.getMonth())&&(d.getDate()==d2.getDate());
+  }
+
+  testJourPasse():boolean{
+    let d = new Date();
+    d = new Date(d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate())
+    return this.dates<d&&this.dates!=d;
+  }
 }
