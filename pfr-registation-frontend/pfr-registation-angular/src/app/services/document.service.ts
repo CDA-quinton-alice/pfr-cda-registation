@@ -35,4 +35,8 @@ export class DocumentService {
   public save(document: IDocument): Observable<any>{
     return this.https.post<IDocument>(this.documentsUrl, document);
   }
+
+  ajouterDocument(document2: IDocument) {
+
+  }
 }
