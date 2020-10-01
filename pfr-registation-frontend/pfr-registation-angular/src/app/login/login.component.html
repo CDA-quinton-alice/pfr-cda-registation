@@ -1,4 +1,4 @@
-<div class="container-fluid" style="padding: 0;">
+<div class="container-fluid" style="padding: 5;">
   <div class="row">
 
     <div class="col col-gauche">
@@ -44,7 +44,7 @@
   </div>
   <!-- Fin Row principale -->
 
-<!-- ROW NOM APPLI -->
+  <!-- ROW NOM APPLI -->
   <div class="row align-items-center" style="background: #e9ecef; height: 300px;">
     <div class="container">
       <div class="row">
@@ -52,7 +52,7 @@
       </div>
     </div>
   </div>
-<!-- FIN -->
+  <!-- FIN -->
 
   <!-- DEBUT ROW3 -->
   <div class="row align-items-center" style="background: #f8f9fa; height: 500px;">
@@ -110,10 +110,16 @@
     </div>
   </div>
   <!-- FIN ROW4  -->
-
+    
+  <agm-map [latitude]="lat" [longitude]="lng">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  </agm-map>
+  
   <!-- Début Row présentation Equipe -->
   <app-presentation-team></app-presentation-team>
-
-
-
+ 
+    <a href="#">
+      <mat-icon class="backtop" [inline]="true">keyboard_arrow_up</mat-icon>
+    </a>
+ 
 </div>

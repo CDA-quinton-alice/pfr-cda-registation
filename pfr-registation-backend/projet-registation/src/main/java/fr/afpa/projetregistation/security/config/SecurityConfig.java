@@ -76,6 +76,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(HttpMethod.GET, "/helloemploye").hasAnyRole("EMPLOYE", "RESPONSABLE")
 
 				.antMatchers("/login").permitAll()
+				.antMatchers("/dashboard").authenticated()
 
 				.anyRequest().authenticated().and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()

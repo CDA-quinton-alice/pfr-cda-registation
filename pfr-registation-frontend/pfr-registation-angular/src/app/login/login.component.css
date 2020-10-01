@@ -35,6 +35,7 @@
 }
 .col-droite{
     background-color: #5B8E7D;
+    height: 700px;
 }
 #nom-appli{
     margin-top: 20px;
@@ -47,4 +48,14 @@
 .second-row{
     width: 100%;
 background-color: lightgoldenrodyellow;
+}
+
+agm-map {
+    height: 400px;
+}
+.backtop{
+    font-size: 50px;
+    position: fixed;
+    bottom: 40px;
+    right: 50px;
 }
