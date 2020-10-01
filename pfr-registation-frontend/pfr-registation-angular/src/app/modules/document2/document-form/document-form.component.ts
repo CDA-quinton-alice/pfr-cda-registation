@@ -67,7 +67,7 @@ export class DocumentFormComponent implements OnInit {
     this.document2 = (this.documentForm2.value as IDocument);
     console.log(this.documentForm2.value);
     console.log(this.document2);
-    this.documentService.save(this.document2).subscribe(result => this.goToDocumentList());
+    this.documentService.addDocument(this.document2).subscribe(result => this.goToDocumentList());
   }
   goToDocumentList(): void {
     this.router.navigate(['/document/liste']);
