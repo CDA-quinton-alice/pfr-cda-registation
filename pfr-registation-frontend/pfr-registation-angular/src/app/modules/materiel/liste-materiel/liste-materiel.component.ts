@@ -15,11 +15,13 @@ import { InfoModalComponent } from '../info-modal/info-modal.component';
   styleUrls: ['./liste-materiel.component.css']
 })
 export class ListeMaterielComponent implements OnInit {
+  
 
   materiel: Imateriel = {};
   list_materiel: Array<Imateriel> = [];
   monType: string;
   pageEnCours: number;
+ liste:ListeMaterielComponent = this;
 
 
 
@@ -35,20 +37,39 @@ export class ListeMaterielComponent implements OnInit {
   }
 
 
-
   getAllMateriel(pageEnCours: number) {
     this.monType = null;
     this.materielService.findAll(pageEnCours).subscribe(data => {
+      this.list_materiel = data;
+      if(this.list_materiel.length==0){
+      this.pageEnCours--;
+        this.materielService.findAll(pageEnCours-1).subscribe(data => {
+          this.list_materiel = data;})  
+      }
+    })
+  }
+
+  getAllByTypeInit(unType: string, pageEnCours: number) {
+    this.pageEnCours = 1;
+    $('#btn-first').css('display', 'none');
+    this.monType=unType;
+    this.materielService.findAllByType(unType, pageEnCours).subscribe(data => {
       this.list_materiel = data;
     })
   }
 
   getAllByType(monType: string, pageEnCours: number) {
-
+ 
     this.materielService.findAllByType(monType, pageEnCours).subscribe(data => {
       this.list_materiel = data;
-    })
-  }
+      if(this.list_materiel.length==0){
+        this.pageEnCours--;
+          this.materielService.findAllByType(monType,pageEnCours-1).subscribe(data => {
+            this.list_materiel = data;})  
+        }
+      })
+    }
+
 
   redirectToUpdate(idToUpdate: number) {
     console.log(idToUpdate);
