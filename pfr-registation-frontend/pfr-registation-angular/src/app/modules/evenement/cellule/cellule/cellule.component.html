@@ -1,26 +1,26 @@
 <div (click)="ajoutModal(ac)"> 
     <div [ngClass]="tete?'cellule-tete':'cellule'">
         <span class="tete w-100" [ngClass]="[tete?'tete':'no-tete',headColor]">{{jour.split('-')[0]}}</span>
-        <span class="jourC w-100" [ngClass]="headColor">{{jour.split('-')[1]}}</span>
+        <span class="jourC w-100" [ngClass]="headColor"><span [ngClass]="testJourActuel(jour)?'circle':''">{{jour.split('-')[1]}}</span></span>
         <div class="evenements w-100">
             {{resetSpan()}}
             <ng-container *ngIf="eventInInterval">
                 <ng-container *ngFor="let e of eventInInterval; let i = index">
                     {{incSpan()}}
                     <ng-container *ngIf="!testSpan(); else plusSpan">
-                        <span class="ev btn btn-light"  [ngClass]='getEventColor(e)' (click)="$event.stopPropagation();editModal(e,ac);">
+                        <span class="ev btn btn-light"  [ngClass]="[getEventColor(e),testJourPasse()?'jourPassee':'']" (click)="$event.stopPropagation();editModal(e,ac);">
                             {{e.titre}}
                         </span>
                     </ng-container> 
                     <ng-template #plusSpan>
                         <ng-container *ngIf="(getNbSpan()<3)&&!testFini(i+1) else nonFini">
-                            <span class="ev btn btn-light"  [ngClass]='getEventColor(e)' (click)="$event.stopPropagation();editModal(e,ac);">
+                            <span class="ev btn btn-light"  [ngClass]="[getEventColor(e),testJourPasse()?'jourPassee':'']" (click)="$event.stopPropagation();editModal(e,ac);">
                                 {{e.titre}}
                             </span>
                         </ng-container>
                         <ng-template #nonFini>
                             <ng-container *ngIf="getNbSpan()<=3&&testFini(i+1) else sup3">
-                                <span class="ev btn btn-light"  [ngClass]='getEventColor(e)' (click)="$event.stopPropagation();editModal(e,ac);">
+                                <span class="ev btn btn-light"  [ngClass]="[getEventColor(e),testJourPasse()?'jourPassee':'']" (click)="$event.stopPropagation();editModal(e,ac);">
                                     {{e.titre}}
                                 </span>
                             </ng-container>
