@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { IUtilisateur } from 'src/app/interfaces/iutilisateur';
 import { UtilisateurService } from 'src/app/services/utilisateur-service/utilisateur.service';
-
 
 @Component({
   selector: 'app-utilisateur-form',
@@ -33,7 +32,7 @@ export class UtilisateurFormComponent implements OnInit {
       tel: ['', Validators.required],
       responsable: ['', Validators.required],
 
-      password: ['', [Validators.required , Validators.minLength(6)]],
+      password: ['', [Validators.required , Validators.pattern('^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-7]).{6,}$')]],
 
       numero: ['', Validators.required],
       rue: ['', Validators.required],
@@ -56,5 +55,8 @@ export class UtilisateurFormComponent implements OnInit {
 
   gotoUtilisateurListe() {
     this.router.navigate(['/utilisateur/liste']);
+  }
+  getPassword(){
+    return this.utilisateurForm.get('password');
   }
 }
