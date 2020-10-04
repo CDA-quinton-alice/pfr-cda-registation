@@ -13,6 +13,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MAT_MOMENT_DATE_FORMATS, MatMomentDateModule, MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
+import {FlexModule} from '@angular/flex-layout';
 
 
 
@@ -26,18 +27,19 @@ import {MatInputModule} from '@angular/material/input';
   exports: [
     DocumentListeComponent, DocumentFormComponent
   ],
-  imports: [
-    CommonModule,
-    Document2RoutingModule,
-    MatCardModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatNativeDateModule,
-    MatMomentDateModule,
-    MatInputModule
-  ]
+    imports: [
+        CommonModule,
+        Document2RoutingModule,
+        MatCardModule,
+        MatIconModule,
+        MatFormFieldModule,
+        MatDatepickerModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatNativeDateModule,
+        MatMomentDateModule,
+        MatInputModule,
+        FlexModule
+    ]
 })
 export class Document2Module { }

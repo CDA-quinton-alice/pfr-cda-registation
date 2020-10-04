@@ -1,0 +1,127 @@
+/* mise en forme typo + texte */
+html{
+  font-family: 'Josefin Sans', sans-serif;
+}
+thead th, tfoot th{
+  font-family: 'Lora', serif;
+  color: #8E9899;
+  background-color: #FFD05B;
+}
+th{
+  letter-spacing: 1px;
+}
+td{
+  letter-spacing: 2px;
+}
+tbody td{
+  text-align: center;
+}
+tfoot th{
+  text-align: left;
+}
+
+/* Début du tableau des documents */
+
+.rwd-table{
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 3px solid black;
+}
+
+.thead-th:nth-child(1){
+  width: 5%
+}
+.thead-th:nth-child(2){
+  width: 10%
+}
+.thead-th:nth-child(3){
+  width: 10%;
+}
+.thead-th:nth-child(4){
+  width: 25%;
+}
+.thead-th:nth-child(5){
+  width: 25%;
+}
+.thead-th:nth-child(6){
+  width: 10%;
+}
+.thead-th:nth-child(7){
+  width: 10%
+}
+.thead-th:nth-child(8){
+  width: 10%
+}
+th, td{
+  padding: 20px;
+}
+thead, tfoot{
+  background: url("/assets/images/station-service-Esso.jpg");
+}
+
+/* fin du tableau documents */
+
+/* Début du système de cartes */
+
+
+.bouton-afficher{
+  color:#fff;
+  background-image: linear-gradient(to right, #CDDFA0, #6FD08C );
+}
+.card-top{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10%;
+  margin-right: 10%;
+  background-image: url("/assets/images/stationServiceRoute66.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.icone-info-card{
+  margin-right: 5px;
+}
+
+@media screen and (min-width: 600px) {
+  .content{
+    padding-top: 5rem;
+    padding-left: 17rem;
+  }
+  .mat-elevation-z4 {
+    width: 250px;
+  }
+
+  .card-container{
+    height: 300px;
+    width: 90%;
+  }
+  h2{
+    color:rgb(50, 74, 94);
+  }
+}
+
+
+@media screen and (max-width: 601px) {
+  .content{
+    padding-top: 5rem;
+    padding-left: 5rem;
+  }
+  .mat-elevation-z4 {
+    width: 250px;
+  }
+
+  .images{
+    display:none;
+  }
+  .card-container{
+    height: 40%;
+    width: auto;
+  }
+
+  h2{
+    background-color: white;
+    color:rgb(50, 74, 94);
+  }
+}
+
