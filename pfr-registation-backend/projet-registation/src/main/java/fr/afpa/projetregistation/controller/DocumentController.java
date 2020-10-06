@@ -13,7 +13,7 @@ import fr.afpa.projetregistation.dto.DocumentDto;
 import fr.afpa.projetregistation.service.IDocumentService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 
 public class DocumentController {
 
