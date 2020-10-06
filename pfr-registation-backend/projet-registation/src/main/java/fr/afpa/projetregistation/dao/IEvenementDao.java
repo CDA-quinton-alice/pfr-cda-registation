@@ -27,7 +27,7 @@ public interface IEvenementDao extends PagingAndSortingRepository<EvenementEntit
 	 * @param dateFin
 	 * @return une @see List de @see EvenementEntity
 	 */
-	@Query(value="select * from (select * from evenement where date_fin >= :date1) a where a.date_debut<=:date2 and a.matricule = :userMat",nativeQuery = true)
+	@Query(value="select * from evenement where date_fin between :date1 and :date2 or date_debut between :date1 and :date2 and matricule = :userMat",nativeQuery = true)
 	public  List<EvenementEntity> findByDate(@Param("date1") Date dateDebut, @Param("date2") Date dateFin, @Param("userMat") String userMatricule);
 
 	

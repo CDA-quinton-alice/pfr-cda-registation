@@ -17,7 +17,7 @@ import org.springframework.util.StringUtils;
  * @author Samuel
  *
  */
-public class Calendrier {
+public class Calendrier implements ICalendrier{
 	
 	/**
 	 * Récupère le premier jour d'un mois/année souhaité.
@@ -79,77 +79,6 @@ public class Calendrier {
 		}
 	}
 
-	
-	/**
-	 * Outil de calcule du nombre de jour nécessaire pour compléter les jours avant le 1er du mois
-	 * dans le calendrier
-	 * 
-	 * @param firstDay {@link String} : Le premier jour du mois formatté grâce au {@link DataTimeFormatter} "EEEE-dd-MM-yyyy"
-	 * @return {@link Integer} Nombre de jour pour compléter le début du calendrier
-	 */ 
-	public static int getNbPrevJour(String firstDay) {
-		
-		String j = StringUtils.capitalize(firstDay.split("\\-")[0]);
-
-
-		int nbJourPrev = 0;
-		switch (j) {
-		case "Mardi":
-			nbJourPrev = 1;
-			break;
-		case "Mercredi":
-			nbJourPrev = 2;
-			break;
-		case "Jeudi":
-			nbJourPrev = 3;
-			break;
-		case "Vendredi":
-			nbJourPrev = 4;
-			break;
-		case "Samedi":
-			nbJourPrev = 5;
-			break;
-		case "Dimanche":
-			nbJourPrev = 6;
-			break;
-		}
-		return nbJourPrev;
-	}
-	
-	/**
-	 * Outil de calcule du nombre de jour nécessaire pour compléter les jours après le dernier jour du mois
-	 * dans le calendrier
-	 * 
-	 * @param firstDay {@link String} : Le dernier jour du mois formatté grâce au {@link DataTimeFormatter} "EEEE-dd-MM-yyyy"
-	 * @return {@link Integer} Nombre de jour pour compléter la fin du calendrier
-	 */ 
-	public static int getNbNextJour(String lastDay) {
-		String j = StringUtils.capitalize(lastDay.split("\\-")[0]);
-
-		int nbJourNext = 0;
-		switch (j) {
-		case "Lundi":
-			nbJourNext = 6;
-			break;
-		case "Mardi":
-			nbJourNext = 5;
-			break;
-		case "Mercredi":
-			nbJourNext = 4;
-			break;
-		case "Jeudi":
-			nbJourNext = 3;
-			break;
-		case "Vendredi":
-			nbJourNext = 2;
-			break;
-		case "Samedi":
-			nbJourNext = 1;
-			break;
-		}
-		return nbJourNext;
-	}
-
 	/**
 	 * Permet d'avoir une {@link List}<{@link LocalDate}> correspondant au mois complet de l'année placés en paramètre
 	 * 
@@ -200,10 +129,10 @@ public class Calendrier {
 		List<String> moisStr = new ArrayList<>();
 		
 		String firstDay = getFirstDayOf(year, month);
-		int nbJourPrev = getNbPrevJour(firstDay);
+		int nbJourPrev = getNbJour(firstDay,'p');
 		
 		String lastDay = getLastDayOf(year, month);
-		int nbJourNext = getNbNextJour(lastDay);
+		int nbJourNext = getNbJour(lastDay,'n');
 		
 		YearMonth prev = getPrevYearMonth(YearMonth.of(year, month));
 		YearMonth next = getNextYearMonth(YearMonth.of(year, month));
@@ -225,6 +154,11 @@ public class Calendrier {
 		return mStr;
 	}
 	
+	private static int getNbJour(String firstDay, char c) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	/**
 	 * Construction de {@link String} à localiser pour la France en fonction d'un 
 	 * {@link Month} placé en paramètre
@@ -234,42 +168,18 @@ public class Calendrier {
 	public static String localizeMonth(int m) {
 		String str = "";
 		switch(m){
-		case 1:
-			str = "Janvier";
-			break;
-		case 2:
-			str = "Février";
-			break;
-		case 3:
-			str = "Mars";
-			break;
-		case 4:
-			str = "Avril";
-			break;
-		case 5:
-			str = "Mai";
-			break;
-		case 6:
-			str = "Juin";
-			break;
-		case 7:
-			str = "Juillet";
-			break;
-		case 8:
-			str = "Août";
-			break;
-		case 9:
-			str = "Septembre";
-			break;
-		case 10:
-			str = "Octobre";
-			break;
-		case 11:
-			str = "Novembre";
-			break;
-		case 12:
-			str = "Décembre";
-			break;
+			case 1 -> str = "Janvier";
+			case 2 -> str = "Février";
+			case 3 -> str = "Mars";
+			case 4 -> str = "Avril";
+			case 5 -> str = "Mai";
+			case 6 -> str = "Juin";
+			case 7 -> str = "Juillet";
+			case 8 -> str = "Août";
+			case 9 -> str = "Septembre";
+			case 10 -> str = "Octobre";
+			case 11 -> str = "Novembre";
+			case 12 -> str = "Décembre";
 		}
 		
 		return str;

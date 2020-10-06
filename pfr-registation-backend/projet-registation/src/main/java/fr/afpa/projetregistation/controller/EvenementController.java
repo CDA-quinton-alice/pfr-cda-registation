@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -52,7 +53,14 @@ public class EvenementController {
 								@PathVariable(value="month") int mois, 
 								@PathVariable(value="action") char action,
 								@PathVariable(value="user") String user) {
-		log.info("Accès à la page d'accueil");
+		var message = """
+				
+				Accès à la methode fullCalendar
+				via une requête de type GET
+				pour avoir la liste complète des jours d'un mois d'une année
+				""";
+		
+		log.info(message);
 		YearMonth ym = null;
 		if(action=='p') {
 			ym = Calendrier.getPrevYearMonth(YearMonth.of(annee,mois));
@@ -64,8 +72,6 @@ public class EvenementController {
 			return null;
 		}
 		
-		log.debug(ym.toString());
-		
 		List<String> cal = Calendrier.getFullMonthOfStr(ym.getYear(), ym.getMonthValue());
 		SimpleDateFormat dtf = new SimpleDateFormat("EEEE-dd-MM-yyyy",Locale.FRENCH);
 		Date deb = null;
@@ -74,6 +80,11 @@ public class EvenementController {
 		try {
 			deb = dtf.parse(cal.get(0));
 			fin = dtf.parse(cal.get(cal.size()-1));
+			Calendar c = Calendar.getInstance();
+			c.setTime(fin);
+			c.add(Calendar.DATE, 1);
+			fin = c.getTime();
+			
 			log.debug(deb.toString());
 			log.debug(fin.toString());
 		} catch (ParseException e) {
@@ -102,11 +113,16 @@ public class EvenementController {
 	@RequestMapping(method=RequestMethod.POST, value="/evenement")
 	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
 	protected ResponseEntity<EvenementDto> creeEvenement(@RequestBody EvenementDto event){
-		log.info("Création d'évènement !");
-		log.info(event.toString());
+		var message = """
+				
+				Création d'un évènement
+				sur la base des données
+				envoyés par le front
+				""";
+		log.info(message);
 		
 		Long s = (event.getDate_fin().getTime()-event.getDate_debut().getTime())/1000;
-		int seconds = s.intValue();
+		var seconds = s.intValue();
 		event.setDuree(seconds);
 		event = eserv.create(event);
 		return ResponseEntity.ok(event);
@@ -115,8 +131,13 @@ public class EvenementController {
 	@RequestMapping(method=RequestMethod.PATCH, value="/evenement")
 	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
 	protected ResponseEntity<EvenementDto> updateEvenement(@RequestBody EvenementDto event){
-		log.info("Update d'un évènement");
-		log.info(event.toString());
+		var message = """
+				
+				Mise à jour d'un évènement
+				sur la base des données
+				envoyés par le front
+				""";
+		log.info(message);
 		UtilisateurDto udto = userv.getUtilisateurByMatricule(event.getUser().getMatricule());
 		UtilisateurSimpleDto usdto = UtilisateurSimpleDto.builder()
 										.dateDeNaissance(udto.getDateDeNaissance())
@@ -134,7 +155,13 @@ public class EvenementController {
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/evenement/{id}")
 	protected ResponseEntity<EvenementDto> deleteEvenement(@PathVariable(value="id") int id){
-		log.info("Update d'un évènement");
+		String message = """
+				
+				Suppression d'un évènement
+				sur la base des données
+				envoyés par le front
+				""";
+		log.info(message);
 		EvenementDto edto = eserv.getById(id);
 		eserv.delete(edto);
 		return null;
