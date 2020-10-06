@@ -41,6 +41,7 @@ export class AjoutModalComponent implements OnInit {
     this.uServ.findByMatricule(this.user).subscribe(res=>{
       this.event.user = res;
     });
+
   }
 
 

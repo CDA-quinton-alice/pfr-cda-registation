@@ -13,3 +13,8 @@
 .datepicker{
     overflow: visible !important;
 }
+
+.amc{
+    position:relative;
+    cursor: move;
+}

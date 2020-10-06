@@ -5,6 +5,7 @@ import { AgendaComponent } from '../../agenda/agenda.component';
 import { AjoutModalComponent } from '../ajout-modal/ajout-modal.component';
 import { EditModalComponent } from '../edit-modal/edit-modal.component';
 import { PlusModalComponent } from '../plus-modal/plus-modal.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-cellule',
@@ -43,7 +44,8 @@ export class CelluleComponent implements OnInit {
     let j = this.jour.split("-");
     const dialogRef = this.dialog.open(AjoutModalComponent, {
       width: '30rem',
-      data: {ac:a, date:this.dates, jour:j[1]}
+      data: {ac:a, date:this.dates, jour:j[1]},
+      panelClass: 'dialog-container',
     });
   }
 
@@ -132,4 +134,15 @@ export class CelluleComponent implements OnInit {
     return i==this.eventInInterval.length;
   }
 
+  testJourActuel(str:string):boolean{
+    let d = new Date();
+    let d2 = new Date(str.split('-')[3]+'-'+str.split('-')[2]+'-'+str.split('-')[1]);
+    return (d.getFullYear()==d2.getFullYear())&&(d.getMonth()==d2.getMonth())&&(d.getDate()==d2.getDate());
+  }
+
+  testJourPasse():boolean{
+    let d = new Date();
+    d = new Date(d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate())
+    return this.dates<d&&this.dates!=d;
+  }
 }
