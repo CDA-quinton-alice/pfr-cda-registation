@@ -17,7 +17,7 @@ import fr.afpa.projetregistation.security.service.JwtTokenService;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class AuthenticationController {
 
 	

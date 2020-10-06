@@ -18,7 +18,7 @@ import fr.afpa.projetregistation.service.IMaterielService;
 import fr.afpa.projetregistation.service.ITypeMaterielService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 
 public class MaterielController {
 
