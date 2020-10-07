@@ -2,6 +2,7 @@ import { HttpClient,HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Imateriel } from 'src/app/interfaces/imateriel';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class MaterielService {
   pageEnCours: number;
   list_materiel: Array<Imateriel> = new Array<Imateriel>();
 
-  private url: string = "http://localhost:8080/materiel";
+  url:string = `${environment.backSchema}://${environment.backServer}/utilisateur`;
 
   formatsDateTest: string[] = ['dd/MM/yyyy'];
   dateNow: Date = new Date();
