@@ -53,6 +53,7 @@ export class AuthService {
       observer => {
         this.http.post(this.url, user , this.httpOptions ).subscribe(
           res => {
+            console.log("et la ?");
             localStorage.setItem('isConnected', 'true');
             localStorage.setItem('access_token', res['token']);
             const currentUser = new User();

@@ -33,7 +33,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MaterielModule } from './modules/materiel/materiel.module';
 import { AgmCoreModule } from '@agm/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { MatDialogRef, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { UpdateMaterielComponent } from './modules/materiel/update-materiel/update-materiel.component';
 
 
@@ -67,7 +67,6 @@ export function jwtTokenGetter() {
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    HttpClientTestingModule,
 
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBEz6jxiWdqhyz79LyCjtgjG3ExiQVB0Nw'
@@ -94,7 +93,7 @@ export function jwtTokenGetter() {
     {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'},
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
     {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}, MatDialogRef, 
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
     ],
   bootstrap: [AppComponent]
 })
