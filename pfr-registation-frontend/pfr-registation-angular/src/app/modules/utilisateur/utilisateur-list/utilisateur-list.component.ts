@@ -30,13 +30,15 @@ export class UtilisateurListComponent implements OnInit {
     });
 
     this.currentUser = this.authService.getCurrentUser();
-    if(this.currentUser.role = "ROLE_REPONSABLE"){
-      this.isResponsable = true;
-      console.log("est bien responsable true");
-      
-    }else{
-      this.isResponsable = false;
-      console.log("n'est pas responsable");
+    if(this.currentUser){
+      if(this.currentUser.role = "ROLE_REPONSABLE"){
+        this.isResponsable = true;
+        console.log("est bien responsable true");
+        
+      }else{
+        this.isResponsable = false;
+        console.log("n'est pas responsable");
+      }
     }
     
 

@@ -1,4 +1,7 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { UpdateMaterielComponent } from './update-materiel.component';
 
@@ -8,6 +11,7 @@ describe('UpdateMaterielComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports : [ RouterModule.forRoot([]), HttpClientTestingModule, FormsModule],
       declarations: [ UpdateMaterielComponent ]
     })
     .compileComponents();

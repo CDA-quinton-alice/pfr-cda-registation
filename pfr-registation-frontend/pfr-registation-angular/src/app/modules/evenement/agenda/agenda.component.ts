@@ -39,7 +39,9 @@ export class AgendaComponent implements OnInit {
     this.year = new Date().getFullYear();
     this.month = new Date().getMonth()+1;
     this.action= "n"; 
-    this.user = JSON.parse(localStorage.getItem("current_user")).matricule;
+    if(localStorage.getItem("current_user")){
+      this.user = JSON.parse(localStorage.getItem("current_user")).matricule;
+    }
     this.getMonthAgenda(this.action);
   }
 

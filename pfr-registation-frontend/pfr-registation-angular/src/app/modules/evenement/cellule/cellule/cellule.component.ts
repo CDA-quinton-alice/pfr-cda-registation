@@ -82,6 +82,9 @@ export class CelluleComponent implements OnInit {
       case 'Panne':
         return "P";
         break;
+      default:
+        return "rien";
+        break;
     }
   }
 
@@ -98,6 +101,9 @@ export class CelluleComponent implements OnInit {
         break;
       case 'Panne':
         return "panne";
+        break;
+      default:
+        return "rien";
         break;
     }
   }
@@ -127,22 +133,38 @@ export class CelluleComponent implements OnInit {
   }
 
   testSpan():boolean{
-    return this.nbSpan>=2;
+    if(this.nbSpan){
+      return this.nbSpan>=2;
+    }else{
+      return false;
+    }
   }
 
   testFini(i:number):boolean{
-    return i==this.eventInInterval.length;
+    if(this.eventInInterval){
+      return i==this.eventInInterval.length;
+    }else{
+      return false;
+    }
   }
 
   testJourActuel(str:string):boolean{
     let d = new Date();
     let d2 = new Date(str.split('-')[3]+'-'+str.split('-')[2]+'-'+str.split('-')[1]);
-    return (d.getFullYear()==d2.getFullYear())&&(d.getMonth()==d2.getMonth())&&(d.getDate()==d2.getDate());
+    if(str){
+      return (d.getFullYear()==d2.getFullYear())&&(d.getMonth()==d2.getMonth())&&(d.getDate()==d2.getDate());
+    }else{
+      return false;
+    }
   }
 
   testJourPasse():boolean{
     let d = new Date();
     d = new Date(d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate())
-    return this.dates<d&&this.dates!=d;
+    if(this.dates){
+      return this.dates<d&&this.dates!=d;
+    }else{
+      return false;
+    }
   }
 }

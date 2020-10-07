@@ -37,11 +37,12 @@ export class AjoutModalComponent implements OnInit {
   ngOnInit(): void {
     this.event.date_debut = new Date(this.data.date);
     this.event.date_fin = new Date(this.data.date);
-    this.user = JSON.parse(localStorage.getItem("current_user")).matricule;
-    this.uServ.findByMatricule(this.user).subscribe(res=>{
-      this.event.user = res;
-    });
-
+    if(localStorage.getItem("current_user")){
+      this.user = JSON.parse(localStorage.getItem("current_user")).matricule;
+      this.uServ.findByMatricule(this.user).subscribe(res=>{
+        this.event.user = res;
+      });
+    }
   }
 
 

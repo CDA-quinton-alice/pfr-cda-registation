@@ -52,7 +52,7 @@ import { InfoModalComponent } from './info-modal/info-modal.component';
     MatSelectModule,
     MatTabsModule,
     MatIconModule,
-    MatButtonModule,
+    MatButtonModule 
   ],
   providers: [MaterielService]
 })

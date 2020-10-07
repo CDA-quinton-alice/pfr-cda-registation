@@ -31,7 +31,9 @@ export class EditModalComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.event = this.data.event;
+    if(this.data){
+      this.event = this.data.event;
+    }
     this.dateD = new FormControl(this.date1);
     this.dateF = new FormControl(this.date2);
 
