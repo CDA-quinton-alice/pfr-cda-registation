@@ -20,12 +20,14 @@ export class DashboardComponent implements OnInit {
     private utilisateurService: UtilisateurService) { }
 
   ngOnInit(): void {
+   
     this.currentUser = this.authService.getCurrentUser();
-    console.log(this.currentUser.matricule);
-
-    this.utilisateurService.findByMatricule(this.currentUser.matricule).subscribe(res => {
-      this.utilisateurSimple = res; 
-    });
+  
+    if(this.currentUser){
+      this.utilisateurService.findByMatricule(this.currentUser.matricule).subscribe(res => {
+        this.utilisateurSimple = res; 
+      });
+    }
 
     
   }

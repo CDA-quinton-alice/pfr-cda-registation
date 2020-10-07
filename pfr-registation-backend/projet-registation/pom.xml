@@ -28,6 +28,7 @@
 			</activation>
 			<properties>
 				<jdbc.url>dbUrl</jdbc.url>
+				
 			</properties>
 		</profile>
 
@@ -35,6 +36,7 @@
 			<id>mathieu</id>
 			<properties>
 				<jdbc.url>dbUrl</jdbc.url>
+				
 			</properties>
 		</profile>
 
@@ -42,6 +44,7 @@
 			<id>ienien</id>
 			<properties>
 				<jdbc.url>dbUrl</jdbc.url>
+				
 			</properties>
 		</profile>
 	</profiles>

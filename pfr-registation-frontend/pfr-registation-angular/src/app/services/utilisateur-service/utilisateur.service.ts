@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 import { IUtilisateur } from 'src/app/interfaces/iutilisateur';
 import { IUtilisateurSimple } from 'src/app/interfaces/iutilisateurSimple';
 import { IMessageContact } from 'src/app/interfaces/imessageContact';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilisateurService {
-  url: string = "http://localhost:8080/utilisateur";
+  url:string = `${environment.backSchema}://${environment.backServer}/utilisateur`;
 
   constructor(private http: HttpClient) {
 
