@@ -240,6 +240,7 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 	@Override
 	public List<UtilisateurSimpleDto> getAllUtilisateurs(int pPageEnCours) {
 		List<UtilisateurSimpleDto> listeUtilisateurs = new ArrayList<>();
+		//Attention pagination
 		PageRequest page = PageRequest.of(pPageEnCours - 1, Constantes.ELEMENTS_PAR_PAGE);
 		Page<UtilisateurEntity> listeUsers = this.utilisateurDao.findAll(page);
 		UtilisateurSimpleDto userDto = new UtilisateurSimpleDto();

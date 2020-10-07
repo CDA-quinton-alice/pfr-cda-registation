@@ -33,8 +33,8 @@ export class AuthService {
   constructor(private router: Router,
     private http: HttpClient,
     private alertService: AlertService) {
-    // this.url = `${environment.backSchema}://${environment.backServer}/login`;
-    this.url = "http://localhost:8080/login";
+    this.url = `${environment.backSchema}://${environment.backServer}/login`;
+    // this.url = "http://192.168.1.46:8080/login";
     this.subjectConnexion = new Subject<number>();
 
   }

@@ -39,14 +39,13 @@ spring:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
       
-  datasource:
-    url: jdbc:postgresql://192.168.1.69:5432/registation    username: registation_user
+  datasource:    username: registation_user
     password: pwd
-    driver-class-name: org.postgresql.Driver
+   
       
       profiles: 
     active:
-      - mathieu
+      - dev
       
 ---
    
