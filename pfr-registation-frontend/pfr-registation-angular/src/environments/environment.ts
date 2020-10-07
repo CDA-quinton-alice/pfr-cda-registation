@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   backServer: 'localhost:8080', //8443
-  backSchema: 'http'        
+  backSchema: 'http' ,
+  mathieu: false       
 };
 
 /*
