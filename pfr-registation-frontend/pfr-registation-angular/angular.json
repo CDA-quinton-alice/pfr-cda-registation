@@ -19,6 +19,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
+            "sslKey": "",
+            "sslCert":"",
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -128,6 +130,12 @@
           "configurations": {
             "production": {
               "browserTarget": "pfr-registation-angular:build:production"
+            },
+            "mathieu": {
+              "browserTarget": "pfr-registation-angular:build:mathieu"
+            },
+            "ienien": {
+              "browserTarget": "pfr-registation-angular:build:ienien"
             }
           }
         },

@@ -28,7 +28,7 @@
 			</activation>
 			<properties>
 				<jdbc.url>dbUrl</jdbc.url>
-				
+
 			</properties>
 		</profile>
 
@@ -36,7 +36,7 @@
 			<id>mathieu</id>
 			<properties>
 				<jdbc.url>dbUrl</jdbc.url>
-				
+
 			</properties>
 		</profile>
 
@@ -44,7 +44,7 @@
 			<id>ienien</id>
 			<properties>
 				<jdbc.url>dbUrl</jdbc.url>
-				
+
 			</properties>
 		</profile>
 	</profiles>
@@ -78,10 +78,17 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.postgresql</groupId> -->
+<!-- 			<artifactId>postgresql</artifactId> -->
+<!-- 			<version>42.2.16</version> -->
+<!-- 		</dependency> -->
+
+		<!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client --> 
 		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>42.2.16</version>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>2.6.2</version>
 		</dependency>
 
 		<dependency>
