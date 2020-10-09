@@ -44,7 +44,7 @@ public interface ICalendrier {
 				else if(action=='p') res = 5;
 			}
 			default ->{
-				return 6;
+				res = 6;
 			}
 		}
 		return res;
@@ -56,7 +56,7 @@ public interface ICalendrier {
 	 * @param action "n" pour les jours suivants le mois et "p" pour les jours précédents
 	 * @return {link Integer} représentant le nombre de jour.
 	 */
-	public static int getNbJour(String day, char action) {
+	public default int getNbJour(String day, char action) {
 		String j = StringUtils.capitalize(day.split("\\-")[0]);
 		int nbJour = 0;
 		nbJour = getSwitch(j,action);

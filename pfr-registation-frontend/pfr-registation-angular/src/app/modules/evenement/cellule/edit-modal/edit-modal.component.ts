@@ -39,6 +39,9 @@ export class EditModalComponent implements OnInit {
 
   }
 
+  close(){
+    this.dialogRef.close();
+  }
   onNoClick(): void {
     this.dialogRef.close();
   }

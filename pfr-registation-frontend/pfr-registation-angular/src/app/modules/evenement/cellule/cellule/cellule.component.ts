@@ -1,4 +1,4 @@
-import { Component, Input, OnInit,Inject} from '@angular/core';
+import { Component, Input, OnInit,Inject, ElementRef} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Ievent } from 'src/app/interfaces/ievent';
 import { AgendaComponent } from '../../agenda/agenda.component';
@@ -10,7 +10,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-cellule',
   templateUrl: './cellule.component.html',
-  styleUrls: ['./cellule.component.css']
+  styleUrls: ['./cellule.component.css'],
 })
 export class CelluleComponent implements OnInit {
 
@@ -24,7 +24,10 @@ export class CelluleComponent implements OnInit {
 
   nbSpan: number;
   plusDisplayed: boolean = false;
-  constructor(public dialog: MatDialog) {
+  ajoutDisplayed: boolean = false;
+
+  constructor(public dialog: MatDialog, 
+    private elementRef: ElementRef) {
   }
  
   ngOnInit(): void {
@@ -45,14 +48,13 @@ export class CelluleComponent implements OnInit {
     const dialogRef = this.dialog.open(AjoutModalComponent, {
       width: '30rem',
       data: {ac:a, date:this.dates, jour:j[1]},
-      panelClass: 'dialog-container',
     });
   }
 
   editModal(e:Ievent,a:AgendaComponent){
     const dialogRef = this.dialog.open(EditModalComponent, {
       width: '30rem',
-      data: {event:e,ac:a, date:this.dates}
+      data: {event:e,ac:a, date:this.dates},
     });
   }
 
@@ -116,10 +118,15 @@ export class CelluleComponent implements OnInit {
     return this.plusDisplayed;
   }
 
+  onClick(event) {
+    if (!this.elementRef.nativeElement.contains(event.target)) // or some similar check
+      this.ajoutDisplayed = false;
+   }
+
   plusModal():void{
     const dialogRef = this.dialog.open(PlusModalComponent, {
       width: '250px',
-      data: {eventData: this.eventInInterval, dates:this.dates, ac:this.ac}
+      data: {eventData: this.eventInInterval, dates:this.dates, ac:this.ac},
     });
   }
   

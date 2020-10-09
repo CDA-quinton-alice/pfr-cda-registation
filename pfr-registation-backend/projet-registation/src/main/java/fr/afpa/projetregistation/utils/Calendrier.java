@@ -9,6 +9,8 @@ import java.util.List;
 
 import org.springframework.util.StringUtils;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Il s'agit d'un outil nécessaire afin d'afficher les dates d'un système de Calendrier.
  * Le tout permet d'avoir un nombre "carré" de jour pour remplir toutes les cases
@@ -17,7 +19,9 @@ import org.springframework.util.StringUtils;
  * @author Samuel
  *
  */
-public class Calendrier implements ICalendrier{
+
+@Slf4j
+public class Calendrier{
 	
 	/**
 	 * Récupère le premier jour d'un mois/année souhaité.
@@ -127,12 +131,18 @@ public class Calendrier implements ICalendrier{
 	 */
 	public static List<String> getFullMonthOfStr(int year, int month) {
 		List<String> moisStr = new ArrayList<>();
+		UtilitaireCalendrier uc = new UtilitaireCalendrier();
 		
 		String firstDay = getFirstDayOf(year, month);
-		int nbJourPrev = getNbJour(firstDay,'p');
+		int nbJourPrev = uc.getNbJour(firstDay,'p');
+		log.info(StringUtils.capitalize(firstDay.split("\\-")[0]));
+		log.info("nbJourPrev : "+firstDay+" "+nbJourPrev);
+		
 		
 		String lastDay = getLastDayOf(year, month);
-		int nbJourNext = getNbJour(lastDay,'n');
+		int nbJourNext = uc.getNbJour(lastDay,'n');
+		log.info(StringUtils.capitalize(lastDay.split("\\-")[0]));
+		log.info("nbJourNext : "+lastDay+" "+nbJourNext);
 		
 		YearMonth prev = getPrevYearMonth(YearMonth.of(year, month));
 		YearMonth next = getNextYearMonth(YearMonth.of(year, month));
@@ -150,13 +160,8 @@ public class Calendrier implements ICalendrier{
 		moisNext.stream().forEach(x -> moisStr.add(x.format(dtf)));
 		List<String> mStr = new ArrayList<>();
 		moisStr.stream().forEach(x -> mStr.add(StringUtils.capitalize(x)));
-		
+		log.info(mStr.toString());
 		return mStr;
-	}
-	
-	private static int getNbJour(String firstDay, char c) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	/**

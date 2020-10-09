@@ -8,7 +8,7 @@ import * as $ from "jquery";
 @Component({
   selector: 'app-agenda',
   templateUrl: './agenda.component.html',
-  styleUrls: ['./agenda.component.css']
+  styleUrls: ['./agenda.component.css'],
 })
 export class AgendaComponent implements OnInit {
 
