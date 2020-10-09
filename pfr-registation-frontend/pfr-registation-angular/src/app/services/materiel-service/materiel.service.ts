@@ -12,7 +12,7 @@ export class MaterielService {
   pageEnCours: number;
   list_materiel: Array<Imateriel> = new Array<Imateriel>();
 
-  url:string = `${environment.backSchema}://${environment.backServer}/utilisateur`;
+  url:string = `${environment.backSchema}://${environment.backServer}/materiel`;
 
   formatsDateTest: string[] = ['dd/MM/yyyy'];
   dateNow: Date = new Date();

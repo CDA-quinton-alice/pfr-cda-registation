@@ -6,6 +6,7 @@ import { Ievent } from 'src/app/interfaces/ievent';
 import { DatePipe, formatDate } from '@angular/common';
 import { map } from 'jquery';
 import { UtilisateurService } from '../utilisateur-service/utilisateur.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ import { UtilisateurService } from '../utilisateur-service/utilisateur.service';
 export class EvenementService {
   calendrier: Icalendrier;
   ev:Ievent;
-  private url: string = "http://localhost:8080/evenement";
+  private url: string =  `${environment.backSchema}://${environment.backServer}/evenement`;
 
   headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 

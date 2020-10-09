@@ -3,6 +3,7 @@ import {HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpRequest} from '@angu
 import {findAll} from '@angular/compiler-cli/ngcc/src/utils';
 import {Observable} from 'rxjs';
 import {IDocument} from '../interfaces/idocument';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class DocumentService {
   dateNow2: Date = new Date();
 
   constructor(private  https: HttpClient) {
-    this.documentsUrl = 'http://localhost:8080/document';
+    this.documentsUrl = `${environment.backSchema}://${environment.backServer}/document`;
   }
   public findAll(): Observable<IDocument[]>{
     return this.https.get<IDocument[]>(this.documentsUrl);
