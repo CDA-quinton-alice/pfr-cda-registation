@@ -13,7 +13,8 @@ registation:
 spring:
  
   jpa:
-    hibernate:      ddl-auto: update
+    hibernate:
+      ddl-auto: update
        show-sql: false
 
   mail: 
@@ -49,6 +50,11 @@ spring:
 ---
    
 spring:  profiles: dev   
+  
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
       
   datasource:
     url: jdbc:mariadb://localhost:3306/registation
