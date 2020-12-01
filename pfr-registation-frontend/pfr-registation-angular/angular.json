@@ -19,8 +19,6 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "sslKey": "",
-            "sslCert":"",
             "assets": [
               "src/favicon.ico",
               "src/assets"
