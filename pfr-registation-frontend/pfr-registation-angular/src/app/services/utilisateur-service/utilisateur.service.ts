@@ -33,5 +33,9 @@ export class UtilisateurService {
     return this.http.post<IUtilisateurSimple>(this.url + "/mat", matricule);
   }
 
+  updateUtilisateur(utilisateur : IUtilisateur) {
+    return this.http.patch<IUtilisateur>(this.url + "/update" , utilisateur);
+  }
+
 }
 

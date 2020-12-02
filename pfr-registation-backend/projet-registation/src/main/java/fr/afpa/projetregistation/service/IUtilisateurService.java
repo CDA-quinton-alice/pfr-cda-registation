@@ -43,8 +43,6 @@ public interface IUtilisateurService {
 
 	public void deleteUtilisateurByMatricule(String pMatricule);
 
-	public boolean authentification(String login, String motdepasse);
-
 	void contactUs(MessageContactDto pMessage);
 
 

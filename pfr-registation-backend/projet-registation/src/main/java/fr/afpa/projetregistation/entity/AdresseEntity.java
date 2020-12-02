@@ -36,4 +36,7 @@ public class AdresseEntity {
 	private String ville;
 	private String pays;
 
+	public AdresseEntity(int numero2, String rue2, String complement2, String codePostal2, String ville2,
+			String pays2) {
+	}
 }

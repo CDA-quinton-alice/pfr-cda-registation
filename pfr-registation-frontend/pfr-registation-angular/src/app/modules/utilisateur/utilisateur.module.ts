@@ -27,11 +27,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { UtilisateurContactComponent } from './utilisateur-contact/utilisateur-contact.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { UtilisateurService } from 'src/app/services/utilisateur-service/utilisateur.service';
+import { UtilisateurUpdateComponent } from './utilisateur-update/utilisateur-update.component';
 
 
 
 @NgModule({
-  declarations: [AccueilComponent, UtilisateurListComponent, UtilisateurFormComponent, UtilisateurContactComponent],
+  declarations: [AccueilComponent, UtilisateurListComponent, UtilisateurFormComponent, UtilisateurContactComponent, UtilisateurUpdateComponent],
   imports: [
     CommonModule,
     UtilisateurRoutingModule,

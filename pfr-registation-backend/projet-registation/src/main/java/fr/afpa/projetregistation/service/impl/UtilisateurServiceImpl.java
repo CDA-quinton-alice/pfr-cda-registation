@@ -10,7 +10,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -126,6 +125,11 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 		}
 	}
 
+	/**
+	 * Permet de maj l'utilisateur
+	 * 
+	 * @param pUtilisateur : UtilisateurDto
+	 */
 	@Override
 	public void updateUtilisateur(UtilisateurDto pUtilisateur) {
 		Optional<UtilisateurEntity> optiUtilisateur = utilisateurDao.findById(pUtilisateur.getMatricule());
@@ -134,17 +138,29 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 			log.warn("UTILISATEUR - Update impossible ce matricule n'existe pas !");
 		} else {
 			user = optiUtilisateur.get();
-			user = UtilisateurEntity.builder().matricule(pUtilisateur.getMatricule()).prenom(pUtilisateur.getPrenom())
-					.nom(pUtilisateur.getNom()).dateDeNaissance(pUtilisateur.getDateDeNaissance())
-					.salaire(pUtilisateur.getSalaire()).mail(pUtilisateur.getMail()).tel(pUtilisateur.getTel())
-					.responsable(pUtilisateur.isResponsable())
-					.adresse(AdresseEntity.builder().rue(pUtilisateur.getRue()).complement(pUtilisateur.getComplement())
-							.codePostal(pUtilisateur.getCodePostal()).ville(pUtilisateur.getVille())
-							.pays(pUtilisateur.getPays())
+			user.setMatricule(pUtilisateur.getMatricule());
+			user.setPrenom(pUtilisateur.getPrenom());
+			user.setNom(pUtilisateur.getNom());
+			user.setDateDeNaissance(pUtilisateur.getDateDeNaissance());
+			user.setSalaire(pUtilisateur.getSalaire());
+			user.setMail(pUtilisateur.getMail());
+			user.setTel(pUtilisateur.getTel());
+			user.setResponsable(pUtilisateur.isResponsable());
+					
+			AdresseEntity adresseUser = user.getAdresse();
+			adresseUser.setNumero(pUtilisateur.getNumero());
+				
+			adresseUser.setRue(pUtilisateur.getRue());
+			adresseUser.setComplement(pUtilisateur.getComplement());
+			adresseUser.setCodePostal(pUtilisateur.getCodePostal());
+			adresseUser.setVille(pUtilisateur.getVille());
+			adresseUser.setPays(pUtilisateur.getPays());
 
-							.build())
-					.build();
+			user.setAdresse(adresseUser);
+					
 			utilisateurDao.save(user);
+			log.info("UTILISATEUR - maj réussie");				
+
 		}
 
 	}
@@ -214,29 +230,6 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 	 * @param pPageEnCours int correspondant à la page en cours
 	 * @return List de UtilisateurDto
 	 */
-//	@Override
-//	public List<UtilisateurDto> getAllUtilisateurs(int pPageEnCours) {
-//		List<UtilisateurDto> listeUtilisateurs = new ArrayList<>();
-//		PageRequest page = PageRequest.of(pPageEnCours - 1, Constantes.ELEMENTS_PAR_PAGE);
-//		Page<UtilisateurEntity> listeUsers = this.utilisateurDao.findAll(page);
-//		UtilisateurDto userDto = new UtilisateurDto();
-//		for (UtilisateurEntity utilisateurEntity : listeUsers) {
-//			userDto = this.modelMapper.map(utilisateurEntity, UtilisateurDto.class);
-//			userDto.setPassword(utilisateurEntity.getConnexion().getPassword());
-//			userDto.setNumero(utilisateurEntity.getAdresse().getNumero());
-//			userDto.setRue(utilisateurEntity.getAdresse().getRue());
-//			userDto.setComplement(utilisateurEntity.getAdresse().getComplement());
-//			userDto.setCodePostal(utilisateurEntity.getAdresse().getCodePostal());
-//			userDto.setVille(utilisateurEntity.getAdresse().getVille());
-//			userDto.setPays(utilisateurEntity.getAdresse().getPays());
-//			
-//			listeUtilisateurs.add(userDto);
-//
-//		}
-//		return listeUtilisateurs;
-//	}
-
-	// Testouille
 	@Override
 	public List<UtilisateurSimpleDto> getAllUtilisateurs(int pPageEnCours) {
 		List<UtilisateurSimpleDto> listeUtilisateurs = new ArrayList<>();
@@ -315,12 +308,6 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 
 		}
 		return listeResponsables;
-	}
-
-	@Override
-	public boolean authentification(String login, String motdepasse) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override

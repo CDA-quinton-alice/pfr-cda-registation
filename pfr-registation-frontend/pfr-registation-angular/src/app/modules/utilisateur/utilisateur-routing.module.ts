@@ -4,12 +4,14 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { UtilisateurContactComponent } from './utilisateur-contact/utilisateur-contact.component';
 import { UtilisateurFormComponent } from './utilisateur-form/utilisateur-form.component';
 import { UtilisateurListComponent } from './utilisateur-list/utilisateur-list.component';
+import { UtilisateurUpdateComponent } from './utilisateur-update/utilisateur-update.component';
 
 const routes: Routes = [
   { path: 'utilisateur/accueil', component: AccueilComponent },
   { path: 'utilisateur/liste', component: UtilisateurListComponent },
   { path: 'utilisateur/add', component: UtilisateurFormComponent },
   { path: 'utilisateur/contact', component: UtilisateurContactComponent },
+  { path: 'utilisateur/update', component: UtilisateurUpdateComponent },
 ];
 
 
