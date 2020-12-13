@@ -44,7 +44,7 @@ spring:
      
       profiles: 
     active:
-      - dev    
+      - ienien    
 ---
    
    
@@ -106,12 +106,12 @@ spring:  profiles: ienien
       
     show-sql: false
 
-#server:
-#  port: 8443
-#  ssl:
-#    enabled: false  
-#    key-store-type: PKCS12
-#    key-store: registation.p12
-#    key-store-password: registation
-#    key-alias: registation
-#    key-password: registation  
+server:
+  port: 8443
+  ssl:
+    enabled: false  
+    key-store-type: PKCS12
+    key-store: registation.p12
+    key-store-password: registation
+    key-alias: registation
+    key-password: registation  
