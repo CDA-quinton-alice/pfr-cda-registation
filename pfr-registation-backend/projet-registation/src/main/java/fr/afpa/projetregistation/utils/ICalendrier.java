@@ -21,31 +21,31 @@ public interface ICalendrier {
 	private static int getSwitch(String jour, char action) {
 		int res = 0;
 		switch(jour) {
-			case "Lundi" -> {
+			case "Lundi" :
 				if(action=='n') res = 6;
-			}
-			case "Mardi" -> {
+				break;
+			case "Mardi" :
 				if(action=='n') res = 5;
 				else if(action=='p') res = 1;
-			}
-			case "Mercredi" ->{
+				break;
+			case "Mercredi" :
 				if(action=='n') res = 4;
 				else if(action=='p') res = 2;
-			}
-			case "Jeudi" ->{
+				break;
+			case "Jeudi" :
 				res = 3;
-			}
-			case "Vendredi" ->{
+				break;
+			case "Vendredi" :
 				if(action=='n') res = 2;
 				else if(action=='p') res = 4;
-			}
-			case "Samedi" ->{
+				break;
+			case "Samedi" :
 				if(action=='n') res = 1;
 				else if(action=='p') res = 5;
-			}
-			default ->{
+				break;
+			default :
 				res = 6;
-			}
+				break;
 		}
 		return res;
 	}
