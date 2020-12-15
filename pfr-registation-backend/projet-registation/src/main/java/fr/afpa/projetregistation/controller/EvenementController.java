@@ -53,12 +53,7 @@ public class EvenementController {
 								@PathVariable(value="month") int mois, 
 								@PathVariable(value="action") char action,
 								@PathVariable(value="user") String user) {
-		var message = """
-				
-				Accès à la methode fullCalendar
-				via une requête de type GET
-				pour avoir la liste complète des jours d'un mois d'une année
-				""";
+		String message = "Accès à la methode fullCalendar via une requête de type GET pour avoir la liste complète des jours d'un mois d'une année";
 		
 		log.info(message);
 		YearMonth ym = null;
@@ -113,16 +108,11 @@ public class EvenementController {
 	@RequestMapping(method=RequestMethod.POST, value="/evenement")
 	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
 	protected ResponseEntity<EvenementDto> creeEvenement(@RequestBody EvenementDto event){
-		var message = """
-				
-				Création d'un évènement
-				sur la base des données
-				envoyés par le front
-				""";
+		String message = "Création d'un évènement sur la base des données envoyés par le front";
 		log.info(message);
 		
 		Long s = (event.getDate_fin().getTime()-event.getDate_debut().getTime())/1000;
-		var seconds = s.intValue();
+		int seconds = s.intValue();
 		event.setDuree(seconds);
 		event = eserv.create(event);
 		return ResponseEntity.ok(event);
@@ -131,12 +121,7 @@ public class EvenementController {
 	@RequestMapping(method=RequestMethod.PATCH, value="/evenement")
 	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
 	protected ResponseEntity<EvenementDto> updateEvenement(@RequestBody EvenementDto event){
-		var message = """
-				
-				Mise à jour d'un évènement
-				sur la base des données
-				envoyés par le front
-				""";
+		String message = "Mise à jour d'un évènement sur la base des données envoyés par le front";
 		log.info(message);
 		UtilisateurDto udto = userv.getUtilisateurByMatricule(event.getUser().getMatricule());
 		UtilisateurSimpleDto usdto = UtilisateurSimpleDto.builder()
@@ -155,12 +140,7 @@ public class EvenementController {
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/evenement/{id}")
 	protected ResponseEntity<EvenementDto> deleteEvenement(@PathVariable(value="id") int id){
-		String message = """
-				
-				Suppression d'un évènement
-				sur la base des données
-				envoyés par le front
-				""";
+		String message = "Suppression d'un évènement sur la base des données envoyés par le front";
 		log.info(message);
 		EvenementDto edto = eserv.getById(id);
 		eserv.delete(edto);

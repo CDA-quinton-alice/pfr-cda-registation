@@ -173,18 +173,42 @@ public class Calendrier{
 	public static String localizeMonth(int m) {
 		String str = "";
 		switch(m){
-			case 1 -> str = "Janvier";
-			case 2 -> str = "Février";
-			case 3 -> str = "Mars";
-			case 4 -> str = "Avril";
-			case 5 -> str = "Mai";
-			case 6 -> str = "Juin";
-			case 7 -> str = "Juillet";
-			case 8 -> str = "Août";
-			case 9 -> str = "Septembre";
-			case 10 -> str = "Octobre";
-			case 11 -> str = "Novembre";
-			case 12 -> str = "Décembre";
+			case 1 :
+				str = "Janvier";
+				break;
+			case 2 :
+				str = "Février";
+				break;
+			case 3  :
+				str = "Mars";
+				break;
+			case 4 :
+				str = "Avril";
+				break;
+			case 5 :
+				str = "Mai";
+				break;
+			case 6 :
+				str = "Juin";
+				break;
+			case 7 :
+				str = "Juillet";
+				break;
+			case 8 :
+				str = "Août";
+				break;
+			case 9 :
+				str = "Septembre";
+				break;
+			case 10 :
+				str = "Octobre";
+				break;
+			case 11 :
+				str = "Novembre";
+				break;
+			case 12 :
+				str = "Décembre";
+				break;
 		}
 		
 		return str;
