@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  backserver:'',
-  backschema:''
+  backServer:'localhost:8080',
+  backSchema:'https'
 };
